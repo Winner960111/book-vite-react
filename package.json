@@ -1,0 +1,23 @@
+{
+  "name": "book-vite-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "3.1.1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true
+  },
+  "dependencies": {
+    "react-datepicker": "^4.25.0"
+  }
+}

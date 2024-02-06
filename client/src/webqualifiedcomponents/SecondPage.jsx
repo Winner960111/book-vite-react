@@ -124,7 +124,7 @@ const SecondPage = () => {
         <div className="w-2/3 flex flex-col mt-10 mx-20">
           <div className="w-full">
             <p className="text-6xl text-black my-3">
-              Let's Confirm your verify code
+              Let&apos;s Confirm your verify code
             </p>
           </div>
           <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">

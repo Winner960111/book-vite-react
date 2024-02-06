@@ -11,7 +11,7 @@ const FirstPage = () => {
       <div className="flex bg-gray-100 w-full justify-center items-center">
         <div className=" w-2/3 flex flex-col mt-10 mx-20">
           <div className="w-full">
-            <p className="text-6xl text-black my-3">Let's get Started</p>
+            <p className="text-6xl text-black my-3">Let&apos;s get Started</p>
             <p className="text-xl text-black my-2">
               For rate and other cost information see the Terms of conditions.
               To print of save these documents, click the Terms and Conditions

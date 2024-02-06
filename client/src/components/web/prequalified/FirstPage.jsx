@@ -1,10 +1,10 @@
-import { addHistory } from '../store/reducers/checker';
+import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch } from 'react-redux';
 
 const FirstPage = () => {
   const dispatch = useDispatch();
   const handlesubmit = () => {
-    dispatch(addHistory(true))
+    dispatch(addHistory(true));
   };
   return (
     <>

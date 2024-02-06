@@ -3,15 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 // checker step components
-import Greeting from '../Quotecomponents/Greeting';
-import SendPhoneVerificationCode from '../Quotecomponents/SendPhoneVerificationCode';
-import CheckPhoneVerificationCode from '../Quotecomponents/CheckPhoneVerificationCode';
-import InputFirstName from '../Quotecomponents/InputFirstName';
-import InputLastName from '../Quotecomponents/InputLastName';
-import InputEmail from '../Quotecomponents/InputEmail';
-import Submit from '../Quotecomponents/Submit';
-import DealType from '../Quotecomponents/DealType';
-import Vehicle from '../Quotecomponents/Vehicle';
+import Greeting from '../components/Mobile/quote/Greeting';
+import SendPhoneVerificationCode from '../components/Mobile/quote/SendPhoneVerificationCode';
+import CheckPhoneVerificationCode from '../components/Mobile/quote/CheckPhoneVerificationCode';
+import InputFirstName from '../components/Mobile/quote/InputFirstName';
+import InputLastName from '../components/Mobile/quote/InputLastName';
+import InputEmail from '../components/Mobile/quote/InputEmail';
+import Submit from '../components/Mobile/quote/Submit';
+import DealType from '../components/Mobile/quote/DealType';
+import Vehicle from '../components/Mobile/quote/Vehicle';
 import {
   getDealerInfo,
   setDealerId,
@@ -76,7 +76,7 @@ const Quote = () => {
           <InputLastName />
           <InputEmail />
           <DealType />
-          <Vehicle/>
+          <Vehicle />
           <Submit />
         </div>
       </div>

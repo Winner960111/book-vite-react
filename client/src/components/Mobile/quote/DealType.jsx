@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
 // import { addHistory, setCheckerMobileNumber } from '../store/reducers/checker';
-import { classNames } from '../utils';
-import { addHistory, setDealType } from '../store/reducers/checker';
+import { classNames } from '../../../utils';
+import { addHistory, setDealType } from '../../../store/reducers/checker';
 
 const DealType = () => {
   const { step } = useSelector((state) => state.checker);
@@ -117,7 +117,9 @@ const DealType = () => {
           <p className=" px-6">
             <b>Please select deal type.</b>
           </p>
-          {error !== '' ? <p className="text-red-500 pl-2 pt-2">{error}</p> : null}
+          {error !== '' ? (
+            <p className="text-red-500 pl-2 pt-2">{error}</p>
+          ) : null}
         </div>
 
         <button

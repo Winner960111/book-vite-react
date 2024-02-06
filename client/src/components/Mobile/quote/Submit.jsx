@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import BotIcon from './BotIcon';
-import { addHistory } from '../store/reducers/checker';
+import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
-import { classNames } from '../utils';
-import { SubmitQuote } from '../api/index';
+import { classNames } from '../../../utils';
+import { SubmitQuote } from '../../../api/index';
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);

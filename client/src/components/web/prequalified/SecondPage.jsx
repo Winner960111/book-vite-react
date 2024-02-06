@@ -7,7 +7,7 @@ import {
   setCheckerLocality,
   setCheckerState,
   setCheckerZipcode,
-} from '../store/reducers/checker';
+} from '../../../store/reducers/checker';
 
 const SecondPage = () => {
   const dispatch = useDispatch();
@@ -19,9 +19,7 @@ const SecondPage = () => {
   const [apt, setApt] = useState('');
   const [errors, setErrors] = useState({});
 
-  const {
-    step
-  } = useSelector((state) => state.checker);
+  const { step } = useSelector((state) => state.checker);
 
   const addressRef = useRef(null);
 
@@ -41,7 +39,7 @@ const SecondPage = () => {
       }
     });
   }, []);
-    
+
   useEffect(() => {
     if (addressRef.current) {
       const loadGoogleMapsScript = (callback) => {
@@ -52,7 +50,7 @@ const SecondPage = () => {
           // Create a new <script> tag only if the API hasn't been loaded yet
           const existingScript = document.getElementById('googleMapsScript');
           if (!existingScript) {
-              const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+            const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
             const script = document.createElement('script');
             script.id = 'googleMapsScript'; // Assign an ID to the script element to check for its existence later
             script.type = 'text/javascript';

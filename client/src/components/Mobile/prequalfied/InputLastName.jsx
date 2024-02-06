@@ -1,39 +1,41 @@
-import { useState, useEffect } from 'react';
-import BotIcon from './BotIcon';
-import { addHistory, setCheckerEmail } from '../store/reducers/checker';
-import { classNames } from '../utils';
-
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import BotIcon from './BotIcon';
+import {
+  addHistory,
+  setCheckerLastName,
+} from '../../../store/reducers/checker';
+import { classNames } from '../../../utils';
 
-const InputEmail = () => {
-  const { step, history, dealerName, checkerEmail } = useSelector(
+const InputLastName = () => {
+  const { step, history, checkerLastName } = useSelector(
     (state) => state.checker
   );
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState('');
+  const [lastName, setLastName] = useState('');
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setError(null);
   }, [step]);
 
-  const handleChangeInputEmail = (e) => {
+  const handleChangeInput = (e) => {
+    setLastName(e.target.value);
     setError(null);
-    setEmail(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email.trim()) {
-      setError('You should input your email');
-    } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      setError('Invalid email type');
+    if (lastName.length === 0) {
+      setError('The last name field is required');
+    } else if (!/^[A-Za-z]+$/.test(lastName)) {
+      setError('The last name contains only characters');
     } else {
       dispatch(addHistory(true));
-      dispatch(setCheckerEmail(email));
-      setEmail('');
+      dispatch(setCheckerLastName(lastName));
+      setLastName('');
     }
   };
 
@@ -48,26 +50,25 @@ const InputEmail = () => {
         )}
       >
         <div
-          className="py-2 flex flex-col md:flex-row md:items-center"
+          className="my-2 flex flex-col md:flex-row md:items-center"
           style={step >= 6 ? { display: 'none' } : { display: 'block' }}
         >
           <input
             type="text"
             className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
             autoFocus
-            placeholder="email adress"
-            value={email.toLowerCase()}
-            onChange={handleChangeInputEmail}
+            placeholder="last name"
+            value={lastName}
+            onChange={handleChangeInput}
           />
           {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p className="bg-gray-100 rounded-3xl p-4">
-          By providing your email you agree to receive notification messages
-          from <b>{dealerName}</b> to the provided email address.
+        <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+          Please enter your last name.
         </p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
           style={step >= 6 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
@@ -79,7 +80,7 @@ const InputEmail = () => {
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
       <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
-        <p>{checkerEmail}</p>
+        {checkerLastName}
       </div>
     </div>
   );
@@ -101,4 +102,4 @@ const InputEmail = () => {
     </>
   );
 };
-export default InputEmail;
+export default InputLastName;

@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
-import { checkPhoneNumber } from '../api';
-import { addHistory, setCheckerMobileNumber } from '../store/reducers/checker';
-import { classNames } from '../utils';
+import { checkPhoneNumber } from '../../../api';
+import {
+  addHistory,
+  setCheckerMobileNumber,
+} from '../../../store/reducers/checker';
+import { classNames } from '../../../utils';
 
 const SendPhoneVerificationCode = () => {
   const { history, step, dealerName, dealerId, checkerMobileNumber } =
@@ -93,7 +96,7 @@ const SendPhoneVerificationCode = () => {
   );
 
   const renderReply = () => (
-    <div className="mt-4 flex justify-end text-sm md:text-lg">
+    <div className="mt-4 flex justify-end text-lg">
       <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
         {checkerMobileNumber}
       </div>

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addHistory } from '../store/reducers/checker';
-import { classNames } from '../utils';
+import { addHistory } from '../../../store/reducers/checker';
+import { classNames } from '../../../utils';
 import BotIcon from './BotIcon';
 
 const Greeting = () => {

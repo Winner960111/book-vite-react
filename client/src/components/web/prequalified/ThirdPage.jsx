@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { addHistory } from '../store/reducers/checker';
+import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
-import { classNames } from '../utils';
-import { signatureImg } from '../api/index';
+import { classNames } from '../../../utils';
+import { signatureImg } from '../../../api/index';
 import './Canvas.css';
 
 const ThirdPage = () => {
@@ -269,7 +269,6 @@ const ThirdPage = () => {
               Submit
             </button>
           </div>
-          
         </form>
       </div>
     </div>

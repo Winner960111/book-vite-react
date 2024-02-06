@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addHistory, setCheckerBirthday } from '../store/reducers/checker';
+import {
+  addHistory,
+  setCheckerBirthday,
+} from '../../../store/reducers/checker';
 import BotIcon from './BotIcon';
-import { classNames } from '../utils';
+import { classNames } from '../../../utils';
 
 const InputBirthday = () => {
   const { step, history, checkerBirthday } = useSelector(

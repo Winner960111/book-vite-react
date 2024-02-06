@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { classNames } from '../utils';
+import { classNames } from '../../../utils';
 import BotIcon from './BotIcon';
 import {
   addHistory,
@@ -9,7 +9,7 @@ import {
   setCheckerLocality,
   setCheckerState,
   setCheckerZipcode,
-} from '../store/reducers/checker';
+} from '../../../store/reducers/checker';
 
 const Address = () => {
   const [address, setAddress] = useState('');
@@ -93,8 +93,8 @@ const Address = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    setErrors("")
+
+    setErrors('');
     let newErrors = {};
     console.log(locality);
 

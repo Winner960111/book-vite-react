@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
-import { addHistory, setCheckerLastName } from '../store/reducers/checker';
-import { classNames } from '../utils';
+import {
+  addHistory,
+  setCheckerLastName,
+} from '../../../store/reducers/checker';
+import { classNames } from '../../../utils';
 
 const InputLastName = () => {
   const { step, history, checkerLastName } = useSelector(

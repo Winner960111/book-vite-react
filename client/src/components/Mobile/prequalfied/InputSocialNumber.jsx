@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addHistory, setCheckerSocialNumber } from '../store/reducers/checker';
+import {
+  addHistory,
+  setCheckerSocialNumber,
+} from '../../../store/reducers/checker';
 import BotIcon from './BotIcon';
-import { classNames } from '../utils';
+import { classNames } from '../../../utils';
 
 const InputSocialNumber = () => {
   const { step, history, checkerSocialNumber } = useSelector(
@@ -19,7 +22,7 @@ const InputSocialNumber = () => {
 
   const hideCheckerSocialNumber = () => {
     return `xxx-xx-${checkerSocialNumber.slice(-4)}`;
-  }
+  };
 
   const handleChangeInputSocialNumber = (e) => {
     setError(null);

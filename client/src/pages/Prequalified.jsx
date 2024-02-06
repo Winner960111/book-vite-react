@@ -3,17 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 // checker step components
-import Greeting from '../components/Greeting';
-import SendPhoneVerificationCode from '../components/SendPhoneVerificationCode';
-import CheckPhoneVerificationCode from '../components/CheckPhoneVerificationCode';
-import InputFirstName from '../components/InputFirstName';
-import InputMiddleName from '../components/InputMiddleName';
-import InputLastName from '../components/InputLastName';
-import InputEmail from '../components/InputEmail';
-import InputBirthday from '../components/InputBirthday';
-import Address from '../components/Address';
-import Submit from '../components/Submit';
-import InputSocialNumber from '../components/InputSocialNumber';
+import Greeting from '../components/Mobile/prequalfied/Greeting';
+import SendPhoneVerificationCode from '../components/Mobile/prequalfied/SendPhoneVerificationCode';
+import CheckPhoneVerificationCode from '../components/Mobile/prequalfied/CheckPhoneVerificationCode';
+import InputFirstName from '../components/Mobile/prequalfied/InputFirstName';
+import InputMiddleName from '../components/Mobile/prequalfied/InputMiddleName';
+import InputLastName from '../components/Mobile/prequalfied/InputLastName';
+import InputEmail from '../components/Mobile/prequalfied/InputEmail';
+import InputBirthday from '../components/Mobile/prequalfied/InputBirthday';
+import Address from '../components/Mobile/prequalfied/Address';
+import Submit from '../components/Mobile/prequalfied/Submit';
+import InputSocialNumber from '../components/Mobile/prequalfied/InputSocialNumber';
 import {
   getDealerInfo,
   setDealerId,

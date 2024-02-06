@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import BotIcon from './BotIcon';
-import { addHistory } from '../store/reducers/checker';
+import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
-import { classNames } from '../utils';
-import { signatureImg } from '../api/index';
-import "./Canvas.css"
+import { classNames } from '../../../utils';
+import { signatureImg } from '../../../api/index';
+import './Canvas.css';
 const Submit = () => {
   const dispatch = useDispatch();
   const {

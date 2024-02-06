@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import BotIcon from './BotIcon';
-import { addHistory, setCheckerFirstName } from '../store/reducers/checker';
+import {
+  addHistory,
+  setCheckerFirstName,
+} from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
-import { classNames } from '../utils';
+import { classNames } from '../../../utils';
 
 const InputFirstName = () => {
   const dispatch = useDispatch();
@@ -68,7 +71,7 @@ const InputFirstName = () => {
         </p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
           style={step >= 4 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE

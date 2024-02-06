@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import BotIcon from './BotIcon';
-import { addHistory, setCheckerEmail } from '../store/reducers/checker';
-import { classNames } from '../utils';
+import { addHistory, setCheckerEmail } from '../../../store/reducers/checker';
+import { classNames } from '../../../utils';
 
 import { useDispatch, useSelector } from 'react-redux';
 

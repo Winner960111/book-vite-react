@@ -1,9 +1,9 @@
 import BotIcon from './BotIcon';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkVerification } from '../api';
-import { addHistory } from '../store/reducers/checker';
-import { classNames } from '../utils';
+import { checkVerification } from '../../../api';
+import { addHistory } from '../../../store/reducers/checker';
+import { classNames } from '../../../utils';
 
 const CheckPhoneVerificationCode = () => {
   const [verifyCode, setVerifyCode] = useState('');
@@ -64,7 +64,7 @@ const CheckPhoneVerificationCode = () => {
         >
           <input
             type="tel"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
+            className="w-full h-16 rounded-md text-center text-lg border p-2"
             autoFocus
             placeholder="Verify Code"
             value={verifyCode}
@@ -80,7 +80,7 @@ const CheckPhoneVerificationCode = () => {
         </p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
           style={step >= 3 ? { display: 'none' } : { display: 'block' }}
         >
           CONFIRM
@@ -90,7 +90,7 @@ const CheckPhoneVerificationCode = () => {
   );
 
   const renderReply = () => (
-    <div className="mt-4 flex justify-end text-lg">
+    <div className="mt-4 flex justify-end text-sm md:text-lg">
       <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
         {temp}
       </div>

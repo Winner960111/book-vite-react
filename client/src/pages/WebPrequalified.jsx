@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
 // checker step components
-import PhoneVerification from '../webqualifiedcomponents/PhoneVerification';
-import CheckVerifyCode from '../webqualifiedcomponents/CheckVerifyCode';
-import FirstPage from '../webqualifiedcomponents/FirstPage';
-import SecondPage from '../webqualifiedcomponents/SecondPage';
-import ThirdPage from '../webqualifiedcomponents/ThirdPage';
+import PhoneVerification from '../components/web/prequalified/PhoneVerification';
+import CheckVerifyCode from '../components/web/prequalified/CheckVerifyCode';
+import FirstPage from '../components/web/prequalified/FirstPage';
+import SecondPage from '../components/web/prequalified/SecondPage';
+import ThirdPage from '../components/web/prequalified/ThirdPage';
 
 import {
   clearHistory,
@@ -31,7 +31,7 @@ const WebPrequalified = () => {
     dispatch(clearHistory());
   };
   return (
-    <div className="bg-gray-100 w-screen h-screen min-w-[755px]">
+    <div className="bg-gray-100 w-screen h-screen min-w-[755px] relative">
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center">
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img

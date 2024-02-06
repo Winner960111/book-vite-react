@@ -52,42 +52,46 @@ const PhoneVerification = () => {
   };
 
   return (
-    <div className="w-full flex justify-center mt-44">
-      <form
-        onSubmit={handleSubmit}
-        className={
-          ' w-2/5 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg'
-        }
-      >
-        <div className="py-2 flex flex-col items-center">
-          <input
-            type="tel"
-            className="w-full h-20 rounded-md text-center text-sm md:text-lg border my-5"
-            autoFocus
-            placeholder="Phone number"
-            value={phoneNumber}
-            onChange={handleChangeInput}
-          />
-          {error !== '' ? (
-            <p className="text-red-500 pl-2 text-sm">{error}</p>
-          ) : null}
-        </div>
-        <p className=" bg-gray-100 rounded-3xl p-4">
-          <b>We need to verify your mobile number</b>
-          <br />
-          by providing your mobile number you agree to receive recurring
-          messages from <b>{dealerName}</b> to the provided mobile number and
-          agree to <b>{dealerName}</b>. terms and privacy policy. Message & data
-          rates may apply.
+    <>
+      <div className="w-full flex flex-col items-center">
+        <p className="w-2/6 text-4xl text-black my-3 mt-36 font-medium">
+          <b>verify your mobile number</b>
         </p>
-        <button
-          type="submit"
-          className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+        <form
+          onSubmit={handleSubmit}
+          className={
+            ' w-2/6 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4'
+          }
         >
-          CONTINUE
-        </button>
-      </form>
-    </div>
+          <div className="py-2 flex flex-col items-center">
+            <input
+              type="tel"
+              className="w-full h-20 rounded-md text-center text-sm md:text-lg border my-5"
+              id="phoneNumber"
+              autoFocus
+              placeholder="Phone number"
+              value={phoneNumber}
+              onChange={handleChangeInput}
+            />
+            {error !== '' ? (
+              <p className="text-red-500 pl-2 text-sm">{error}</p>
+            ) : null}
+          </div>
+          <p className=" bg-gray-100 rounded-3xl p-4 font-sans">
+            by providing your mobile number you agree to receive recurring
+            messages from <b>{dealerName}</b> to the provided mobile number and
+            agree to <b>{dealerName}</b>. terms and privacy policy. Message &
+            data rates may apply.
+          </p>
+          <button
+            type="submit"
+            className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+          >
+            CONTINUE
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 

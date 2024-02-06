@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
 // checker step components
@@ -8,7 +8,8 @@ import CheckVerifyCode from '../components/web/prequalified/CheckVerifyCode';
 import FirstPage from '../components/web/prequalified/FirstPage';
 import SecondPage from '../components/web/prequalified/SecondPage';
 import ThirdPage from '../components/web/prequalified/ThirdPage';
-
+import homeImg from '../assets/webhome.png';
+import refImg from '../assets/webref.png';
 import {
   clearHistory,
   getDealerInfo,
@@ -19,6 +20,7 @@ const WebPrequalified = () => {
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // when refresh app, set dealer_id and dealer_info of store
@@ -30,9 +32,17 @@ const WebPrequalified = () => {
   const Refresh = () => {
     dispatch(clearHistory());
   };
+  const handleRestart = () => {
+    dispatch(clearHistory());
+  };
+
+  const handleBack = () => {
+    navigate(-1);
+    dispatch(clearHistory());
+  };
   return (
     <div className="bg-gray-100 w-screen h-screen min-w-[755px] relative">
-      <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center">
+      <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img
             onClick={Refresh}
@@ -78,6 +88,20 @@ const WebPrequalified = () => {
       {step == 2 && <FirstPage />}
       {step == 3 && <SecondPage />}
       {step == 4 && <ThirdPage />}
+      <div className="w-full bg-white border-gray-100 border-b-2 flex justify-between items-center absolute bottom-0">
+        <img
+          className=" w-10 cursor-pointer mx-5"
+          src={homeImg}
+          alt="Home Icon"
+          onClick={handleBack}
+        />
+        <img
+          className="w-12 cursor-pointer mx-5"
+          src={refImg}
+          alt="refresh icon"
+          onClick={handleRestart}
+        />
+      </div>
     </div>
   );
 };

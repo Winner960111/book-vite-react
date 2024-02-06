@@ -44,11 +44,14 @@ const CheckVerifyCode = () => {
   };
 
   return (
-    <div className="w-full flex justify-center mt-44">
+    <div className="w-full flex flex-col items-center">
+      <p className="w-2/6 text-4xl text-black my-3 mt-36 font-medium">
+        <b>Check your verify code</b>
+      </p>
       <form
         onSubmit={handleSubmit}
         className={
-          ' w-2/5 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg'
+          ' w-2/6 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4'
         }
       >
         <div className="py-2 flex flex-col items-center">
@@ -65,10 +68,8 @@ const CheckVerifyCode = () => {
           ) : null}
         </div>
         <p className=" bg-gray-100 rounded-3xl p-4">
-          <b>
-            We sent a verification code to the mobile number you provided,
-            please enter the code below.
-          </b>
+          We sent a verification code to the mobile number you provided, please
+          enter the code.
         </p>
         <button
           type="submit"

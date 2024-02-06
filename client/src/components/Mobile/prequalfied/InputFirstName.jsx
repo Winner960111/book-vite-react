@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 
 const InputFirstName = () => {
+  
   const dispatch = useDispatch();
   const { step, history, checkerFirstName } = useSelector(
     (state) => state.checker

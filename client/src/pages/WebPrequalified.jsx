@@ -88,7 +88,7 @@ const WebPrequalified = () => {
       {step == 2 && <FirstPage />}
       {step == 3 && <SecondPage />}
       {step == 4 && <ThirdPage />}
-      <div className="w-full bg-white border-gray-100 border-b-2 flex justify-between items-center absolute bottom-0">
+      <div className="w-full bg-white border-gray-100 border-b-2 flex justify-between items-center md:absolute md:bottom-0">
         <img
           className=" w-10 cursor-pointer mx-5"
           src={homeImg}

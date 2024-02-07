@@ -60,7 +60,7 @@ const PhoneVerification = () => {
         <form
           onSubmit={handleSubmit}
           className={
-            ' w-2/6 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4'
+            ' w-2/6 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
           }
         >
           <div className="py-2 flex flex-col items-center">
@@ -77,7 +77,7 @@ const PhoneVerification = () => {
               <p className="text-red-500 pl-2 text-sm">{error}</p>
             ) : null}
           </div>
-          <p className=" bg-gray-100 rounded-3xl p-4 font-sans">
+          <p className=" bg-gray-100 rounded-3xl p-4">
             by providing your mobile number you agree to receive recurring
             messages from <b>{dealerName}</b> to the provided mobile number and
             agree to <b>{dealerName}</b>. terms and privacy policy. Message &

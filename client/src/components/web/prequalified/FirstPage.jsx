@@ -133,7 +133,7 @@ const FirstPage = () => {
           <p className="w-2/3 text-4xl text-black my-3 font-medium">
             We need to your some information
           </p>
-          <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
+          <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <input
@@ -151,9 +151,9 @@ const FirstPage = () => {
                   <p className="text-red-500 pl-2">{errorFirstName}</p>
                 )}
                 {focusFirstName && (
-                  <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+                  <b className="bg-gray-100 rounded-3xl p-4 mt-2">
                     Please enter your first name.
-                  </p>
+                  </b>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
@@ -192,9 +192,9 @@ const FirstPage = () => {
                   <p className="text-red-500 pl-2">{errorLastName}</p>
                 )}
                 {focusLastName && (
-                  <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+                  <b className="bg-gray-100 rounded-3xl p-4 mt-2">
                     Please enter your last name.
-                  </p>
+                  </b>
                 )}
               </div>
             </div>
@@ -215,7 +215,7 @@ const FirstPage = () => {
                 )}
                 {focusBirthday && (
                   <p className="bg-gray-100 rounded-3xl p-4 mt-2">
-                    Please input your birthday.
+                    <b className="text-justify ">Please input your birthday.</b>
                     <br />
                     Your Privacy Matters: Rest assured, the information you
                     provide is strictly confidential. We take your privacy

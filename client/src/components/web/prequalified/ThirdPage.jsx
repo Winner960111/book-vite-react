@@ -97,7 +97,6 @@ const ThirdPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(addHistory(true));
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');
     const image = new Image();
@@ -141,14 +140,12 @@ const ThirdPage = () => {
   return (
     <div className="flex bg-gray-100 w-full justify-center items-center">
       <div className="w-2/3 flex flex-col mt-10 mx-20">
-        <div className="w-full">
-          <p className="text-6xl text-black my-3">
-            Let&apos;s Confirm your verify code
-          </p>
-        </div>
+        <p className="w-2/3 text-4xl text-black my-3 font-medium">
+          Please Sign on DrawBox
+        </p>
         <form
           className={classNames(
-            'text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg'
+            'text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg font-sans'
           )}
         >
           <p className="bg-gray-100 rounded-3xl p-4 mt-2">
@@ -245,8 +242,8 @@ const ThirdPage = () => {
               {readStatePara2 == false ? 'More' : 'Less'}
             </span>
           </div>
-          <div className="flex">
-            <div className="w-1/2 h-1/4 flex md:flex-row md:items-center mt-2">
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-3/5 w-full h-[200px] mt-2">
               <canvas
                 ref={canvasRef}
                 onMouseDown={startDrawing}
@@ -255,19 +252,18 @@ const ThirdPage = () => {
                 onMouseOut={finishDrawing}
               />
             </div>
-            <p className="bg-gray-100 rounded-3xl p-4 mt-2">
-              Please sign in above input field. it will act as your digital
-              signature.
-            </p>
-          </div>
-          <div className="w-full p-5 flex justify-end">
-            <button
-              type="button"
-              onClick={handleSubmit}
-              className="bg-[#854fff] w-1/4 h-20 p-2 mx-5 rounded-lg text-white text-xl  hover:bg-purple-800"
-            >
-              Submit
-            </button>
+            <div className="md:w-2/5 w-full h-[200px] flex flex-col mt-2 mx-1 justify-between">
+              <p className="bg-gray-100 rounded-3xl p-4">
+                Please sign on drawbox. it will act as your digital signature.
+              </p>
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="bg-[#854fff] w-full h-20 p-2 rounded-lg text-white text-xl  hover:bg-purple-800"
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </form>
       </div>

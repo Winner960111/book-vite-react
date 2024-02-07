@@ -51,7 +51,7 @@ const CheckVerifyCode = () => {
       <form
         onSubmit={handleSubmit}
         className={
-          ' w-2/6 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4'
+          ' w-2/6 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
         }
       >
         <div className="py-2 flex flex-col items-center">

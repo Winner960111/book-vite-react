@@ -120,15 +120,13 @@ const SecondPage = () => {
     <>
       <div className="flex bg-gray-100 w-full justify-center items-center">
         <div className="w-2/3 flex flex-col mt-10 mx-20">
-          <div className="w-full">
-            <p className="text-6xl text-black my-3">
-              Let&apos;s Confirm your verify code
-            </p>
-          </div>
-          <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
-            <div className="w-full flex p-5">
+          <p className="w-2/3 text-4xl text-black my-3 font-medium">
+            Make sure this is a physical address and not a P.O Box
+          </p>
+          <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
+            <div className="w-full flex p-5 flex-col md:flex-row">
               <input
-                className="w-[68%] h-20 rounded-md text-center text-2xl border-2 my-3 mx-5"
+                className="md:w-[68%] w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
                 id="autocomplete"
                 placeholder="Enter your address"
                 type="text"
@@ -140,15 +138,15 @@ const SecondPage = () => {
                 <p className="text-red-500 pl-2">{errors.address}</p>
               ) : null}
               <input
-                className="w-[32%] h-20 rounded-md text-center text-2xl border-2 my-3 mx-5"
+                className="md:w-[32%] w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
                 onChange={(e) => setApt(e.target.value)}
                 value={apt}
                 placeholder="Apt/Suite (Optional)"
               />
             </div>
-            <div className="w-full p-5 flex justify-between">
+            <div className="w-full p-5 flex justify-between flex-col md:flex-row">
               <input
-                className="w-1/3 h-20 rounded-md text-center text-2xl border-2 my-3 mx-5"
+                className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
                 onChange={(e) => {
                   setLocality(e.target.value);
                   setErrors((prev) => ({ ...prev, locality: '' }));
@@ -160,7 +158,7 @@ const SecondPage = () => {
                 <p className="text-red-500 pl-2">{errors.locality}</p>
               ) : null}
               <input
-                className="w-1/3 h-20 rounded-md text-center text-2xl border-2 my-3 mx-5"
+                className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
                 onChange={(e) => {
                   setState(e.target.value);
                   setErrors((prev) => ({ ...prev, state: '' }));
@@ -172,7 +170,7 @@ const SecondPage = () => {
                 <p className="text-red-500 pl-2">{errors.state}</p>
               ) : null}
               <input
-                className="w-1/3 h-20 rounded-md text-center text-2xl border-2 my-3 mx-5"
+                className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
                 onChange={(e) => {
                   setZipcode(e.target.value);
                   setErrors((prev) => ({ ...prev, zipcode: '' }));

@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { signatureImg } from '../../../api/index';
-import './Canvas.css';
 import { addHistory } from '../../../store/reducers/checker';
 
 const ThirdPage = () => {

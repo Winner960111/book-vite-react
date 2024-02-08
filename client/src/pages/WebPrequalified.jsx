@@ -8,6 +8,7 @@ import CheckVerifyCode from '../components/web/prequalified/CheckVerifyCode';
 import FirstPage from '../components/web/prequalified/FirstPage';
 import SecondPage from '../components/web/prequalified/SecondPage';
 import ThirdPage from '../components/web/prequalified/ThirdPage';
+import Finish from '../components/web/prequalified/Finish';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
 import {
@@ -52,7 +53,7 @@ const WebPrequalified = () => {
           />
           <div className=" w-32 h-10">
             <Flat
-              progress={20 + (step / 5) * 100}
+              progress={(step / 5) * 100}
               range={{ from: 0, to: 100 }}
               sign={{ value: '%', position: 'end' }}
               text={'Complete'}
@@ -88,6 +89,7 @@ const WebPrequalified = () => {
       {step == 2 && <FirstPage />}
       {step == 3 && <SecondPage />}
       {step == 4 && <ThirdPage />}
+      {step == 5 && <Finish />}
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-between items-center md:absolute md:bottom-0">
         <img
           className=" w-10 cursor-pointer mx-5"

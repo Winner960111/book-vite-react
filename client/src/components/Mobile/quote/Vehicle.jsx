@@ -8,7 +8,7 @@ import {
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
 
-const InputMiddleName = () => {
+const Vehicle = () => {
   const { step, history, checkerIsSkipMiddleName, quoteInterest } = useSelector(
     (state) => state.checker
   );
@@ -128,4 +128,4 @@ const InputMiddleName = () => {
     </>
   );
 };
-export default InputMiddleName;
+export default Vehicle;

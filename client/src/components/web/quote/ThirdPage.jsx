@@ -1,133 +1,44 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { signatureImg } from '../../../api/index';
 import { addHistory } from '../../../store/reducers/checker';
+import { SubmitQuote } from '../../../api/index';
 
 const ThirdPage = () => {
   const {
-    step,
     dealerName,
     dealerId,
     checkerMobileNumber,
     checkerFirstName,
-    checkerMiddleName,
+    quoteStatus,
     checkerLastName,
     checkerEmail,
-    checkerSocialNumber,
-    checkerBirthday,
-    checkerAddress,
-    checkerApt,
-    checkerLocality,
-    checkerState,
-    checkerZipcode,
+    quoteSource,
+    dealType,
+    quoteInterest,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
-  const canvasRef = useRef(null);
-  const contextRef = useRef(null);
-  const [isDrawing, setIsDrawing] = useState(false);
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
 
-  const handleResize = () => {
-    // Rerun your code to set canvas size based on the new dimensions
-    console.log('web and mobile situation is exchanged.');
-    prepareCanvas();
-  };
-
-  // Add event listener to window
-  window.addEventListener('resize', handleResize);
-
-  // Initialize the canvas context
-  const prepareCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    // Get the dimensions of the parent element
-    const { width, height } = canvas.parentElement.getBoundingClientRect();
-
-    const dpr = window.devicePixelRatio || 1;
-
-    canvas.width = width * 2 * dpr; // Twice the actual size for high DPI screens
-    canvas.height = height * 2 * dpr;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-
-    const context = canvas.getContext('2d');
-    context.scale(dpr * 2, dpr * 2); // Adjust for high DPI
-    context.lineCap = 'round';
-    context.strokeStyle = 'black';
-    context.lineWidth = 5;
-    contextRef.current = context;
-  }, []);
-
-  useEffect(() => {
-    if (canvasRef.current) {
-      prepareCanvas();
-    }
-  }, [step, prepareCanvas]);
-
-  // Start drawing
-  const startDrawing = ({ nativeEvent }) => {
-    const pos = { x: nativeEvent.offsetX, y: nativeEvent.offsetY };
-
-    if (!pos) return; // If position is null, exit
-
-    contextRef.current.beginPath();
-    contextRef.current.moveTo(pos.x, pos.y);
-    setIsDrawing(true);
-  };
-
-  // Draw line
-  const draw = ({ nativeEvent }) => {
-    if (!isDrawing) return;
-
-    const offsetX = nativeEvent.offsetX;
-    const offsetY = nativeEvent.offsetY;
-    contextRef.current.lineTo(offsetX, offsetY);
-    contextRef.current.stroke();
-  };
-
-  // End drawing
-  const finishDrawing = () => {
-    contextRef.current.closePath();
-    setIsDrawing(false);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(addHistory(true));
-    const canvas = canvasRef.current;
-    const imageDataURL = canvas.toDataURL('image/png');
-    const image = new Image();
-    image.src = imageDataURL;
 
-    let fullName;
-    if (checkerMiddleName !== '') {
-      fullName =
-        checkerFirstName + ' ' + checkerMiddleName + ' ' + checkerLastName;
-    } else {
-      fullName = checkerFirstName + ' ' + checkerLastName;
-    }
+    dispatch(addHistory(true));
 
     const data = {
       dealer_id: dealerId,
       first_name: checkerFirstName,
-      middle_name: checkerMiddleName,
       last_name: checkerLastName,
       email: checkerEmail,
       mobile_phone: checkerMobileNumber,
-      ssn: checkerSocialNumber,
-      dob: checkerBirthday,
-      primary_address: checkerAddress,
-      primary_address2: checkerApt,
-      primary_city: checkerLocality,
-      primary_state: checkerState,
-      primary_zip_code: checkerZipcode,
-      signature_name: fullName,
-      signature_img: image.src,
-      custom_id: '',
+      status: quoteStatus,
+      source: quoteSource,
+      interested_in: quoteInterest,
+      deal_type: dealType,
     };
 
-    const res = await signatureImg(data);
+    const res = await SubmitQuote(data);
     if (res.status == 201) {
       console.log('status ImageSend', res);
     } else {
@@ -139,7 +50,7 @@ const ThirdPage = () => {
     <div className="flex bg-gray-100 w-full justify-center items-center">
       <div className="w-2/3 flex flex-col mt-10 mx-20">
         <p className="w-2/3 text-4xl text-black my-3 font-medium">
-          Please Sign on DrawBox
+          Please confirm bellow contents
         </p>
         <form
           className={classNames(
@@ -240,28 +151,14 @@ const ThirdPage = () => {
               {readStatePara2 == false ? 'More' : 'Less'}
             </span>
           </div>
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-3/5 w-full h-[200px] mt-2">
-              <canvas
-                ref={canvasRef}
-                onMouseDown={startDrawing}
-                onMouseUp={finishDrawing}
-                onMouseMove={draw}
-                onMouseOut={finishDrawing}
-              />
-            </div>
-            <div className="md:w-2/5 w-full h-[200px] flex flex-col mt-2 mx-1 justify-between">
-              <p className="bg-gray-100 rounded-3xl p-4">
-                Please sign on drawbox. it will act as your digital signature.
-              </p>
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="bg-[#854fff] w-full h-20 p-2 rounded-lg text-white text-xl  hover:bg-purple-800"
-              >
-                Submit
-              </button>
-            </div>
+          <div className="w-full mt-5 flex justify-end">
+            <button
+              type="button"
+              onClick={handleSubmit}
+              className="bg-[#854fff] w-1/4 h-20 p-2 rounded-lg text-white text-xl  hover:bg-purple-800"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </div>

@@ -29,7 +29,7 @@ const Finish = () => {
           type="submit"
           className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
         >
-          CONFIRM
+          FINISH
         </button>
       </form>
     </div>

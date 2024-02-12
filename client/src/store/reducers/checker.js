@@ -25,12 +25,28 @@ const initialState = {
   quoteStatus: 'New',
   quoteSource: 'ChatBot',
   quoteInterest: '',
+  instantYear: "",
+  instantMake: '',
+  instantModel: '',
 };
 
 export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    //set instant year, make and model
+    setInstantYear: (state, action) => {
+      state.instantYear = action.payload;
+    },
+
+    setInstantMake: (state, action) => {
+      state.instantMake = action.payload;
+    },
+
+    setInstantModel: (state, action) => {
+      state.instantModel = action.payload;
+    },
+
     //set deal type
     setDealType: (state, action) => {
       state.dealType = action.payload;
@@ -168,6 +184,9 @@ export const checkerSlice = createSlice({
       state.quoteSource = initialState.quoteSource;
       state.quoteStatus = initialState.quoteStatus;
       state.dealType = initialState.dealType;
+      state.instantMake = initialState.instantMake;
+      state.instantYear = initialState.instantYear;
+      state.instantModel = initialState.instantModel;
     },
   },
 });
@@ -198,6 +217,9 @@ export const {
   setQuoteInterest,
   setquoteSource,
   setQuoteStatus,
+  setInstantYear,
+  setInstantMake,
+  setInstantModel,
 } = checkerSlice.actions;
 
 // fetch dealer name and dealer logo

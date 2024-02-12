@@ -8,14 +8,13 @@ import Prequalified from './pages/Prequalified';
 import Quote from './pages/Quote';
 import WebQuote from './pages/WebQuote';
 import WebPrequalified from './pages/WebPrequalified';
-
-
+import WebTrade from './pages/WebTrade';
 
 // redux store
 import store from './store';
 
 function App() {
-  console.log(window.innerWidth)
+  console.log(window.innerWidth);
   return (
     <ReduxProvider store={store}>
       <Routes>
@@ -36,6 +35,10 @@ function App() {
         <Route
           path="/info-checker/:dealer_id/webprequalified"
           element={<WebPrequalified />}
+        />
+        <Route
+          path="/info-checker/:dealer_id/webtrade"
+          element={<WebTrade />}
         />
       </Routes>
     </ReduxProvider>

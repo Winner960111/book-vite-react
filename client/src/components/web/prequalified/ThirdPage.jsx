@@ -170,7 +170,7 @@ const ThirdPage = () => {
                 rel="noopener noreferrer"
               >
                 here
-              </a>
+              </a>{' '}
               to read our Privacy Notice and click{' '}
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
@@ -179,7 +179,7 @@ const ThirdPage = () => {
                 rel="noopener noreferrer"
               >
                 here
-              </a>
+              </a>{' '}
               to read our full Privacy Policy. If you would like to opt-out of
               having your information shared at all, please do so now by
               clicking{' '}
@@ -190,7 +190,7 @@ const ThirdPage = () => {
                 rel="noopener noreferrer"
               >
                 here
-              </a>
+              </a>{' '}
               and exiting the application.
             </p>
             <span
@@ -219,7 +219,7 @@ const ThirdPage = () => {
                 rel="noopener noreferrer"
               >
                 Terms of use
-              </a>
+              </a>{' '}
               and our{' '}
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
@@ -227,8 +227,9 @@ const ThirdPage = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                {' '}
                 Privacy Policy
-              </a>
+              </a>{' '}
               and agree to have the information that I provided shared with
               lenders in accordance therewith. I also understand that if a
               prequalified offer is found by any of our lenders, they will

@@ -67,7 +67,7 @@ export const signatureImg = async (data) => {
 };
 
 export const SubmitQuote = async (data) => {
-  console.log("quote data is =>",data)
+  console.log('quote data is =>', data);
   const url = 'http://ec2-52-91-0-180.compute-1.amazonaws.com/api/leads/';
   try {
     const response = await axios.post(url, data, {
@@ -82,3 +82,18 @@ export const SubmitQuote = async (data) => {
   }
 };
 
+export const instantInfo = async (data) => {
+  console.log(data);
+  const url = 'http://www.dev.creditapps.com/api/vehicle_decode/';
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return response;
+  } catch (e) {
+    return { status: 400 };
+  }
+};

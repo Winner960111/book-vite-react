@@ -28,12 +28,30 @@ const initialState = {
   instantYear: '',
   instantMake: '',
   instantModel: '',
+  vehicleCondition: '',
+  mileageHour: '',
+  originalOwner: '',
 };
 
 export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    // set mileage hour
+    setMileageHour: (state, action) => {
+      state.mileageHour = action.payload;
+    },
+
+    // set original owner
+    setOriginalOwner: (state, action) => {
+      state.originalOwner = action.payload;
+    },
+
+    // set vehicle condition
+    setVehicleCondition: (state, action) => {
+      state.vehicleCondition = action.payload;
+    },
+
     //set instant year, make and model
     setInstantYear: (state, action) => {
       state.instantYear = action.payload;
@@ -187,6 +205,9 @@ export const checkerSlice = createSlice({
       state.instantMake = initialState.instantMake;
       state.instantYear = initialState.instantYear;
       state.instantModel = initialState.instantModel;
+      state.vehicleCondition = initialState.vehicleCondition;
+      state.originalOwner = initialState.originalOwner;
+      state.mileageHour = initialState.mileageHour;
     },
   },
 });
@@ -220,6 +241,9 @@ export const {
   setInstantYear,
   setInstantMake,
   setInstantModel,
+  setVehicleCondition,
+  setMileageHour,
+  setOriginalOwner,
 } = checkerSlice.actions;
 
 // fetch dealer name and dealer logo
@@ -230,7 +254,8 @@ export const getDealerInfo = (dealer_id) => (dispatch) => {
   return async () => {
     try {
       const response = await axios.post(
-        `https://www.dev.creditapps.com/api/decode_dealer/`, data
+        `https://www.dev.creditapps.com/api/decode_dealer/`,
+        data
       );
       dispatch(setDealerName(response.data.name));
       dispatch(setDealerLogo(response.data.get_logo_url));

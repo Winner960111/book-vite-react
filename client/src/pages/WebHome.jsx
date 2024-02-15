@@ -5,7 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
   clearHistory,
   getDealerInfo,
-  setDealerId,
 } from '../store/reducers/checker';
 
 const WebHome = () => {
@@ -13,12 +12,10 @@ const WebHome = () => {
   const { dealerName } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   // getting dealer_name and avatar
   useEffect(() => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
-    dispatch(setDealerId(dealer_id));
   }, [dealer_id, dispatch]);
 
   const changePageQuote = () => {

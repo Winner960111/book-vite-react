@@ -84,7 +84,7 @@ export const SubmitQuote = async (data) => {
 
 export const instantInfo = async (data) => {
   console.log(data);
-  const url = 'http://www.dev.creditapps.com/api/vehicle_decode/';
+  const url = 'https://www.dev.creditapps.com/api/vehicle_decode/';
   try {
     const response = await axios.post(url, data, {
       headers: {

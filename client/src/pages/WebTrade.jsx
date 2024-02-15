@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
 // checker step components
 import PhoneVerification from '../components/web/trade/PhoneVerification';
@@ -23,12 +23,14 @@ const WebTrade = () => {
   const dispatch = useDispatch();
   const { dealer_id } = useParams();
   const navigate = useNavigate();
+  const [percent, setPercent] = useState(null);
 
   useEffect(() => {
     // when refresh app, set dealer_id and dealer_info of store
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
     dispatch(setDealerId(dealer_id));
+    setPercent(parseInt(step / 6*100));
   }, [history, step, dealer_id, dispatch]);
 
   const Refresh = () => {
@@ -54,7 +56,7 @@ const WebTrade = () => {
           />
           <div className=" w-32 h-10">
             <Flat
-              progress={(step / 6) * 100}
+              progress={percent}
               range={{ from: 0, to: 100 }}
               sign={{ value: '%', position: 'end' }}
               text={'Complete'}

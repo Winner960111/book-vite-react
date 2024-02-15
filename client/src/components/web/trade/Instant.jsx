@@ -37,10 +37,10 @@ const Instant = () => {
         };
         const res = await instantInfo(data);
         console.log('response is =>', res);
-        if (res == '201') {
-          dispatch(setInstantMake(res.make));
-          dispatch(setInstantModel(res.model));
-          dispatch(setInstantYear(res.year));
+        if (res.status === 201) {
+          dispatch(setInstantMake(res.data.make));
+          dispatch(setInstantModel(res.data.model));
+          dispatch(setInstantYear(res.data.year));
           dispatch(addHistory(true));
         } else res;
       }

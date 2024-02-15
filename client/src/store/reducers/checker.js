@@ -25,7 +25,7 @@ const initialState = {
   quoteStatus: 'New',
   quoteSource: 'ChatBot',
   quoteInterest: '',
-  instantYear: "",
+  instantYear: '',
   instantMake: '',
   instantModel: '',
 };
@@ -224,13 +224,17 @@ export const {
 
 // fetch dealer name and dealer logo
 export const getDealerInfo = (dealer_id) => (dispatch) => {
+  const data = {
+    slug: dealer_id,
+  };
   return async () => {
     try {
-      const response = await axios.get(
-        `http://ec2-52-91-0-180.compute-1.amazonaws.com/api/short_dealer/${dealer_id}/`
+      const response = await axios.post(
+        `https://www.dev.creditapps.com/api/decode_dealer/`, data
       );
       dispatch(setDealerName(response.data.name));
       dispatch(setDealerLogo(response.data.get_logo_url));
+      dispatch(setDealerId(response.data.id));
     } catch (error) {
       console.log(error);
     }

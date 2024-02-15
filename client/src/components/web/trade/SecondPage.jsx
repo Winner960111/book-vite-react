@@ -4,6 +4,7 @@ import {
   addHistory,
   setDealType,
   setQuoteInterest,
+  setOriginalOwner,
 } from '../../../store/reducers/checker';
 
 const DealType = () => {
@@ -12,17 +13,24 @@ const DealType = () => {
 
   const [dealClick, setDealClick] = useState('');
   const [error, setError] = useState(null);
+  const [ownerError, setOwnerError] = useState(null);
   const [year, setYear] = useState('');
   const [make, setMake] = useState('');
   const [model, setModel] = useState('');
+  const [owner, setOwner] = useState('');
 
   useEffect(() => {
     setError(null);
     setDealClick('');
+    setOwner('');
   }, [step]);
 
   const handleSubmit = async () => {
-    if (dealClick) {
+    if (!dealClick) {
+      setError('Above is required');
+    } else if (!owner) {
+      setOwnerError('Above is required');
+    } else {
       let interest = year + ' ' + make + ' ' + ' ' + model;
       setYear('');
       setMake('');
@@ -30,41 +38,16 @@ const DealType = () => {
       dispatch(addHistory(true));
       dispatch(setDealType(dealClick));
       dispatch(setQuoteInterest(interest));
-    } else {
-      setError('You must select one of above methodes.');
+      dispatch(setOriginalOwner(owner));
     }
   };
 
   return (
     <div className="flex flex-col bg-gray-100 w-full justify-center items-center">
       <p className="w-2/3 text-4xl text-black mt-44 font-medium">
-        What is the vehicle&apos;s year/make/model?
+        Please select correct answer
       </p>
       <div className="w-2/3 flex flex-col md:flex-row text-justify bg-white rounded-3xl p-4 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
-        <div className="flex w-full md:w-[40%] flex-col md:mx-10">
-          <input
-            type="text"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-            autoFocus
-            placeholder="Year"
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-          />
-          <input
-            type="text"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-            placeholder="Make"
-            value={make}
-            onChange={(e) => setMake(e.target.value)}
-          />
-          <input
-            type="text"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-            placeholder="Model"
-            value={model}
-            onChange={(e) => setModel(e.target.value)}
-          />
-        </div>
         <div className="w-full md:w-[60%] flex flex-col justify-between">
           <div className="flex flex-col justify-between bg-gray-100 rounded-3xl p-4">
             <div className="flex flex-col md:flex-row justify-between">
@@ -120,6 +103,48 @@ const DealType = () => {
             </p>
             {error !== '' ? (
               <p className="text-red-500 pl-6 pt-2">{error}</p>
+            ) : null}
+          </div>
+        </div>
+        <div className="flex w-full md:w-[40%] flex-col md:mx-10">
+          <div className="flex flex-col justify-between bg-gray-100 rounded-3xl p-4">
+            <div className="flex flex-col md:flex-row justify-between">
+              <label
+                htmlFor="radio4"
+                className="text-2xl m-2 p-2 cursor-pointer"
+                onClick={() => {
+                  setOwner('Yes');
+                }}
+              >
+                <input
+                  type="radio"
+                  id="radio4"
+                  name="owner"
+                  className="w-[17px] h-[17px] mx-2"
+                />
+                Yes
+              </label>
+              <label
+                htmlFor="radio5"
+                className="text-2xl m-2 p-2 cursor-pointer"
+                onClick={() => {
+                  setOwner('No');
+                }}
+              >
+                <input
+                  type="radio"
+                  id="radio5"
+                  name="owner"
+                  className="w-[17px] h-[17px] mx-2"
+                />
+                No
+              </label>
+            </div>
+            <p className=" px-6">
+              <b>Are you original owner?</b>
+            </p>
+            {ownerError !== '' ? (
+              <p className="text-red-500 pl-6 pt-2">{ownerError}</p>
             ) : null}
           </div>
           <button

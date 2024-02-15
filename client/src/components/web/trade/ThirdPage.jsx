@@ -15,8 +15,20 @@ const ThirdPage = () => {
     checkerEmail,
     quoteSource,
     dealType,
+    vin,
     quoteInterest,
+    setCheckerFirstName,
+    setCheckerLastName,
+    instantYear,
+    instantMake,
+    instantModel,
+    vehicleCondition,
+    vehicleType,
+    mileageHour,
+    originalOwner,
   } = useSelector((state) => state.checker);
+
+  //     "comment": ""
   const dispatch = useDispatch();
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);

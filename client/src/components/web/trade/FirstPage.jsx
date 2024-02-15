@@ -5,6 +5,7 @@ import {
   setCheckerFirstName,
   setCheckerLastName,
   setCheckerEmail,
+  setVehicleCondition,
 } from '../../../store/reducers/checker';
 
 const FirstPage = () => {
@@ -13,7 +14,7 @@ const FirstPage = () => {
   const [errorFirstName, setErrorFirstName] = useState('');
   const [errorLastName, setErrorLastName] = useState('');
   const [errorEmailAddress, setErrorEmailAddress] = useState('');
-  // const [errorCondition, setErrorCondition] = useState('');
+  const [errorCondition, setErrorCondition] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
@@ -21,7 +22,7 @@ const FirstPage = () => {
   const [focusLastName, setFocusLastName] = useState(Boolean);
   const [focusEmailAddress, setFocusEmailAddress] = useState(Boolean);
   const [condition, setCondition] = useState('');
-
+  const [mileageHour, setMileageHour] = useState('');
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
@@ -66,11 +67,17 @@ const FirstPage = () => {
     } else {
       pass += 1;
     }
-    if (pass == 3) {
+    if (!condition) {
+      setErrorCondition('You must check your condition');
+    } else {
+      pass += 1;
+    }
+    if (pass == 4) {
       dispatch(addHistory(true));
       dispatch(setCheckerFirstName(firstName));
       dispatch(setCheckerLastName(lastName));
       dispatch(setCheckerEmail(emailAddress));
+      dispatch(setVehicleCondition(condition));
     }
   };
 
@@ -147,64 +154,77 @@ const FirstPage = () => {
                 )}
               </div>
             </div>
-            <div className="flex flex-col w-full px-5 md:px-10">
-              <div className="flex flex-col justify-between bg-gray-100 rounded-3xl p-4">
-                <div className="flex flex-col md:flex-row justify-between">
-                  <label
-                    htmlFor="radio1"
-                    className="text-2xl m-2 p-2 cursor-pointer"
-                    onClick={() => {
-                      setCondition('Excellent');
-                    }}
-                  >
-                    <input
-                      type="radio"
-                      id="radio1"
-                      name="deal_type"
-                      className="w-[17px] h-[17px] mx-2"
-                    />
-                    Excellent
-                  </label>
-                  <label
-                    htmlFor="radio2"
-                    className="text-2xl m-2 p-2 cursor-pointer"
-                    onClick={() => {
-                      setCondition('Good');
-                    }}
-                  >
-                    <input
-                      type="radio"
-                      id="radio2"
-                      name="deal_type"
-                      className="w-[17px] h-[17px] mx-2"
-                    />
-                    Good
-                  </label>
-                  <label
-                    htmlFor="radio3"
-                    className="text-2xl m-2 p-2 cursor-pointer"
-                    onClick={() => {
-                      setCondition('Fair');
-                    }}
-                  >
-                    <input
-                      type="radio"
-                      id="radio3"
-                      name="deal_type"
-                      className="w-[17px] h-[17px] mx-2"
-                    />
-                    Fair
-                  </label>
-                </div>
+            <div className="flex w-full">
+              <div className="flex flex-col w-2/3 px-5 md:px-10">
+                <div className="flex flex-col justify-between bg-gray-100 rounded-3xl p-4">
+                  <div className="flex flex-col md:flex-row justify-between">
+                    <label
+                      htmlFor="radio1"
+                      className="text-2xl m-2 p-2 cursor-pointer"
+                      onClick={() => {
+                        setCondition('Excellent');
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        id="radio1"
+                        name="deal_type"
+                        className="w-[17px] h-[17px] mx-2"
+                      />
+                      Excellent
+                    </label>
+                    <label
+                      htmlFor="radio2"
+                      className="text-2xl m-2 p-2 cursor-pointer"
+                      onClick={() => {
+                        setCondition('Good');
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        id="radio2"
+                        name="deal_type"
+                        className="w-[17px] h-[17px] mx-2"
+                      />
+                      Good
+                    </label>
+                    <label
+                      htmlFor="radio3"
+                      className="text-2xl m-2 p-2 cursor-pointer"
+                      onClick={() => {
+                        setCondition('Fair');
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        id="radio3"
+                        name="deal_type"
+                        className="w-[17px] h-[17px] mx-2"
+                      />
+                      Fair
+                    </label>
+                  </div>
 
-                <p className=" px-6">
-                  <b>Please select deal type.</b>
-                </p>
-                {/* {error !== '' ? (
-                  <p className="text-red-500 pl-6 pt-2">{error}</p>
-                ) : null} */}
+                  <p className=" px-6">
+                    <b>Please select vehicle condition</b>
+                  </p>
+                  {errorCondition !== '' ? (
+                    <p className="text-red-500 pl-6 pt-2">{errorCondition}</p>
+                  ) : null}
+                </div>
               </div>
+              <input
+                className="w-1/3 h-20 border-2 text-center rounded-md text-2xl"
+                id="autocomplete"
+                placeholder="Mileage Hour"
+                type="text"
+                value={mileageHour}
+                onChange={(e) => {
+                  setMileageHour(e.target.value);
+                }}
+              />
             </div>
+
             <div className="w-full p-5 flex justify-end">
               <button
                 type="button"

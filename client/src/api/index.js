@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 export const checkPhoneNumber = async (phone_number, dealer_id) => {
-  const url =
-    'http://ec2-52-91-0-180.compute-1.amazonaws.com/api/applicant_two_factor_code/';
+  const url = 'https://www.dev.creditapps.com/api/applicant_two_factor_code/';
 
   const data = {
     mobile: phone_number,
@@ -28,7 +27,7 @@ export const checkVerification = async (
   verify_code
 ) => {
   const url =
-    'http://ec2-52-91-0-180.compute-1.amazonaws.com/api/applicant_valida_two_factor_code/';
+    'https://www.dev.creditapps.com/api/applicant_valida_two_factor_code/';
 
   const data = {
     mobile: phone_number,
@@ -52,7 +51,7 @@ export const checkVerification = async (
 };
 
 export const signatureImg = async (data) => {
-  const url = 'http://ec2-52-91-0-180.compute-1.amazonaws.com/api/prequal/';
+  const url = 'https://www.dev.creditapps.com/api/prequal/';
   try {
     const response = await axios.post(url, data, {
       headers: {
@@ -68,7 +67,7 @@ export const signatureImg = async (data) => {
 
 export const SubmitQuote = async (data) => {
   console.log('quote data is =>', data);
-  const url = 'http://ec2-52-91-0-180.compute-1.amazonaws.com/api/leads/';
+  const url = 'https://www.dev.creditapps.com/api/leads/';
   try {
     const response = await axios.post(url, data, {
       headers: {

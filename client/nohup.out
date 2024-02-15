@@ -1,0 +1,43 @@
+
+> client@0.0.0 dev
+> vite --host
+
+
+  VITE v5.0.12  ready in 371 ms
+
+  ➜  Local:   http://localhost:80/
+  ➜  Network: http://172.31.22.231:80/
+
+> client@0.0.0 dev
+> vite --host
+
+
+  VITE v5.0.12  ready in 328 ms
+
+  ➜  Local:   http://localhost:80/
+  ➜  Network: http://172.31.22.231:80/
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+
+- /home/ubuntu/book-vite-react/client
+
+Refer to docs https://vitejs.dev/config/server-options.html#server-fs-allow for configurations and more details.
+
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+Killed
+
+> client@0.0.0 dev
+> vite --host
+
+
+  VITE v5.0.12  ready in 319 ms
+
+  ➜  Local:   http://localhost:80/
+  ➜  Network: http://172.31.22.231:80/
+Killed

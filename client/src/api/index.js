@@ -109,7 +109,7 @@ export const SubmitTrade = async (data) => {
 
     return response;
   } catch (e) {
+    console.log(e);
     return { status: 400 };
   }
 };
-

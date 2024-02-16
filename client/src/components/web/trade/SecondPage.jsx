@@ -162,7 +162,7 @@ const DealType = () => {
           <textarea
             className="w-full h-20 border-2 rounded-md text-xl my-5 md:my-5"
             id="autocomplete"
-            placeholder="Mileage Hour"
+            placeholder="comment"
             type="text"
             value={comment}
             onChange={(e) => {

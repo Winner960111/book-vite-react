@@ -282,7 +282,7 @@ export const getDealerInfo = (dealer_id) => (dispatch) => {
       );
       dispatch(setDealerName(response.data.name));
       dispatch(setDealerLogo(response.data.get_logo_url));
-      dispatch(setDealerId(response.data.id));
+      dispatch(setDealerId(response.data.id.toString()));
     } catch (error) {
       console.log(error);
     }

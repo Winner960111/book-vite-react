@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { addHistory } from '../../../store/reducers/checker';
+import { addHistory, setCheckerEmail } from '../../../store/reducers/checker';
 import { SubmitTrade } from '../../../api/index';
 
 const ThirdPage = () => {
@@ -33,9 +33,7 @@ const ThirdPage = () => {
 
     const data = {
       dealer_id: dealerId,
-      first_name: checkerFirstName,
       last_name: checkerLastName,
-      email: checkerEmail,
       mobile_phone: checkerMobileNumber,
       status: 'New',
       source: 'Trade In',
@@ -46,9 +44,11 @@ const ThirdPage = () => {
       model: instantModel,
       condition: vehicleCondition,
       vehicle_type: vehicleType,
-      mileage_hour: mileageHour,
+      mileage_hours: mileageHour,
       original_owner: originalOwner,
       comment: commentValue,
+      first_name: checkerFirstName,
+      email: checkerEmail,
     };
     const res = await SubmitTrade(data);
     if (res.status == 201) {

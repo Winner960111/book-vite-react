@@ -33,12 +33,18 @@ const initialState = {
   originalOwner: '',
   vin: '',
   vehicleType: '',
+  commentValue: '',
 };
 
 export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    // set comment value
+    setCommentValue: (state, action) => {
+      state.commentValue = action.payload;
+    },
+
     //set vin
     setVehicleType: (state, action) => {
       state.vehicleType = action.payload;
@@ -221,6 +227,7 @@ export const checkerSlice = createSlice({
       state.mileageHour = initialState.mileageHour;
       state.vin = initialState.vin;
       state.vehicleType = initialState.vehicleType;
+      state.commentValue = initialState.commentValue;
     },
   },
 });
@@ -259,6 +266,7 @@ export const {
   setOriginalOwner,
   setVin,
   setVehicleType,
+  setCommentValue,
 } = checkerSlice.actions;
 
 // fetch dealer name and dealer logo

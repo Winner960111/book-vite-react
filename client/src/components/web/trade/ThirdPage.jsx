@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { addHistory } from '../../../store/reducers/checker';
-import { SubmitQuote } from '../../../api/index';
+import { SubmitTrade } from '../../../api/index';
 
 const ThirdPage = () => {
   const {
@@ -10,15 +10,10 @@ const ThirdPage = () => {
     dealerId,
     checkerMobileNumber,
     checkerFirstName,
-    quoteStatus,
     checkerLastName,
     checkerEmail,
-    quoteSource,
     dealType,
     vin,
-    quoteInterest,
-    setCheckerFirstName,
-    setCheckerLastName,
     instantYear,
     instantMake,
     instantModel,
@@ -26,9 +21,9 @@ const ThirdPage = () => {
     vehicleType,
     mileageHour,
     originalOwner,
+    commentValue,
   } = useSelector((state) => state.checker);
 
-  //     "comment": ""
   const dispatch = useDispatch();
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
@@ -36,23 +31,29 @@ const ThirdPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(addHistory(true));
-
     const data = {
       dealer_id: dealerId,
       first_name: checkerFirstName,
       last_name: checkerLastName,
       email: checkerEmail,
       mobile_phone: checkerMobileNumber,
-      status: quoteStatus,
-      source: quoteSource,
-      interested_in: quoteInterest,
+      status: 'New',
+      source: 'Trade In',
       deal_type: dealType,
+      vin: vin,
+      year: instantYear,
+      make: instantMake,
+      model: instantModel,
+      condition: vehicleCondition,
+      vehicle_type: vehicleType,
+      mileage_hour: mileageHour,
+      original_owner: originalOwner,
+      comment: commentValue,
     };
-
-    const res = await SubmitQuote(data);
+    const res = await SubmitTrade(data);
     if (res.status == 201) {
       console.log('status ImageSend', res);
+      dispatch(addHistory(true));
     } else {
       console.log('Faild ImageSend');
     }

@@ -158,7 +158,7 @@ const FirstPage = () => {
             </div>
             <div className="w-full p-5 flex justify-between flex-col md:flex-row -my-8">
               <div className="flex flex-col w-full md:w-[66%] md:px-5">
-                <div className="flex flex-col justify-between bg-gray-100 rounded-3xl p-4">
+                <div className="flex flex-col justify-between bg-gray-100 rounded-3xl px-4">
                   <div className="flex flex-col md:flex-row justify-between">
                     <label
                       htmlFor="radio1"
@@ -207,7 +207,7 @@ const FirstPage = () => {
                     </label>
                   </div>
 
-                  <p className=" px-6">
+                  <p className="px-6">
                     <b>Please select vehicle condition</b>
                   </p>
                   {errorCondition !== '' ? (

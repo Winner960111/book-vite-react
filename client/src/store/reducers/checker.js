@@ -31,12 +31,29 @@ const initialState = {
   vehicleCondition: '',
   mileageHour: '',
   originalOwner: '',
+  vin: '',
+  vehicleType: '',
+  commentValue: '',
 };
 
 export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    // set comment value
+    setCommentValue: (state, action) => {
+      state.commentValue = action.payload;
+    },
+
+    //set vin
+    setVehicleType: (state, action) => {
+      state.vehicleType = action.payload;
+    },
+
+    //set vin
+    setVin: (state, action) => {
+      state.vin = action.payload;
+    },
     // set mileage hour
     setMileageHour: (state, action) => {
       state.mileageHour = action.payload;
@@ -208,6 +225,9 @@ export const checkerSlice = createSlice({
       state.vehicleCondition = initialState.vehicleCondition;
       state.originalOwner = initialState.originalOwner;
       state.mileageHour = initialState.mileageHour;
+      state.vin = initialState.vin;
+      state.vehicleType = initialState.vehicleType;
+      state.commentValue = initialState.commentValue;
     },
   },
 });
@@ -244,6 +264,9 @@ export const {
   setVehicleCondition,
   setMileageHour,
   setOriginalOwner,
+  setVin,
+  setVehicleType,
+  setCommentValue,
 } = checkerSlice.actions;
 
 // fetch dealer name and dealer logo
@@ -259,7 +282,7 @@ export const getDealerInfo = (dealer_id) => (dispatch) => {
       );
       dispatch(setDealerName(response.data.name));
       dispatch(setDealerLogo(response.data.get_logo_url));
-      dispatch(setDealerId(response.data.id));
+      dispatch(setDealerId(response.data.id.toString()));
     } catch (error) {
       console.log(error);
     }

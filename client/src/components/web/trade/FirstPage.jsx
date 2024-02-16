@@ -6,6 +6,7 @@ import {
   setCheckerLastName,
   setCheckerEmail,
   setVehicleCondition,
+  setMileageHour,
 } from '../../../store/reducers/checker';
 
 const FirstPage = () => {
@@ -22,7 +23,7 @@ const FirstPage = () => {
   const [focusLastName, setFocusLastName] = useState(Boolean);
   const [focusEmailAddress, setFocusEmailAddress] = useState(Boolean);
   const [condition, setCondition] = useState('');
-  const [mileageHour, setMileageHour] = useState('');
+  const [mileage, setMileage] = useState('');
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
@@ -78,6 +79,7 @@ const FirstPage = () => {
       dispatch(setCheckerLastName(lastName));
       dispatch(setCheckerEmail(emailAddress));
       dispatch(setVehicleCondition(condition));
+      dispatch(setMileageHour(mileage));
     }
   };
 
@@ -154,13 +156,13 @@ const FirstPage = () => {
                 )}
               </div>
             </div>
-            <div className="flex w-full">
-              <div className="flex flex-col w-2/3 px-5 md:px-10">
-                <div className="flex flex-col justify-between bg-gray-100 rounded-3xl p-4">
+            <div className="w-full p-5 flex justify-between flex-col md:flex-row -my-8">
+              <div className="flex flex-col w-full md:w-[66%] md:px-5">
+                <div className="flex flex-col justify-between bg-gray-100 rounded-3xl px-4">
                   <div className="flex flex-col md:flex-row justify-between">
                     <label
                       htmlFor="radio1"
-                      className="text-2xl m-2 p-2 cursor-pointer"
+                      className="m-2 p-2 cursor-pointer"
                       onClick={() => {
                         setCondition('Excellent');
                       }}
@@ -175,7 +177,7 @@ const FirstPage = () => {
                     </label>
                     <label
                       htmlFor="radio2"
-                      className="text-2xl m-2 p-2 cursor-pointer"
+                      className="m-2 p-2 cursor-pointer"
                       onClick={() => {
                         setCondition('Good');
                       }}
@@ -190,7 +192,7 @@ const FirstPage = () => {
                     </label>
                     <label
                       htmlFor="radio3"
-                      className="text-2xl m-2 p-2 cursor-pointer"
+                      className="m-2 p-2 cursor-pointer"
                       onClick={() => {
                         setCondition('Fair');
                       }}
@@ -205,7 +207,7 @@ const FirstPage = () => {
                     </label>
                   </div>
 
-                  <p className=" px-6">
+                  <p className="px-6">
                     <b>Please select vehicle condition</b>
                   </p>
                   {errorCondition !== '' ? (
@@ -214,13 +216,13 @@ const FirstPage = () => {
                 </div>
               </div>
               <input
-                className="w-1/3 h-20 border-2 text-center rounded-md text-2xl"
+                className="w-full md:w-[29%] h-20 border-2 text-center rounded-md text-2xl md:mx-5 my-5 md:my-0"
                 id="autocomplete"
                 placeholder="Mileage Hour"
                 type="text"
-                value={mileageHour}
+                value={mileage}
                 onChange={(e) => {
-                  setMileageHour(e.target.value);
+                  setMileage(e.target.value);
                 }}
               />
             </div>

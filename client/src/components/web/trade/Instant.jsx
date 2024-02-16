@@ -5,13 +5,15 @@ import {
   setInstantMake,
   setInstantModel,
   setInstantYear,
+  setVin,
+  setVehicleType,
 } from '../../../store/reducers/checker';
 import { instantInfo } from '../../../api/index';
 
 const Instant = () => {
   const [vinState, setVinState] = useState(true);
   const [makeState, setMakeState] = useState(false);
-  const [vin, setVin] = useState('');
+  const [vinValue, setVinValue] = useState('');
   const [make, setMake] = useState('');
   const [year, setYear] = useState(null);
   const [model, setModel] = useState('');
@@ -28,12 +30,12 @@ const Instant = () => {
     e.preventDefault();
 
     if (vinState) {
-      if (!vin) {
+      if (!vinValue) {
         setError('Please fill in the input field');
       } else {
         const data = {
           dealer_id: dealerId,
-          vin: vin,
+          vin: vinValue,
         };
         const res = await instantInfo(data);
         console.log('response is =>', res);
@@ -41,14 +43,16 @@ const Instant = () => {
           dispatch(setInstantMake(res.data.make));
           dispatch(setInstantModel(res.data.model));
           dispatch(setInstantYear(res.data.year));
+          dispatch(setVehicleType(res.data.type));
+          dispatch(setVin(vinValue));
           dispatch(addHistory(true));
         } else res;
       }
     } else if (makeState) {
-        if (make && year && model) {
-          dispatch(setInstantMake(make));
-          dispatch(setInstantModel(model));
-          dispatch(setInstantYear(year));
+      if (make && year && model) {
+        dispatch(setInstantMake(make));
+        dispatch(setInstantModel(model));
+        dispatch(setInstantYear(year));
         dispatch(addHistory(true));
       } else {
         setError('Please fill in the input field');
@@ -56,7 +60,7 @@ const Instant = () => {
     }
   };
   const handleInputVin = (e) => {
-    setVin(e.target.value);
+    setVinValue(e.target.value);
     setError('');
   };
 
@@ -133,7 +137,7 @@ const Instant = () => {
                   className="w-full h-20 rounded-md text-center text-sm md:text-lg border my-5"
                   autoFocus
                   placeholder="VIN"
-                  value={vin}
+                  value={vinValue}
                   onChange={(e) => {
                     handleInputVin(e);
                   }}

@@ -96,3 +96,20 @@ export const instantInfo = async (data) => {
     return { status: 400 };
   }
 };
+
+export const SubmitTrade = async (data) => {
+  console.log('quote data is =>', data);
+  const url = 'https://www.dev.creditapps.com/api/trade_in/';
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return response;
+  } catch (e) {
+    console.log(e);
+    return { status: 400 };
+  }
+};

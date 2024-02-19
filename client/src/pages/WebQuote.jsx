@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
 // checker step components
-import PhoneVerification from '../components/web/quote/PhoneVerification';
+import PhoneVerification from '../components/common/PhoneVerification';
 import CheckVerifyCode from '../components/web/quote/CheckVerifyCode';
 import FirstPage from '../components/web/quote/FirstPage';
 import SecondPage from '../components/web/quote/SecondPage';
@@ -42,12 +42,12 @@ const WebQuote = () => {
     dispatch(clearHistory());
   };
   return (
-    <div className="bg-gray-100 w-screen h-screen min-w-[755px] relative">
+    <div className="bg-gray-100 w-screen h-screen relative">
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img
             onClick={Refresh}
-            className="w-1/4 h-16 cursor-pointer"
+            className="w-40 h-16 cursor-pointer"
             src={dealerLogo}
             alt="avatar"
           />
@@ -90,9 +90,9 @@ const WebQuote = () => {
       {step == 3 && <SecondPage />}
       {step == 4 && <ThirdPage />}
       {step == 5 && <Finish />}
-      <div className="w-full bg-white border-gray-100 border-b-2 flex justify-between items-center md:absolute md:bottom-0">
+      <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
         <img
-          className=" w-10 cursor-pointer mx-5"
+          className="w-10 cursor-pointer mx-5"
           src={homeImg}
           alt="Home Icon"
           onClick={handleBack}

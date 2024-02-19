@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
 // checker step components
-import PhoneVerification from '../components/web/trade/PhoneVerification';
+import PhoneVerification from '../components/common/PhoneVerification';
 import CheckVerifyCode from '../components/web/trade/CheckVerifyCode';
 import Instant from '../components/web/trade/Instant';
 import FirstPage from '../components/web/trade/FirstPage';
@@ -30,7 +30,7 @@ const WebTrade = () => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
     dispatch(setDealerId(dealer_id));
-    setPercent(parseInt(step / 6*100));
+    setPercent(parseInt((step / 6) * 100));
   }, [history, step, dealer_id, dispatch]);
 
   const Refresh = () => {
@@ -45,7 +45,7 @@ const WebTrade = () => {
     dispatch(clearHistory());
   };
   return (
-    <div className="bg-gray-100 w-screen h-screen min-w-[755px] relative">
+    <div className="bg-gray-100 w-screen h-screen relative">
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img
@@ -94,9 +94,9 @@ const WebTrade = () => {
       {step == 4 && <SecondPage />}
       {step == 5 && <ThirdPage />}
       {step == 6 && <Finish />}
-      <div className="w-full bg-white border-gray-100 border-b-2 flex justify-between items-center md:absolute md:bottom-0">
+      <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
         <img
-          className=" w-10 cursor-pointer mx-5"
+          className="w-10 cursor-pointer mx-5"
           src={homeImg}
           alt="Home Icon"
           onClick={handleBack}

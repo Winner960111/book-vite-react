@@ -2,10 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import {
-  clearHistory,
-  getDealerInfo,
-} from '../store/reducers/checker';
+import { clearHistory, getDealerInfo } from '../store/reducers/checker';
 
 const WebHome = () => {
   const { dealer_id } = useParams();
@@ -20,12 +17,12 @@ const WebHome = () => {
 
   const changePageQuote = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/webquote`);
+    navigate(`/info-checker/${dealer_id}/quote`);
   };
 
   const changePagePrequalified = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/webprequalified`);
+    navigate(`/info-checker/${dealer_id}/prequalified`);
   };
 
   const changePageTradeInValue = () => {

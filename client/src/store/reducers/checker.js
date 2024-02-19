@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
+  type: '',
   mobile: '',
   step: 0,
   history: [],
@@ -40,36 +41,41 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
-    // set comment value
+    // Set rendering type
+    setRenderType: (state, action) => {
+      state.type = action.payload;
+    },
+
+    // Set comment value
     setCommentValue: (state, action) => {
       state.commentValue = action.payload;
     },
 
-    //set vin
+    // Set vin
     setVehicleType: (state, action) => {
       state.vehicleType = action.payload;
     },
 
-    //set vin
+    // Set vin
     setVin: (state, action) => {
       state.vin = action.payload;
     },
-    // set mileage hour
+    // Set mileage hour
     setMileageHour: (state, action) => {
       state.mileageHour = action.payload;
     },
 
-    // set original owner
+    // Set original owner
     setOriginalOwner: (state, action) => {
       state.originalOwner = action.payload;
     },
 
-    // set vehicle condition
+    // Set vehicle condition
     setVehicleCondition: (state, action) => {
       state.vehicleCondition = action.payload;
     },
 
-    //set instant year, make and model
+    // Set instant year, make and model
     setInstantYear: (state, action) => {
       state.instantYear = action.payload;
     },
@@ -82,22 +88,22 @@ export const checkerSlice = createSlice({
       state.instantModel = action.payload;
     },
 
-    //set deal type
+    // Set deal type
     setDealType: (state, action) => {
       state.dealType = action.payload;
     },
 
-    //set quote status
+    // Set quote status
     setQuoteStatus: (state, action) => {
       state.quoteStatus = action.payload;
     },
 
-    //set quote source
+    // Set quote source
     setquoteSource: (state, action) => {
       state.quoteSource = action.payload;
     },
 
-    //set deal type
+    // Set deal type
     setQuoteInterest: (state, action) => {
       state.quoteInterest = action.payload;
     },
@@ -234,6 +240,7 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setRenderType,
   setDealerName,
   setDealerLogo,
   setDealerId,

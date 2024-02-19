@@ -1,4 +1,17 @@
 import axios from 'axios';
+import api from '../utils/api';
+import { setRenderType } from '../store/reducers/checker';
+
+export const detectAgent = () => async (dispatch) => {
+  console.log('Call Detect Agent');
+  await api
+    .get('/detect-agent')
+    .then((res) => {
+      console.log(res.data);
+      dispatch(setRenderType(res.data));
+    })
+    .catch((err) => console.log('Detect Agent Error => ', err));
+};
 
 export const checkPhoneNumber = async (phone_number, dealer_id) => {
   const url = 'https://www.dev.creditapps.com/api/applicant_two_factor_code/';

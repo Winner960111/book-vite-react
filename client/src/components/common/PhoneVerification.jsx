@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkPhoneNumber } from '../../../api';
+import { checkPhoneNumber } from '../../api';
 import {
   setCheckerMobileNumber,
   addHistory,
-} from '../../../store/reducers/checker';
+} from '../../store/reducers/checker';
 
 const PhoneVerification = () => {
   const { dealerName, dealerId, checkerMobileNumber } = useSelector(
@@ -54,13 +54,13 @@ const PhoneVerification = () => {
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <p className="w-2/6 text-4xl text-black my-3 mt-36 font-medium">
-          <b>verify your mobile number</b>
+        <p className="w-4/5 md:w-[600px] text-4xl text-black my-3 mt-36 font-medium">
+          <b>Verify your mobile number</b>
         </p>
         <form
           onSubmit={handleSubmit}
           className={
-            ' w-2/6 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
+            'w-4/5 md:w-[600px] text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
           }
         >
           <div className="py-2 flex flex-col items-center">

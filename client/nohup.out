@@ -41,3 +41,325 @@ Killed
   ➜  Local:   http://localhost:80/
   ➜  Network: http://172.31.22.231:80/
 Killed
+
+> client@0.0.0 dev
+> vite --host
+
+
+  VITE v5.0.12  ready in 310 ms
+
+  ➜  Local:   http://localhost:80/
+  ➜  Network: http://172.31.22.231:80/
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+
+- /home/ubuntu/book-vite-react/client
+
+Refer to docs https://vitejs.dev/config/server-options.html#server-fs-allow for configurations and more details.
+
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+Files in the public directory are served at the root path.
+Instead of /public/cbzc.png, use /cbzc.png.
+Files in the public directory are served at the root path.
+Instead of /public/cbzc.png, use /cbzc.png.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+(node:11054) Warning: An error event has already been emitted on the socket. Please use the destroy method on the socket while handling a 'clientError' event.
+(Use `node --trace-warnings ...` to show where the warning was created)
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+Files in the public directory are served at the root path.
+Instead of /public/cbzc.png, use /cbzc.png.
+Files in the public directory are served at the root path.
+Instead of /public/cbzc.png, use /cbzc.png.
+Files in the public directory are served at the root path.
+Instead of /public/cbzc.png, use /cbzc.png.
+Files in the public directory are served at the root path.
+Instead of /public/cbzc.png, use /cbzc.png.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+6:29:08 PM [vite] hmr update /src/index.css, /src/components/Mobile/quote/SendPhoneVerificationCode.jsx, /src/components/Mobile/quote/Submit.jsx, /src/components/Mobile/quote/CheckPhoneVerificationCode.jsx, /src/components/Mobile/prequalfied/SendPhoneVerificationCode.jsx, /src/components/Mobile/prequalfied/CheckPhoneVerificationCode.jsx, /src/components/web/quote/PhoneVerification.jsx, /src/components/Mobile/prequalfied/Submit.jsx, /src/components/web/quote/CheckVerifyCode.jsx, /src/components/web/quote/ThirdPage.jsx, /src/components/web/prequalified/PhoneVerification.jsx, /src/components/web/prequalified/CheckVerifyCode.jsx, /src/components/web/trade/PhoneVerification.jsx, /src/components/web/prequalified/ThirdPage.jsx, /src/components/web/trade/CheckVerifyCode.jsx, /src/components/web/trade/Instant.jsx, /src/components/web/trade/ThirdPage.jsx
+6:29:08 PM [vite] hmr update /src/components/web/trade/Instant.jsx, /src/index.css
+6:29:08 PM [vite] hmr update /src/components/web/trade/SecondPage.jsx, /src/index.css
+6:29:08 PM [vite] hmr update /src/components/web/trade/ThirdPage.jsx, /src/index.css
+6:29:08 PM [vite] hmr update /src/App.jsx, /src/index.css, /src/pages/WebHome.jsx, /src/pages/Quote.jsx, /src/pages/Prequalified.jsx, /src/pages/Home.jsx, /src/pages/WebQuote.jsx, /src/pages/WebPrequalified.jsx, /src/pages/WebTrade.jsx, /src/components/Mobile/quote/InputFirstName.jsx, /src/components/Mobile/quote/InputLastName.jsx, /src/components/Mobile/quote/SendPhoneVerificationCode.jsx, /src/components/Mobile/quote/Greeting.jsx, /src/components/Mobile/quote/InputEmail.jsx, /src/components/Mobile/quote/Submit.jsx, /src/components/Mobile/quote/CheckPhoneVerificationCode.jsx, /src/components/Mobile/prequalfied/SendPhoneVerificationCode.jsx, /src/components/Mobile/quote/DealType.jsx, /src/components/Mobile/quote/Vehicle.jsx, /src/components/Mobile/prequalfied/Greeting.jsx, /src/components/Mobile/prequalfied/CheckPhoneVerificationCode.jsx, /src/components/Mobile/prequalfied/InputLastName.jsx, /src/components/Mobile/prequalfied/InputFirstName.jsx, /src/components/Mobile/prequalfied/InputEmail.jsx, /src/components/Mobile/prequalfied/InputMiddleName.jsx, /src/components/Mobile/prequalfied/InputBirthday.jsx, /src/components/Mobile/prequalfied/InputSocialNumber.jsx, /src/components/Mobile/prequalfied/Address.jsx, /src/components/web/quote/PhoneVerification.jsx, /src/components/Mobile/prequalfied/Submit.jsx, /src/components/web/quote/CheckVerifyCode.jsx, /src/components/web/quote/SecondPage.jsx, /src/components/web/quote/FirstPage.jsx, /src/components/web/quote/ThirdPage.jsx, /src/components/web/quote/Finish.jsx, /src/components/web/prequalified/PhoneVerification.jsx, /src/components/web/prequalified/CheckVerifyCode.jsx, /src/components/web/prequalified/Finish.jsx, /src/components/web/prequalified/SecondPage.jsx, /src/components/web/trade/PhoneVerification.jsx, /src/components/web/prequalified/ThirdPage.jsx, /src/components/web/trade/CheckVerifyCode.jsx, /src/components/web/prequalified/FirstPage.jsx, /src/components/web/trade/Instant.jsx, /src/components/web/trade/ThirdPage.jsx, /src/components/web/trade/SecondPage.jsx, /src/components/web/trade/FirstPage.jsx, /src/components/web/trade/Finish.jsx
+6:29:08 PM [vite] hmr update /src/components/web/trade/FirstPage.jsx, /src/index.css
+
+> client@0.0.0 dev
+> vite --host
+
+Port 80 is in use, trying another one...
+
+  VITE v5.0.12  ready in 327 ms
+
+  ➜  Local:   http://localhost:81/
+  ➜  Network: http://172.31.22.231:81/
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+Files in the public directory are served at the root path.
+Instead of /public/.env, use /.env.
+9:44:39 PM [vite] Internal server error: URI malformed
+      at decodeURI (<anonymous>)
+      at viteTransformMiddleware (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:59258:19)
+      at call (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:44795:7)
+      at next (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:44739:5)
+      at viteServePublicMiddleware (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:49421:20)
+      at call (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:44795:7)
+      at next (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:44739:5)
+      at viteHMRPingMiddleware (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:60622:13)
+      at call (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:44795:7)
+      at next (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:44739:5)
+Files in the public directory are served at the root path.
+Instead of /public/.env.local, use /.env.local.
+Files in the public directory are served at the root path.
+Instead of /public/.env.production, use /.env.production.
+Files in the public directory are served at the root path.
+Instead of /public/.env.staging, use /.env.staging.
+Files in the public directory are served at the root path.
+Instead of /public/remote-sync.json, use /remote-sync.json.
+Files in the public directory are served at the root path.
+Instead of /public/laravel.log, use /laravel.log.
+Files in the public directory are served at the root path.
+Instead of /public/.vscode/ftp-sync.json, use /.vscode/ftp-sync.json.
+Files in the public directory are served at the root path.
+Instead of /public/App_Config/ConnectionStrings.config, use /App_Config/ConnectionStrings.config.
+Files in the public directory are served at the root path.
+Instead of /public/server.xml, use /server.xml.
+Files in the public directory are served at the root path.
+Instead of /public/.git/config, use /.git/config.
+Files in the public directory are served at the root path.
+Instead of /public/.ftpconfig, use /.ftpconfig.
+Files in the public directory are served at the root path.
+Instead of /public/jenkinsFile, use /jenkinsFile.
+Files in the public directory are served at the root path.
+Instead of /public/api-config.ini, use /api-config.ini.
+Files in the public directory are served at the root path.
+Instead of /public/web.config, use /web.config.
+Files in the public directory are served at the root path.
+Instead of /public/config.yaml, use /config.yaml.
+Files in the public directory are served at the root path.
+Instead of /public/.gitlab-ci.yml, use /.gitlab-ci.yml.
+Files in the public directory are served at the root path.
+Instead of /public/.vscode/sftp.json, use /.vscode/sftp.json.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+The request url "/home/ubuntu/book-vite-react/client/.env" is outside of Vite serving allow list.
+11:12:21 PM [vite] hmr update /src/App.jsx, /src/index.css
+11:12:21 PM [vite] hmr update /src/index.css, /src/components/Mobile/quote/SendPhoneVerificationCode.jsx, /src/components/Mobile/quote/Submit.jsx, /src/components/Mobile/quote/CheckPhoneVerificationCode.jsx, /src/components/Mobile/prequalfied/SendPhoneVerificationCode.jsx, /src/components/Mobile/prequalfied/CheckPhoneVerificationCode.jsx, /src/components/web/quote/PhoneVerification.jsx, /src/components/Mobile/prequalfied/Submit.jsx, /src/components/web/quote/CheckVerifyCode.jsx, /src/components/web/quote/ThirdPage.jsx, /src/components/web/prequalified/PhoneVerification.jsx, /src/components/web/prequalified/CheckVerifyCode.jsx, /src/components/web/trade/PhoneVerification.jsx, /src/components/web/prequalified/ThirdPage.jsx, /src/components/web/trade/CheckVerifyCode.jsx, /src/components/web/trade/Instant.jsx, /src/components/web/trade/ThirdPage.jsx
+11:12:21 PM [vite] page reload src/main.jsx
+11:12:21 PM [vite] hmr update /src/pages/WebHome.jsx, /src/index.css
+11:12:21 PM [vite] hmr update /src/pages/WebPrequalified.jsx, /src/index.css
+11:12:21 PM [vite] hmr update /src/pages/WebQuote.jsx, /src/index.css
+11:12:21 PM [vite] hmr update /src/pages/WebTrade.jsx, /src/index.css
+11:12:21 PM [vite] hmr update /src/App.jsx, /src/index.css, /src/pages/WebHome.jsx, /src/pages/Quote.jsx, /src/pages/Prequalified.jsx, /src/pages/Home.jsx, /src/pages/WebQuote.jsx, /src/pages/WebPrequalified.jsx, /src/pages/WebTrade.jsx, /src/components/Mobile/quote/InputFirstName.jsx, /src/components/Mobile/quote/InputLastName.jsx, /src/components/Mobile/quote/SendPhoneVerificationCode.jsx, /src/components/Mobile/quote/Greeting.jsx, /src/components/Mobile/quote/InputEmail.jsx, /src/components/Mobile/quote/Submit.jsx, /src/components/Mobile/quote/CheckPhoneVerificationCode.jsx, /src/components/Mobile/prequalfied/SendPhoneVerificationCode.jsx, /src/components/Mobile/quote/DealType.jsx, /src/components/Mobile/quote/Vehicle.jsx, /src/components/Mobile/prequalfied/Greeting.jsx, /src/components/Mobile/prequalfied/CheckPhoneVerificationCode.jsx, /src/components/Mobile/prequalfied/InputLastName.jsx, /src/components/Mobile/prequalfied/InputFirstName.jsx, /src/components/Mobile/prequalfied/InputEmail.jsx, /src/components/Mobile/prequalfied/InputMiddleName.jsx, /src/components/Mobile/prequalfied/InputBirthday.jsx, /src/components/Mobile/prequalfied/InputSocialNumber.jsx, /src/components/Mobile/prequalfied/Address.jsx, /src/components/web/quote/PhoneVerification.jsx, /src/components/Mobile/prequalfied/Submit.jsx, /src/components/web/quote/CheckVerifyCode.jsx, /src/components/web/quote/SecondPage.jsx, /src/components/web/quote/FirstPage.jsx, /src/components/web/quote/ThirdPage.jsx, /src/components/web/quote/Finish.jsx, /src/components/web/prequalified/PhoneVerification.jsx, /src/components/web/prequalified/CheckVerifyCode.jsx, /src/components/web/prequalified/Finish.jsx, /src/components/web/prequalified/SecondPage.jsx, /src/components/web/trade/PhoneVerification.jsx, /src/components/web/prequalified/ThirdPage.jsx, /src/components/web/trade/CheckVerifyCode.jsx, /src/components/web/prequalified/FirstPage.jsx, /src/components/web/trade/Instant.jsx, /src/components/web/trade/ThirdPage.jsx, /src/components/web/trade/SecondPage.jsx, /src/components/web/trade/FirstPage.jsx, /src/components/web/trade/Finish.jsx
+11:12:21 PM [vite] hmr update /src/components/web/prequalified/PhoneVerification.jsx, /src/index.css
+11:12:21 PM [vite] hmr update /src/components/web/quote/PhoneVerification.jsx, /src/index.css
+11:12:21 PM [vite] hmr update /src/components/web/trade/PhoneVerification.jsx, /src/index.css
+11:12:22 PM [vite] Pre-transform error: Failed to resolve import "react-loader-spinner" from "src/components/common/Loading.jsx". Does the file exist?
+11:12:22 PM [vite] ✨ new dependencies optimized: prop-types
+11:12:22 PM [vite] ✨ optimized dependencies changed. reloading
+11:12:23 PM [vite] Pre-transform error: Failed to resolve import "react-loader-spinner" from "src/components/common/Loading.jsx". Does the file exist?
+11:12:26 PM [vite] Internal server error: Failed to resolve import "react-loader-spinner" from "src/components/common/Loading.jsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/ubuntu/book-vite-react/client/src/components/common/Loading.jsx:1:21
+  8  |  
+  9  |  import { jsxDEV as _jsxDEV } from "react/jsx-dev-runtime";
+  10 |  import { Oval } from 'react-loader-spinner';
+     |                        ^
+  11 |  import PropTypes from 'prop-types';
+  12 |  const Loading = ({ loading })=>{
+      at formatError (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:63768:46)
+      at TransformContext.error (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:63762:19)
+      at normalizeUrl (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:62037:33)
+      at async file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:62191:47
+      at async Promise.all (index 2)
+      at async TransformContext.transform (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:62112:13)
+      at async Object.transform (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:64063:30)
+      at async loadAndTransform (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:49741:29)
+      at async viteTransformMiddleware (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:59342:32)
+11:12:26 PM [vite] Internal server error: Failed to resolve import "react-loader-spinner" from "src/components/common/Loading.jsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/ubuntu/book-vite-react/client/src/components/common/Loading.jsx:1:21
+  8  |  
+  9  |  import { jsxDEV as _jsxDEV } from "react/jsx-dev-runtime";
+  10 |  import { Oval } from 'react-loader-spinner';
+     |                        ^
+  11 |  import PropTypes from 'prop-types';
+  12 |  const Loading = ({ loading })=>{
+      at formatError (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:63768:46)
+      at TransformContext.error (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:63762:19)
+      at normalizeUrl (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:62037:33)
+      at async file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:62191:47
+      at async Promise.all (index 2)
+      at async TransformContext.transform (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:62112:13)
+      at async Object.transform (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:64063:30)
+      at async loadAndTransform (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:49741:29)
+      at async viteTransformMiddleware (file:///home/ubuntu/book-vite-react/client/node_modules/vite/dist/node/chunks/dep-9A4-l-43.js:59342:32)
+11:16:38 PM [vite] ✨ new dependencies optimized: react-loader-spinner
+11:16:38 PM [vite] ✨ optimized dependencies changed. reloading
+Killed

@@ -99,9 +99,6 @@ const InputMiddleName = () => {
     </div>
   );
 
-  console.log('step => ', step);
-  console.log('skip name => ', checkerIsSkipMiddleName);
-
   return (
     <>
       {step > 3 && checkerIsSkipMiddleName == false ? (

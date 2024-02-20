@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const ip = require('ip');
 require('dotenv').config();
 
 const app = express();
@@ -26,5 +27,5 @@ if (process.env.NODE_ENV === 'production') {
 const PORT = process.env.PORT || 5050;
 
 const server = app.listen(PORT, async () => {
-  console.log(`Server started on ${PORT}`);
+  console.log(`Server started on ${ip.address()}: ${PORT}`);
 });

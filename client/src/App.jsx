@@ -26,7 +26,7 @@ const App = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const source = queryParams.get('source');
-
+    console.log('this is following', source);
     if (source == 'iframe') {
       console.log('iframe');
       dispatch(setRenderType(source));

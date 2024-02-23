@@ -9,7 +9,6 @@ const CheckVerifyCode = () => {
     checkerMobileNumber,
     step,
     history,
-    mobile,
     dealerId,
     deviceIP,
     deviceOS,
@@ -64,7 +63,7 @@ const CheckVerifyCode = () => {
           device_lon: deviceLon,
           status: 'Started',
           lang: 'EN',
-          phone: mobile,
+          phone: checkerMobileNumber,
           page: 'Get Quote',
           last_question: '0',
         };

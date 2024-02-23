@@ -35,12 +35,57 @@ const initialState = {
   vin: '',
   vehicleType: '',
   commentValue: '',
+  deviceIP: '',
+  deviceOS: '',
+  deviceState: '',
+  deviceCity: '',
+  deviceCountry: '',
+  deviceDate: '',
+  deviceLat: '',
+  deviceLon: '',
+  deviceBrowser: '',
+  intentID: '',
 };
 
 export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    //set intent function ID
+    setIntentID: (state, action) => {
+      state.intentID = action.payload;
+    },
+    //set device information
+    setDeviceIP: (state, action) => {
+      state.deviceIP = action.payload;
+    },
+    setDeviceOS: (state, action) => {
+      state.deviceOS = action.payload;
+    },
+    setDeviceType: (state, action) => {
+      state.deviceType = action.payload;
+    },
+    setDeviceState: (state, action) => {
+      state.deviceState = action.payload;
+    },
+    setDeviceCity: (state, action) => {
+      state.deviceCity = action.payload;
+    },
+    setDeviceCountry: (state, action) => {
+      state.deviceCountry = action.payload;
+    },
+    setDeviceDate: (state, action) => {
+      state.deviceDate = action.payload;
+    },
+    setDeviceLat: (state, action) => {
+      state.deviceLat = action.payload;
+    },
+    setDeviceLon: (state, action) => {
+      state.deviceLon = action.payload;
+    },
+    setDeviceBrowser: (state, action) => {
+      state.deviceBrowser = action.payload;
+    },
     // Set rendering type
     setRenderType: (state, action) => {
       state.type = action.payload;
@@ -234,6 +279,17 @@ export const checkerSlice = createSlice({
       state.vin = initialState.vin;
       state.vehicleType = initialState.vehicleType;
       state.commentValue = initialState.commentValue;
+      state.deviceCity = initialState.deviceCity;
+      state.deviceCountry = initialState.deviceCountry;
+      state.deviceDate = initialState.deviceDate;
+      state.deviceIP = initialState.deviceIP;
+      state.deviceLat = initialState.deviceLat;
+      state.deviceLon = initialState.deviceLon;
+      state.deviceOS = initialState.deviceOS;
+      state.deviceState = initialState.deviceState;
+      state.deviceIP = initialState.deviceIP;
+      state.deviceBrowser = initialState.deviceBrowser;
+      state.intentID = initialState.intentID;
     },
   },
 });
@@ -274,6 +330,16 @@ export const {
   setVin,
   setVehicleType,
   setCommentValue,
+  setDeviceBrowser,
+  setDeviceCity,
+  setDeviceCountry,
+  setDeviceDate,
+  setDeviceIP,
+  setDeviceLat,
+  setDeviceLon,
+  setDeviceOS,
+  setDeviceState,
+  setIntentID,
 } = checkerSlice.actions;
 
 // fetch dealer name and dealer logo

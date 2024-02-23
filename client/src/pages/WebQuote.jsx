@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
+import moment from 'moment-timezone';
+import { browserName, osName } from 'react-device-detect';
 // checker step components
 import PhoneVerification from '../components/common/PhoneVerification';
 import CheckVerifyCode from '../components/web/quote/CheckVerifyCode';
@@ -15,13 +17,48 @@ import {
   clearHistory,
   getDealerInfo,
   setDealerId,
+  setDeviceBrowser,
+  setDeviceCity,
+  setDeviceCountry,
+  setDeviceDate,
+  setDeviceIP,
+  setDeviceLat,
+  setDeviceLon,
+  setDeviceOS,
+  setDeviceState,
 } from '../store/reducers/checker';
+
+import { deviceInfo } from '../api/index';
 
 const WebQuote = () => {
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_id } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch('https://api.ipify.org?format=json')
+      .then((response) => response.json())
+      .then(async (data) => {
+        console.log('this is IP address===>', data.ip);
+        dispatch(setDeviceIP(data.ip));
+        deviceInfo(data.ip).then((deviceData) => {
+          console.log('this is device=======>', deviceData);
+          dispatch(setDeviceCountry(deviceData.country));
+          dispatch(setDeviceCity(deviceData.city));
+          dispatch(setDeviceState(deviceData.region));
+          dispatch(setDeviceLat(deviceData.ll[0]));
+          dispatch(setDeviceLon(deviceData.ll[1]));
+        });
+        const currentTime = moment
+          .tz(data.timezone)
+          .format('YYYY-MM-DD HH:mm:ss');
+        dispatch(setDeviceDate(currentTime));
+        dispatch(setDeviceBrowser(browserName));
+        dispatch(setDeviceOS(osName));
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   useEffect(() => {
     // when refresh app, set dealer_id and dealer_info of store

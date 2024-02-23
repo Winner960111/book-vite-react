@@ -2,6 +2,37 @@ import axios from 'axios';
 import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 
+export const usersStatus = async (data) => {
+  const url = 'https://www.dev.creditapps.com/api/intent/';
+  console.log('this is intent information==>', data);
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response;
+  } catch (e) {
+    return { status: 400 };
+  }
+};
+
+export const deviceInfo = async (ip) =>
+  new Promise((resolve, reject) => {
+    const data = {
+      ip: ip,
+    };
+    api
+      .post('/deviceInfo', data)
+      .then((res) => {
+        console.log('this is geo resoponse====>', res.data.geo);
+        resolve(res.data.geo);
+      })
+      .catch((e) => {
+        reject('error:');
+        console.log(e);
+      });
+  });
 export const detectAgent = () => async (dispatch) => {
   console.log('Call Detect Agent');
   await api

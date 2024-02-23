@@ -9,6 +9,7 @@ const WebHome = () => {
   const { dealerName } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   // getting dealer_name and avatar
   useEffect(() => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
@@ -27,7 +28,7 @@ const WebHome = () => {
 
   const changePageTradeInValue = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/webtrade`);
+    navigate(`/info-checker/${dealer_id}/trade`);
   };
 
   return (

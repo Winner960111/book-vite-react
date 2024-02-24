@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { addHistory } from '../../../store/reducers/checker';
-import { SubmitQuote } from '../../../api/index';
+import { SubmitQuote, usersUpdate } from '../../../api/index';
 
 const ThirdPage = () => {
   const {
@@ -16,6 +16,17 @@ const ThirdPage = () => {
     quoteSource,
     dealType,
     quoteInterest,
+    intentID,
+    deviceIP,
+    deviceOS,
+    deviceCity,
+    deviceCountry,
+    deviceState,
+    deviceDate,
+    deviceLat,
+    deviceLon,
+    deviceBrowser,
+    type,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [readStatePara1, setReadStatePara1] = useState(false);
@@ -24,9 +35,29 @@ const ThirdPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+  const data = {
+    dealer_id: dealerId,
+    device_ip_address: deviceIP,
+    device_operating_system: deviceOS,
+    device_browser: deviceBrowser,
+    device_type: type,
+    device_state: deviceState,
+    device_city: deviceCity,
+    device_country: deviceCountry,
+    device_date_time: deviceDate,
+    device_lat: deviceLat,
+    device_lon: deviceLon,
+    status: 'Completed',
+    lang: 'EN',
+    phone: checkerMobileNumber,
+    page: 'Get Quote',
+    last_question: '3',
+  };
+  const res = await usersUpdate(data, intentID);
+  console.log('this is update results ====>', res);
     dispatch(addHistory(true));
 
-    const data = {
+    const sub_data = {
       dealer_id: dealerId,
       first_name: checkerFirstName,
       last_name: checkerLastName,
@@ -38,9 +69,9 @@ const ThirdPage = () => {
       deal_type: dealType,
     };
 
-    const res = await SubmitQuote(data);
-    if (res.status == 201) {
-      console.log('status ImageSend', res);
+    const sub_res = await SubmitQuote(sub_data);
+    if (sub_res.status == 201) {
+      console.log('status ImageSend', sub_res);
     } else {
       console.log('Faild ImageSend');
     }

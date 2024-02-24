@@ -8,7 +8,7 @@ import {
   setVin,
   setVehicleType,
 } from '../../../store/reducers/checker';
-import { instantInfo } from '../../../api/index';
+import { instantInfo, usersUpdate } from '../../../api/index';
 
 const Instant = () => {
   const [vinState, setVinState] = useState(true);
@@ -17,7 +17,21 @@ const Instant = () => {
   const [make, setMake] = useState('');
   const [year, setYear] = useState(null);
   const [model, setModel] = useState('');
-  const { dealerId } = useSelector((state) => state.checker);
+  const {
+    dealerId,
+    intentID,
+    deviceIP,
+    deviceOS,
+    deviceCity,
+    deviceCountry,
+    deviceState,
+    deviceDate,
+    deviceLat,
+    deviceLon,
+    deviceBrowser,
+    checkerMobileNumber,
+    type,
+  } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [error, setError] = useState(null);
@@ -53,6 +67,26 @@ const Instant = () => {
         dispatch(setInstantMake(make));
         dispatch(setInstantModel(model));
         dispatch(setInstantYear(year));
+        const data = {
+          dealer_id: dealerId,
+          device_ip_address: deviceIP,
+          device_operating_system: deviceOS,
+          device_browser: deviceBrowser,
+          device_type: type,
+          device_state: deviceState,
+          device_city: deviceCity,
+          device_country: deviceCountry,
+          device_date_time: deviceDate,
+          device_lat: deviceLat,
+          device_lon: deviceLon,
+          status: 'Started',
+          lang: 'EN',
+          phone: checkerMobileNumber,
+          page: 'Trade In',
+          last_question: '2',
+        };
+        const res = await usersUpdate(data, intentID);
+        console.log('this is update results ====>', res);
         dispatch(addHistory(true));
       } else {
         setError('Please fill in the input field');

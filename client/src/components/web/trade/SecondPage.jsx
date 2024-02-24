@@ -7,9 +7,25 @@ import {
   setOriginalOwner,
   setCommentValue,
 } from '../../../store/reducers/checker';
+import { usersUpdate } from '../../../api/index';
 
 const DealType = () => {
-  const { step } = useSelector((state) => state.checker);
+  const {
+    step,
+    intentID,
+    dealerId,
+    deviceIP,
+    deviceOS,
+    deviceCity,
+    deviceCountry,
+    deviceState,
+    deviceDate,
+    deviceLat,
+    deviceLon,
+    deviceBrowser,
+    checkerMobileNumber,
+    type,
+  } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [dealClick, setDealClick] = useState('');
@@ -42,6 +58,26 @@ const DealType = () => {
       setYear('');
       setMake('');
       setModel('');
+      const data = {
+        dealer_id: dealerId,
+        device_ip_address: deviceIP,
+        device_operating_system: deviceOS,
+        device_browser: deviceBrowser,
+        device_type: type,
+        device_state: deviceState,
+        device_city: deviceCity,
+        device_country: deviceCountry,
+        device_date_time: deviceDate,
+        device_lat: deviceLat,
+        device_lon: deviceLon,
+        status: 'Started',
+        lang: 'EN',
+        phone: checkerMobileNumber,
+        page: 'Trade In',
+        last_question: '2',
+      };
+      const res = await usersUpdate(data, intentID);
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setDealType(dealClick));
       dispatch(setQuoteInterest(interest));

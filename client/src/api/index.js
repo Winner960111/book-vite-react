@@ -2,6 +2,20 @@ import axios from 'axios';
 import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 
+export const usersUpdate = async (data, id) => {
+  const url = `https://www.dev.creditapps.com/api/intent/${id}/`;
+  console.log('this is intent information==>', data);
+  try {
+    const response = await axios.put(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response;
+  } catch (e) {
+    return { status: 400 };
+  }
+};
 export const usersStatus = async (data) => {
   const url = 'https://www.dev.creditapps.com/api/intent/';
   console.log('this is intent information==>', data);

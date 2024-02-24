@@ -8,9 +8,26 @@ import {
   setVehicleCondition,
   setMileageHour,
 } from '../../../store/reducers/checker';
+import { usersUpdate } from '../../../api/index';
 
 const FirstPage = () => {
-  const { step, dealerName } = useSelector((state) => state.checker);
+  const {
+    step,
+    dealerName,
+    intentID,
+    dealerId,
+    deviceIP,
+    deviceOS,
+    deviceCity,
+    deviceCountry,
+    deviceState,
+    deviceDate,
+    deviceLat,
+    deviceLon,
+    deviceBrowser,
+    checkerMobileNumber,
+    type,
+  } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [errorFirstName, setErrorFirstName] = useState('');
   const [errorLastName, setErrorLastName] = useState('');
@@ -43,7 +60,7 @@ const FirstPage = () => {
     setErrorEmailAddress('');
   }, [step]);
 
-  const handlesubmit = () => {
+  const handlesubmit = async () => {
     let pass = 0;
     if (!firstName) {
       setErrorFirstName('*field is required');
@@ -74,6 +91,26 @@ const FirstPage = () => {
       pass += 1;
     }
     if (pass == 4) {
+      const data = {
+        dealer_id: dealerId,
+        device_ip_address: deviceIP,
+        device_operating_system: deviceOS,
+        device_browser: deviceBrowser,
+        device_type: type,
+        device_state: deviceState,
+        device_city: deviceCity,
+        device_country: deviceCountry,
+        device_date_time: deviceDate,
+        device_lat: deviceLat,
+        device_lon: deviceLon,
+        status: 'Started',
+        lang: 'EN',
+        phone: checkerMobileNumber,
+        page: 'Trade In',
+        last_question: '1',
+      };
+      const res = await usersUpdate(data, intentID);
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerFirstName(firstName));
       dispatch(setCheckerLastName(lastName));

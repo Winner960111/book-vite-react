@@ -1,13 +1,26 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkVerification } from '../../../api';
-import { addHistory } from '../../../store/reducers/checker';
+import { checkVerification, usersStatus } from '../../../api/index';
+import { addHistory, setIntentID } from '../../../store/reducers/checker';
 
 const CheckVerifyCode = () => {
   const [verifyCode, setVerifyCode] = useState('');
-  const { checkerMobileNumber, step, history, dealerId } = useSelector(
-    (state) => state.checker
-  );
+  const {
+    checkerMobileNumber,
+    step,
+    history,
+    dealerId,
+    deviceIP,
+    deviceOS,
+    deviceCity,
+    deviceCountry,
+    deviceState,
+    deviceDate,
+    deviceLat,
+    deviceLon,
+    deviceBrowser,
+    type,
+  } = useSelector((state) => state.checker);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
@@ -36,6 +49,27 @@ const CheckVerifyCode = () => {
       const res = { status: 201 };
 
       if (res.status === 201) {
+        const data = {
+          dealer_id: dealerId,
+          device_ip_address: deviceIP,
+          device_operating_system: deviceOS,
+          device_browser: deviceBrowser,
+          device_type: type,
+          device_state: deviceState,
+          device_city: deviceCity,
+          device_country: deviceCountry,
+          device_date_time: deviceDate,
+          device_lat: deviceLat,
+          device_lon: deviceLon,
+          status: 'Started',
+          lang: 'EN',
+          phone: checkerMobileNumber,
+          page: 'Trade In',
+          last_question: '0',
+        };
+        const intentRes = await usersStatus(data);
+        dispatch(setIntentID(intentRes.data.id));
+        console.log('this is intent ID===>', intentRes.data.id);
         dispatch(addHistory(true));
       } else {
         setError('Invalid verification code. Please try again.');

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { addHistory, setCheckerEmail } from '../../../store/reducers/checker';
-import { SubmitTrade } from '../../../api/index';
+import { addHistory } from '../../../store/reducers/checker';
+import { SubmitTrade, usersUpdate } from '../../../api/index';
 
 const ThirdPage = () => {
   const {
@@ -22,6 +22,17 @@ const ThirdPage = () => {
     mileageHour,
     originalOwner,
     commentValue,
+    intentID,
+    deviceIP,
+    deviceOS,
+    deviceCity,
+    deviceCountry,
+    deviceState,
+    deviceDate,
+    deviceLat,
+    deviceLon,
+    deviceBrowser,
+    type,
   } = useSelector((state) => state.checker);
 
   const dispatch = useDispatch();
@@ -53,6 +64,26 @@ const ThirdPage = () => {
     const res = await SubmitTrade(data);
     if (res.status == 201) {
       console.log('status ImageSend', res);
+      const data = {
+        dealer_id: dealerId,
+        device_ip_address: deviceIP,
+        device_operating_system: deviceOS,
+        device_browser: deviceBrowser,
+        device_type: type,
+        device_state: deviceState,
+        device_city: deviceCity,
+        device_country: deviceCountry,
+        device_date_time: deviceDate,
+        device_lat: deviceLat,
+        device_lon: deviceLon,
+        status: 'Completed',
+        lang: 'EN',
+        phone: checkerMobileNumber,
+        page: 'Trade In',
+        last_question: '3',
+      };
+      const res = await usersUpdate(data, intentID);
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
     } else {
       console.log('Faild ImageSend');

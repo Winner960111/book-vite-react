@@ -4,7 +4,7 @@ import { classNames } from '../../../utils';
 import BotIcon from './BotIcon';
 
 const Greeting = () => {
-  const { dealerName, step } = useSelector((state) => state.checker);
+  const { dealerName, step, } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const renderDescription = () => (
@@ -36,7 +36,7 @@ const Greeting = () => {
     </button>
   );
 
-  const handleConfirmClick = () => {
+  const handleConfirmClick = async () => {
     dispatch(addHistory(true));
   };
 

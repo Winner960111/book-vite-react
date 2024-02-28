@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import moment from 'moment-timezone';
+import { browserName, osName } from 'react-device-detect';
 // checker step components
 import Greeting from '../components/Mobile/prequalfied/Greeting';
 import SendPhoneVerificationCode from '../components/Mobile/prequalfied/SendPhoneVerificationCode';
@@ -18,9 +19,19 @@ import {
   getDealerInfo,
   setDealerId,
   clearHistory,
+  setDeviceBrowser,
+  setDeviceCity,
+  setDeviceCountry,
+  setDeviceDate,
+  setDeviceIP,
+  setDeviceLat,
+  setDeviceLon,
+  setDeviceOS,
+  setDeviceState,
 } from '../store/reducers/checker';
 import refreshImg from '../assets/refresh.png';
 import backImg from '../assets/back.png';
+import { deviceInfo } from '../api/index';
 
 const Prequalified = () => {
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
@@ -28,6 +39,30 @@ const Prequalified = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dealer_id } = useParams();
+
+  useEffect(() => {
+    fetch('https://api.ipify.org?format=json')
+      .then((response) => response.json())
+      .then(async (data) => {
+        console.log('this is IP address===>', data.ip);
+        dispatch(setDeviceIP(data.ip));
+        deviceInfo(data.ip).then((deviceData) => {
+          console.log('this is device=======>', deviceData);
+          dispatch(setDeviceCountry(deviceData.country));
+          dispatch(setDeviceCity(deviceData.city));
+          dispatch(setDeviceState(deviceData.region));
+          dispatch(setDeviceLat(deviceData.ll[0]));
+          dispatch(setDeviceLon(deviceData.ll[1]));
+        });
+        const currentTime = moment
+          .tz(data.timezone)
+          .format('YYYY-MM-DD HH:mm:ss');
+        dispatch(setDeviceDate(currentTime));
+        dispatch(setDeviceBrowser(browserName));
+        dispatch(setDeviceOS(osName));
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   useEffect(() => {
     // You can access the DOM node directly with myDivRef.current

@@ -3,7 +3,7 @@ import BotIcon from './BotIcon';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { SubmitQuote } from '../../../api/index';
+import { SubmitQuote, usersUpdate } from '../../../api/index';
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
@@ -22,11 +22,41 @@ const Submit = () => {
     quoteSource,
     dealType,
     quoteInterest,
+    deviceIP,
+    deviceOS,
+    deviceCity,
+    deviceCountry,
+    deviceState,
+    deviceDate,
+    deviceLat,
+    deviceLon,
+    deviceBrowser,
+    intentID,
+    type,
   } = useSelector((state) => state.checker);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const intent_data = {
+      dealer_id: dealerId,
+      device_ip_address: deviceIP,
+      device_operating_system: deviceOS,
+      device_browser: deviceBrowser,
+      device_type: type,
+      device_state: deviceState,
+      device_city: deviceCity,
+      device_country: deviceCountry,
+      device_date_time: deviceDate,
+      device_lat: deviceLat,
+      device_lon: deviceLon,
+      status: 'Completed',
+      lang: 'EN',
+      phone: checkerMobileNumber,
+      page: 'Short',
+      last_question: '6',
+    };
+    const intent_res = await usersUpdate(intent_data, intentID);
+    console.log('this is update results ====>', intent_res);
     dispatch(addHistory(true));
 
     const data = {

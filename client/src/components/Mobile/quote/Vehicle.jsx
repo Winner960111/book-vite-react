@@ -7,11 +7,24 @@ import {
   setQuoteInterest,
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
+import { usersUpdate } from '../../../api/index';
 
 const Vehicle = () => {
-  const { step, history, checkerIsSkipMiddleName, quoteInterest } = useSelector(
-    (state) => state.checker
-  );
+  const { step, history, checkerIsSkipMiddleName, quoteInterest, intentID,
+    dealerId,
+    deviceIP,
+    deviceOS,
+    deviceCity,
+    deviceCountry,
+    deviceState,
+    deviceDate,
+    deviceLat,
+    deviceLon,
+    deviceBrowser,
+    type,
+    checkerMobileNumber, } = useSelector(
+      (state) => state.checker
+    );
   const dispatch = useDispatch();
 
   const [year, setYear] = useState('');
@@ -32,6 +45,26 @@ const Vehicle = () => {
     e.preventDefault();
 
     let interest = year + ' ' + make + ' ' + ' ' + model;
+    const data = {
+      dealer_id: dealerId,
+      device_ip_address: deviceIP,
+      device_operating_system: deviceOS,
+      device_browser: deviceBrowser,
+      device_type: type,
+      device_state: deviceState,
+      device_city: deviceCity,
+      device_country: deviceCountry,
+      device_date_time: deviceDate,
+      device_lat: deviceLat,
+      device_lon: deviceLon,
+      status: 'Started',
+      lang: 'EN',
+      phone: checkerMobileNumber,
+      page: 'Get Quote',
+      last_question: '5',
+    };
+    const res = await usersUpdate(data, intentID);
+    console.log('this is update results ====>', res);
     dispatch(addHistory(true));
     dispatch(setQuoteInterest(interest));
     setYear('');
@@ -40,6 +73,7 @@ const Vehicle = () => {
   };
 
   const skipThisStep = () => {
+
     dispatch(setCheckerIsSkipMiddleName(true));
     dispatch(addHistory(true));
   };

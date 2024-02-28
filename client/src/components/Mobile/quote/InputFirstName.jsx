@@ -6,12 +6,25 @@ import {
 } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
+import { usersUpdate } from '../../../api/index';
 
 const InputFirstName = () => {
   const dispatch = useDispatch();
-  const { step, history, checkerFirstName } = useSelector(
-    (state) => state.checker
-  );
+  const { step, history, checkerFirstName, intentID,
+    dealerId,
+    deviceIP,
+    deviceOS,
+    deviceCity,
+    deviceCountry,
+    deviceState,
+    deviceDate,
+    deviceLat,
+    deviceLon,
+    deviceBrowser,
+    type,
+    checkerMobileNumber, } = useSelector(
+      (state) => state.checker
+    );
 
   const [firstName, setFirstName] = useState('');
   const [error, setError] = useState(null);
@@ -25,7 +38,7 @@ const InputFirstName = () => {
     setError(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!firstName.trim()) {
@@ -33,6 +46,26 @@ const InputFirstName = () => {
     } else if (!/^[A-Za-z]+$/.test(firstName)) {
       setError('The first name contains only characters');
     } else {
+      const data = {
+        dealer_id: dealerId,
+        device_ip_address: deviceIP,
+        device_operating_system: deviceOS,
+        device_browser: deviceBrowser,
+        device_type: type,
+        device_state: deviceState,
+        device_city: deviceCity,
+        device_country: deviceCountry,
+        device_date_time: deviceDate,
+        device_lat: deviceLat,
+        device_lon: deviceLon,
+        status: 'Started',
+        lang: 'EN',
+        phone: checkerMobileNumber,
+        page: 'Get Quote',
+        last_question: '1',
+      };
+      const res = await usersUpdate(data, intentID);
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerFirstName(firstName));
       setFirstName('');

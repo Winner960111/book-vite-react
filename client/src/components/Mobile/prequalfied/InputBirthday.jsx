@@ -60,7 +60,7 @@ const InputBirthday = () => {
         lang: 'EN',
         phone: checkerMobileNumber,
         page: 'Short',
-        last_question: '2',
+        last_question: '6',
       };
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);

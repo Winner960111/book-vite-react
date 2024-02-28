@@ -3,7 +3,8 @@ import BotIcon from './BotIcon';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { signatureImg } from '../../../api/index';
+import { signatureImg, usersUpdate } from '../../../api/index';
+
 import './Canvas.css';
 const Submit = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,17 @@ const Submit = () => {
     checkerLocality,
     checkerState,
     checkerZipcode,
+    deviceIP,
+    deviceOS,
+    deviceCity,
+    deviceCountry,
+    deviceState,
+    deviceDate,
+    deviceLat,
+    deviceLon,
+    deviceBrowser,
+    intentID,
+    type,
   } = useSelector((state) => state.checker);
 
   const canvasRef = useRef(null);
@@ -129,7 +141,26 @@ const Submit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const intent_data = {
+      dealer_id: dealerId,
+      device_ip_address: deviceIP,
+      device_operating_system: deviceOS,
+      device_browser: deviceBrowser,
+      device_type: type,
+      device_state: deviceState,
+      device_city: deviceCity,
+      device_country: deviceCountry,
+      device_date_time: deviceDate,
+      device_lat: deviceLat,
+      device_lon: deviceLon,
+      status: 'Completed',
+      lang: 'EN',
+      phone: checkerMobileNumber,
+      page: 'Short',
+      last_question: '8',
+    };
+    const intent_res = await usersUpdate(intent_data, intentID);
+    console.log('this is update results ====>', intent_res);
     dispatch(addHistory(true));
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');

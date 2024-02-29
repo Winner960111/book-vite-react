@@ -13,6 +13,7 @@ import WebTrade from './pages/WebTrade';
 import { detectAgent } from './api';
 import { setRenderType } from './store/reducers/checker';
 import Loading from './components/common/Loading';
+import WebFullApp from './pages/WebFullApp';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,10 @@ const App = () => {
         <Route
           path="/info-checker/:dealer_id/trade"
           element={type == 'web' ? <WebTrade /> : <WebTrade />}
+        />
+        <Route
+          path="/info-checker/:dealer_id/full"
+          element={type == 'web' ? <WebFullApp /> : null}
         />
       </Routes>
     </>

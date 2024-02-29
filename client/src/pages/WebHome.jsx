@@ -30,10 +30,14 @@ const WebHome = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/trade`);
   };
+  const changePageFullApp = () => {
+    dispatch(clearHistory());
+    navigate(`/info-checker/${dealer_id}/full`);
+  };
 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
-      <div className="w-3/4 md:w-1/2 flex-col text-center">
+      <div className="w-3/4 md:w-1/2 flex flex-col text-center items-center">
         <p className="text-2xl md:text-4xl font-bold">
           🌟 Welcome to {dealerName}! Let&apos;s Tailor Your Experience Together
           🤖
@@ -43,7 +47,7 @@ const WebHome = () => {
           that your time is valuable, and we want to make sure your experience
           is seamless and tailored to your needs.
         </p>
-        <div className="flex flex-col mt-10 justify-around md:flex-wrap md:flex-row">
+        <div className="flex flex-col mt-10 w-[70%] justify-around md:flex-wrap">
           <button
             onClick={changePageQuote}
             className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
@@ -68,10 +72,8 @@ const WebHome = () => {
           >
             CALL BACK
           </button>
-        </div>
-        <div className="flex flex-col md:mt-10 justify-around md:flex-wrap md:flex-row">
           <button
-            // onClick={changePagePrequalified}
+            onClick={changePageFullApp}
             className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
           >
             FULL CREDIT APPLICATION

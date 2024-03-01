@@ -5,7 +5,7 @@ import {
   setCheckerMobileNumber,
   addHistory,
 } from '../../store/reducers/checker';
-
+import { TextField } from '@mui/material';
 const PhoneVerification = () => {
   const { dealerName, dealerId, checkerMobileNumber } = useSelector(
     (state) => state.checker
@@ -54,7 +54,7 @@ const PhoneVerification = () => {
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <p className="w-4/5 md:w-[600px] text-4xl text-black my-3 mt-36 font-medium">
+        <p className="w-4/5 md:w-[600px] text-4xl text-[#854fff] my-3 mt-36 font-medium">
           <b>Verify your mobile number</b>
         </p>
         <form
@@ -64,20 +64,34 @@ const PhoneVerification = () => {
           }
         >
           <div className="py-2 flex flex-col items-center">
-            <input
-              type="tel"
-              className="w-full h-20 rounded-md text-center text-sm md:text-lg border my-5"
-              id="phoneNumber"
-              autoFocus
-              placeholder="Phone number"
+            <TextField
+              helperText=" "
+              id="demo-helper-text-aligned-no-helper"
+              label="Phone Number"
               value={phoneNumber}
               onChange={handleChangeInput}
+              fullWidth
+              type="text"
+              InputProps={{
+                style: {
+                  color: 'blue', // Change text color
+                  height: '70px', // Set the height of the TextField
+                  fontSize: '25px',
+                  textAlign: 'center'
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: '#854fff', // Change label color
+                  textAlign: 'center'
+                },
+              }}
             />
             {error !== '' ? (
               <p className="text-red-500 pl-2 text-sm">{error}</p>
             ) : null}
           </div>
-          <p className=" bg-gray-100 rounded-3xl p-4">
+          <p className=" bg-gray-50 rounded-3xl p-4">
             by providing your mobile number you agree to receive recurring
             messages from <b>{dealerName}</b> to the provided mobile number and
             agree to <b>{dealerName}</b>. terms and privacy policy. Message &
@@ -85,7 +99,7 @@ const PhoneVerification = () => {
           </p>
           <button
             type="submit"
-            className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+            className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
           >
             CONTINUE
           </button>

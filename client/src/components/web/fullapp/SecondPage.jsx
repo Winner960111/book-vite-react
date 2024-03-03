@@ -154,7 +154,7 @@ const SecondPage = () => {
   };
   return (
     <>
-      <div className="flex bg-gray-100 w-full justify-center items-center">
+      <div className="flex bg-gray-50 w-full justify-center items-center">
         <div className="w-2/3 flex flex-col mt-10 mx-20">
           <p className="w-2/3 text-4xl text-black my-3 font-medium">
             Make sure this is a physical address and not a P.O Box

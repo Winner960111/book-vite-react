@@ -211,14 +211,14 @@ const Submit = () => {
           step > 10 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
-        <p className="bg-gray-100 rounded-3xl p-4">We are almost done:</p>
-        <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+        <p className="bg-gray-50 rounded-3xl p-4">We are almost done:</p>
+        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           We are committed to protecting your privacy. The information that you
           provided is only shared with the dealership to assess your credit
           history and not otherwise sold, marketed, or distributed in any way by{' '}
           {dealerName}.
         </p>
-        <div className="bg-gray-100 rounded-3xl p-4 mt-2">
+        <div className="bg-gray-50 rounded-3xl p-4 mt-2">
           <p
             onClick={() => setReadStatePara1(!readStatePara1)}
             className={
@@ -280,7 +280,7 @@ const Submit = () => {
             {readStatePara1 == false ? 'More' : 'Less'}
           </span>
         </div>
-        <div className="bg-gray-100 rounded-3xl p-4 mt-2">
+        <div className="bg-gray-50 rounded-3xl p-4 mt-2">
           <p
             className={
               readStatePara2 == false
@@ -349,7 +349,7 @@ const Submit = () => {
             onTouchEnd={finishDrawing}
           />
         </div>
-        <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           Please sign in above input field. it will act as your digital
           signature.
         </p>

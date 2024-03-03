@@ -105,7 +105,7 @@ const InputSocialNumber = () => {
           }
         />
         {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
-        <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           We will not hurt your credit report. This is not an application for
           credit. Authorization is solely for prequalification only.
         </p>

@@ -90,12 +90,12 @@ const InputBirthday = () => {
         />
         {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
         <p
-          className="bg-gray-100 rounded-3xl p-4 mt-2"
+          className="bg-gray-50 rounded-3xl p-4 mt-2"
           style={step >= 9 ? { display: 'none' } : { display: 'block' }}
         >
           Please input your date of birth.
         </p>
-        <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           Your Privacy Matters: Rest assured, the information you provide is
           strictly confidential. We take your privacy seriously and only use
           your details to enhance your experience with us.

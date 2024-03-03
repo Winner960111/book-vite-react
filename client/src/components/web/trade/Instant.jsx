@@ -142,8 +142,8 @@ const Instant = () => {
               }}
               className={
                 vinState
-                  ? 'bg-gray-100 mx-5 px-6 py-2 border-b-4 border-[#854fff] border-solid'
-                  : 'bg-gray-100 mx-5 px-6 py-2'
+                  ? 'bg-gray-50 mx-5 px-6 py-2 border-b-4 border-[#854fff] border-solid'
+                  : 'bg-gray-50 mx-5 px-6 py-2'
               }
             >
               By VIN
@@ -155,8 +155,8 @@ const Instant = () => {
               }}
               className={
                 makeState
-                  ? 'bg-gray-100 mx-5 px-6 py-2 border-b-4 border-[#854fff] border-solid'
-                  : 'bg-gray-100 mx-5 px-6 py-2'
+                  ? 'bg-gray-50 mx-5 px-6 py-2 border-b-4 border-[#854fff] border-solid'
+                  : 'bg-gray-50 mx-5 px-6 py-2'
               }
             >
               By MAKE

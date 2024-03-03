@@ -7,6 +7,7 @@ import {
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
 import { usersUpdate } from '../../../api/index';
+import { TextField } from '@mui/material';
 
 const InputLastName = () => {
   const { step, history, checkerLastName, intentID,
@@ -86,17 +87,30 @@ const InputLastName = () => {
           className="my-2 flex flex-col md:flex-row md:items-center"
           style={step >= 5 ? { display: 'none' } : { display: 'block' }}
         >
-          <input
-            type="text"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-            autoFocus
-            placeholder="last name"
+          <TextField
+            id="outlined-multiline-flexible"
+            label="last name"
+            fullWidth
             value={lastName}
             onChange={handleChangeInput}
+            type="text"
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
           />
           {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           Please enter your last name.
         </p>
         <button

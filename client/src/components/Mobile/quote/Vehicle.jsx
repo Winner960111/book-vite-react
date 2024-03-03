@@ -8,6 +8,7 @@ import {
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
 import { usersUpdate } from '../../../api/index';
+import TextField from '@mui/material/TextField';
 
 const Vehicle = () => {
   const { step, history, checkerIsSkipMiddleName, quoteInterest, intentID,
@@ -92,30 +93,74 @@ const Vehicle = () => {
           className="flex flex-col md:flex-row md:items-center"
           style={step >= 8 ? { display: 'none' } : { display: 'block' }}
         >
-          <input
-            type="text"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-            autoFocus
-            placeholder="Year"
+          <TextField
+            id="margin-dense"
+            margin="dense"
+            label="Year"
+            fullWidth
             value={year}
             onChange={handleYearChange}
-          />
-          <input
             type="text"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-            placeholder="Make"
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
+          />
+          <TextField
+            id="margin-dense"
+            margin="dense"
+            label="Make"
+            fullWidth
             value={make}
             onChange={handleMake}
-          />
-          <input
             type="text"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-            placeholder="Model"
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
+          />
+          <TextField
+            label="Model"
+            fullWidth
+            id="margin-dense"
+            margin="dense"
             value={model}
             onChange={handleModel}
+            type="text"
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
           />
         </div>
-        <p className="bg-gray-100 rounded-3xl p-4">
+        <p className="bg-gray-50 rounded-3xl p-4">
           What is the vehicle&apos;s year/make/model?
         </p>
         <button

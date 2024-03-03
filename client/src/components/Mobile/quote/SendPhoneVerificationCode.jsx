@@ -7,6 +7,7 @@ import {
   setCheckerMobileNumber,
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
+import TextField from '@mui/material/TextField';
 
 const SendPhoneVerificationCode = () => {
   const { history, step, dealerName, dealerId, checkerMobileNumber } =
@@ -66,17 +67,32 @@ const SendPhoneVerificationCode = () => {
           className="py-2 flex flex-col md:flex-row md:items-center"
           style={step >= 2 ? { display: 'none' } : { display: 'block' }}
         >
-          <input
-            type="tel"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-            autoFocus
-            placeholder="Phone number"
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Phone number"
+            multiline
+            fullWidth
             value={phoneNumber}
             onChange={handleChangeInput}
+            type="tel"
+            maxRows={4}
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
           />
           {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p className=" bg-gray-100 rounded-3xl p-4">
+        <p className=" bg-gray-50 rounded-3xl p-4">
           <b>We need to verify your mobile number</b>
           <br />
           by providing your mobile number you agree to receive recurring

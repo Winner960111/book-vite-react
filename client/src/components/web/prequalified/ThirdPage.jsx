@@ -170,7 +170,7 @@ const ThirdPage = () => {
   };
 
   return (
-    <div className="flex bg-gray-100 w-full justify-center items-center">
+    <div className="flex bg-gray-50 w-full justify-center items-center">
       <div className="w-2/3 flex flex-col mt-10 mx-20">
         <p className="w-2/3 text-4xl text-black my-3 font-medium">
           Please Sign on DrawBox
@@ -180,13 +180,13 @@ const ThirdPage = () => {
             'text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg font-sans'
           )}
         >
-          <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+          <p className="bg-gray-50 rounded-3xl p-4 mt-2">
             We are committed to protecting your privacy. The information that
             you provided is only shared with the dealership to assess your
             credit history and not otherwise sold, marketed, or distributed in
             any way by {dealerName}.
           </p>
-          <div className="bg-gray-100 rounded-3xl p-4 mt-2">
+          <div className="bg-gray-50 rounded-3xl p-4 mt-2">
             <p
               onClick={() => setReadStatePara1(!readStatePara1)}
               className={
@@ -233,7 +233,7 @@ const ThirdPage = () => {
               {readStatePara1 == false ? 'More' : 'Less'}
             </span>
           </div>
-          <div className="bg-gray-100 rounded-3xl p-4 mt-2">
+          <div className="bg-gray-50 rounded-3xl p-4 mt-2">
             <p
               className={
                 readStatePara2 == false
@@ -286,7 +286,7 @@ const ThirdPage = () => {
               />
             </div>
             <div className="md:w-2/5 w-full h-[200px] flex flex-col mt-2 mx-1 justify-between">
-              <p className="bg-gray-100 rounded-3xl p-4">
+              <p className="bg-gray-50 rounded-3xl p-4">
                 Please sign on drawbox. it will act as your digital signature.
               </p>
               <button

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkVerification, usersStatus } from '../../../api/index';
 import { addHistory, setIntentID } from '../../../store/reducers/checker';
+import { TextField } from '@mui/material';
 
 const CheckVerifyCode = () => {
   const [verifyCode, setVerifyCode] = useState('');
@@ -88,25 +89,40 @@ const CheckVerifyCode = () => {
         }
       >
         <div className="py-2 flex flex-col items-center">
-          <input
-            type="tel"
-            className="w-full h-20 rounded-md text-center text-sm md:text-lg border my-5"
-            autoFocus
-            placeholder="Verify Code"
+          <TextField
+            helperText=" "
+            id="demo-helper-text-aligned-no-helper"
+            label="Verify Code"
             value={verifyCode}
             onChange={handleChangeInput}
+            fullWidth
+            type="text"
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+                textAlign: 'center'
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                textAlign: 'center'
+              },
+            }}
           />
           {error !== '' ? (
             <p className="text-red-500 pl-2 text-sm">{error}</p>
           ) : null}
         </div>
-        <p className=" bg-gray-100 rounded-3xl p-4">
+        <p className=" bg-gray-50 rounded-3xl p-4">
           We sent a verification code to the mobile number you provided, please
           enter the code.
         </p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
         >
           CONFIRM
         </button>

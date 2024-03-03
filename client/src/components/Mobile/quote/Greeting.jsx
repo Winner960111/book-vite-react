@@ -14,7 +14,7 @@ const Greeting = () => {
         step >= 1 ? 'text-slate-400' : 'text-slate-800'
       )}
     >
-      <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+      <p className="bg-gray-50 rounded-3xl p-4 mt-2">
         Thank you for choosing {dealerName}. We look forward to serving you and
         making your experience extraordinary.
       </p>

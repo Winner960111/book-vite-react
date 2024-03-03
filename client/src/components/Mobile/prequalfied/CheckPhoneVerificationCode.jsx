@@ -103,7 +103,7 @@ const CheckPhoneVerificationCode = () => {
           />
           {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p className="bg-gray-100 rounded-3xl p-4">
+        <p className="bg-gray-50 rounded-3xl p-4">
           <b>
             We sent a verification code to the mobile number you provided,
             please enter the code below.

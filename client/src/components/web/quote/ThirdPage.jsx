@@ -35,26 +35,26 @@ const ThirdPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-  const data = {
-    dealer_id: dealerId,
-    device_ip_address: deviceIP,
-    device_operating_system: deviceOS,
-    device_browser: deviceBrowser,
-    device_type: type,
-    device_state: deviceState,
-    device_city: deviceCity,
-    device_country: deviceCountry,
-    device_date_time: deviceDate,
-    device_lat: deviceLat,
-    device_lon: deviceLon,
-    status: 'Completed',
-    lang: 'EN',
-    phone: checkerMobileNumber,
-    page: 'Get Quote',
-    last_question: '3',
-  };
-  const res = await usersUpdate(data, intentID);
-  console.log('this is update results ====>', res);
+    const data = {
+      dealer_id: dealerId,
+      device_ip_address: deviceIP,
+      device_operating_system: deviceOS,
+      device_browser: deviceBrowser,
+      device_type: type,
+      device_state: deviceState,
+      device_city: deviceCity,
+      device_country: deviceCountry,
+      device_date_time: deviceDate,
+      device_lat: deviceLat,
+      device_lon: deviceLon,
+      status: 'Completed',
+      lang: 'EN',
+      phone: checkerMobileNumber,
+      page: 'Get Quote',
+      last_question: '3',
+    };
+    const res = await usersUpdate(data, intentID);
+    console.log('this is update results ====>', res);
     dispatch(addHistory(true));
 
     const sub_data = {
@@ -78,7 +78,7 @@ const ThirdPage = () => {
   };
 
   return (
-    <div className="flex bg-gray-100 w-full justify-center items-center">
+    <div className="flex bg-gray-50 w-full justify-center items-center">
       <div className="w-2/3 flex flex-col mt-10 mx-20">
         <p className="w-2/3 text-4xl text-black my-3 font-medium">
           Please confirm bellow contents
@@ -88,13 +88,13 @@ const ThirdPage = () => {
             'text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg font-sans'
           )}
         >
-          <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+          <p className="bg-gray-50 rounded-3xl p-4 mt-2">
             We are committed to protecting your privacy. The information that
             you provided is only shared with the dealership to assess your
             credit history and not otherwise sold, marketed, or distributed in
             any way by {dealerName}.
           </p>
-          <div className="bg-gray-100 rounded-3xl p-4 mt-2">
+          <div className="bg-gray-50 rounded-3xl p-4 mt-2">
             <p
               onClick={() => setReadStatePara1(!readStatePara1)}
               className={
@@ -141,7 +141,7 @@ const ThirdPage = () => {
               {readStatePara1 == false ? 'More' : 'Less'}
             </span>
           </div>
-          <div className="bg-gray-100 rounded-3xl p-4 mt-2">
+          <div className="bg-gray-50 rounded-3xl p-4 mt-2">
             <p
               className={
                 readStatePara2 == false

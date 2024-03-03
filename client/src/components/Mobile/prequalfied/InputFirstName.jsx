@@ -87,7 +87,7 @@ const InputFirstName = () => {
           className="flex flex-col md:flex-row md:items-center"
           style={step >= 4 ? { display: 'none' } : { display: 'block' }}
         >
-          <p className="bg-gray-100 rounded-3xl p-4 text-left">
+          <p className="bg-gray-50 rounded-3xl p-4 text-left">
             <b>🎊 Congratulation! you successfully verified.</b>
           </p>
           <input
@@ -100,7 +100,7 @@ const InputFirstName = () => {
           />
           {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p className="bg-gray-100 rounded-3xl p-4">
+        <p className="bg-gray-50 rounded-3xl p-4">
           Please enter your first name.
         </p>
         <button

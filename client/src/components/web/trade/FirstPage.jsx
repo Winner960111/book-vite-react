@@ -122,7 +122,7 @@ const FirstPage = () => {
 
   return (
     <>
-      <div className="flex bg-gray-100 w-full justify-center items-center">
+      <div className="flex bg-gray-50 w-full justify-center items-center">
         <div className=" w-2/3 flex flex-col mt-10 mx-20">
           <p className="w-2/3 text-4xl text-black my-3 font-medium">
             We need to your some information
@@ -145,7 +145,7 @@ const FirstPage = () => {
                   <p className="text-red-500 pl-2">{errorFirstName}</p>
                 )}
                 {focusFirstName && (
-                  <b className="bg-gray-100 rounded-3xl p-4 mt-2">
+                  <b className="bg-gray-50 rounded-3xl p-4 mt-2">
                     Please enter your first name.
                   </b>
                 )}
@@ -165,7 +165,7 @@ const FirstPage = () => {
                   <p className="text-red-500 pl-2">{errorLastName}</p>
                 )}
                 {focusLastName && (
-                  <b className="bg-gray-100 rounded-3xl p-4 mt-2">
+                  <b className="bg-gray-50 rounded-3xl p-4 mt-2">
                     Please enter your last name.
                   </b>
                 )}
@@ -185,7 +185,7 @@ const FirstPage = () => {
                   <p className="text-red-500 pl-2">{errorEmailAddress}</p>
                 )}
                 {focusEmailAddress && (
-                  <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
                     By providing your email you agree to receive notification
                     messages from <b>{dealerName}</b> to the provided email
                     address.
@@ -195,7 +195,7 @@ const FirstPage = () => {
             </div>
             <div className="w-full p-5 flex justify-between flex-col md:flex-row -my-8">
               <div className="flex flex-col w-full md:w-[66%] md:px-5">
-                <div className="flex flex-col justify-between bg-gray-100 rounded-3xl px-4">
+                <div className="flex flex-col justify-between bg-gray-50 rounded-3xl px-4">
                   <div className="flex flex-col md:flex-row justify-between">
                     <label
                       htmlFor="radio1"

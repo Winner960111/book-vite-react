@@ -78,7 +78,7 @@ const WebPrequalified = () => {
     dispatch(clearHistory());
   };
   return (
-    <div className="bg-gray-100 w-screen h-screen relative">
+    <div className="bg-gray-50 w-screen h-screen relative">
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img

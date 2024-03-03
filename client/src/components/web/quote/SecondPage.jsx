@@ -72,7 +72,7 @@ const DealType = () => {
   };
 
   return (
-    <div className="flex flex-col bg-gray-100 w-full justify-center items-center">
+    <div className="flex flex-col bg-gray-50 w-full justify-center items-center">
       <p className="w-2/3 text-4xl text-black mt-44 font-medium">
         What is the vehicle&apos;s year/make/model?
       </p>
@@ -102,7 +102,7 @@ const DealType = () => {
           />
         </div>
         <div className="w-full md:w-[60%] flex flex-col justify-between">
-          <div className="flex flex-col justify-between bg-gray-100 rounded-3xl p-4">
+          <div className="flex flex-col justify-between bg-gray-50 rounded-3xl p-4">
             <div className="flex flex-col md:flex-row justify-between">
               <label
                 htmlFor="radio1"

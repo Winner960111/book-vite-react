@@ -7,6 +7,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { usersUpdate } from '../../../api/index';
+import TextField from '@mui/material/TextField';
 
 const InputFirstName = () => {
   const dispatch = useDispatch();
@@ -86,20 +87,33 @@ const InputFirstName = () => {
           className="flex flex-col md:flex-row md:items-center"
           style={step >= 4 ? { display: 'none' } : { display: 'block' }}
         >
-          <p className="bg-gray-100 rounded-3xl p-4 text-left">
+          <p className="bg-gray-50 rounded-3xl p-4 text-left">
             <b>🎊 Congratulation! you successfully verified.</b>
           </p>
-          <input
-            type="text"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-            autoFocus
-            placeholder="first name"
+          <TextField
+            id="outlined-multiline-flexible"
+            label="first name"
+            fullWidth
             value={firstName}
             onChange={handleChangeInput}
+            type="text"
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
           />
           {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p className="bg-gray-100 rounded-3xl p-4">
+        <p className="bg-gray-50 rounded-3xl p-4">
           Please enter your first name.
         </p>
         <button

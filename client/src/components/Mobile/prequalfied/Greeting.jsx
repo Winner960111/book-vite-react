@@ -14,13 +14,13 @@ const Greeting = () => {
         step >= 1 ? 'text-slate-400' : 'text-slate-800'
       )}
     >
-      <p className="bg-gray-100 rounded-3xl p-4">
+      <p className="bg-gray-50 rounded-3xl p-4">
         Our pre-qualification bot is your personal guide to a customized
         experience. By answering all the questions, you empower us to understand
         your preferences, allowing us to provide solutions perfectly suited to
         you.
       </p>
-      <p className="bg-gray-100 rounded-3xl p-4 mt-4">
+      <p className="bg-gray-50 rounded-3xl p-4 mt-4">
         Thank you for choosing {dealerName}. We look forward to serving you and
         making your experience extraordinary.
       </p>

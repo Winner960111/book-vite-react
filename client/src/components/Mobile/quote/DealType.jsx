@@ -67,7 +67,7 @@ const DealType = () => {
           step >= 7 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
-        <div className="flex flex-col md:justify-between bg-gray-100 rounded-3xl p-4">
+        <div className="flex flex-col md:justify-between bg-gray-50 rounded-3xl p-4">
           <div className="flex flex-col md:flex-row ">
             <label
               htmlFor="radio1"

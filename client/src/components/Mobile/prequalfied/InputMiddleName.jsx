@@ -101,7 +101,7 @@ const InputMiddleName = () => {
           />
           {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p className="bg-gray-100 rounded-3xl p-4">
+        <p className="bg-gray-50 rounded-3xl p-4">
           In the case you have a middle name on your credit report please enter
           here.
         </p>

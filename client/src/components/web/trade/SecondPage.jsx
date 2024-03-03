@@ -87,14 +87,14 @@ const DealType = () => {
   };
 
   return (
-    <div className="flex flex-col bg-gray-100 w-full justify-center items-center">
+    <div className="flex flex-col bg-gray-50 w-full justify-center items-center">
       <p className="w-2/3 text-4xl text-black mt-44 font-medium">
         Please select correct answer
       </p>
       <div className="w-2/3 flex flex-col text-justify bg-white rounded-3xl p-4 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-[60%] flex flex-col justify-between">
-            <div className="flex flex-col justify-between bg-gray-100 rounded-3xl px-4">
+            <div className="flex flex-col justify-between bg-gray-50 rounded-3xl px-4">
               <div className="flex flex-col md:flex-row justify-between">
                 <label
                   htmlFor="radio1"
@@ -152,7 +152,7 @@ const DealType = () => {
             </div>
           </div>
           <div className="flex w-full md:w-[40%] flex-col ml-2">
-            <div className="flex flex-col justify-between bg-gray-100 rounded-3xl px-4">
+            <div className="flex flex-col justify-between bg-gray-50 rounded-3xl px-4">
               <div className="flex flex-col md:flex-row justify-between">
                 <label
                   htmlFor="radio4"
@@ -208,7 +208,7 @@ const DealType = () => {
           {commentError !== '' ? (
             <p className="text-red-500 pl-6 p-2 -mt-5">{commentError}</p>
           ) : null}
-          <p className="bg-gray-100 rounded-3xl p-4 -mt-2">
+          <p className="bg-gray-50 rounded-3xl p-4 -mt-2">
             Please input your comment
           </p>
           <div className="w-full flex justify-end my-2">

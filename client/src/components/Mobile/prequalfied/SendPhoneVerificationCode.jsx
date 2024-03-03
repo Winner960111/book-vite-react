@@ -76,7 +76,7 @@ const SendPhoneVerificationCode = () => {
           />
           {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p className=" bg-gray-100 rounded-3xl p-4">
+        <p className=" bg-gray-50 rounded-3xl p-4">
           <b>We need to verify your mobile number</b>
           <br />
           by providing your mobile number you agree to receive recurring

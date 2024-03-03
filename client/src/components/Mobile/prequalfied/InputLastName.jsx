@@ -96,7 +96,7 @@ const InputLastName = () => {
           />
           {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           Please enter your last name.
         </p>
         <button

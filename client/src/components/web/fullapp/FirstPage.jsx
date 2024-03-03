@@ -166,7 +166,7 @@ const FirstPage = () => {
 
   return (
     <>
-      <div className="flex bg-gray-100 w-full justify-center items-center">
+      <div className="flex bg-gray-50 w-full justify-center items-center">
         <div className=" w-2/3 flex flex-col mt-20 mx-20">
           <p className="w-2/3 text-4xl text-[#854fff] my-3 font-medium">
             We need to your personal information

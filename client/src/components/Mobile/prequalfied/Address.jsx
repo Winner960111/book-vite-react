@@ -181,7 +181,7 @@ const Address = () => {
         {errors.address ? (
           <p className="text-red-500 pl-2">{errors.address}</p>
         ) : null}
-        <p className="bg-gray-100 rounded-3xl p-4 mt-2">
+        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           Make sure this is a physical address and not a P.O Box.
         </p>
         <input

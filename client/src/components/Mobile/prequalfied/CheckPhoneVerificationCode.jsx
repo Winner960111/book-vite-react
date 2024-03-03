@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkVerification, usersStatus } from '../../../api/index';
 import { addHistory, setIntentID } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
+import { TextField } from '@mui/material';
 
 const CheckPhoneVerificationCode = () => {
   const [verifyCode, setVerifyCode] = useState('');
@@ -93,13 +94,27 @@ const CheckPhoneVerificationCode = () => {
           className="py-2 flex flex-col md:flex-row md:items-center"
           style={step >= 3 ? { display: 'none' } : { display: 'block' }}
         >
-          <input
-            type="tel"
-            className="w-full h-16 rounded-md text-center text-lg border p-2"
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Verify Code"
+            fullWidth
             autoFocus
-            placeholder="Verify Code"
             value={verifyCode}
             onChange={handleChangeInput}
+            type="tel"
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
           />
           {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>

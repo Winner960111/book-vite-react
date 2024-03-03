@@ -71,6 +71,7 @@ const SendPhoneVerificationCode = () => {
             id="outlined-multiline-flexible"
             label="Phone number"
             multiline
+            autoFocus
             fullWidth
             value={phoneNumber}
             onChange={handleChangeInput}

@@ -98,6 +98,7 @@ const CheckPhoneVerificationCode = () => {
             id="outlined-multiline-flexible"
             label="Verify Code"
             fullWidth
+            autoFocus
             value={verifyCode}
             onChange={handleChangeInput}
             type="tel"

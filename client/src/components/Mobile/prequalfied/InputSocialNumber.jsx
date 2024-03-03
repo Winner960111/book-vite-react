@@ -7,7 +7,7 @@ import {
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
 import { usersUpdate } from '../../../api/index';
-
+import { TextField } from '@mui/material';
 const InputSocialNumber = () => {
   const { step, history, checkerSocialNumber, intentID,
     dealerId,
@@ -93,23 +93,38 @@ const InputSocialNumber = () => {
           step >= 8 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
-        <input
-          type="text"
-          className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-          placeholder="Social security number"
-          autoFocus
-          value={socialNumber}
-          onChange={handleChangeInputSocialNumber}
-          style={
-            history[7] == true ? { display: 'none' } : { display: 'block' }
-          }
-        />
-        {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
+        <div
+          className="flex flex-col md:flex-row md:items-center"
+          style={step >= 8 ? { display: 'none' } : { display: 'block' }}
+        >
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Social security number"
+            fullWidth
+            autoFocus
+            value={socialNumber}
+            onChange={handleChangeInputSocialNumber}
+            type="text"
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
+          />
+          {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
+        </div>
         <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           We will not hurt your credit report. This is not an application for
           credit. Authorization is solely for prequalification only.
         </p>
-
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"

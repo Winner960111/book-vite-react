@@ -88,6 +88,7 @@ const InputEmail = () => {
             id="outlined-multiline-flexible"
             label="email address"
             fullWidth
+            autoFocus
             value={email.toLowerCase()}
             onChange={handleChangeInputEmail}
             type="text"

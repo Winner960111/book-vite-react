@@ -98,6 +98,7 @@ const Vehicle = () => {
             margin="dense"
             label="Year"
             fullWidth
+            autoFocus
             value={year}
             onChange={handleYearChange}
             type="text"

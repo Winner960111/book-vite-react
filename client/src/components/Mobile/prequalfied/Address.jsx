@@ -11,6 +11,12 @@ import {
   setCheckerZipcode,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
+import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
 
 const Address = () => {
   const [address, setAddress] = useState('');
@@ -168,16 +174,29 @@ const Address = () => {
           step >= 10 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
-        <input
-          className="w-full h-16 rounded-md text-center text-lg border p-2"
-          id="autocomplete"
-          placeholder="Enter your address"
-          type="text"
-          autoFocus
-          autoComplete="off"
-          ref={addressRef}
-          style={step > 9 ? { display: 'none' } : { display: 'block' }}
-        />
+        <div
+          className="flex flex-col md:flex-row md:items-center"
+          style={step >= 10 ? { display: 'none' } : { display: 'block' }}
+        >
+          <Paper
+            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', height: '70px' }}
+          >
+            <PersonPinCircleIcon />
+            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search Google Maps"
+              inputProps={{ 'aria-label': 'search google maps' }}
+              autoFocus
+              autoComplete="off"
+              id="autocomplete"
+              ref={addressRef}
+            />
+            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+        </div>
         {errors.address ? (
           <p className="text-red-500 pl-2">{errors.address}</p>
         ) : null}

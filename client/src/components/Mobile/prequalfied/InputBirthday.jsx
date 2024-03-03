@@ -7,7 +7,7 @@ import {
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
 import { usersUpdate } from '../../../api/index';
-
+import { TextField } from '@mui/material';
 const InputBirthday = () => {
   const { step, history, checkerBirthday, intentID,
     dealerId,
@@ -80,15 +80,34 @@ const InputBirthday = () => {
           step >= 9 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
-        <input
-          type="date"
-          className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-          autoFocus
-          value={birthday}
-          onChange={handleChangeInputBirthday}
+        <div
+          className="flex flex-col md:flex-row md:items-center"
           style={step >= 9 ? { display: 'none' } : { display: 'block' }}
-        />
-        {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
+        >
+          <TextField
+            id="outlined-multiline-flexible"
+            label=""
+            fullWidth
+            value={birthday}
+            onChange={handleChangeInputBirthday}
+            type="date"
+            autoFocus
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
+          />
+          {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
+        </div>
         <p
           className="bg-gray-50 rounded-3xl p-4 mt-2"
           style={step >= 9 ? { display: 'none' } : { display: 'block' }}

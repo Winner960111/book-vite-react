@@ -94,6 +94,7 @@ const CheckVerifyCode = () => {
             helperText=" "
             id="demo-helper-text-aligned-no-helper"
             label="Verify Code"
+            autoFocus
             value={verifyCode}
             onChange={handleChangeInput}
             fullWidth
@@ -109,7 +110,8 @@ const CheckVerifyCode = () => {
             InputLabelProps={{
               style: {
                 color: '#854fff', // Change label color
-                textAlign: 'center'
+                textAlign: 'center',
+                fontSize: '25px'
               },
             }}
           />

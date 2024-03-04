@@ -199,7 +199,7 @@ const ThirdPage = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="bg-[#854fff] w-1/4 h-20 p-2 rounded-lg text-white text-xl  hover:bg-purple-800"
+              className="bg-[#854fff] w-[30%] h-16 p-2 rounded-lg text-white text-xl  hover:bg-purple-800"
             >
               Submit
             </button>

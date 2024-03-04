@@ -9,7 +9,7 @@ import {
   setVehicleType,
 } from '../../../store/reducers/checker';
 import { instantInfo, usersUpdate } from '../../../api/index';
-
+import { TextField } from '@mui/material';
 const Instant = () => {
   const [vinState, setVinState] = useState(true);
   const [makeState, setMakeState] = useState(false);
@@ -125,13 +125,13 @@ const Instant = () => {
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <p className="w-2/6 text-4xl text-black my-3 mt-36 font-medium">
+        <p className="w-2/6 text-4xl text-[#854fff] my-3 mt-36 font-medium">
           <b>Get an instant offer in minute</b>
         </p>
         <form
           onSubmit={handleSubmit}
           className={
-            ' w-2/6 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
+            'w-2/6 text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
           }
         >
           <div className="flex w-full mt-10 justify-center">
@@ -166,14 +166,31 @@ const Instant = () => {
           {vinState && (
             <>
               <div className="py-2 flex flex-col items-center">
-                <input
-                  type="text"
-                  className="w-full h-20 rounded-md text-center text-sm md:text-lg border my-5"
+                <TextField
+                  helperText=" "
+                  id="demo-helper-text-aligned-no-helper"
+                  label="VIN"
                   autoFocus
-                  placeholder="VIN"
                   value={vinValue}
                   onChange={(e) => {
                     handleInputVin(e);
+                  }}
+                  fullWidth
+                  type="text"
+                  InputProps={{
+                    style: {
+                      color: 'blue', // Change text color
+                      height: '70px', // Set the height of the TextField
+                      fontSize: '25px',
+                      textAlign: 'center'
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: '#854fff', // Change label color
+                      textAlign: 'center',
+                      fontSize: '25px'
+                    },
                   }}
                 />
                 {error !== '' ? (
@@ -182,7 +199,7 @@ const Instant = () => {
               </div>
               <button
                 type="submit"
-                className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+                className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
               >
                 Save Vehicle
               </button>
@@ -190,42 +207,79 @@ const Instant = () => {
           )}
           {makeState && (
             <>
-              <div className="py-2 flex flex-col items-center">
-                <input
-                  type="number"
-                  className="w-full h-20 rounded-md text-center text-sm md:text-lg border mt-5"
-                  autoFocus
-                  placeholder="Year"
-                  value={year}
-                  onChange={(e) => {
-                    handleInputYear(e);
-                  }}
-                />
-              </div>
-              <div className="py-2 flex flex-col items-center">
-                <input
-                  type="text"
-                  className="w-full h-20 rounded-md text-center text-sm md:text-lg border"
-                  autoFocus
-                  placeholder="Make"
-                  value={make}
-                  onChange={(e) => {
-                    handleInputMake(e);
-                  }}
-                />
-              </div>
-              <div className="py-2 flex flex-col items-center">
-                <input
-                  type="text"
-                  className="w-full h-20 rounded-md text-center text-sm md:text-lg border"
-                  autoFocus
-                  placeholder="Model"
-                  value={model}
-                  onChange={(e) => {
-                    handleInputModel(e);
-                  }}
-                />
-              </div>
+              <TextField
+                id="margin-dense"
+                margin="dense"
+                label="Year"
+                fullWidth
+                autoFocus
+                value={year}
+                onChange={(e) => {
+                  handleInputYear(e);
+                }}
+                type="text"
+                InputProps={{
+                  style: {
+                    color: 'blue', // Change text color
+                    height: '70px', // Set the height of the TextField
+                    fontSize: '25px',
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: '#854fff', // Change label color
+                    fontSize: '25px',
+                  },
+                }}
+              />
+              <TextField
+                id="margin-dense"
+                margin="dense"
+                label="Make"
+                fullWidth
+                value={make}
+                onChange={(e) => {
+                  handleInputMake(e);
+                }}
+                type="text"
+                InputProps={{
+                  style: {
+                    color: 'blue', // Change text color
+                    height: '70px', // Set the height of the TextField
+                    fontSize: '25px',
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: '#854fff', // Change label color
+                    fontSize: '25px',
+                  },
+                }}
+              />
+              <TextField
+                label="Model"
+                fullWidth
+                id="margin-dense"
+                margin="dense"
+                value={model}
+                onChange={(e) => {
+                  handleInputModel(e);
+                }}
+                type="text"
+                InputProps={{
+                  style: {
+                    color: 'blue', // Change text color
+                    height: '70px', // Set the height of the TextField
+                    fontSize: '25px',
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: '#854fff', // Change label color
+                    fontSize: '25px',
+                  },
+                }}
+              />
               {error !== '' ? (
                 <p className="text-red-500 pl-2 text-sm">{error}</p>
               ) : null}

@@ -9,7 +9,7 @@ import {
   setMileageHour,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
-
+import { TextField } from '@mui/material';
 const FirstPage = () => {
   const {
     step,
@@ -123,63 +123,105 @@ const FirstPage = () => {
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className=" w-2/3 flex flex-col mt-10 mx-20">
-          <p className="w-2/3 text-4xl text-black my-3 font-medium">
+        <div className=" w-2/3 flex flex-col mt-28 mx-20">
+          <p className="w-2/3 text-4xl text-[#854fff] my-3 font-medium">
             We need to your some information
           </p>
           <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
-                <input
+                <TextField
                   onFocus={() => setFocusFirstName(true)}
                   onBlur={() => setFocusFirstName(false)} // onBlur is triggered when the input loses focus
-                  className="w-full h-20 border-2 text-center rounded-md text-2xl"
-                  id="autocomplete"
-                  autoFocus
-                  placeholder="First Name"
-                  type="text"
                   value={firstName}
                   onChange={handleFirstName}
+                  fullWidth
+                  autoFocus
+                  type="text"
+                  defaultValue="Normal"
+                  label="First Name"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      color: 'blue', // Change text color
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: '#854fff', // Change label color
+                      fontSize: '25px'
+                    },
+                  }}
                 />
                 {errorFirstName !== '' && (
                   <p className="text-red-500 pl-2">{errorFirstName}</p>
                 )}
                 {focusFirstName && (
-                  <b className="bg-gray-50 rounded-3xl p-4 mt-2">
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
                     Please enter your first name.
-                  </b>
+                  </p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
-                <input
+                <TextField
                   onFocus={() => setFocusLastName(true)}
                   onBlur={() => setFocusLastName(false)} // onBlur is triggered when the input loses focus
-                  className="w-full h-20 border-2 text-center rounded-md text-2xl"
-                  id="autocomplete"
-                  placeholder="Last Name"
-                  type="text"
                   value={lastName}
                   onChange={handleLastName}
+                  fullWidth
+                  type="text"
+                  defaultValue="Normal"
+                  label="Last Name"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      color: 'blue', // Change text color
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: '#854fff', // Change label color
+                      fontSize: '25px'
+                    },
+                  }}
                 />
                 {errorLastName !== '' && (
-                  <p className="text-red-500 pl-2">{errorLastName}</p>
+                  <p className="text-red-500 pl-2">{errorFirstName}</p>
                 )}
                 {focusLastName && (
-                  <b className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your last name.
-                  </b>
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                    Please enter your Last name.
+                  </p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
-                <input
+                <TextField
                   onFocus={() => setFocusEmailAddress(true)}
                   onBlur={() => setFocusEmailAddress(false)} // onBlur is triggered when the input loses focus
-                  className="w-full h-20 border-2 text-center rounded-md text-2xl"
-                  id="autocomplete"
-                  placeholder="Email Address"
-                  type="text"
                   value={emailAddress}
                   onChange={handleEmailAddress}
+                  fullWidth
+                  type="text"
+                  defaultValue="Normal"
+                  label="Email Address"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      color: 'blue', // Change text color
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: '#854fff', // Change label color
+                      fontSize: '25px'
+                    },
+                  }}
                 />
                 {errorEmailAddress !== '' && (
                   <p className="text-red-500 pl-2">{errorEmailAddress}</p>
@@ -196,7 +238,7 @@ const FirstPage = () => {
             <div className="w-full p-5 flex justify-between flex-col md:flex-row -my-8">
               <div className="flex flex-col w-full md:w-[66%] md:px-5">
                 <div className="flex flex-col justify-between bg-gray-50 rounded-3xl px-4">
-                  <div className="flex flex-col md:flex-row justify-between">
+                  <div className="flex flex-col md:flex-row justify-between text-[#854fff] font-bold">
                     <label
                       htmlFor="radio1"
                       className="m-2 p-2 cursor-pointer"
@@ -245,30 +287,46 @@ const FirstPage = () => {
                   </div>
 
                   <p className="px-6">
-                    <b>Please select vehicle condition</b>
+                    <p>Please select vehicle condition</p>
                   </p>
                   {errorCondition !== '' ? (
                     <p className="text-red-500 pl-6 pt-2">{errorCondition}</p>
                   ) : null}
                 </div>
               </div>
-              <input
-                className="w-full md:w-[29%] h-20 border-2 text-center rounded-md text-2xl md:mx-5 my-5 md:my-0"
-                id="autocomplete"
-                placeholder="Mileage Hour"
-                type="text"
-                value={mileage}
-                onChange={(e) => {
-                  setMileage(e.target.value);
-                }}
-              />
+              <div className="w-full md:w-[30%] h-20 text-center rounded-md text-2xl md:mx-5 my-5 md:my-0">
+                <TextField
+                  value={mileage}
+                  onChange={(e) => {
+                    setMileage(e.target.value);
+                  }}
+                  fullWidth
+                  type="text"
+                  defaultValue="Normal"
+                  label="Mileage"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      color: 'blue', // Change text color
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: '#854fff', // Change label color
+                      fontSize: '25px'
+                    },
+                  }}
+                />
+              </div>
             </div>
 
             <div className="w-full p-5 flex justify-end">
               <button
                 type="button"
                 onClick={handlesubmit}
-                className="bg-[#854fff] w-1/4 h-20 p-2 mx-5 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="bg-[#854fff] w-[30%] h-16 p-2 mx-5 rounded-lg text-white text-xl  hover:bg-purple-800"
               >
                 CONTINUE
               </button>

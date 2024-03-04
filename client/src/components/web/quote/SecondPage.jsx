@@ -6,7 +6,7 @@ import {
   setQuoteInterest,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
-
+import { TextField } from '@mui/material';
 const DealType = () => {
   const {
     step,
@@ -73,37 +73,82 @@ const DealType = () => {
 
   return (
     <div className="flex flex-col bg-gray-50 w-full justify-center items-center">
-      <p className="w-2/3 text-4xl text-black mt-44 font-medium">
+      <p className="w-2/3 text-4xl text-[#854fff] mt-44 font-medium">
         What is the vehicle&apos;s year/make/model?
       </p>
       <div className="w-2/3 flex flex-col md:flex-row text-justify bg-white rounded-3xl p-4 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
         <div className="flex w-full md:w-[40%] flex-col md:mx-10">
-          <input
-            type="text"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
+          <TextField
+            id="margin-dense"
+            margin="dense"
+            label="Year"
+            fullWidth
             autoFocus
-            placeholder="Year"
             value={year}
             onChange={(e) => setYear(e.target.value)}
-          />
-          <input
             type="text"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-            placeholder="Make"
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
+          />
+          <TextField
+            id="margin-dense"
+            margin="dense"
+            label="Make"
+            fullWidth
             value={make}
             onChange={(e) => setMake(e.target.value)}
-          />
-          <input
             type="text"
-            className="w-full h-16 rounded-md text-center text-sm md:text-lg border p-2 my-2"
-            placeholder="Model"
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
+          />
+          <TextField
+            label="Model"
+            fullWidth
+            id="margin-dense"
+            margin="dense"
             value={model}
             onChange={(e) => setModel(e.target.value)}
+            type="text"
+            InputProps={{
+              style: {
+                color: 'blue', // Change text color
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: '#854fff', // Change label color
+                fontSize: '25px',
+              },
+            }}
           />
         </div>
         <div className="w-full md:w-[60%] flex flex-col justify-between">
           <div className="flex flex-col justify-between bg-gray-50 rounded-3xl p-4">
-            <div className="flex flex-col md:flex-row justify-between">
+            <div className="flex flex-col md:flex-row justify-between text-[#854fff]">
               <label
                 htmlFor="radio1"
                 className="text-2xl m-2 p-2 cursor-pointer"
@@ -152,7 +197,7 @@ const DealType = () => {
             </div>
 
             <p className=" px-6">
-              <b>Please select deal type.</b>
+              <p>Please select deal type.</p>
             </p>
             {error !== '' ? (
               <p className="text-red-500 pl-6 pt-2">{error}</p>

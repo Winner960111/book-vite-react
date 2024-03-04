@@ -177,7 +177,7 @@ const ThirdPage = () => {
         </p>
         <form
           className={classNames(
-            'text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg font-sans'
+            'text-justify bg-white rounded-3xl p-8 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg font-sans'
           )}
         >
           <p className="bg-gray-50 rounded-3xl p-4 mt-2">

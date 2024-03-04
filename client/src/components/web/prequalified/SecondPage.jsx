@@ -9,7 +9,12 @@ import {
   setCheckerZipcode,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
-
+import { GiPositionMarker } from "react-icons/gi";
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
+import { TextField } from '@mui/material';
 const SecondPage = () => {
   const dispatch = useDispatch();
 
@@ -155,65 +160,147 @@ const SecondPage = () => {
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className="w-2/3 flex flex-col mt-10 mx-20">
-          <p className="w-2/3 text-4xl text-black my-3 font-medium">
+        <div className="w-2/3 flex flex-col mt-28 mx-20">
+          <p className="w-3/4 text-4xl text-[#854fff] my-3 font-medium">
             Make sure this is a physical address and not a P.O Box
           </p>
           <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
             <div className="w-full flex p-5 flex-col md:flex-row">
-              <input
-                className="md:w-[68%] w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
-                id="autocomplete"
-                placeholder="Enter your address"
-                type="text"
-                autoFocus
-                autoComplete="off"
-                ref={addressRef}
-              />
+              <div className="md:w-[68%] w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
+                <Paper
+                  sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', height: '70px' }}
+                >
+                  <GiPositionMarker className='text-4xl text-[#854fff] mx-2' />
+                  <InputBase
+                    sx={{ ml: 1, flex: 1, fontSize: '25px', color: 'blue' }}
+                    placeholder="Search Google Maps"
+                    inputProps={{ 'aria-label': 'search google maps' }}
+                    autoFocus
+                    autoComplete="off"
+                    id="autocomplete"
+                    ref={addressRef}
+                  />
+                  <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                    <SearchIcon />
+                  </IconButton>
+                </Paper>
+              </div>
               {errors.address ? (
                 <p className="text-red-500 pl-2">{errors.address}</p>
               ) : null}
-              <input
-                className="md:w-[32%] w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
-                onChange={(e) => setApt(e.target.value)}
-                value={apt}
-                placeholder="Apt/Suite (Optional)"
-              />
+              <div className="md:w-[32%] w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
+                <TextField
+                  value={apt}
+                  onChange={(e) => setApt(e.target.value)}
+                  fullWidth
+                  type="text"
+                  defaultValue="Normal"
+                  label="Apt/Suite (Optional)"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      color: 'blue', // Change text color
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: '#854fff',
+                      fontSize: '25px'
+                    },
+                  }}
+                />
+              </div>
             </div>
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
-              <input
-                className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
-                onChange={(e) => {
-                  setLocality(e.target.value);
-                  setErrors((prev) => ({ ...prev, locality: '' }));
-                }}
-                value={locality}
-                placeholder="City"
-              />
+              <div className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
+                <TextField
+                  value={locality}
+                  onChange={(e) => {
+                    setLocality(e.target.value);
+                    setErrors((prev) => ({ ...prev, locality: '' }));
+                  }}
+                  fullWidth
+                  type="text"
+                  defaultValue="Normal"
+                  label="City"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      color: 'blue', // Change text color
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: '#854fff',
+                      fontSize: '25px'
+                    },
+                  }}
+                />
+              </div>
               {errors.locality ? (
                 <p className="text-red-500 pl-2">{errors.locality}</p>
               ) : null}
-              <input
-                className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
-                onChange={(e) => {
-                  setState(e.target.value);
-                  setErrors((prev) => ({ ...prev, state: '' }));
-                }}
-                value={state}
-                placeholder="State"
-              />
+              <div className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
+                <TextField
+                  value={state}
+                  onChange={(e) => {
+                    setState(e.target.value);
+                    setErrors((prev) => ({ ...prev, state: '' }));
+                  }}
+                  fullWidth
+                  type="text"
+                  defaultValue="Normal"
+                  label="State"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      color: 'blue', // Change text color
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: '#854fff',
+                      fontSize: '25px'
+                    },
+                  }}
+                />
+              </div>
               {errors.state ? (
                 <p className="text-red-500 pl-2">{errors.state}</p>
               ) : null}
-              <input
-                className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
-                onChange={(e) => {
-                  setZipcode(e.target.value);
-                  setErrors((prev) => ({ ...prev, zipcode: '' }));
-                }}
-                value={zipcode}
-                placeholder="Zip Code"
-              />
+              <div className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
+                <TextField
+                  value={zipcode}
+                  onChange={(e) => {
+                    setZipcode(e.target.value);
+                    setErrors((prev) => ({ ...prev, zipcode: '' }));
+                  }}
+                  fullWidth
+                  type="text"
+                  defaultValue="Normal"
+                  label="Zip Code"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      color: 'blue', // Change text color
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: '#854fff',
+                      fontSize: '25px'
+                    },
+                  }}
+                />
+              </div>
               {errors.zipcode ? (
                 <p className="text-red-500 pl-2">{errors.zipcode}</p>
               ) : null}
@@ -222,7 +309,7 @@ const SecondPage = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="bg-[#854fff] w-1/4 h-20 p-2 mx-5 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="bg-[#854fff] w-[30%] h-16 p-2 mx-5 rounded-lg text-white text-xl  hover:bg-purple-800"
               >
                 CONTINUE
               </button>

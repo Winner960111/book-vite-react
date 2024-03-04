@@ -37,7 +37,7 @@ const DealType = () => {
   const [model, setModel] = useState('');
   const [owner, setOwner] = useState('');
   const [comment, setComment] = useState('');
-
+  const [focus, setFocus] = useState(Boolean)
   useEffect(() => {
     setError(null);
     setDealClick('');
@@ -88,14 +88,14 @@ const DealType = () => {
 
   return (
     <div className="flex flex-col bg-gray-50 w-full justify-center items-center">
-      <p className="w-2/3 text-4xl text-black mt-44 font-medium">
+      <p className="w-2/3 text-4xl text-[#854fff] mt-44 font-medium">
         Please select correct answer
       </p>
-      <div className="w-2/3 flex flex-col text-justify bg-white rounded-3xl p-4 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
+      <div className="w-2/3 flex flex-col text-justify bg-white rounded-3xl p-8 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-[60%] flex flex-col justify-between">
             <div className="flex flex-col justify-between bg-gray-50 rounded-3xl px-4">
-              <div className="flex flex-col md:flex-row justify-between">
+              <div className="flex flex-col md:flex-row justify-between font-bold text-[#854fff]">
                 <label
                   htmlFor="radio1"
                   className="text-2xl m-2 p-2 cursor-pointer"
@@ -144,7 +144,7 @@ const DealType = () => {
               </div>
 
               <p className=" px-6">
-                <b>Please select deal type.</b>
+                Please select deal type.
               </p>
               {error !== '' ? (
                 <p className="text-red-500 pl-6 pt-2">{error}</p>
@@ -153,7 +153,7 @@ const DealType = () => {
           </div>
           <div className="flex w-full md:w-[40%] flex-col ml-2">
             <div className="flex flex-col justify-between bg-gray-50 rounded-3xl px-4">
-              <div className="flex flex-col md:flex-row justify-between">
+              <div className="flex flex-col md:flex-row justify-between font-bold text-[#854fff]">
                 <label
                   htmlFor="radio4"
                   className="text-2xl m-2 p-2 cursor-pointer"
@@ -186,7 +186,7 @@ const DealType = () => {
                 </label>
               </div>
               <p className=" px-6">
-                <b>Are you original owner?</b>
+                Are you original owner?
               </p>
               {ownerError !== '' ? (
                 <p className="text-red-500 pl-6 pt-2">{ownerError}</p>
@@ -196,7 +196,9 @@ const DealType = () => {
         </div>
         <div className="flex flex-col">
           <textarea
-            className="w-full h-20 border-2 rounded-md text-xl my-5 md:my-5"
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
+            className="w-full h-20 border-2 rounded-md text-xl my-5 md:my-5 p-5 placeholder-blue-200 text-blue-600"
             id="autocomplete"
             placeholder="comment"
             type="text"
@@ -208,14 +210,15 @@ const DealType = () => {
           {commentError !== '' ? (
             <p className="text-red-500 pl-6 p-2 -mt-5">{commentError}</p>
           ) : null}
-          <p className="bg-gray-50 rounded-3xl p-4 -mt-2">
+          {focus && <p className="bg-gray-50 rounded-3xl p-4 -mt-2">
             Please input your comment
-          </p>
+          </p>}
+
           <div className="w-full flex justify-end my-2">
             <button
               type="button"
               onClick={handleSubmit}
-              className="bg-[#854fff] w-1/4 h-20 rounded-lg text-white text-xl  hover:bg-purple-800"
+              className="bg-[#854fff] w-[30%] h-16 rounded-lg text-white text-xl  hover:bg-purple-800"
             >
               CONTINUE
             </button>

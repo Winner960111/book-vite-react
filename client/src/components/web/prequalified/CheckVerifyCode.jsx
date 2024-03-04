@@ -79,13 +79,13 @@ const CheckVerifyCode = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <p className="w-2/6 text-4xl text-black my-3 mt-36 font-medium">
-        <b>Check your verify code</b>
+      <p className="w-2/6 text-4xl text-[#854fff] my-3 mt-36 font-medium">
+        <p>Check your verify code</p>
       </p>
       <form
         onSubmit={handleSubmit}
         className={
-          ' w-2/6 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
+          ' w-2/6 text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
         }
       >
         <div className="py-2 flex flex-col items-center">
@@ -93,6 +93,7 @@ const CheckVerifyCode = () => {
             helperText=" "
             id="demo-helper-text-aligned-no-helper"
             label="Verify Code"
+            autoFocus
             value={verifyCode}
             onChange={handleChangeInput}
             fullWidth
@@ -108,7 +109,8 @@ const CheckVerifyCode = () => {
             InputLabelProps={{
               style: {
                 color: '#854fff', // Change label color
-                textAlign: 'center'
+                textAlign: 'center',
+                fontSize: '25px'
               },
             }}
           />

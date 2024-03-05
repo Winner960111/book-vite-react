@@ -54,7 +54,7 @@ const PhoneVerification = () => {
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <p className="w-4/5 md:w-[600px] text-4xl text-[#854fff] my-3 mt-36 font-medium">
+        <p className="w-4/5 md:w-[600px] text-4xl my-3 mt-36 font-medium">
           <b>Verify your mobile number</b>
         </p>
         <form
@@ -75,7 +75,6 @@ const PhoneVerification = () => {
               type="text"
               InputProps={{
                 style: {
-                  color: 'blue', // Change text color
                   height: '70px', // Set the height of the TextField
                   fontSize: '25px',
                   textAlign: 'center'
@@ -83,7 +82,6 @@ const PhoneVerification = () => {
               }}
               InputLabelProps={{
                 style: {
-                  color: '#854fff', // Change label color
                   textAlign: 'center',
                   fontSize: '25px'
                 },

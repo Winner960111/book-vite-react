@@ -73,7 +73,7 @@ const DealType = () => {
 
   return (
     <div className="flex flex-col bg-gray-50 w-full justify-center items-center">
-      <p className="w-2/3 text-4xl text-[#854fff] mt-44 font-medium">
+      <p className="w-2/3 text-4xl mt-44 font-medium">
         What is the vehicle&apos;s year/make/model?
       </p>
       <div className="w-2/3 flex flex-col md:flex-row text-justify bg-white rounded-3xl p-4 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
@@ -89,14 +89,12 @@ const DealType = () => {
             type="text"
             InputProps={{
               style: {
-                color: 'blue', // Change text color
                 height: '70px', // Set the height of the TextField
                 fontSize: '25px',
               },
             }}
             InputLabelProps={{
               style: {
-                color: '#854fff', // Change label color
                 fontSize: '25px',
               },
             }}
@@ -111,14 +109,12 @@ const DealType = () => {
             type="text"
             InputProps={{
               style: {
-                color: 'blue', // Change text color
                 height: '70px', // Set the height of the TextField
                 fontSize: '25px',
               },
             }}
             InputLabelProps={{
               style: {
-                color: '#854fff', // Change label color
                 fontSize: '25px',
               },
             }}
@@ -133,14 +129,12 @@ const DealType = () => {
             type="text"
             InputProps={{
               style: {
-                color: 'blue', // Change text color
                 height: '70px', // Set the height of the TextField
                 fontSize: '25px',
               },
             }}
             InputLabelProps={{
               style: {
-                color: '#854fff', // Change label color
                 fontSize: '25px',
               },
             }}
@@ -148,7 +142,7 @@ const DealType = () => {
         </div>
         <div className="w-full md:w-[60%] flex flex-col justify-between">
           <div className="flex flex-col justify-between bg-gray-50 rounded-3xl p-4">
-            <div className="flex flex-col md:flex-row justify-between text-[#854fff]">
+            <div className="flex flex-col md:flex-row justify-between">
               <label
                 htmlFor="radio1"
                 className="text-2xl m-2 p-2 cursor-pointer"

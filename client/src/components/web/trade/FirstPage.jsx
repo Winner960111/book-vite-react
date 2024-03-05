@@ -124,7 +124,7 @@ const FirstPage = () => {
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
         <div className=" w-2/3 flex flex-col mt-28 mx-20">
-          <p className="w-2/3 text-4xl text-[#854fff] my-3 font-medium">
+          <p className="w-2/3 text-4xl my-3 font-medium">
             We need to your some information
           </p>
           <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
@@ -143,14 +143,12 @@ const FirstPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff', // Change label color
                       fontSize: '25px'
                     },
                   }}
@@ -177,14 +175,12 @@ const FirstPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff', // Change label color
                       fontSize: '25px'
                     },
                   }}
@@ -211,14 +207,12 @@ const FirstPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff', // Change label color
                       fontSize: '25px'
                     },
                   }}
@@ -238,7 +232,7 @@ const FirstPage = () => {
             <div className="w-full p-5 flex justify-between flex-col md:flex-row -my-8">
               <div className="flex flex-col w-full md:w-[66%] md:px-5">
                 <div className="flex flex-col justify-between bg-gray-50 rounded-3xl px-4">
-                  <div className="flex flex-col md:flex-row justify-between text-[#854fff] font-bold">
+                  <div className="flex flex-col md:flex-row justify-between font-bold">
                     <label
                       htmlFor="radio1"
                       className="m-2 p-2 cursor-pointer"
@@ -307,14 +301,12 @@ const FirstPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff', // Change label color
                       fontSize: '25px'
                     },
                   }}

@@ -88,14 +88,14 @@ const DealType = () => {
 
   return (
     <div className="flex flex-col bg-gray-50 w-full justify-center items-center">
-      <p className="w-2/3 text-4xl text-[#854fff] mt-44 font-medium">
+      <p className="w-2/3 text-4xl mt-44 font-medium">
         Please select correct answer
       </p>
       <div className="w-2/3 flex flex-col text-justify bg-white rounded-3xl p-8 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-[60%] flex flex-col justify-between">
             <div className="flex flex-col justify-between bg-gray-50 rounded-3xl px-4">
-              <div className="flex flex-col md:flex-row justify-between font-bold text-[#854fff]">
+              <div className="flex flex-col md:flex-row justify-between font-bold">
                 <label
                   htmlFor="radio1"
                   className="text-2xl m-2 p-2 cursor-pointer"
@@ -153,7 +153,7 @@ const DealType = () => {
           </div>
           <div className="flex w-full md:w-[40%] flex-col ml-2">
             <div className="flex flex-col justify-between bg-gray-50 rounded-3xl px-4">
-              <div className="flex flex-col md:flex-row justify-between font-bold text-[#854fff]">
+              <div className="flex flex-col md:flex-row justify-between font-bold">
                 <label
                   htmlFor="radio4"
                   className="text-2xl m-2 p-2 cursor-pointer"

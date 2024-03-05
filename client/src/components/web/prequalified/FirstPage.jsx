@@ -167,7 +167,7 @@ const FirstPage = () => {
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
         <div className=" w-2/3 flex flex-col mt-28 mx-20">
-          <p className="w-2/3 text-4xl text-[#854fff] my-3 font-medium">
+          <p className="w-2/3 text-4xl my-3 font-medium">
             We need to your some information
           </p>
           <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
@@ -185,14 +185,12 @@ const FirstPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff', // Change label color
                       fontSize: '25px'
                     },
                   }}
@@ -220,14 +218,12 @@ const FirstPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff',
                       fontSize: '25px'
                     },
                   }}
@@ -255,14 +251,12 @@ const FirstPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff', // Change label color
                       fontSize: '25px'
                     },
                   }}
@@ -291,14 +285,12 @@ const FirstPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff', // Change label color
                       fontSize: '25px'
                     },
                   }}
@@ -330,14 +322,12 @@ const FirstPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff', // Change label color
                       fontSize: '25px'
                     },
                   }}
@@ -366,14 +356,12 @@ const FirstPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff', // Change label color
                       fontSize: '25px'
                     },
                   }}

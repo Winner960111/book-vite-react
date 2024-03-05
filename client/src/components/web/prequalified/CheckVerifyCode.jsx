@@ -79,7 +79,7 @@ const CheckVerifyCode = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <p className="w-2/6 text-4xl text-[#854fff] my-3 mt-36 font-medium">
+      <p className="w-2/6 text-4xl my-3 mt-36 font-medium">
         <p>Check your verify code</p>
       </p>
       <form
@@ -100,7 +100,6 @@ const CheckVerifyCode = () => {
             type="text"
             InputProps={{
               style: {
-                color: 'blue', // Change text color
                 height: '70px', // Set the height of the TextField
                 fontSize: '25px',
                 textAlign: 'center'
@@ -108,7 +107,6 @@ const CheckVerifyCode = () => {
             }}
             InputLabelProps={{
               style: {
-                color: '#854fff', // Change label color
                 textAlign: 'center',
                 fontSize: '25px'
               },

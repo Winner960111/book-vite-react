@@ -107,14 +107,12 @@ const InputSocialNumber = () => {
             type="text"
             InputProps={{
               style: {
-                color: 'blue', // Change text color
                 height: '70px', // Set the height of the TextField
                 fontSize: '25px',
               },
             }}
             InputLabelProps={{
               style: {
-                color: '#854fff', // Change label color
                 fontSize: '25px',
               },
             }}

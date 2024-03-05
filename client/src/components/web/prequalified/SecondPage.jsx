@@ -161,7 +161,7 @@ const SecondPage = () => {
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
         <div className="w-2/3 flex flex-col mt-28 mx-20">
-          <p className="w-3/4 text-4xl text-[#854fff] my-3 font-medium">
+          <p className="w-3/4 text-4xl my-3 font-medium">
             Make sure this is a physical address and not a P.O Box
           </p>
           <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
@@ -170,9 +170,9 @@ const SecondPage = () => {
                 <Paper
                   sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', height: '70px' }}
                 >
-                  <GiPositionMarker className='text-4xl text-[#854fff] mx-2' />
+                  <GiPositionMarker className='text-4xl mx-2' />
                   <InputBase
-                    sx={{ ml: 1, flex: 1, fontSize: '25px', color: 'blue' }}
+                    sx={{ ml: 1, flex: 1, fontSize: '25px' }}
                     placeholder="Search Google Maps"
                     inputProps={{ 'aria-label': 'search google maps' }}
                     autoFocus
@@ -199,14 +199,12 @@ const SecondPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff',
                       fontSize: '25px'
                     },
                   }}
@@ -228,14 +226,12 @@ const SecondPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff',
                       fontSize: '25px'
                     },
                   }}
@@ -258,14 +254,12 @@ const SecondPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff',
                       fontSize: '25px'
                     },
                   }}
@@ -288,14 +282,12 @@ const SecondPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      color: 'blue', // Change text color
                       height: '50px', // Set the height of the TextField
                       fontSize: '25px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      color: '#854fff',
                       fontSize: '25px'
                     },
                   }}

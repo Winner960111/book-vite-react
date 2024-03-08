@@ -8,7 +8,7 @@ import { browserName, osName } from 'react-device-detect';
 import PhoneVerification from '../components/common/PhoneVerification';
 import CheckVerifyCode from '../components/web/fullapp/CheckVerifyCode';
 import FirstPage from '../components/web/fullapp/FirstPage';
-import SecondPage from '../components/web/prequalified/SecondPage';
+import SecondPage from '../components/web/fullapp/SecondPage';
 // import ThirdPage from '../components/web/prequalified/ThirdPage';
 // import Finish from '../components/web/prequalified/Finish';
 import homeImg from '../assets/webhome.png';

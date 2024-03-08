@@ -1,25 +1,27 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+'use client';
+import { useState, useEffect } from 'react';
+import { addHistory, removeHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  addHistory,
-  setCheckerAddress,
-  setCheckerApt,
-  setCheckerLocality,
-  setCheckerState,
-  setCheckerZipcode,
+  setDriverNumber,
+  setDriverDate,
+  setDriverState,
+  setIDate,
+  setIIsuer,
+  setIType,
+  setUSCitizen,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+import { Button, Modal } from 'flowbite-react';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
 const SecondPage = () => {
-  const dispatch = useDispatch();
-
-  const [address, setAddress] = useState('');
-  const [locality, setLocality] = useState('');
-  const [state, setState] = useState('');
-  const [zipcode, setZipcode] = useState('');
-  const [apt, setApt] = useState('');
-  const [errors, setErrors] = useState({});
-
   const {
     step,
     intentID,
@@ -36,200 +38,350 @@ const SecondPage = () => {
     type,
     checkerMobileNumber,
   } = useSelector((state) => state.checker);
+  const dispatch = useDispatch();
+  const [errordriverNumber, setErrordriverNumber] = useState('');
+  const [errordriverDate, setErrordriverDate] = useState('');
+  const [errordriverState, setErrordriverState] = useState('');
+  const [erroreDate, setErroreDate] = useState('');
+  const [driverNumber, setdriverNumber] = useState('');
+  const [driverDate, setdriverDate] = useState('');
+  const [driverState, setdriverState] = useState('');
+  const [eDate, seteDate] = useState('');
+  const [focusdriverNumber, setFocusDriverNumber] = useState(Boolean);
+  const [focusdriverDate, setFocusDriverDate] = useState(Boolean);
+  const [focusdriverState, setFocusDriverState] = useState(Boolean);
+  const [focuseDate, setFocusEDate] = useState(Boolean);
+  const [citizen, setCitizen] = useState('Yes')
+  const [payType, setPayType] = useState('')
+  const [isuer, setIsuer] = useState('')
+  const [errorIsuer, setErrorIsuer] = useState('')
+  const [errorPayType, setErrorPayType] = useState('')
+  const [openModal, setOpenModal] = useState(false);
+  const [next, setNext] = useState(false)
+  const handleNext = () => {
+    setOpenModal(false)
+    setNext(true)
+  }
+  const handlePre = () => {
+    removeHistory(true)
+  }
+  const handleDriverNumber = (e) => {
+    setdriverNumber(e.target.value);
+    setErrordriverNumber('');
+  };
+  const handleDriverDate = (e) => {
+    setdriverDate(e.target.value);
+    setErrordriverDate('');
+  };
+  const handleDriverState = (e) => {
+    setdriverState(e.target.value);
+    setErrordriverState('');
+  };
 
-  const addressRef = useRef(null);
-
+  const handleEDate = (e) => {
+    seteDate(e.target.value);
+    setErroreDate('');
+  };
+  const handlePayType = (e) => {
+    setPayType(e.target.value)
+    setErrorPayType('')
+  }
+  const handleIsuer = (e) => {
+    setIsuer(e.target.value)
+    setErrorIsuer('')
+  }
   useEffect(() => {
-    setErrors({});
+    setErrordriverNumber('');
+    setErrordriverDate('');
+    setErrordriverState('');
+    setErroreDate('');
+    setCitizen('');
+    seteDate('');
+    setPayType('');
+    setIsuer('');
+    setErrorIsuer('');
+    setErrorPayType('');
+    setErroreDate('');
+    setOpenModal(false)
+    setNext(false)
   }, [step]);
 
-  const initializeAutocomplete = useCallback(() => {
-    const input = document.getElementById('autocomplete');
-    const newAutocomplete = new window.google.maps.places.Autocomplete(input);
-
-    newAutocomplete.addListener('place_changed', () => {
-      const place = newAutocomplete.getPlace();
-      if (place.formatted_address !== undefined) {
-        setAddress(place.formatted_address);
-        parseAddressComponents(place);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    if (addressRef.current) {
-      const loadGoogleMapsScript = (callback) => {
-        if (window.google && window.google.maps && window.google.maps.places) {
-          // The Google Maps API is already loaded
-          callback();
-        } else {
-          // Create a new <script> tag only if the API hasn't been loaded yet
-          const existingScript = document.getElementById('googleMapsScript');
-          if (!existingScript) {
-            const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
-            const script = document.createElement('script');
-            script.id = 'googleMapsScript'; // Assign an ID to the script element to check for its existence later
-            script.type = 'text/javascript';
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places`;
-            script.onload = () => callback();
-            document.body.appendChild(script);
-          }
-        }
-      };
-
-      loadGoogleMapsScript(initializeAutocomplete);
+  const handlesubmit = async () => {
+    let pass = 0;
+    if (!driverNumber) {
+      setErrordriverNumber('*field is required');
+    } else {
+      pass += 1;
     }
-  }, [initializeAutocomplete, step]);
-
-  const parseAddressComponents = (place) => {
-    for (const component of place.address_components) {
-      const componentType = component.types[0];
-
-      switch (componentType) {
-        case 'locality':
-          setLocality(component.long_name);
-          break;
-        case 'administrative_area_level_1':
-          setState(component.short_name);
-          break;
-        case 'postal_code':
-          setZipcode(component.long_name);
-          break;
+    if (!driverDate) {
+      setErrordriverDate('*field is required');
+    } else {
+      pass += 1;
+    }
+    if (!driverState) {
+      setErrordriverState('*field is required');
+    } else if (!/^[A-Za-z]+$/.test(driverState)) {
+      setErrordriverState('*contains only characters');
+    } else {
+      pass += 1;
+    }
+    if (!eDate) {
+      setErroreDate('*input your expiration date');
+    } else {
+      pass += 1;
+    }
+    if (!payType) {
+      setErrorPayType('*Select option')
+    } else {
+      pass += 1;
+    }
+    if (payType != 'other' && !isuer) {
+      setErrorIsuer('*select option')
+    } else {
+      pass += 1
+    }
+    if (pass == 6) {
+      setOpenModal(true)
+      if (next == true) {
+        const data = {
+          dealer_id: dealerId,
+          device_ip_address: deviceIP,
+          device_operating_system: deviceOS,
+          device_browser: deviceBrowser,
+          device_type: type,
+          device_state: deviceState,
+          device_city: deviceCity,
+          device_country: deviceCountry,
+          device_date_time: deviceDate,
+          device_lat: deviceLat,
+          device_lon: deviceLon,
+          status: 'Started',
+          lang: 'EN',
+          phone: checkerMobileNumber,
+          page: 'Full',
+          last_question: '2',
+        };
+        const res = await usersUpdate(data, intentID);
+        console.log('this is update results ====>', res);
+        dispatch(addHistory(true));
+        dispatch(setDriverNumber(driverNumber));
+        dispatch(setDriverDate(driverDate));
+        dispatch(setDriverState(driverState));
+        dispatch(setIDate(eDate));
+        dispatch(setIIsuer(isuer));
+        dispatch(setIType(payType))
+        dispatch(setUSCitizen(citizen))
       }
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    setErrors('');
-    let newErrors = {};
-    console.log(locality);
-
-    if (!locality.trim()) {
-      newErrors.locality = 'City field is required';
-    }
-    if (!state.trim()) {
-      newErrors.state = 'State field is required';
-    }
-    if (!zipcode.trim()) {
-      newErrors.zipcode = 'ZipCode field is required';
-    }
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Short',
-        last_question: '2',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
-      dispatch(addHistory(true));
-      dispatch(setCheckerAddress(address));
-      dispatch(setCheckerApt(apt));
-      dispatch(setCheckerLocality(locality));
-      dispatch(setCheckerState(state));
-      dispatch(setCheckerZipcode(zipcode));
-      setAddress('');
-      setApt('');
-      setLocality('');
-      setState('');
-      setZipcode('');
-    }
-  };
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className="w-2/3 flex flex-col mt-10 mx-20">
-          <p className="w-2/3 text-4xl text-black my-3 font-medium">
-            Make sure this is a physical address and not a P.O Box
+        <div className=" w-2/3 flex flex-col mt-20 mx-20">
+          <p className="w-full text-4xl my-3 font-medium">
+            We need to driver licese and other information.
           </p>
-          <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
-            <div className="w-full flex p-5 flex-col md:flex-row">
-              <input
-                className="md:w-[68%] w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
-                id="autocomplete"
-                placeholder="Enter your address"
-                type="text"
-                autoFocus
-                autoComplete="off"
-                ref={addressRef}
-              />
-              {errors.address ? (
-                <p className="text-red-500 pl-2">{errors.address}</p>
-              ) : null}
-              <input
-                className="md:w-[32%] w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
-                onChange={(e) => setApt(e.target.value)}
-                value={apt}
-                placeholder="Apt/Suite (Optional)"
-              />
-            </div>
+          <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
-              <input
-                className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
-                onChange={(e) => {
-                  setLocality(e.target.value);
-                  setErrors((prev) => ({ ...prev, locality: '' }));
-                }}
-                value={locality}
-                placeholder="City"
-              />
-              {errors.locality ? (
-                <p className="text-red-500 pl-2">{errors.locality}</p>
-              ) : null}
-              <input
-                className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
-                onChange={(e) => {
-                  setState(e.target.value);
-                  setErrors((prev) => ({ ...prev, state: '' }));
-                }}
-                value={state}
-                placeholder="State"
-              />
-              {errors.state ? (
-                <p className="text-red-500 pl-2">{errors.state}</p>
-              ) : null}
-              <input
-                className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl border-2 my-3 md:mx-5"
-                onChange={(e) => {
-                  setZipcode(e.target.value);
-                  setErrors((prev) => ({ ...prev, zipcode: '' }));
-                }}
-                value={zipcode}
-                placeholder="Zip Code"
-              />
-              {errors.zipcode ? (
-                <p className="text-red-500 pl-2">{errors.zipcode}</p>
-              ) : null}
+              <div className="flex flex-col w-full md:w-[50%] my-3 md:mx-5">
+                <TextField
+                  onFocus={() => setFocusDriverNumber(true)}
+                  onBlur={() => setFocusDriverNumber(false)} // onBlur is triggered when the input loses focus
+                  value={driverNumber}
+                  onChange={handleDriverNumber}
+                  fullWidth
+                  autoFocus
+                  label="Driver license number"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px'
+                    },
+                  }}
+                />
+
+                {errordriverNumber !== '' && (
+                  <p className="text-red-500 pl-2">{errordriverNumber}</p>
+                )}
+                {focusdriverNumber && (
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                    please enter as show on your driver licensed.
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col w-full md:w-[30%] my-3 md:mx-5">
+                <TextField
+                  onFocus={() => setFocusDriverDate(true)}
+                  onBlur={() => setFocusDriverDate(false)} // onBlur is triggered when the input loses focus
+                  value={driverDate}
+                  onChange={handleDriverDate}
+                  fullWidth
+                  label=" "
+                  type='date'
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px'
+                    },
+                  }}
+                />
+                {errordriverDate !== '' && (
+                  <p className="text-red-500 pl-2">{errordriverDate}</p>
+                )}
+                {focusdriverDate && (
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                    Please enter driver expieration date.
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col w-full md:w-[20%] my-3 md:mx-5">
+                <TextField
+                  onFocus={() => setFocusDriverState(true)}
+                  onBlur={() => setFocusDriverState(false)} // onBlur is triggered when the input loses focus
+                  value={driverState}
+                  onChange={handleDriverState}
+                  fullWidth
+                  label="State"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px'
+                    },
+                  }}
+                />
+                {errordriverState !== '' && (
+                  <p className="text-red-500 pl-2">{errordriverState}</p>
+                )}
+                {focusdriverState && (
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                    Please enter driver license state.
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="w-full flex p-5 justify-between flex-col md:flex-row">
+              <div className="flex flex-col w-full my-3 md:mx-5">
+                <FormControl variant="filled" sx={{ m: 1, minwidth: 120 }}>
+                  <InputLabel id="demo-simple-select-standard-label" style={{ fontSize: '15px' }}>Type</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    value={payType}
+                    onChange={handlePayType}
+                  >
+                    <MenuItem value={'credit'}>Credit Card</MenuItem>
+                    <MenuItem value={'other'}>Other</MenuItem>
+                  </Select>
+                </FormControl>
+                {errorPayType !== '' && (
+                  <p className="text-red-500 pl-2">{errorPayType}</p>
+                )}
+              </div>
+              <div className="flex flex-col w-full my-3 md:mx-5">
+                <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-standard-label" style={{ fontSize: '15px' }}>isuer</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    value={isuer}
+                    onChange={handleIsuer}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={'visa'}>VISA</MenuItem>
+                    <MenuItem value={'mastercard'}>MasterCard</MenuItem>
+                    <MenuItem value={'amex'}>AMEX</MenuItem>
+                    <MenuItem value={'discover'}>Discover</MenuItem>
+                  </Select>
+                </FormControl>
+                {errorIsuer !== '' && (
+                  <p className="text-red-500 pl-2">{errorIsuer}</p>
+                )}
+              </div>
+              <div className="flex flex-col w-full my-3 md:mx-5">
+                <TextField
+                  onFocus={() => setFocusEDate(true)}
+                  onBlur={() => setFocusEDate(false)} // onBlur is triggered when the input loses focus
+                  type="date"
+                  value={eDate}
+                  onChange={handleEDate}
+                  fullWidth
+                  label="   "
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px'
+                    },
+                  }}
+                />
+                {erroreDate !== '' && (
+                  <p className="text-red-500 pl-2">{erroreDate}</p>
+                )}
+                {focuseDate && (
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                    Please input Expiration Date.
+                  </p>
+                )}
+              </div>
             </div>
             <div className="w-full p-5 flex justify-end">
               <button
                 type="button"
-                onClick={handleSubmit}
-                className="bg-[#854fff] w-1/4 h-20 p-2 mx-5 rounded-lg text-white text-xl  hover:bg-purple-800"
+                onClick={handlesubmit}
+                className="bg-[#854fff] w-[30%] h-16 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
               >
                 CONTINUE
               </button>
             </div>
           </div>
         </div>
+        <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup style={{ background: 'rgba(0, 0, 0, 0.3)' }}>
+          <Modal.Header />
+          <Modal.Body style={{ width: '30vw' }}>
+            <div className="text-center">
+              <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400" />
+              <h3 className="mb-5 text-lg font-normal dark:text-gray-400">
+                Are you sure you want to delete this product?
+              </h3>
+              <div className="flex justify-center gap-4">
+                <Button color="red" onClick={handleNext}>
+                  Yes, I&apos;m sure
+                </Button>
+                <Button color="gray" onClick={handlePre}>
+                  No, cancel
+                </Button>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
       </div>
+
     </>
   );
 };

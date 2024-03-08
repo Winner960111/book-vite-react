@@ -23,6 +23,7 @@
     "date-fns": "^3.3.1",
     "date-fns-tz": "^2.0.0",
     "dayjs": "^1.11.10",
+    "flowbite-react": "^0.7.2",
     "google-map-react": "^2.2.1",
     "lodash": "^4.17.21",
     "moment-timezone": "^0.5.45",

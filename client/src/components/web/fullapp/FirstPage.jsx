@@ -8,9 +8,15 @@ import {
   setCheckerBirthday,
   setCheckerEmail,
   setCheckerSocialNumber,
+  setUSCitizen,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
 const FirstPage = () => {
   const {
@@ -49,7 +55,11 @@ const FirstPage = () => {
   const [focusEmailAddress, setFocusEmailAddress] = useState(Boolean);
   const [focusSocialNumber, setFocusSocialNumber] = useState(Boolean);
   const [focusBirthday, setFocusBirthday] = useState(Boolean);
+  const [citizen, setCitizen] = useState('Yes')
 
+  const handleCitizen = (e) => {
+    setCitizen(e.target.value)
+  }
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
     setErrorFirstName('');
@@ -89,6 +99,7 @@ const FirstPage = () => {
     setErrorEmailAddress('');
     setErrorBirthday('');
     setErrorSocialNumber('');
+    setCitizen('');
   }, [step]);
 
   const handlesubmit = async () => {
@@ -113,7 +124,7 @@ const FirstPage = () => {
       pass += 1;
     }
     if (!birthday) {
-      setErrorLastName('*input your birthday');
+      setErrorBirthday('*input your birthday');
     } else {
       pass += 1;
     }
@@ -149,7 +160,7 @@ const FirstPage = () => {
         status: 'Started',
         lang: 'EN',
         phone: checkerMobileNumber,
-        page: 'Short',
+        page: 'Full',
         last_question: '1',
       };
       const res = await usersUpdate(data, intentID);
@@ -161,6 +172,7 @@ const FirstPage = () => {
       dispatch(setCheckerEmail(emailAddress));
       dispatch(setCheckerSocialNumber(socialNumber));
       dispatch(setCheckerBirthday(birthday));
+      dispatch(setUSCitizen(citizen))
     }
   };
 
@@ -181,8 +193,6 @@ const FirstPage = () => {
                   onChange={handleFirstName}
                   fullWidth
                   autoFocus
-                  type="text"
-                  defaultValue="Normal"
                   label="First Name"
                   variant="standard"
                   InputProps={{
@@ -214,8 +224,6 @@ const FirstPage = () => {
                   value={middleName}
                   onChange={handleMiddleName}
                   fullWidth
-                  type="text"
-                  defaultValue="Normal"
                   label="Middle Initial(optional)"
                   variant="standard"
                   InputProps={{
@@ -247,8 +255,6 @@ const FirstPage = () => {
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
-                  type="text"
-                  defaultValue="Normal"
                   label="Last Name"
                   variant="standard"
                   InputProps={{
@@ -282,7 +288,6 @@ const FirstPage = () => {
                   value={birthday}
                   onChange={handleBirthday}
                   fullWidth
-                  defaultValue="Normal"
                   label="   "
                   variant="standard"
                   InputProps={{
@@ -318,8 +323,6 @@ const FirstPage = () => {
                   value={socialNumber}
                   onChange={handleSocialNumber}
                   fullWidth
-                  type="text"
-                  defaultValue="Normal"
                   label="Social security number"
                   variant="standard"
                   InputProps={{
@@ -351,9 +354,7 @@ const FirstPage = () => {
                   onBlur={() => setFocusEmailAddress(false)} // onBlur is triggered when the input loses focus
                   value={emailAddress}
                   onChange={handleEmailAddress}
-                  type="text"
                   fullWidth
-                  defaultValue="Normal"
                   label="Email Address"
                   variant="standard"
                   InputProps={{
@@ -380,7 +381,21 @@ const FirstPage = () => {
                 )}
               </div>
             </div>
-            <div className="w-full p-5 flex justify-end">
+            <div className="w-full p-5 flex justify-between">
+              <div className='px-5'>
+                <FormControl>
+                  <FormLabel id="demo-row-radio-buttons-group-label">Are you a U.S. citizen?</FormLabel>
+                  <RadioGroup
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    name="row-radio-buttons-group"
+                    onChange={handleCitizen}
+                  >
+                    <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                    <FormControlLabel value="No" control={<Radio />} label="No" />
+                  </RadioGroup>
+                </FormControl>
+              </div>
               <button
                 type="button"
                 onClick={handlesubmit}

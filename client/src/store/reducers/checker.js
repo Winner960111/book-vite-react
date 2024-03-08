@@ -2,6 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
+  driverNumber: '',
+  driverDate: '',
+  driverState: '',
+  iType: '',
+  iIsuer: '',
+  iDate: '',
+  usCitizen: '',
   type: '',
   mobile: '',
   step: 0,
@@ -51,6 +58,29 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    //driver license information
+    setDriverNumber: (state, action) => {
+      state.driverNumber = action.payload;
+    },
+    setDriverDate: (state, action) => {
+      state.driverDate = action.payload;
+    },
+    setDriverState: (state, action) => {
+      state.driverState = action.payload;
+    },
+    setIType: (state, action) => {
+      state.iType = action.payload;
+    },
+    setIIsuer: (state, action) => {
+      state.iIsuer = action.payload
+    },
+    setIDate: (state, action) => {
+      state.iDate = action.payload
+    },
+    // decision if us citizen
+    setUSCitizen: (state, action) => {
+      state.usCitizen = action.payload;
+    },
     //set intent function ID
     setIntentID: (state, action) => {
       state.intentID = action.payload;
@@ -184,6 +214,11 @@ export const checkerSlice = createSlice({
       state.step += 1;
     },
 
+    // remove history
+    removeHistory: (state, action) => {
+      state.history.pull(action.payload)
+      state.step -= 1;
+    },
     // Set phone number
     setCheckerMobileNumber(state, action) {
       state.checkerMobileNumber = action.payload;
@@ -290,12 +325,26 @@ export const checkerSlice = createSlice({
       state.deviceIP = initialState.deviceIP;
       state.deviceBrowser = initialState.deviceBrowser;
       state.intentID = initialState.intentID;
+      state.usCitizen = initialState.usCitizen;
+      state.driverDate = initialState.driverDate;
+      state.driverNumber = initialState.driverNumber;
+      state.driverState = initialState.driverState;
+      state.iDate = initialState.iDate;
+      state.iIsuer = initialState.iIsuer;
+      state.iType = initialState.iType;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
+  setDriverDate,
+  setDriverState,
+  setDriverNumber,
+  setIDate,
+  setIIsuer,
+  setIType,
+  setUSCitizen,
   setRenderType,
   setDealerName,
   setDealerLogo,
@@ -303,6 +352,7 @@ export const {
   clearDealerName,
   clearDealerLogo,
   addHistory,
+  removeHistory,
   clearHistory,
   setCheckerMobileNumber,
   setCheckerFirstName,
@@ -340,6 +390,7 @@ export const {
   setDeviceOS,
   setDeviceState,
   setIntentID,
+
 } = checkerSlice.actions;
 
 // fetch dealer name and dealer logo

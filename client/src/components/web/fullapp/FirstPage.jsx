@@ -56,6 +56,7 @@ const FirstPage = () => {
   const [focusSocialNumber, setFocusSocialNumber] = useState(Boolean);
   const [focusBirthday, setFocusBirthday] = useState(Boolean);
   const [citizen, setCitizen] = useState('Yes')
+  const [openModal, setOpenModal] = useState(false);
 
   const handleCitizen = (e) => {
     setCitizen(e.target.value)
@@ -100,7 +101,43 @@ const FirstPage = () => {
     setErrorBirthday('');
     setErrorSocialNumber('');
     setCitizen('');
+    setOpenModal(false)
   }, [step]);
+
+  const handleNext = async () => {
+    const data = {
+      dealer_id: dealerId,
+      device_ip_address: deviceIP,
+      device_operating_system: deviceOS,
+      device_browser: deviceBrowser,
+      device_type: type,
+      device_state: deviceState,
+      device_city: deviceCity,
+      device_country: deviceCountry,
+      device_date_time: deviceDate,
+      device_lat: deviceLat,
+      device_lon: deviceLon,
+      status: 'Started',
+      lang: 'EN',
+      phone: checkerMobileNumber,
+      page: 'Full',
+      last_question: '1',
+    };
+    const res = await usersUpdate(data, intentID);
+    console.log('this is update results ====>', res);
+    dispatch(addHistory(true));
+    dispatch(setCheckerFirstName(firstName));
+    dispatch(setCheckerMiddleName(middleName));
+    dispatch(setCheckerLastName(lastName));
+    dispatch(setCheckerEmail(emailAddress));
+    dispatch(setCheckerSocialNumber(socialNumber));
+    dispatch(setCheckerBirthday(birthday));
+    dispatch(setUSCitizen(citizen))
+  }
+
+  const handlePreview = () => {
+    setOpenModal(false)
+  }
 
   const handlesubmit = async () => {
     let pass = 0;
@@ -145,37 +182,9 @@ const FirstPage = () => {
       pass += 1;
     }
     if (pass == 6) {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Full',
-        last_question: '1',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
-      dispatch(addHistory(true));
-      dispatch(setCheckerFirstName(firstName));
-      dispatch(setCheckerMiddleName(middleName));
-      dispatch(setCheckerLastName(lastName));
-      dispatch(setCheckerEmail(emailAddress));
-      dispatch(setCheckerSocialNumber(socialNumber));
-      dispatch(setCheckerBirthday(birthday));
-      dispatch(setUSCitizen(citizen))
+      setOpenModal(true)
     }
-  };
-
+  }
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
@@ -406,6 +415,31 @@ const FirstPage = () => {
             </div>
           </div>
         </div>
+        {openModal &&
+          <div className="fixed left-0 top-0 w-[100vw] h-[100vh] overflow-auto bg-slate-500 bg-opacity-30 flex justify-center items-center">
+            <form className="bg-white mx-auto rounded-2xl w-[45%]">
+              <div className="p-[25px] text-center text-[25px]">
+                <p>{socialNumber} is your social security number?</p>
+
+                <div className="flex justify-around mt-5">
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handlePreview}
+                    className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>}
       </div>
     </>
   );

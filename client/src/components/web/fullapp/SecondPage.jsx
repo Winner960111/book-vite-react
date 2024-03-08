@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { addHistory, removeHistory } from '../../../store/reducers/checker';
+import { addHistory} from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setDriverNumber,
@@ -33,7 +33,6 @@ const SecondPage = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerSocialNumber,
     checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
@@ -54,7 +53,6 @@ const SecondPage = () => {
   const [isuer, setIsuer] = useState('')
   const [errorIsuer, setErrorIsuer] = useState('')
   const [errorPayType, setErrorPayType] = useState('')
-  const [openModal, setOpenModal] = useState(false);
 
   // const handlePre = () => {
   //   removeHistory(true)
@@ -96,43 +94,8 @@ const SecondPage = () => {
     setErrorIsuer('');
     setErrorPayType('');
     setErroreDate('');
-    setOpenModal(false)
   }, [step]);
 
-  const handleNext = async () => {
-    setOpenModal(false)
-    const data = {
-      dealer_id: dealerId,
-      device_ip_address: deviceIP,
-      device_operating_system: deviceOS,
-      device_browser: deviceBrowser,
-      device_type: type,
-      device_state: deviceState,
-      device_city: deviceCity,
-      device_country: deviceCountry,
-      device_date_time: deviceDate,
-      device_lat: deviceLat,
-      device_lon: deviceLon,
-      status: 'Started',
-      lang: 'EN',
-      phone: checkerMobileNumber,
-      page: 'Full',
-      last_question: '2',
-    };
-    const res = await usersUpdate(data, intentID);
-    console.log('this is update results ====>', res);
-    dispatch(addHistory(true));
-    dispatch(setDriverNumber(driverNumber));
-    dispatch(setDriverDate(driverDate));
-    dispatch(setDriverState(driverState));
-    dispatch(setIDate(eDate));
-    dispatch(setIIsuer(isuer));
-    dispatch(setIType(payType))
-    dispatch(setUSCitizen(citizen))
-  }
-  const handlePreview = () => {
-    dispatch(removeHistory(true))
-  }
   const handlesubmit = async () => {
     let pass = 0;
     if (!driverNumber) {
@@ -168,10 +131,37 @@ const SecondPage = () => {
       pass += 1
     }
     if (pass == 6) {
-      setOpenModal(true)
+      const data = {
+        dealer_id: dealerId,
+        device_ip_address: deviceIP,
+        device_operating_system: deviceOS,
+        device_browser: deviceBrowser,
+        device_type: type,
+        device_state: deviceState,
+        device_city: deviceCity,
+        device_country: deviceCountry,
+        device_date_time: deviceDate,
+        device_lat: deviceLat,
+        device_lon: deviceLon,
+        status: 'Started',
+        lang: 'EN',
+        phone: checkerMobileNumber,
+        page: 'Full',
+        last_question: '2',
+      };
+      const res = await usersUpdate(data, intentID);
+      console.log('this is update results ====>', res);
+      dispatch(addHistory(true));
+      dispatch(setDriverNumber(driverNumber));
+      dispatch(setDriverDate(driverDate));
+      dispatch(setDriverState(driverState));
+      dispatch(setIDate(eDate));
+      dispatch(setIIsuer(isuer));
+      dispatch(setIType(payType))
+      dispatch(setUSCitizen(citizen))
     }
-  };
-
+  
+  }
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
@@ -303,7 +293,7 @@ const SecondPage = () => {
                     onChange={handleIsuer}
                   >
                     <MenuItem value="">
-                      <em>None</em>
+                      <em>{'    '}</em>
                     </MenuItem>
                     <MenuItem value={'visa'}>VISA</MenuItem>
                     <MenuItem value={'mastercard'}>MasterCard</MenuItem>
@@ -358,31 +348,6 @@ const SecondPage = () => {
             </div>
           </div>
         </div>
-        {openModal &&
-          <div className="fixed left-0 top-0 w-[100vw] h-[100vh] overflow-auto bg-slate-500 bg-opacity-30 flex justify-center items-center">
-            <form className="bg-white mx-auto rounded-2xl w-[45%]">
-              <div className="p-[25px] text-center text-[25px]">
-                <p>{checkerSocialNumber} is your social security number?</p>
-
-                <div className="flex justify-around mt-5">
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
-                  >
-                    Yes
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handlePreview}
-                    className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
-                  >
-                    No
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>}
       </div>
 
     </>

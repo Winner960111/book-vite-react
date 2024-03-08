@@ -18,9 +18,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import { Button, Modal } from 'flowbite-react';
-import { HiOutlineExclamationCircle } from 'react-icons/hi';
-
 const SecondPage = () => {
   const {
     step,
@@ -36,6 +33,7 @@ const SecondPage = () => {
     deviceLon,
     deviceBrowser,
     type,
+    checkerSocialNumber,
     checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
@@ -57,14 +55,10 @@ const SecondPage = () => {
   const [errorIsuer, setErrorIsuer] = useState('')
   const [errorPayType, setErrorPayType] = useState('')
   const [openModal, setOpenModal] = useState(false);
-  const [next, setNext] = useState(false)
-  const handleNext = () => {
-    setOpenModal(false)
-    setNext(true)
-  }
-  const handlePre = () => {
-    removeHistory(true)
-  }
+
+  // const handlePre = () => {
+  //   removeHistory(true)
+  // }
   const handleDriverNumber = (e) => {
     setdriverNumber(e.target.value);
     setErrordriverNumber('');
@@ -103,9 +97,42 @@ const SecondPage = () => {
     setErrorPayType('');
     setErroreDate('');
     setOpenModal(false)
-    setNext(false)
   }, [step]);
 
+  const handleNext = async () => {
+    setOpenModal(false)
+    const data = {
+      dealer_id: dealerId,
+      device_ip_address: deviceIP,
+      device_operating_system: deviceOS,
+      device_browser: deviceBrowser,
+      device_type: type,
+      device_state: deviceState,
+      device_city: deviceCity,
+      device_country: deviceCountry,
+      device_date_time: deviceDate,
+      device_lat: deviceLat,
+      device_lon: deviceLon,
+      status: 'Started',
+      lang: 'EN',
+      phone: checkerMobileNumber,
+      page: 'Full',
+      last_question: '2',
+    };
+    const res = await usersUpdate(data, intentID);
+    console.log('this is update results ====>', res);
+    dispatch(addHistory(true));
+    dispatch(setDriverNumber(driverNumber));
+    dispatch(setDriverDate(driverDate));
+    dispatch(setDriverState(driverState));
+    dispatch(setIDate(eDate));
+    dispatch(setIIsuer(isuer));
+    dispatch(setIType(payType))
+    dispatch(setUSCitizen(citizen))
+  }
+  const handlePreview = () => {
+    dispatch(removeHistory(true))
+  }
   const handlesubmit = async () => {
     let pass = 0;
     if (!driverNumber) {
@@ -142,43 +169,13 @@ const SecondPage = () => {
     }
     if (pass == 6) {
       setOpenModal(true)
-      if (next == true) {
-        const data = {
-          dealer_id: dealerId,
-          device_ip_address: deviceIP,
-          device_operating_system: deviceOS,
-          device_browser: deviceBrowser,
-          device_type: type,
-          device_state: deviceState,
-          device_city: deviceCity,
-          device_country: deviceCountry,
-          device_date_time: deviceDate,
-          device_lat: deviceLat,
-          device_lon: deviceLon,
-          status: 'Started',
-          lang: 'EN',
-          phone: checkerMobileNumber,
-          page: 'Full',
-          last_question: '2',
-        };
-        const res = await usersUpdate(data, intentID);
-        console.log('this is update results ====>', res);
-        dispatch(addHistory(true));
-        dispatch(setDriverNumber(driverNumber));
-        dispatch(setDriverDate(driverDate));
-        dispatch(setDriverState(driverState));
-        dispatch(setIDate(eDate));
-        dispatch(setIIsuer(isuer));
-        dispatch(setIType(payType))
-        dispatch(setUSCitizen(citizen))
-      }
     }
   };
 
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className=" w-2/3 flex flex-col mt-20 mx-20">
+        <div className=" w-2/3 flex flex-col mt-20 mx-20 z-0">
           <p className="w-full text-4xl my-3 font-medium">
             We need to driver licese and other information.
           </p>
@@ -361,25 +358,31 @@ const SecondPage = () => {
             </div>
           </div>
         </div>
-        <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup style={{ background: 'rgba(0, 0, 0, 0.3)' }}>
-          <Modal.Header />
-          <Modal.Body style={{ width: '30vw' }}>
-            <div className="text-center">
-              <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400" />
-              <h3 className="mb-5 text-lg font-normal dark:text-gray-400">
-                Are you sure you want to delete this product?
-              </h3>
-              <div className="flex justify-center gap-4">
-                <Button color="red" onClick={handleNext}>
-                  Yes, I&apos;m sure
-                </Button>
-                <Button color="gray" onClick={handlePre}>
-                  No, cancel
-                </Button>
+        {openModal &&
+          <div className="fixed left-0 top-0 w-[100vw] h-[100vh] overflow-auto bg-slate-500 bg-opacity-30 flex justify-center items-center">
+            <form className="bg-white mx-auto rounded-2xl w-[45%]">
+              <div className="p-[25px] text-center text-[25px]">
+                <p>{checkerSocialNumber} is your social security number?</p>
+
+                <div className="flex justify-around mt-5">
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handlePreview}
+                    className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                  >
+                    No
+                  </button>
+                </div>
               </div>
-            </div>
-          </Modal.Body>
-        </Modal>
+            </form>
+          </div>}
       </div>
 
     </>

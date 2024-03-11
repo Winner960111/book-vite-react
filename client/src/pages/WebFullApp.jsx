@@ -9,7 +9,7 @@ import PhoneVerification from '../components/common/PhoneVerification';
 import CheckVerifyCode from '../components/web/fullapp/CheckVerifyCode';
 import FirstPage from '../components/web/fullapp/FirstPage';
 import SecondPage from '../components/web/fullapp/SecondPage';
-// import ThirdPage from '../components/web/prequalified/ThirdPage';
+import ThirdPage from '../components/web/fullapp/ThirdPage';
 // import Finish from '../components/web/prequalified/Finish';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
@@ -124,7 +124,7 @@ const WebFullApp = () => {
             {step == 1 && <CheckVerifyCode />}
             {step == 2 && <FirstPage />}
             {step == 3 && <SecondPage />}
-            {/* {step == 4 && <ThirdPage />} */}
+            {step == 4 && <ThirdPage />}
             {/* {step == 5 && <Finish />} */}
             <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
                 <img

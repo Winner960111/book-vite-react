@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { addHistory} from '../../../store/reducers/checker';
+import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setDriverNumber,
@@ -160,7 +160,7 @@ const SecondPage = () => {
       dispatch(setIType(payType))
       dispatch(setUSCitizen(citizen))
     }
-  
+
   }
   return (
     <>
@@ -292,8 +292,8 @@ const SecondPage = () => {
                     value={isuer}
                     onChange={handleIsuer}
                   >
-                    <MenuItem value="">
-                      <em>{'    '}</em>
+                    <MenuItem value=" " style={{ height: '40px' }}>
+                      <em>{' '}</em>
                     </MenuItem>
                     <MenuItem value={'visa'}>VISA</MenuItem>
                     <MenuItem value={'mastercard'}>MasterCard</MenuItem>

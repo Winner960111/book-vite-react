@@ -1,28 +1,24 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { classNames } from '../../../utils';
-import { signatureImg } from '../../../api/index';
-import './Canvas.css';
-import { addHistory } from '../../../store/reducers/checker';
+import {
+  addHistory,
+  setDealType,
+  setQuoteInterest,
+} from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
+import { TextField } from '@mui/material';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
-const ThirdPage = () => {
+const DealType = () => {
   const {
     step,
-    dealerName,
+    type,
+    intentID,
     dealerId,
-    checkerMobileNumber,
-    checkerFirstName,
-    checkerMiddleName,
-    checkerLastName,
-    checkerEmail,
-    checkerSocialNumber,
-    checkerBirthday,
-    checkerAddress,
-    checkerApt,
-    checkerLocality,
-    checkerState,
-    checkerZipcode,
     deviceIP,
     deviceOS,
     deviceCity,
@@ -32,275 +28,256 @@ const ThirdPage = () => {
     deviceLat,
     deviceLon,
     deviceBrowser,
-    intentID,
-    type,
+    checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
-  const canvasRef = useRef(null);
-  const contextRef = useRef(null);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [readStatePara1, setReadStatePara1] = useState(false);
-  const [readStatePara2, setReadStatePara2] = useState(false);
 
-  const handleResize = () => {
-    // Rerun your code to set canvas size based on the new dimensions
-    console.log('web and mobile situation is exchanged.');
-    prepareCanvas();
-  };
-
-  // Add event listener to window
-  window.addEventListener('resize', handleResize);
-
-  // Initialize the canvas context
-  const prepareCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    // Get the dimensions of the parent element
-    const { width, height } = canvas.parentElement.getBoundingClientRect();
-
-    const dpr = window.devicePixelRatio || 1;
-
-    canvas.width = width * 2 * dpr; // Twice the actual size for high DPI screens
-    canvas.height = height * 2 * dpr;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-
-    const context = canvas.getContext('2d');
-    context.scale(dpr * 2, dpr * 2); // Adjust for high DPI
-    context.lineCap = 'round';
-    context.strokeStyle = 'black';
-    context.lineWidth = 5;
-    contextRef.current = context;
-  }, []);
-
+  const [dealClick, setDealClick] = useState('');
+  const [error, setError] = useState(null);
+  const [year, setYear] = useState('');
+  const [make, setMake] = useState('');
+  const [model, setModel] = useState('');
+  const [focusPay, setFocusPay] = useState(false);
   useEffect(() => {
-    if (canvasRef.current) {
-      prepareCanvas();
-    }
-  }, [step, prepareCanvas]);
+    setError(null);
+    setDealClick('');
+  }, [step]);
 
-  // Start drawing
-  const startDrawing = ({ nativeEvent }) => {
-    const pos = { x: nativeEvent.offsetX, y: nativeEvent.offsetY };
-
-    if (!pos) return; // If position is null, exit
-
-    contextRef.current.beginPath();
-    contextRef.current.moveTo(pos.x, pos.y);
-    setIsDrawing(true);
-  };
-
-  // Draw line
-  const draw = ({ nativeEvent }) => {
-    if (!isDrawing) return;
-
-    const offsetX = nativeEvent.offsetX;
-    const offsetY = nativeEvent.offsetY;
-    contextRef.current.lineTo(offsetX, offsetY);
-    contextRef.current.stroke();
-  };
-
-  // End drawing
-  const finishDrawing = () => {
-    contextRef.current.closePath();
-    setIsDrawing(false);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const intent_data = {
-      dealer_id: dealerId,
-      device_ip_address: deviceIP,
-      device_operating_system: deviceOS,
-      device_browser: deviceBrowser,
-      device_type: type,
-      device_state: deviceState,
-      device_city: deviceCity,
-      device_country: deviceCountry,
-      device_date_time: deviceDate,
-      device_lat: deviceLat,
-      device_lon: deviceLon,
-      status: 'Completed',
-      lang: 'EN',
-      phone: checkerMobileNumber,
-      page: 'Short',
-      last_question: '3',
-    };
-    const intent_res = await usersUpdate(intent_data, intentID);
-    console.log('this is update results ====>', intent_res);
-    dispatch(addHistory(true));
-    const canvas = canvasRef.current;
-    const imageDataURL = canvas.toDataURL('image/png');
-    const image = new Image();
-    image.src = imageDataURL;
-
-    let fullName;
-    if (checkerMiddleName !== '') {
-      fullName =
-        checkerFirstName + ' ' + checkerMiddleName + ' ' + checkerLastName;
+  const handleSubmit = async () => {
+    if (dealClick) {
+      let interest = year + ' ' + make + ' ' + ' ' + model;
+      setYear('');
+      setMake('');
+      setModel('');
+      const data = {
+        dealer_id: dealerId,
+        device_ip_address: deviceIP,
+        device_operating_system: deviceOS,
+        device_browser: deviceBrowser,
+        device_type: type,
+        device_state: deviceState,
+        device_city: deviceCity,
+        device_country: deviceCountry,
+        device_date_time: deviceDate,
+        device_lat: deviceLat,
+        device_lon: deviceLon,
+        status: 'Started',
+        lang: 'EN',
+        phone: checkerMobileNumber,
+        page: 'Full',
+        last_question: '3',
+      };
+      const res = await usersUpdate(data, intentID);
+      console.log('this is update results ====>', res);
+      dispatch(addHistory(true));
+      dispatch(setDealType(dealClick));
+      dispatch(setQuoteInterest(interest));
     } else {
-      fullName = checkerFirstName + ' ' + checkerLastName;
-    }
-
-    const data = {
-      dealer_id: dealerId,
-      first_name: checkerFirstName,
-      middle_name: checkerMiddleName,
-      last_name: checkerLastName,
-      email: checkerEmail,
-      mobile_phone: checkerMobileNumber,
-      ssn: checkerSocialNumber,
-      dob: checkerBirthday,
-      primary_address: checkerAddress,
-      primary_address2: checkerApt,
-      primary_city: checkerLocality,
-      primary_state: checkerState,
-      primary_zip_code: checkerZipcode,
-      signature_name: fullName,
-      signature_img: image.src,
-      custom_id: '',
-    };
-
-    const res = await signatureImg(data);
-    if (res.status == 201) {
-      console.log('status ImageSend', res);
-    } else {
-      console.log('Faild ImageSend');
+      setError('You must select one of above methodes.');
     }
   };
 
   return (
-    <div className="flex bg-gray-50 w-full justify-center items-center">
-      <div className="w-2/3 flex flex-col mt-10 mx-20">
-        <p className="w-2/3 text-4xl text-black my-3 font-medium">
-          Please Sign on DrawBox
-        </p>
-        <form
-          className={classNames(
-            'text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg font-sans'
-          )}
-        >
-          <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-            We are committed to protecting your privacy. The information that
-            you provided is only shared with the dealership to assess your
-            credit history and not otherwise sold, marketed, or distributed in
-            any way by {dealerName}.
-          </p>
-          <div className="bg-gray-50 rounded-3xl p-4 mt-2">
-            <p
-              onClick={() => setReadStatePara1(!readStatePara1)}
-              className={
-                readStatePara1 == false
-                  ? 'w-full whitespace-nowrap text-ellipsis overflow-hidden'
-                  : null
-              }
-            >
-              Please click{' '}
-              <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
+    <div className="flex flex-col bg-gray-50 w-full justify-center items-center">
+      <p className="w-2/3 text-4xl mt-44 font-medium">
+        What vehicle are you interested in?
+      </p>
+      <div className="w-2/3 flex flex-col md:flex-row text-justify bg-white rounded-3xl p-5 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
+        <div className="w-full flex flex-col justify-between md:w-[60%] items-center rounded-2xl pl-5">
+          <div className='w-full flex justify-between bg-gray-50 items-center p-5 rounded-xl'>
+            <FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label" style={{ padding: '0 5px', fontSize: '18px' }}>What type of vehicle are you interested in?</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                onChange={''}
+                style={{ margin: '10px 0', display: 'flex', justifyContent: 'around' }}
               >
-                here
-              </a>{' '}
-              to read our Privacy Notice and click{' '}
-              <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                here
-              </a>{' '}
-              to read our full Privacy Policy. If you would like to opt-out of
-              having your information shared at all, please do so now by
-              clicking{' '}
-              <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                here
-              </a>{' '}
-              and exiting the application.
-            </p>
-            <span
-              onClick={() => setReadStatePara1(!readStatePara1)}
-              className={'text-blue-600 text-sm hover:underline cursor-pointer'}
-            >
-              {readStatePara1 == false ? 'More' : 'Less'}
-            </span>
+                <FormControlLabel value="1" control={<Radio />} label="ATV/UTV" style={{ width: '30%', margin: '10px 0' }} />
+                <FormControlLabel value="2" control={<Radio />} label="DirtBike" style={{ width: '30%', margin: '10px 0' }} />
+                <FormControlLabel value="3" control={<Radio />} label="Motocycle" style={{ width: '30%', margin: '10px 0' }} />
+                <FormControlLabel value="4" control={<Radio />} label="Scooter" style={{ width: '30%', margin: '10px 0' }} />
+                <FormControlLabel value="5" control={<Radio />} label="SidebySide" style={{ width: '30%', margin: '10px 0' }} />
+                <FormControlLabel value="6" control={<Radio />} label="WaterCraft" style={{ width: '30%', margin: '10px 0' }} />
+                <FormControlLabel value="7" control={<Radio />} label="Boat" style={{ width: '30%', margin: '10px 0' }} />
+                <FormControlLabel value="8" control={<Radio />} label="RV" style={{ width: '30%', margin: '10px 0' }} />
+                <FormControlLabel value="9" control={<Radio />} label="Tralier" style={{ width: '30%', margin: '10px 0' }} />
+                <FormControlLabel value="10" control={<Radio />} label="Car" style={{ width: '30%', margin: '10px 0' }} />
+                <FormControlLabel value="11" control={<Radio />} label="Truck" style={{ width: '30%', margin: '10px 0' }} />
+                <FormControlLabel value="12" control={<Radio />} label="Other" style={{ width: '30%', margin: '10px 0' }} />
+              </RadioGroup>
+            </FormControl>
           </div>
-          <div className="bg-gray-50 rounded-3xl p-4 mt-2">
-            <p
-              className={
-                readStatePara2 == false
-                  ? 'w-full whitespace-nowrap text-ellipsis overflow-hidden'
-                  : null
-              }
-            >
-              By typing my name and clicking submit, I authorize {dealerName} to
-              investigate my credit history solely to determine the best
-              available offers to fund my loan, I also acknowledge that I have
-              read, understand, and agree to be bound by our End User{' '}
-              <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Terms of use
-              </a>{' '}
-              and our{' '}
-              <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {' '}
-                Privacy Policy
-              </a>{' '}
-              and agree to have the information that I provided shared with
-              lenders in accordance therewith. I also understand that if a
-              prequalified offer is found by any of our lenders, they will
-              perform a hard inquiry which can impact my credit history.
-            </p>
-            <span
-              onClick={() => setReadStatePara2(!readStatePara2)}
-              className={'text-blue-600 text-sm hover:underline cursor-pointer'}
-            >
-              {readStatePara2 == false ? 'More' : 'Less'}
-            </span>
+          <div className="w-full flex flex-col justify-betweenrounded-3xl">
+            <TextField
+              onFocus={() => { setFocusPay(true) }}
+              onBlur={() => { setFocusPay(false) }}
+              id="standard-basic"
+              variant="standard"
+              margin="dense"
+              label="What will you down payment be?"
+              fullWidth
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+              InputProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+            />
+            {focusPay && <p className='bg-gray-50 pt-2 rounded-xl'>If no down payment, please type 0.</p>}
+            {error !== '' ? (
+              <p className="text-red-500 pl-6 pt-2">{error}</p>
+            ) : null}
           </div>
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-3/5 w-full h-[200px] mt-2">
-              <canvas
-                ref={canvasRef}
-                onMouseDown={startDrawing}
-                onMouseUp={finishDrawing}
-                onMouseMove={draw}
-                onMouseOut={finishDrawing}
-              />
+        </div>
+        <div className="w-full md:w-[40%] flex-col md:mx-10">
+          <div className="flex w-full flex-col">
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+              margin="dense"
+              label="Year"
+              fullWidth
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+              InputProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+            />
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+              margin="dense"
+              label="Make"
+              fullWidth
+              value={make}
+              onChange={(e) => setMake(e.target.value)}
+              InputProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+            />
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+              label="Model"
+              fullWidth
+              margin="dense"
+              value={model}
+              onChange={(e) => setModel(e.target.value)}
+              type="text"
+              InputProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+            />
+          </div>
+          <div className="w-full flex flex-col justify-between">
+            <div className="flex flex-col justify-between bg-gray-50 rounded-3xl mt-4">
+              <div className="flex flex-col md:flex-row md:justify-between items-center">
+                <FormControl>
+                  <RadioGroup
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    name="row-radio-buttons-group"
+                    onChange={''}
+                    style={{ margin: '10px 0', display: 'flex', justifyContent: 'around' }}
+                  >
+                    <FormLabel id="demo-row-radio-buttons-group-label" style={{ padding: '0 5px', fontSize: '18px' }}>Is this vehicle new or used?</FormLabel>
+
+                    <FormControlLabel value="1" control={<Radio />} label="New" style={{ width: '30%' }} />
+                    <FormControlLabel value="2" control={<Radio />} label="Used" style={{ width: '30%' }} />
+                  </RadioGroup>
+
+                </FormControl>
+                {/* <label
+                htmlFor="radio1"
+                className="text-2xl m-2 p-2 cursor-pointer"
+                onClick={() => {
+                  setDealClick('Finance');
+                }}
+              >
+                <input
+                  type="radio"
+                  id="radio1"
+                  name="deal_type"
+                  className="w-[17px] h-[17px] mx-2"
+                />
+                Finance
+              </label>
+              <label
+                htmlFor="radio2"
+                className="text-2xl m-2 p-2 cursor-pointer"
+                onClick={() => {
+                  setDealClick('Cash');
+                }}
+              >
+                <input
+                  type="radio"
+                  id="radio2"
+                  name="deal_type"
+                  className="w-[17px] h-[17px] mx-2"
+                />
+                Cash
+              </label>
+              <label
+                htmlFor="radio3"
+                className="text-2xl m-2 p-2 cursor-pointer"
+                onClick={() => {
+                  setDealClick('Lease');
+                }}
+              >
+                <input
+                  type="radio"
+                  id="radio3"
+                  name="deal_type"
+                  className="w-[17px] h-[17px] mx-2"
+                />
+                Lease
+              </label> */}
+              </div>
+              {error !== '' ? (
+                <p className="text-red-500 pl-6 pt-2">{error}</p>
+              ) : null}
             </div>
-            <div className="md:w-2/5 w-full h-[200px] flex flex-col mt-2 mx-1 justify-between">
-              <p className="bg-gray-50 rounded-3xl p-4">
-                Please sign on drawbox. it will act as your digital signature.
-              </p>
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="bg-[#854fff] w-full h-20 p-2 rounded-lg text-white text-xl  hover:bg-purple-800"
-              >
-                Submit
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={handleSubmit}
+              className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+            >
+              CONTINUE
+            </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
 };
-export default ThirdPage;
+
+export default DealType;

@@ -427,14 +427,14 @@ const FirstPage = () => {
                     onClick={handleNext}
                     className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
                   >
-                    Yes
+                    Correct
                   </button>
                   <button
                     type="button"
                     onClick={handlePreview}
                     className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
                   >
-                    No
+                    Incorrect
                   </button>
                 </div>
               </div>

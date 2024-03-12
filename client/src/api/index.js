@@ -2,6 +2,23 @@ import axios from 'axios';
 import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 
+export const vehicleList = async (id) => {
+  const url = `https://dev.creditapps.com/api/decode_dealer/`;
+  const data = {
+    slug:id
+  }
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'content-type': 'application/json',
+      }
+    })
+    return response
+  } catch (e) {
+    return { status: 400 }
+  }
+}
+
 export const usersUpdate = async (data, id) => {
   const url = `https://www.dev.creditapps.com/api/intent/${id}/`;
   console.log('this is intent information==>', data);

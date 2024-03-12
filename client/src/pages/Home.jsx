@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { getDealerInfo, setDealerId } from '../store/reducers/checker';
+import { getDealerInfo } from '../store/reducers/checker';
 
 const Home = () => {
   const { dealer_id } = useParams();
@@ -14,7 +14,6 @@ const Home = () => {
   useEffect(() => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
-    dispatch(setDealerId(dealer_id));
   }, [dealer_id, dispatch]);
 
   const changePageQuote = () => {

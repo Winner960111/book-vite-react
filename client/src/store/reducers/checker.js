@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
+  payDwon:'',
   driverNumber: '',
   driverDate: '',
   driverState: '',
@@ -16,6 +17,7 @@ const initialState = {
   dealerName: '',
   dealerLogo: '',
   dealerId: '',
+  dealerConvertId: '',
   checkerMobileNumber: '',
   checkerFirstName: '',
   checkerMiddleName: '',
@@ -58,6 +60,13 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setPayDown: (state, action) => {
+      state.payDwon = action.payload
+    },
+    //set dealer Converted ID
+    setDealerConvertedID: (state, action) => {
+      state.dealerConvertId = action.payload
+    },
     //driver license information
     setDriverNumber: (state, action) => {
       state.driverNumber = action.payload;
@@ -286,6 +295,8 @@ export const checkerSlice = createSlice({
 
     // Clear history
     clearHistory: (state) => {
+      state.payDwon = initialState.payDwon
+      state.dealerConvertId = initialState.dealerConvertId;
       state.step = initialState.step;
       state.history = initialState.history;
       state.checkerMobileNumber = initialState.checkerMobileNumber;
@@ -338,6 +349,8 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setPayDown,
+  setDealerConvertedID,
   setDriverDate,
   setDriverState,
   setDriverNumber,

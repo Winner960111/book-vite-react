@@ -10,6 +10,8 @@ import CheckVerifyCode from '../components/web/fullapp/CheckVerifyCode';
 import FirstPage from '../components/web/fullapp/FirstPage';
 import SecondPage from '../components/web/fullapp/SecondPage';
 import ThirdPage from '../components/web/fullapp/ThirdPage';
+import FourthPage from '../components/web/fullapp/FourthPage';
+import FourthPageItem from '../components/web/fullapp/FourthPageItem';
 // import Finish from '../components/web/prequalified/Finish';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
@@ -30,7 +32,7 @@ import {
 import { deviceInfo } from '../api/index';
 
 const WebFullApp = () => {
-    const { dealerLogo, step, history } = useSelector((state) => state.checker);
+    const { dealerLogo, step, history, residentalYears } = useSelector((state) => state.checker);
     const dispatch = useDispatch();
     const { dealer_id } = useParams();
     const navigate = useNavigate();
@@ -125,6 +127,8 @@ const WebFullApp = () => {
             {step == 2 && <FirstPage />}
             {step == 3 && <SecondPage />}
             {step == 4 && <ThirdPage />}
+            {step == 5 && <FourthPage />}
+            {step == 6 && <>{parseInt(residentalYears) >= 2 ? null : <FourthPageItem />}</>}
             {/* {step == 5 && <Finish />} */}
             <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
                 <img

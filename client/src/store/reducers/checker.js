@@ -2,7 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  payDwon:'',
+  monthlyPay: '',
+  residentalYears: '',
+  residentalMonths: '',
+  previousMonthlyPay: '',
+  previousResidentalYears: '',
+  previousResidentalMonths: '',
+  payDwon: '',
   driverNumber: '',
   driverDate: '',
   driverState: '',
@@ -31,6 +37,11 @@ const initialState = {
   checkerLocality: '',
   checkerState: '',
   checkerZipcode: '',
+  previousCheckerAddress: '',
+  previousCheckerApt: '',
+  previousCheckerLocality: '',
+  previousCheckerState: '',
+  previousCheckerZipcode: '',
   dealType: '',
   quoteStatus: 'New',
   quoteSource: 'ChatBot',
@@ -60,6 +71,26 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    //set Residental information
+    setMonthlyPay: (state, action) => {
+      state.monthlyPay = action.payload
+    },
+    setResidentalYears: (state, action) => {
+      state.residentalYears = action.payload
+    },
+    setResidentalMonths: (state, action) => {
+      state.residentalMonths = action.payload
+    },
+    //set previous residental information
+    setPreviousMonthlyPay: (state, action) => {
+      state.previousMonthlyPay = action.payload
+    },
+    setPreviousResidentalYears: (state, action) => {
+      state.previousResidentalYears = action.payload
+    },
+    setPreviousResidentalMonths: (state, action) => {
+      state.previousResidentalMonths = action.payload
+    },
     setPayDown: (state, action) => {
       state.payDwon = action.payload
     },
@@ -293,9 +324,41 @@ export const checkerSlice = createSlice({
       state.checkerZipcode = action.payload;
     },
 
+    // Set previous address
+    setPreviousCheckerAddress: (state, action) => {
+      state.previousCheckerAddress = action.payload;
+    },
+
+    setPreviousCheckerApt: (state, action) => {
+      state.previousCheckerApt = action.payload;
+    },
+
+    setPreviousCheckerLocality: (state, action) => {
+      state.previousCheckerLocality = action.payload;
+    },
+
+    setPreviousCheckerState: (state, action) => {
+      state.previousCheckerState = action.payload;
+    },
+
+    setPreviousCheckerZipcode: (state, action) => {
+      state.previousCheckerZipcode = action.payload;
+    },
+
     // Clear history
     clearHistory: (state) => {
-      state.payDwon = initialState.payDwon
+      state.previousCheckerAddress = initialState.previousCheckerAddress;
+      state.previousCheckerApt = initialState.previousCheckerApt;
+      state.previousCheckerLocality = initialState.previousCheckerLocality;
+      state.previousCheckerState = initialState.previousCheckerState;
+      state.previousCheckerZipcode = initialState.previousCheckerZipcode;
+      state.previousMonthlyPay = initialState.previousMonthlyPay;
+      state.previousResidentalMonths = initialState.previousResidentalMonths;
+      state.previousResidentalYears = initialState.previousResidentalYears;
+      state.monthlyPay = initialState.monthlyPay;
+      state.residentalMonths = initialState.residentalMonths;
+      state.residentalYears = initialState.residentalYears;
+      state.payDwon = initialState.payDwon;
       state.dealerConvertId = initialState.dealerConvertId;
       state.step = initialState.step;
       state.history = initialState.history;
@@ -349,6 +412,17 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setPreviousCheckerAddress,
+  setPreviousCheckerApt,
+  setPreviousCheckerLocality,
+  setPreviousCheckerState,
+  setPreviousCheckerZipcode,
+  setPreviousMonthlyPay,
+  setPreviousResidentalYears,
+  setPreviousResidentalMonths,
+  setMonthlyPay,
+  setResidentalYears,
+  setResidentalMonths,
   setPayDown,
   setDealerConvertedID,
   setDriverDate,

@@ -83,9 +83,11 @@ const ThirdPage = () => {
       pass += 1
     }
     if (!pay) {
-      setErrorPay('*Required')
+      setErrorPay('*Required');
+    } else if (!/^\d+$/.test(pay)) {
+      setErrorPay('*Not supported format');
     } else {
-      pass += 1
+      pass += 1;
     }
     if (pass == 3) {
       dispatch(setInstantYear(year))
@@ -157,7 +159,7 @@ const ThirdPage = () => {
               label="What will you down payment be?"
               fullWidth
               value={pay}
-              onChange={(e) => setPay(e.target.value)}
+              onChange={(e) => { setPay(e.target.value) }}
               InputProps={{
                 style: {
                   fontSize: '20px',

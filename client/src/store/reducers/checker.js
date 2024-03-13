@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
+  progress:0,
   monthlyPay: '',
   residentalYears: '',
   residentalMonths: '',
@@ -71,6 +72,9 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setProgress: (state) => {
+      state.progress += 1
+    },
     //set Residental information
     setMonthlyPay: (state, action) => {
       state.monthlyPay = action.payload
@@ -347,6 +351,7 @@ export const checkerSlice = createSlice({
 
     // Clear history
     clearHistory: (state) => {
+      state.progress = initialState.progress;
       state.previousCheckerAddress = initialState.previousCheckerAddress;
       state.previousCheckerApt = initialState.previousCheckerApt;
       state.previousCheckerLocality = initialState.previousCheckerLocality;
@@ -412,6 +417,7 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setProgress,
   setPreviousCheckerAddress,
   setPreviousCheckerApt,
   setPreviousCheckerLocality,

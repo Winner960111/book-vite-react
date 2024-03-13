@@ -10,6 +10,7 @@ import {
   setIIsuer,
   setIType,
   setUSCitizen,
+  setProgress,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
@@ -152,6 +153,7 @@ const SecondPage = () => {
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
       dispatch(addHistory(true));
+      dispatch(setProgress());
       dispatch(setDriverNumber(driverNumber));
       dispatch(setDriverDate(driverDate));
       dispatch(setDriverState(driverState));

@@ -4,6 +4,7 @@ import { checkPhoneNumber } from '../../api';
 import {
   setCheckerMobileNumber,
   addHistory,
+  setProgress,
 } from '../../store/reducers/checker';
 import { TextField } from '@mui/material';
 const PhoneVerification = () => {
@@ -44,6 +45,7 @@ const PhoneVerification = () => {
       if (res.status === 201) {
         dispatch(setCheckerMobileNumber(phoneNumber));
         dispatch(addHistory(true));
+        dispatch(setProgress());
         setPhoneNumber('');
       } else {
         setError('Invalid phone number. Please try again.');

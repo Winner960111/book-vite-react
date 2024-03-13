@@ -9,6 +9,7 @@ import {
   setCheckerEmail,
   setCheckerSocialNumber,
   setUSCitizen,
+  setProgress,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
@@ -126,6 +127,7 @@ const FirstPage = () => {
     const res = await usersUpdate(data, intentID);
     console.log('this is update results ====>', res);
     dispatch(addHistory(true));
+    dispatch(setProgress());
     dispatch(setCheckerFirstName(firstName));
     dispatch(setCheckerMiddleName(middleName));
     dispatch(setCheckerLastName(lastName));

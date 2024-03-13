@@ -8,6 +8,7 @@ import {
   setVehicleCondition,
   setVehicleType,
   setPayDown,
+  setProgress,
 } from '../../../store/reducers/checker';
 import { usersUpdate, vehicleList } from '../../../api/index';
 import { TextField } from '@mui/material';
@@ -117,6 +118,8 @@ const ThirdPage = () => {
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
       dispatch(addHistory(true));
+      dispatch(setProgress());
+
     }
   }
 

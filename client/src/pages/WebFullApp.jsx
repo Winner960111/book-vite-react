@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
 import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
@@ -32,11 +32,12 @@ import {
 import { deviceInfo } from '../api/index';
 
 const WebFullApp = () => {
-    const { dealerLogo, step, history, residentalYears } = useSelector((state) => state.checker);
+
+    const { dealerLogo, step, history, residentalYears, progress } = useSelector((state) => state.checker);
     const dispatch = useDispatch();
     const { dealer_id } = useParams();
     const navigate = useNavigate();
-
+    const [percent, setPercent] = useState(null);
     useEffect(() => {
         fetch('https://api.ipify.org?format=json')
             .then((response) => response.json())
@@ -66,6 +67,7 @@ const WebFullApp = () => {
         const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
         new Promise(dealerInfoCall);
         dispatch(setDealerId(dealer_id));
+        setPercent(parseInt((progress / 7) * 100));
     }, [history, step, dealer_id, dispatch]);
 
     const Refresh = () => {
@@ -91,7 +93,7 @@ const WebFullApp = () => {
                     />
                     <div className=" w-32 h-10">
                         <Flat
-                            progress={(step / 5) * 100}
+                            progress={percent}
                             range={{ from: 0, to: 100 }}
                             sign={{ value: '%', position: 'end' }}
                             text={'Complete'}

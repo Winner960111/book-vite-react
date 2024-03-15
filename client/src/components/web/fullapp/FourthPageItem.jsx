@@ -244,7 +244,6 @@ const FourthPageItem = () => {
                                     value={apt}
                                     onChange={(e) => setApt(e.target.value)}
                                     fullWidth
-                                    type="text"
                                     defaultValue="Normal"
                                     label="Apt/Suite (Optional)"
                                     variant="standard"
@@ -271,7 +270,6 @@ const FourthPageItem = () => {
                                         setErrors((prev) => ({ ...prev, locality: '' }));
                                     }}
                                     fullWidth
-                                    type="text"
                                     defaultValue="Normal"
                                     label="City"
                                     variant="standard"
@@ -299,7 +297,6 @@ const FourthPageItem = () => {
                                         setErrors((prev) => ({ ...prev, state: '' }));
                                     }}
                                     fullWidth
-                                    type="text"
                                     defaultValue="Normal"
                                     label="State"
                                     variant="standard"

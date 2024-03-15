@@ -10,12 +10,16 @@ import CheckVerifyCode from '../components/web/fullapp/CheckVerifyCode';
 import FirstPage from '../components/web/fullapp/FirstPage';
 import SecondPage from '../components/web/fullapp/SecondPage';
 import ThirdPage from '../components/web/fullapp/ThirdPage';
+import ThirdPageItem from '../components/web/fullapp/ThirdPageItem';
 import FourthPage from '../components/web/fullapp/FourthPage';
 import FourthPageItem from '../components/web/fullapp/FourthPageItem';
+import FifthPage from '../components/web/fullapp/FifthPage';
+import FifthPageItem from '../components/web/fullapp/FifthPageItem';
 // import Finish from '../components/web/prequalified/Finish';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
 import {
+    addHistory,
     clearHistory,
     getDealerInfo,
     setDealerId,
@@ -33,11 +37,12 @@ import { deviceInfo } from '../api/index';
 
 const WebFullApp = () => {
 
-    const { dealerLogo, step, history, residentalYears, progress } = useSelector((state) => state.checker);
+    const { dealerLogo, step, history, residentalYears, progress, jobYear } = useSelector((state) => state.checker);
     const dispatch = useDispatch();
     const { dealer_id } = useParams();
     const navigate = useNavigate();
     const [percent, setPercent] = useState(null);
+    const [delta, setDelta] = useState(0);
     useEffect(() => {
         fetch('https://api.ipify.org?format=json')
             .then((response) => response.json())
@@ -61,7 +66,11 @@ const WebFullApp = () => {
             })
             .catch((error) => console.log(error));
     }, []);
-
+    useEffect(() => {
+        const current = new Date().getFullYear()
+        const jobtime = jobYear.split('-')[0]
+        setDelta( current - parseInt(jobtime))
+    }, [jobYear])
     useEffect(() => {
         // when refresh app, set dealer_id and dealer_info of store
         const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
@@ -81,6 +90,9 @@ const WebFullApp = () => {
         navigate(-1);
         dispatch(clearHistory());
     };
+    const plusStep = () => {
+        dispatch(addHistory(true))
+    }
     return (
         <div className="bg-gray-50 w-screen h-screen relative">
             <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative min-w-[600px]">
@@ -129,9 +141,12 @@ const WebFullApp = () => {
             {step == 2 && <FirstPage />}
             {step == 3 && <SecondPage />}
             {step == 4 && <ThirdPage />}
-            {step == 5 && <FourthPage />}
-            {step == 6 && <>{parseInt(residentalYears) >= 2 ? null : <FourthPageItem />}</>}
-            {/* {step == 5 && <Finish />} */}
+            {step == 5 && <ThirdPageItem />}
+            {step == 6 && <FourthPage />}
+            {step == 7 && <>{parseInt(residentalYears) >= 2 ? plusStep() : <FourthPageItem />}</>}
+            {step == 8 && <FifthPage />}
+            {step == 9 && <>{delta >= 2 ? plusStep() : <FifthPageItem />}</>}
+            {/* {step == 10 && <SixthPage/>} */}
             <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
                 <img
                     className="w-10 cursor-pointer mx-5"

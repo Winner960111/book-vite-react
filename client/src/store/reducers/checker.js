@@ -2,7 +2,30 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  progress:0,
+  jobEndDate:'',
+  jobAddress: '',
+  prevJobAddress:'',
+  jobOccupation: '',
+  employerName: '',
+  employerPhoneNumber: '',
+  jobApt: '',
+  jobCity: '',
+  jobState: '',
+  jobZipcode: '',
+  jobSalary: '',
+  jobstatus: '',
+  jobYear: '',
+  prevjobOccupation: '',
+  prevemployerName: '',
+  prevemployerPhoneNumber: '',
+  prevjobApt: '',
+  prevjobCity: '',
+  prevjobState: '',
+  prevjobZipcode: '',
+  prevjobSalary: '',
+  prevjobstatus: '',
+  prevjobYear: '',
+  progress: 0,
   monthlyPay: '',
   residentalYears: '',
   residentalMonths: '',
@@ -72,6 +95,75 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setJobEndDate: (state, action) => {
+      state.jobEndDate = action.payload
+    },
+    setJobAddress: (state, action) => {
+      state.jobAddress = action.payload
+    },
+    prevJobAddress: (state, action) => {
+      state.prevJobAddress = action.prevJobAddress
+    },
+    setJobOccupation: (state, action) => {
+      state.jobOccupation = action.payload
+    },
+    setEmployerName: (state, action) => {
+      state.employerName = action.payload
+    },
+    setEmployerPhoneNumber: (state, action) => {
+      state.employerPhoneNumber = action.payload
+    },
+    setJobApt: (state, action) => {
+      state.jobApt = action.payload
+    },
+    setJobCity: (state, action) => {
+      state.jobCity = action.payload
+    },
+    setJobState: (state, action) => {
+      state.jobState = action.payload
+    },
+    setJobZipcode: (state, action) => {
+      state.jobZipcode = action.payload
+    },
+    setJobSalary: (state, action) => {
+      state.jobSalary = action.payload
+    },
+    setJobstatus: (state, action) => {
+      state.jobstatus = action.payload
+    },
+    setJobYear: (state, action) => {
+      state.jobYear = action.payload
+    },
+    setPrevjobOccupation: (state, action) => {
+      state.prevjobOccupation = action.payload
+    },
+    setPrevEmployerName: (state, action) => {
+      state.employerName = action.payload
+    },
+    setPrevEmployerPhoneNumber: (state, action) => {
+      state.prevemployerPhoneNumber = action.payload
+    },
+    setPrevJobApt: (state, action) => {
+      state.prevjobApt = action.payload
+    },
+    setPrevJobCity: (state, action) => {
+      state.prevjobCity = action.payload
+    },
+    setPrevJobState: (state, action) => {
+      state.prevjobState = action.payload
+    },
+    setPrevJobZipcode: (state, action) => {
+      state.prevjobZipcode = action.payload
+    },
+    setPrevJobSalary: (state, action) => {
+      state.prevjobSalary = action.payload
+    },
+    setPrevJobstatus: (state, action) => {
+      state.prevjobstatus = action.payload
+    },
+    setPrevJobYear: (state, action) => {
+      state.prevjobYear = action.payload
+    },
     setProgress: (state) => {
       state.progress += 1
     },
@@ -351,6 +443,29 @@ export const checkerSlice = createSlice({
 
     // Clear history
     clearHistory: (state) => {
+      state.jobEndDate = initialState.jobEndDate;
+      state.jobAddress = initialState.jobAddress;
+      state.prevJobAddress = initialState.prevJobAddress;
+      state.jobOccupation = initialState.jobOccupation;
+      state.employerName = initialState.employerName;
+      state.employerPhoneNumber = initialState.employerPhoneNumber;
+      state.jobApt = initialState.jobApt;
+      state.jobCity = initialState.jobCity;
+      state.jobState = initialState.jobState;
+      state.jobZipcode = initialState.jobZipcode;
+      state.jobSalary = initialState.jobSalary;
+      state.jobstatus = initialState.jobstatus;
+      state.jobYear = initialState.jobYear;
+      state.prevjobOccupation = initialState.prevjobOccupation;
+      state.prevemployerName = initialState.prevemployerName;
+      state.prevemployerPhoneNumber = initialState.prevemployerPhoneNumber;
+      state.prevjobApt = initialState.prevjobApt;
+      state.prevjobCity = initialState.prevjobCity;
+      state.prevjobState = initialState.prevjobState;
+      state.prevjobZipcode = initialState.prevjobZipcode;
+      state.prevjobSalary = initialState.prevjobSalary;
+      state.prevjobstatus = initialState.prevjobState;
+      state.prevjobYear = initialState.prevjobYear;
       state.progress = initialState.progress;
       state.previousCheckerAddress = initialState.previousCheckerAddress;
       state.previousCheckerApt = initialState.previousCheckerApt;
@@ -417,6 +532,29 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setJobEndDate,
+  setJobAddress,
+  setPrevJobAddress,
+  setJobOccupation,
+  setEmployerName,
+  setEmployerPhoneNumber,
+  setJobApt,
+  setJobCity,
+  setJobState,
+  setJobZipcode,
+  setJobSalary,
+  setJobstatus,
+  setJobYear,
+  setPrevjobOccupation,
+  setPrevEmployerName,
+  setPrevEmployerPhoneNumber,
+  setPrevJobApt,
+  setPrevJobCity,
+  setPrevJobState,
+  setPrevJobZipcode,
+  setPrevJobSalary,
+  setPrevJobstatus,
+  setPrevJobYear,
   setProgress,
   setPreviousCheckerAddress,
   setPreviousCheckerApt,

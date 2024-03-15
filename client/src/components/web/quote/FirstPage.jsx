@@ -36,7 +36,6 @@ const FirstPage = () => {
   const [focusFirstName, setFocusFirstName] = useState(Boolean);
   const [focusLastName, setFocusLastName] = useState(Boolean);
   const [focusEmailAddress, setFocusEmailAddress] = useState(Boolean);
-  const [socialNumber, setSocialNumber] = useState('');
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
@@ -55,18 +54,6 @@ const FirstPage = () => {
     setErrorLastName('');
     setErrorEmailAddress('');
   }, [step]);
-
-  const handleChangeInputSocialNumber = (e) => {
-    const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
-    const formattedInputValue =
-      inputValue.substring(0, 3) +
-      (inputValue.length > 3 ? '-' : '') +
-      inputValue.substring(3, 5) +
-      (inputValue.length > 5 ? '-' : '') +
-      inputValue.substring(5, 9);
-    setSocialNumber(formattedInputValue);
-  };
-
   const handlesubmit = async () => {
     let pass = 0;
     if (!firstName) {
@@ -195,8 +182,9 @@ const FirstPage = () => {
                 )}
               </div>
             </div>
-            <div className="w-full p-5 flex justify-between flex-col md:flex-row">
-              <div className="flex flex-col w-full my-3 md:mx-5">
+
+            <div className="w-full p-5 flex justify-between">
+              <div className="flex flex-col w-[46%] my-3 md:mx-5">
                 <TextField
                   onFocus={() => setFocusEmailAddress(true)}
                   onBlur={() => setFocusEmailAddress(false)} // onBlur is triggered when the input loses focus
@@ -230,30 +218,6 @@ const FirstPage = () => {
                   </p>
                 )}
               </div>
-              <div className="flex flex-col w-full my-3 md:mx-5">
-                <TextField
-                  value={socialNumber}
-                  onChange={handleChangeInputSocialNumber}
-                  fullWidth
-                  type="text"
-                  defaultValue="Normal"
-                  label="Social security number"
-                  variant="standard"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px'
-                    },
-                  }}
-                />
-              </div>
-            </div>
-            <div className="w-full p-5 flex justify-end">
               <button
                 type="button"
                 onClick={handlesubmit}

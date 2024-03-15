@@ -7,11 +7,9 @@ import {
   setInstantModel,
   setVehicleCondition,
   setVehicleType,
-  setPayDown,
   setProgress,
 } from '../../../store/reducers/checker';
 import { usersUpdate, vehicleList } from '../../../api/index';
-import { TextField } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -43,20 +41,16 @@ const ThirdPage = () => {
   const [select, setSelect] = useState('')
   const [condition, setCondition] = useState('');
   const [errorVehicle, setErrorVehicle] = useState('');
-  const [errorPay, setErrorPay] = useState('');
   const [errorCondition, setErrorCondition] = useState('');
   const [year, setYear] = useState('');
   const [make, setMake] = useState('');
   const [model, setModel] = useState('');
-  const [pay, setPay] = useState('');
-  const [focusPay, setFocusPay] = useState(false);
 
   const vehicleListGet = async () => {
     const vehicleLists = await vehicleList(dealer_id)
     setVehicles(vehicleLists.data.sold_by_dealer)
   }
   useEffect(() => {
-    setErrorPay('');
     setErrorCondition('');
     setErrorVehicle('');
     setCondition('');
@@ -83,18 +77,10 @@ const ThirdPage = () => {
     } else {
       pass += 1
     }
-    if (!pay) {
-      setErrorPay('*Required');
-    } else if (!/^\d+$/.test(pay)) {
-      setErrorPay('*Not supported format');
-    } else {
-      pass += 1;
-    }
-    if (pass == 3) {
+    if (pass == 2) {
       dispatch(setInstantYear(year))
       dispatch(setInstantMake(make))
       dispatch(setInstantModel(model))
-      dispatch(setPayDown(pay))
       dispatch(setVehicleCondition(condition))
       dispatch(setVehicleType(select))
       const data = {
@@ -126,11 +112,11 @@ const ThirdPage = () => {
   console.log("this is vehicles===>", vehicles)
   return (
     <div className="flex flex-col bg-gray-50 w-full justify-center items-center min-w-[600px]">
-      <p className="w-2/3 text-4xl mt-44 font-medium">
+      <p className="w-2/3 text-4xl mt-20 font-medium">
         What vehicle are you interested in?
       </p>
-      <div className="w-2/3 flex flex-col lg:flex-row text-justify bg-white rounded-3xl p-5 pb-10 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
-        <div className="w-full flex flex-col justify-between lg:w-[65%] items-center rounded-2xl pl-5 pt-4">
+      <div className="w-2/3 flex flex-col text-justify bg-white rounded-3xl p-5 pb-10 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
+        <div className="w-full flex flex-col justify-between items-center rounded-2xl pl-5 pt-4">
           <div className='w-full flex justify-between bg-gray-50 items-center py-5 px-2 rounded-xl'>
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label" style={{ padding: '0 5px', fontSize: '18px', margin: '0 15px' }}>What type of vehicle are you interested in?</FormLabel>
@@ -152,124 +138,35 @@ const ThirdPage = () => {
           {errorVehicle !== '' ? (
             <p className="text-red-500 pt-2">{errorVehicle}</p>
           ) : null}
-          <div className="w-full flex flex-col justify-betweenrounded-3xl">
-            <TextField
-              onFocus={() => { setFocusPay(true) }}
-              onBlur={() => { setFocusPay(false) }}
-              id="standard-basic"
-              variant="standard"
-              margin="dense"
-              label="What will you down payment be?"
-              fullWidth
-              value={pay}
-              onChange={(e) => { setPay(e.target.value) }}
-              InputProps={{
-                style: {
-                  fontSize: '20px',
-                },
-              }}
-              InputLabelProps={{
-                style: {
-                  fontSize: '20px',
-                },
-              }}
-            />
-            {focusPay && <p className='bg-gray-50 pt-2 rounded-xl'>If no down payment, please type 0.</p>}
-            {errorPay !== '' ? (
-              <p className="text-red-500 pl-6 pt-2">{errorPay}</p>
+        </div>
+        <div className="w-full flex flex-col lg:flex-row justify-between pl-5">
+          <div className="lg:w-[30%] w-full flex flex-col justify-between bg-gray-50 rounded-3xl mt-4">
+            <div className="flex flex-col items-center px-5">
+              <FormControl>
+                <FormLabel id="demo-row-radio-buttons-group-label" style={{ padding: '10px 0 0 0', fontSize: '18px' }}>Is this vehicle new or used?</FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                  onChange={(e) => { setCondition(e.target.value) }}
+                  style={{ margin: '10px 0', display: 'flex', justifyContent: 'around' }}
+                >
+                  <FormControlLabel value="New" control={<Radio />} label="New" style={{ width: '40%' }} />
+                  <FormControlLabel value="Used" control={<Radio />} label="Used" style={{ width: '40%' }} />
+                </RadioGroup>
+              </FormControl>
+            </div>
+            {errorCondition !== '' ? (
+              <p className="text-red-500 pl-6 pt-2 ml-5">{errorCondition}</p>
             ) : null}
           </div>
-        </div>
-        <div className="w-full flex flex-col justify-between lg:w-[35%] items-center pl-5 pt-4">
-          <div className="flex w-full flex-col">
-            <TextField
-              id="outlined-basic"
-              variant="outlined"
-              margin="dense"
-              label="Year"
-              fullWidth
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              InputProps={{
-                style: {
-                  fontSize: '20px',
-                },
-              }}
-              InputLabelProps={{
-                style: {
-                  fontSize: '20px',
-                },
-              }}
-            />
-            <TextField
-              id="outlined-basic"
-              variant="outlined"
-              margin="dense"
-              label="Make"
-              fullWidth
-              value={make}
-              onChange={(e) => setMake(e.target.value)}
-              InputProps={{
-                style: {
-                  fontSize: '20px',
-                },
-              }}
-              InputLabelProps={{
-                style: {
-                  fontSize: '20px',
-                },
-              }}
-            />
-            <TextField
-              id="outlined-basic"
-              variant="outlined"
-              label="Model"
-              fullWidth
-              margin="dense"
-              value={model}
-              onChange={(e) => setModel(e.target.value)}
-              type="text"
-              InputProps={{
-                style: {
-                  fontSize: '20px',
-                },
-              }}
-              InputLabelProps={{
-                style: {
-                  fontSize: '20px',
-                },
-              }}
-            />
-          </div>
-          <div className="w-full flex flex-col justify-between">
-            <div className="flex flex-col justify-between bg-gray-50 rounded-3xl mt-4">
-              <div className="flex flex-col lg:flex-row lg:justify-between items-center px-5">
-                <FormControl>
-                  <FormLabel id="demo-row-radio-buttons-group-label" style={{ padding: '0 5px', fontSize: '18px' }}>Is this vehicle new or used?</FormLabel>
-                  <RadioGroup
-                    row
-                    aria-labelledby="demo-row-radio-buttons-group-label"
-                    name="row-radio-buttons-group"
-                    onChange={(e) => { setCondition(e.target.value) }}
-                    style={{ margin: '10px 0', display: 'flex', justifyContent: 'around' }}
-                  >
-                    <FormControlLabel value="New" control={<Radio />} label="New" style={{ width: '40%' }} />
-                    <FormControlLabel value="Used" control={<Radio />} label="Used" style={{ width: '40%' }} />
-                  </RadioGroup>
-                </FormControl>
-              </div>
-              {errorCondition !== '' ? (
-                <p className="text-red-500 pl-6 pt-2">{errorCondition}</p>
-              ) : null}
-            </div>
-            <button
-              type="button"
-              onClick={handleSubmit}
-              className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm lg:text-lg mt-4 hover:bg-purple-800"
-            >
-              CONTINUE
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="bg-[#854fff] w-full lg:w-[40%] h-16 px-2 py-1 mt-10 rounded-2xl text-white text-sm lg:text-lg hover:bg-purple-800"
+          >
+            CONTINUE
+          </button>
         </div>
       </div>
     </div>

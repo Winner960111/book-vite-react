@@ -26,7 +26,8 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-const FourthPageItem = () => {
+
+const FifthPage = () => {
     const dispatch = useDispatch();
 
     const [address, setAddress] = useState('');
@@ -252,6 +253,7 @@ const FourthPageItem = () => {
                                     fullWidth
                                     defaultValue="Normal"
                                     label="Occupation"
+                                    autoFocus
                                     variant="standard"
                                     InputProps={{
                                         style: {
@@ -321,7 +323,7 @@ const FourthPageItem = () => {
 
                         </div>
                         <div className="w-full flex px-5 pt-5 flex-col lg:flex-row">
-                            <div className="lg:w-[31%] w-full rounded-md text-2xl my-3 lg:mx-5 flex flex-col">
+                            <div className="lg:w-[31%] w-full my-3 lg:mx-5 flex flex-col">
                                 <Paper
                                     sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', height: '70px' }}
                                 >
@@ -332,7 +334,6 @@ const FourthPageItem = () => {
                                         sx={{ ml: 1, flex: 1, fontSize: '25px' }}
                                         placeholder="Search Google Maps"
                                         inputProps={{ 'aria-label': 'search google maps' }}
-                                        autoFocus
                                         autoComplete="off"
                                         id="autocomplete"
                                         ref={addressRef}
@@ -342,10 +343,10 @@ const FourthPageItem = () => {
                                     </IconButton>
                                 </Paper>
                                 {focus && <p className="bg-gray-50 rounded-3xl text-[17px] p-4 mt-2">Please input your job address.</p>}
+                                {errors.address ? (
+                                    <p className="text-red-500 pl-2">{errors.address}</p>
+                                ) : null}
                             </div>
-                            {errors.address ? (
-                                <p className="text-red-500 pl-2">{errors.address}</p>
-                            ) : null}
                             <div className="lg:w-[69%] w-full flex flex-col lg:flex-row lg:mx-5">
                                 <div className="lg:w-1/4 w-full my-3 lg:mx-3">
                                     <TextField
@@ -549,4 +550,4 @@ const FourthPageItem = () => {
         </>
     );
 };
-export default FourthPageItem;
+export default FifthPage;

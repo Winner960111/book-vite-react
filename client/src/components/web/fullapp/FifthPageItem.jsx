@@ -26,7 +26,8 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-const FourthPageItem = () => {
+
+const FifthPageItem = () => {
     const dispatch = useDispatch();
 
     const [address, setAddress] = useState('');
@@ -258,6 +259,7 @@ const FourthPageItem = () => {
                                     fullWidth
                                     defaultValue="Normal"
                                     label="Occupation"
+                                    autoFocus
                                     variant="standard"
                                     InputProps={{
                                         style: {
@@ -338,7 +340,6 @@ const FourthPageItem = () => {
                                         sx={{ ml: 1, flex: 1, fontSize: '25px' }}
                                         placeholder="Search Google Maps"
                                         inputProps={{ 'aria-label': 'search google maps' }}
-                                        autoFocus
                                         autoComplete="off"
                                         id="autocomplete"
                                         ref={addressRef}
@@ -552,14 +553,13 @@ const FourthPageItem = () => {
                                     type='date'
                                     label=" "
                                     fullWidth
-                                    value={date}
+                                    value={endDate}
                                     onChange={(e) => { setEndDate(e.target.value) }}
                                     InputProps={{
                                         style: {
                                             fontSize: '25px',
                                             height: '50px'
                                         },
-
                                     }}
                                     InputLabelProps={{
                                         style: {
@@ -586,4 +586,4 @@ const FourthPageItem = () => {
         </>
     );
 };
-export default FourthPageItem;
+export default FifthPageItem;

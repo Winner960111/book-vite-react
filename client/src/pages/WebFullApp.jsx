@@ -15,7 +15,10 @@ import FourthPage from '../components/web/fullapp/FourthPage';
 import FourthPageItem from '../components/web/fullapp/FourthPageItem';
 import FifthPage from '../components/web/fullapp/FifthPage';
 import FifthPageItem from '../components/web/fullapp/FifthPageItem';
-// import Finish from '../components/web/prequalified/Finish';
+import Confirm from '../components/web/fullapp/Confirm';
+import SixthPage from '../components/web/fullapp/SixthPage';
+import SeventhPage from '../components/web/fullapp/SeventhPage';
+import Finish from '../components/web/fullapp/Finish';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
 import {
@@ -37,7 +40,7 @@ import { deviceInfo } from '../api/index';
 
 const WebFullApp = () => {
 
-    const { dealerLogo, step, history, residentalYears, progress, jobYear } = useSelector((state) => state.checker);
+    const { dealerLogo, step, history, residentalYears, progress, jobYear, confirm } = useSelector((state) => state.checker);
     const dispatch = useDispatch();
     const { dealer_id } = useParams();
     const navigate = useNavigate();
@@ -69,7 +72,7 @@ const WebFullApp = () => {
     useEffect(() => {
         const current = new Date().getFullYear()
         const jobtime = jobYear.split('-')[0]
-        setDelta( current - parseInt(jobtime))
+        setDelta(Math.abs(current - parseInt(jobtime)))
     }, [jobYear])
     useEffect(() => {
         // when refresh app, set dealer_id and dealer_info of store
@@ -146,7 +149,10 @@ const WebFullApp = () => {
             {step == 7 && <>{parseInt(residentalYears) >= 2 ? plusStep() : <FourthPageItem />}</>}
             {step == 8 && <FifthPage />}
             {step == 9 && <>{delta >= 2 ? plusStep() : <FifthPageItem />}</>}
-            {/* {step == 10 && <SixthPage/>} */}
+            {step == 10 && <Confirm />}
+            {step == 11 && <>{confirm === 'Yes' ? <SixthPage /> : plusStep()}</>}
+            {step == 12 && <SeventhPage/>}
+            {step == 13 && <Finish/>}
             <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
                 <img
                     className="w-10 cursor-pointer mx-5"

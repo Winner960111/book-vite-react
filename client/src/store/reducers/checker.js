@@ -2,6 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
+  incomeAmount: '',
+  sourceIncome:'',
+  confirm:'',
   jobEndDate:'',
   jobAddress: '',
   prevJobAddress:'',
@@ -95,6 +98,15 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setIncomeAmount: (state, action) => {
+      state.incomeAmount = action.payload
+    },
+    setSourceIncome: (state, action) => {
+      state.sourceIncome = action.payload
+    },
+    setConfirm: (state, action) => {
+      state.confirm = action.payload
+    },
     setJobEndDate: (state, action) => {
       state.jobEndDate = action.payload
     },
@@ -443,6 +455,9 @@ export const checkerSlice = createSlice({
 
     // Clear history
     clearHistory: (state) => {
+      state.incomeAmount = initialState.incomeAmount;
+      state.sourceIncome - initialState.sourceIncome;
+      state.confirm = initialState.confirm;
       state.jobEndDate = initialState.jobEndDate;
       state.jobAddress = initialState.jobAddress;
       state.prevJobAddress = initialState.prevJobAddress;
@@ -532,6 +547,9 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setIncomeAmount,
+  setSourceIncome,
+  setConfirm,
   setJobEndDate,
   setJobAddress,
   setPrevJobAddress,

@@ -1,19 +1,96 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { signatureImg } from '../../../api/index';
+import { fullcustomer, application } from '../../../api/index';
 import './Canvas.css';
 import { addHistory } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 
 const SeventhPage = () => {
-    
+
     const dispatch = useDispatch();
     const canvasRef = useRef(null);
     const contextRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [readStatePara1, setReadStatePara1] = useState(false);
     const [readStatePara2, setReadStatePara2] = useState(false);
+
+    const {
+        step,
+        dealerName,
+        dealerId,
+        checkerMobileNumber,
+        checkerFirstName,
+        checkerMiddleName,
+        checkerLastName,
+        checkerEmail,
+        checkerSocialNumber,
+        checkerBirthday,
+        usCitizen,
+        deviceIP,
+        deviceOS,
+        deviceCity,
+        deviceCountry,
+        deviceState,
+        deviceDate,
+        deviceLat,
+        deviceLon,
+        deviceBrowser,
+        intentID,
+        type,
+        jobOccupation,
+        employerName,
+        employerPhoneNumber,
+        jobAddress,
+        jobCity,
+        jobState,
+        jobZipcode,
+        jobSalary,
+        jobYear,
+        jobstatus,
+        prevjobOccupation,
+        prevemployerName,
+        prevemployerPhoneNumber,
+        prevJobAddress,
+        prevjobCity,
+        prevjobState,
+        prevjobZipcode,
+        prevjobSalary,
+        prevjobstatus,
+        prevjobYear,
+        jobEndDate,
+        driverNumber,
+        driverDate,
+        driverState,
+        iDate,
+        iIsuer,
+        iType,
+        checkerAddress,
+        checkerState,
+        checkerZipcode,
+        checkerLocality,
+        residentalMonths,
+        residentalYears,
+        monthlyPay,
+        residentalStatus,
+        previousResidentalStatus,
+        previousCheckerAddress,
+        previousCheckerLocality,
+        previousCheckerState,
+        previousCheckerZipcode,
+        previousMonthlyPay,
+        previousResidentalYears,
+        previousResidentalMonths,
+        incomeAmount,
+        sourceIncome,
+        bankrupcy,
+        instantYear,
+        instantMake,
+        instantModel,
+        vehicleCondition,
+        vehicleType,
+        payDwon
+    } = useSelector((state) => state.checker);
 
     const handleResize = () => {
         // Rerun your code to set canvas size based on the new dimensions
@@ -101,7 +178,6 @@ const SeventhPage = () => {
         };
         const intent_res = await usersUpdate(intent_data, intentID);
         console.log('this is update results ====>', intent_res);
-        dispatch(addHistory(true));
         const canvas = canvasRef.current;
         const imageDataURL = canvas.toDataURL('image/png');
         const image = new Image();
@@ -114,37 +190,8 @@ const SeventhPage = () => {
         } else {
             fullName = checkerFirstName + ' ' + checkerLastName;
         }
-
-        const {
-            step,
-            dealerName,
-            dealerId,
-            checkerMobileNumber,
-            checkerFirstName,
-            checkerMiddleName,
-            checkerLastName,
-            checkerEmail,
-            checkerSocialNumber,
-            checkerBirthday,
-            usCitizen,
-            deviceIP,
-            deviceOS,
-            deviceCity,
-            deviceCountry,
-            deviceState,
-            deviceDate,
-            deviceLat,
-            deviceLon,
-            deviceBrowser,
-            intentID,
-            type,
-            jobOccupation,
-            employerName,
-            employerPhoneNumber,
-        } = useSelector((state) => state.checker);
         const data = {
-
-dealer_id: dealerId,
+            dealer_id: dealerId,
             first_name: checkerFirstName,
             middle_name: checkerMiddleName,
             last_name: checkerLastName,
@@ -155,100 +202,120 @@ dealer_id: dealerId,
             signature_img: image.src,
             citizenship: usCitizen,
             signature_name: fullName,
+            device_ip_address: deviceIP,
+            device_operating_system: deviceOS,
+            device_browser: deviceBrowser,
+            device_type: type,
+            device_state: deviceState,
+            device_city: deviceCity,
+            device_country: deviceCountry,
+            device_date_time: deviceDate,
+            device_lat: deviceLat,
+            device_lon: deviceLon,
             employer_occupation: jobOccupation,
             employer_name: employerName,
             employer_contact_name: "",
-            employer_contact_phone: employerPhoneNumber,
-            employer_address: "",
+            employer_contact_phone: "",
+            employer_address: jobAddress,
             employer_address2: "",
-            employer_city: "",
-            employer_state: "",
-            employer_zip_code: "",
-            employer_phone: "",
-            employer_salary: "",
-            employer_start_date: null,
-            employer_type: null,
-
-
-
-"marital_status": null,
-"primary_address": "",
-"primary_address2": "",
-"primary_city": "",
-"primary_state": "",
-"primary_zip_code": "",
-"primary_housing_status": null,
-"primary_housing_time_years": "",
-"primary_housing_time_months": "",
-"primary_housing_payment_amount": "",
-"primary_landLord_mortgage_holder": "",
-"primary_landLord_mortgage_phone": "",
-"previous_address": "",
-"previous_address2": "",
-"previous_city": "",
-"previous_state": "",
-"previous_zip_code": "",
-"previous_housing_time_years": "",
-"previous_housing_time_months": "",
-"previous_housing_payment_amount": "",
-"previous_landLord_mortgage_holder": "",
-"previous_landLord_mortgage_phone": "",
-"previous_housing_status": null,
-
-"bankruptcy": false,
-"previous_employer_occupation": "",
-"previous_employer_name": "",
-"previous_employer_contact_name": "",
-"previous_employer_contact_phone": "",
-"previous_employer_address": "",
-"previous_employer_address2": "",
-"previous_employer_city": "",
-"previous_employer_state": "",
-"previous_employer_zip_code": "",
-"previous_employer_phone": "",
-"previous_employer_salary": "",
-"previous_employer_start_date": null,
-"previous_employer_end_date": null,
-"previous_employer_type": "",
-"reference1_first_name": "",
-"reference1_last_name": "",
-"reference1_phone": "",
-"reference1_city": "",
-"reference1_relationship": null,
-"reference1_state": "",
-"reference2_first_name": "",
-"reference2_last_name": "",
-"reference2_phone": "",
-"reference2_city": "",
-"reference2_relationship": null,
-"reference2_state": "",
-"extra_income": "",
-"extra_income_frequency": "",
-"driver_licenced_number": "",
-"driver_licenced_exp_date": null,
-"driver_licenced_state": "",
-"device_ip_address": "",
-"device_operating_system": "",
-"device_browser": "",
-"device_type": "",
-"device_state": "",
-"device_city": "",
-"device_country": "",
-"device_date_time": "",
-"device_lat": "",
-"device_lon": "",
-"inv_id": "",
-"secondary_ID_type": "",
-"secondary_ID_exp_date": "",
-"secondary_ID_issuer": "",
-"source": ""
+            employer_city: jobCity,
+            employer_state: jobState,
+            employer_zip_code: jobZipcode,
+            employer_phone: employerPhoneNumber,
+            employer_salary: jobSalary,
+            employer_start_date: jobYear,
+            employer_type: jobstatus,
+            previous_employer_occupation: prevjobOccupation,
+            previous_employer_name: prevemployerName,
+            previous_employer_contact_name: "",
+            previous_employer_contact_phone: "",
+            previous_employer_address: prevJobAddress,
+            previous_employer_address2: "",
+            previous_employer_city: prevjobCity,
+            previous_employer_state: prevjobState,
+            previous_employer_zip_code: prevjobZipcode,
+            previous_employer_phone: prevemployerPhoneNumber,
+            previous_employer_salary: prevjobSalary,
+            previous_employer_start_date: prevjobYear,
+            previous_employer_end_date: jobEndDate,
+            previous_employer_type: prevjobstatus,
+            driver_licenced_number: driverNumber,
+            driver_licenced_exp_date: driverDate,
+            driver_licenced_state: driverState,
+            secondary_ID_type: iType,
+            secondary_ID_exp_date: iDate,
+            secondary_ID_issuer: iIsuer,
+            primary_address2: "",
+            primary_city: checkerLocality,
+            primary_address: checkerAddress,
+            primary_state: checkerState,
+            primary_zip_code: checkerZipcode,
+            primary_housing_status: residentalStatus,
+            primary_housing_time_years: residentalYears,
+            primary_housing_time_months: residentalMonths,
+            primary_housing_payment_amount: monthlyPay,
+            primary_landLord_mortgage_holder: "",
+            primary_landLord_mortgage_phone: "",
+            previous_address: previousCheckerAddress,
+            previous_address2: "",
+            previous_city: previousCheckerLocality,
+            previous_state: previousCheckerState,
+            previous_zip_code: previousCheckerZipcode,
+            previous_housing_time_years: previousResidentalYears,
+            previous_housing_time_months: previousResidentalMonths,
+            previous_housing_payment_amount: previousMonthlyPay,
+            previous_landLord_mortgage_holder: "",
+            previous_landLord_mortgage_phone: "",
+            previous_housing_status: previousResidentalStatus,
+            extra_income: incomeAmount,
+            extra_income_frequency: sourceIncome,
+            marital_status: "",
+            reference1_first_name: "",
+            reference1_last_name: "",
+            reference1_phone: "",
+            reference1_city: "",
+            reference1_relationship: "",
+            reference1_state: "",
+            reference2_first_name: "",
+            reference2_last_name: "",
+            reference2_phone: "",
+            reference2_city: "",
+            reference2_relationship: "",
+            reference2_state: "",
+            inv_id: "",
+            source: "Full",
+            bankruptcy: bankrupcy,
         };
-
-        const res = await signatureImg(data);
+        
+        const res = await fullcustomer(data);
         if (res.status == 201) {
-            console.log('status ImageSend', res);
+            console.log('status CustomerItems_Send', res);
+            const appData = {
+
+                dealer_id: dealerId,
+                customer_id: res.data.id,
+                cosigner_id: "",
+                usr_id: "",
+                vehicle_year: instantYear,
+                vehicle_make: instantMake,
+                vehicle_model: instantModel,
+                vehicle_condition: vehicleCondition,
+                vehicle_type: vehicleType,
+                need_co_signer: false,
+                cosigner_phone: "",
+                down_payment: payDwon
+
+            }
+            const appRes = await application(appData)
+            if (appRes.status == 201) {
+                console.log('status ApplicationItems_Send', res);
+                dispatch(addHistory(true))
+            }
+            else {
+                console.log('Faild ApplicationItmes_send')
+            }
         } else {
-            console.log('Faild ImageSend');
+            console.log('Faild CustomerItems_Send');
         }
     };
 

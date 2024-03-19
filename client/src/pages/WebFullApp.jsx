@@ -71,7 +71,7 @@ const WebFullApp = () => {
     }, []);
     useEffect(() => {
         const current = new Date().getFullYear()
-        const jobtime = jobYear.split('-')[0]
+        const jobtime = jobYear ? jobYear.split('-')[0] : "0"
         setDelta(Math.abs(current - parseInt(jobtime)))
     }, [jobYear])
     useEffect(() => {
@@ -151,8 +151,8 @@ const WebFullApp = () => {
             {step == 9 && <>{delta >= 2 ? plusStep() : <FifthPageItem />}</>}
             {step == 10 && <Confirm />}
             {step == 11 && <>{confirm === 'Yes' ? <SixthPage /> : plusStep()}</>}
-            {step == 12 && <SeventhPage/>}
-            {step == 13 && <Finish/>}
+            {step == 12 && <SeventhPage />}
+            {step == 13 && <Finish />}
             <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
                 <img
                     className="w-10 cursor-pointer mx-5"

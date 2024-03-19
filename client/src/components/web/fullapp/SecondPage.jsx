@@ -9,7 +9,6 @@ import {
   setIDate,
   setIIsuer,
   setIType,
-  setUSCitizen,
   setProgress,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
@@ -49,7 +48,6 @@ const SecondPage = () => {
   const [focusdriverDate, setFocusDriverDate] = useState(Boolean);
   const [focusdriverState, setFocusDriverState] = useState(Boolean);
   const [focuseDate, setFocusEDate] = useState(Boolean);
-  const [citizen, setCitizen] = useState('Yes')
   const [payType, setPayType] = useState('')
   const [isuer, setIsuer] = useState('')
   const [errorIsuer, setErrorIsuer] = useState('')
@@ -88,7 +86,6 @@ const SecondPage = () => {
     setErrordriverDate('');
     setErrordriverState('');
     setErroreDate('');
-    setCitizen('');
     seteDate('');
     setPayType('');
     setIsuer('');
@@ -160,7 +157,6 @@ const SecondPage = () => {
       dispatch(setIDate(eDate));
       dispatch(setIIsuer(isuer));
       dispatch(setIType(payType))
-      dispatch(setUSCitizen(citizen))
     }
 
   }

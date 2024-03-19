@@ -2,12 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
+  bankrupcy: false,
+  residentalStatus: '',
+  previousResidentalStatus: '',
   incomeAmount: '',
-  sourceIncome:'',
-  confirm:'',
-  jobEndDate:'',
+  sourceIncome: '',
+  confirm: '',
+  jobEndDate: null,
   jobAddress: '',
-  prevJobAddress:'',
+  prevJobAddress: '',
   jobOccupation: '',
   employerName: '',
   employerPhoneNumber: '',
@@ -17,7 +20,7 @@ const initialState = {
   jobZipcode: '',
   jobSalary: '',
   jobstatus: '',
-  jobYear: '',
+  jobYear: null,
   prevjobOccupation: '',
   prevemployerName: '',
   prevemployerPhoneNumber: '',
@@ -27,7 +30,7 @@ const initialState = {
   prevjobZipcode: '',
   prevjobSalary: '',
   prevjobstatus: '',
-  prevjobYear: '',
+  prevjobYear: null,
   progress: 0,
   monthlyPay: '',
   residentalYears: '',
@@ -42,7 +45,7 @@ const initialState = {
   iType: '',
   iIsuer: '',
   iDate: '',
-  usCitizen: '',
+  usCitizen: false,
   type: '',
   mobile: '',
   step: 0,
@@ -98,6 +101,15 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setBankrupcy: (state, action) => {
+      state.bankrupcy = action.payload
+    },
+    setPreviousResidentalStatus: (state, action) => {
+      state.previousResidentalStatus = action.payload
+    },
+    setResidentalStatus: (state, action) => {
+      state.residentalStatus = action.payload
+    },
     setIncomeAmount: (state, action) => {
       state.incomeAmount = action.payload
     },
@@ -455,6 +467,9 @@ export const checkerSlice = createSlice({
 
     // Clear history
     clearHistory: (state) => {
+      state.bankrupcy = initialState.bankrupcy;
+      state.previousResidentalStatus = initialState.previousResidentalStatus;
+      state.residentalStatus = initialState.residentalStatus;
       state.incomeAmount = initialState.incomeAmount;
       state.sourceIncome - initialState.sourceIncome;
       state.confirm = initialState.confirm;
@@ -547,6 +562,9 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setBankrupcy,
+  setPreviousResidentalStatus,
+  setResidentalStatus,
   setIncomeAmount,
   setSourceIncome,
   setConfirm,

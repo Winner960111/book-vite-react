@@ -10,6 +10,7 @@ import {
     setPreviousMonthlyPay,
     setPreviousResidentalYears,
     setPreviousResidentalMonths,
+    setPreviousResidentalStatus,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import { GiPositionMarker } from "react-icons/gi";
@@ -203,6 +204,7 @@ const FourthPageItem = () => {
             dispatch(setPreviousMonthlyPay(pay));
             dispatch(setPreviousResidentalMonths(residentalMonth));
             dispatch(setPreviousResidentalYears(residentalYear));
+            dispatch(setPreviousResidentalStatus(residental));
         }
     };
     return (

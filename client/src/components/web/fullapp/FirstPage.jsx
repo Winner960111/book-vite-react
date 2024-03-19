@@ -10,6 +10,7 @@ import {
   setCheckerSocialNumber,
   setUSCitizen,
   setProgress,
+  setBankrupcy,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
@@ -58,7 +59,12 @@ const FirstPage = () => {
   const [focusBirthday, setFocusBirthday] = useState(Boolean);
   const [citizen, setCitizen] = useState('Yes')
   const [openModal, setOpenModal] = useState(false);
+  const [bank, setBank] = useState('');
+  const [errorSelect, setErrorSelect] = useState('')
 
+  const handleBank = (e) => {
+    setBank(e.target.value)
+  }
   const handleCitizen = (e) => {
     setCitizen(e.target.value)
   }
@@ -103,6 +109,7 @@ const FirstPage = () => {
     setErrorSocialNumber('');
     setCitizen('');
     setOpenModal(false)
+    setErrorSelect('')
   }, [step]);
 
   const handleNext = async () => {
@@ -134,7 +141,14 @@ const FirstPage = () => {
     dispatch(setCheckerEmail(emailAddress));
     dispatch(setCheckerSocialNumber(socialNumber));
     dispatch(setCheckerBirthday(birthday));
-    dispatch(setUSCitizen(citizen))
+    if (citizen === 'Yes') {
+      dispatch(setUSCitizen(true))
+    } else { dispatch(setUSCitizen(false)) }
+    if (bank === 'Yes') {
+      dispatch(setBankrupcy(true))
+    } else {
+      dispatch(setBankrupcy(false))
+    }
   }
 
   const handlePreview = () => {
@@ -183,7 +197,12 @@ const FirstPage = () => {
     } else {
       pass += 1;
     }
-    if (pass == 6) {
+    if (!bank || !citizen) {
+      setErrorSelect("*Required")
+    } else {
+      pass += 1
+    }
+    if (pass == 7) {
       setOpenModal(true)
     }
   }
@@ -393,19 +412,40 @@ const FirstPage = () => {
               </div>
             </div>
             <div className="w-full p-5 flex justify-between">
-              <div className='px-5'>
-                <FormControl>
-                  <FormLabel id="demo-row-radio-buttons-group-label">Are you a U.S. citizen?</FormLabel>
-                  <RadioGroup
-                    row
-                    aria-labelledby="demo-row-radio-buttons-group-label"
-                    name="row-radio-buttons-group"
-                    onChange={handleCitizen}
-                  >
-                    <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                    <FormControlLabel value="No" control={<Radio />} label="No" />
-                  </RadioGroup>
-                </FormControl>
+              <div className="flex-col flex">
+                <div className="flex">
+                  <div className='px-5'>
+                    <FormControl>
+                      <FormLabel id="demo-row-radio-buttons-group-label">Are you a U.S. citizen?</FormLabel>
+                      <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                        onChange={handleCitizen}
+                      >
+                        <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                        <FormControlLabel value="No" control={<Radio />} label="No" />
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
+                  <div className='px-5'>
+                    <FormControl>
+                      <FormLabel id="demo-row-radio-buttons-group-label">Do you have any bankrupcy?</FormLabel>
+                      <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                        onChange={handleBank}
+                      >
+                        <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                        <FormControlLabel value="No" control={<Radio />} label="No" />
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
+                </div>
+                {errorSelect !== '' && (
+                  <p className="text-red-500 pl-2">{errorSelect}</p>
+                )}
               </div>
               <button
                 type="button"

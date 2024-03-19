@@ -496,8 +496,8 @@ const FifthPage = () => {
                                         id="demo-simple-select-standard"
                                         onChange={(e) => { setJobKind(e.target.value) }}
                                     >
-                                        <MenuItem value={'full'}>Full time</MenuItem>
-                                        <MenuItem value={'part'}>Part time</MenuItem>
+                                        <MenuItem value={'Full Time'}>Full time</MenuItem>
+                                        <MenuItem value={'Part Time'}>Part time</MenuItem>
                                     </Select>
                                 </FormControl>
                                 {errorJobKind !== '' && (

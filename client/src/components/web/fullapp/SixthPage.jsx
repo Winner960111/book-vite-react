@@ -93,7 +93,6 @@ const SecondPage = () => {
             dispatch(setIncomeAmount(amountIncome));
             dispatch(setSourceIncome(howIncome));
         }
-
     }
     return (
         <>

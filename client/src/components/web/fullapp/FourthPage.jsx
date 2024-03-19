@@ -10,6 +10,7 @@ import {
     setMonthlyPay,
     setResidentalYears,
     setResidentalMonths,
+    setResidentalStatus,
     setProgress,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
@@ -205,6 +206,7 @@ const FourthPageItem = () => {
             dispatch(setMonthlyPay(pay));
             dispatch(setResidentalMonths(residentalMonth));
             dispatch(setResidentalYears(residentalYear));
+            dispatch(setResidentalStatus(residental))
         }
     };
     return (

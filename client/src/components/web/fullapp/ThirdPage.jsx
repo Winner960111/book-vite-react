@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addHistory,
-  setInstantYear,
-  setInstantMake,
-  setInstantModel,
   setVehicleCondition,
   setVehicleType,
   setProgress,
@@ -42,9 +39,6 @@ const ThirdPage = () => {
   const [condition, setCondition] = useState('');
   const [errorVehicle, setErrorVehicle] = useState('');
   const [errorCondition, setErrorCondition] = useState('');
-  const [year, setYear] = useState('');
-  const [make, setMake] = useState('');
-  const [model, setModel] = useState('');
 
   const vehicleListGet = async () => {
     const vehicleLists = await vehicleList(dealer_id)
@@ -55,9 +49,6 @@ const ThirdPage = () => {
     setErrorVehicle('');
     setCondition('');
     setSelect('');
-    setYear('');
-    setMake('');
-    setModel('');
   }, [step]);
 
   useEffect(() => {
@@ -78,9 +69,6 @@ const ThirdPage = () => {
       pass += 1
     }
     if (pass == 2) {
-      dispatch(setInstantYear(year))
-      dispatch(setInstantMake(make))
-      dispatch(setInstantModel(model))
       dispatch(setVehicleCondition(condition))
       dispatch(setVehicleType(select))
       const data = {

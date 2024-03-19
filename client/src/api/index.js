@@ -2,8 +2,37 @@ import axios from 'axios';
 import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 
+export const application = async (data) => {
+  console.log("this is application items ===>", data)
+  const url = 'https://www.dev.creditapps.com/api/application/';
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'content-type': 'application/json',
+      }
+    })
+    return response
+  } catch (e) {
+    return { status: 400 }
+  }
+}
+
+export const fullcustomer = async (data) => {
+  console.log("this is full app items ===>",data)
+  const url = 'https://www.dev.creditapps.com/api/customer/';
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'content-type': 'application/json',
+      }
+    })
+    return response
+  } catch (e) {
+    return { status: 400 }
+  }
+}
 export const vehicleList = async (id) => {
-  const url = `https://dev.creditapps.com/api/decode_dealer/`;
+  const url = 'https://dev.creditapps.com/api/decode_dealer/';
   const data = {
     slug:id
   }

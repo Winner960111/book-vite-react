@@ -79,7 +79,7 @@ const WebFullApp = () => {
         const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
         new Promise(dealerInfoCall);
         dispatch(setDealerId(dealer_id));
-        setPercent(parseInt((progress / 7) * 100));
+        setPercent(parseInt((progress / 9) * 100));
     }, [history, step, dealer_id, dispatch]);
 
     const Refresh = () => {

@@ -30,16 +30,16 @@ import Select from '@mui/material/Select';
 const FifthPage = () => {
     const dispatch = useDispatch();
 
-    // const [address, setAddress] = useState('');
-    // const [locality, setLocality] = useState('');
-    // const [state, setState] = useState('');
-    // const [zipcode, setZipcode] = useState('');
-    // const [apt, setApt] = useState('');
-    // const [errors, setErrors] = useState({});
-    // const [focus, setFocus] = useState(Boolean)
-    // const [errorJobKind, setErrorJobKind] = useState('')
-    // const [pay, setPay] = useState('');
-    // const [date, setDate] = useState('');
+    const [address, setAddress] = useState('');
+    const [locality, setLocality] = useState('');
+    const [state, setState] = useState('');
+    const [zipcode, setZipcode] = useState('');
+    const [apt, setApt] = useState('');
+    const [errors, setErrors] = useState({});
+    const [focus, setFocus] = useState(Boolean)
+    const [errorJobKind, setErrorJobKind] = useState('')
+    const [pay, setPay] = useState('');
+    const [date, setDate] = useState('');
     const [errorPay, setErrorPay] = useState('');
     const [errorDate, setErrorDate] = useState('');
     const [focusPay, setFocusPay] = useState(Boolean);

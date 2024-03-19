@@ -13,7 +13,7 @@ import ThirdPage from '../components/web/fullapp/ThirdPage';
 import ThirdPageItem from '../components/web/fullapp/ThirdPageItem';
 import FourthPage from '../components/web/fullapp/FourthPage';
 import FourthPageItem from '../components/web/fullapp/FourthPageItem';
-// import FifthPage from '../components/web/fullapp/FifthPage';
+import FifthPage from '../components/web/fullapp/FifthPage';
 import FifthPageItem from '../components/web/fullapp/FifthPageItem';
 import Confirm from '../components/web/fullapp/Confirm';
 import SixthPage from '../components/web/fullapp/SixthPage';

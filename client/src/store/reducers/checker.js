@@ -375,8 +375,7 @@ export const checkerSlice = createSlice({
     },
 
     // remove history
-    removeHistory: (state, action) => {
-      state.history = state.history.filter(item => item !== action.payload);
+    removeHistory: (state) => {
       state.step -= 1;
     },
     // Set phone number

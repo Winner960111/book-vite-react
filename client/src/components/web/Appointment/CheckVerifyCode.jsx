@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkVerification, usersStatus } from '../../../api/index';
-import { addHistory, setIntentID } from '../../../store/reducers/checker';
+import { addHistory, setIntentID, setProgress } from '../../../store/reducers/checker';
 import { TextField } from '@mui/material';
 
 const CheckVerifyCode = () => {
@@ -72,6 +72,7 @@ const CheckVerifyCode = () => {
         dispatch(setIntentID(intentRes.data.id));
         console.log('this is intent ID===>', intentRes.data.id);
         dispatch(addHistory(true));
+        dispatch(setProgress());
       } else {
         setError('Invalid verification code. Please try again.');
       }

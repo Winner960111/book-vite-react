@@ -34,6 +34,10 @@ const WebHome = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/full`);
   };
+  const changePageAppointment = () => {
+    dispatch(clearHistory());
+    navigate(`/info-checker/${dealer_id}/appointment`);
+  };
 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
@@ -83,6 +87,12 @@ const WebHome = () => {
             className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
           >
             CHECK APPLICATION STATUS
+          </button>
+          <button
+            onClick={changePageAppointment}
+            className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+          >
+            APPOINTMENT
           </button>
         </div>
       </div>

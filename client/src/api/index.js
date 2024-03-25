@@ -2,6 +2,22 @@ import axios from 'axios';
 import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 
+
+export const appointment = async (data) => {
+  console.log("this is appointment items ===>", data)
+  const url = 'https://dev.creditapps.com/api/appointment/';
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'content-type': 'application/json',
+      }
+    })
+    return response
+  } catch (e) {
+    return { status: 400 }
+  }
+}
+
 export const application = async (data) => {
   console.log("this is application items ===>", data)
   const url = 'https://www.dev.creditapps.com/api/application/';
@@ -18,7 +34,7 @@ export const application = async (data) => {
 }
 
 export const fullcustomer = async (data) => {
-  console.log("this is full app items ===>",data)
+  console.log("this is full app items ===>", data)
   const url = 'https://www.dev.creditapps.com/api/customer/';
   try {
     const response = await axios.post(url, data, {
@@ -34,7 +50,7 @@ export const fullcustomer = async (data) => {
 export const vehicleList = async (id) => {
   const url = 'https://dev.creditapps.com/api/decode_dealer/';
   const data = {
-    slug:id
+    slug: id
   }
   try {
     const response = await axios.post(url, data, {
@@ -93,6 +109,8 @@ export const deviceInfo = async (ip) =>
         console.log(e);
       });
   });
+
+
 export const detectAgent = () => async (dispatch) => {
   console.log('Call Detect Agent');
   await api

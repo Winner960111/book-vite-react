@@ -2,6 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
+  timezone: '',
+  appointDate: '',
+  appointTime: '',
   bankrupcy: false,
   residentalStatus: '',
   previousResidentalStatus: '',
@@ -101,6 +104,15 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setTimezone: (state, action) => {
+      state.timezone = action.payload
+    },
+    setAppointDate: (state, action) => {
+      state.appointDate = action.payload
+    },
+    setAppointTime: (state, action) => {
+      state.appointTime = action.payload
+    },
     setBankrupcy: (state, action) => {
       state.bankrupcy = action.payload
     },
@@ -466,6 +478,9 @@ export const checkerSlice = createSlice({
 
     // Clear history
     clearHistory: (state) => {
+      state.timezone = initialState.timezone;
+      state.appointDate = initialState.appointDate;
+      state.appointTime = initialState.appointTime;
       state.bankrupcy = initialState.bankrupcy;
       state.previousResidentalStatus = initialState.previousResidentalStatus;
       state.residentalStatus = initialState.residentalStatus;
@@ -561,6 +576,9 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setTimezone,
+  setAppointDate,
+  setAppointTime,
   setBankrupcy,
   setPreviousResidentalStatus,
   setResidentalStatus,

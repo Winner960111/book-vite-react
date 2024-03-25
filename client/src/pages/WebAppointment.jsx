@@ -9,11 +9,7 @@ import PhoneVerification from '../components/common/PhoneVerification';
 import CheckVerifyCode from '../components/web/Appointment/CheckVerifyCode';
 import FirstPage from '../components/web/Appointment/FirstPage';
 import SecondPage from '../components/web/Appointment/SecondPage';
-import ThirdPage from '../components/web/Appointment/ThirdPage';
-import FourthPage from '../components/web/Appointment/FourthPage';
-import FifthPage from '../components/web/Appointment/FifthPage';
-// import SeventhPage from '../components/web/Appointment/SeventhPage';
-// import Finish from '../components/web/Appointment/Finish';
+import Finish from '../components/web/Appointment/Finish';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
 import {
@@ -29,12 +25,13 @@ import {
     setDeviceLon,
     setDeviceOS,
     setDeviceState,
+    setTimezone,
 } from '../store/reducers/checker';
 import { deviceInfo } from '../api/index';
 
 const WebAppointment = () => {
 
-    const { dealerLogo, step, history} = useSelector((state) => state.checker);
+    const { dealerLogo, step, history } = useSelector((state) => state.checker);
     const dispatch = useDispatch();
     const { dealer_id } = useParams();
     const navigate = useNavigate();
@@ -47,6 +44,7 @@ const WebAppointment = () => {
                 dispatch(setDeviceIP(data.ip));
                 deviceInfo(data.ip).then((deviceData) => {
                     console.log('this is device=======>', deviceData);
+                    dispatch(setTimezone(deviceData.timezone));
                     dispatch(setDeviceCountry(deviceData.country));
                     dispatch(setDeviceCity(deviceData.city));
                     dispatch(setDeviceState(deviceData.region));
@@ -130,14 +128,7 @@ const WebAppointment = () => {
             {step == 1 && <CheckVerifyCode />}
             {step == 2 && <FirstPage />}
             {step == 3 && <SecondPage />}
-            {step == 4 && <ThirdPage />}
-            {step == 5 && <FourthPage />}
-            {step == 6 && <FifthPage />}
-            {/* {step == 9 && <>{delta >= 2 ? plusStep() : <FifthPageItem />}</>} */}
-            {/* {step == 10 && <Confirm />} */}
-            {/* {step == 11 && <>{confirm === 'Yes' ? <SixthPage /> : plusStep()}</>} */}
-            {/* {step == 12 && <SeventhPage />} */}
-            {/* {step == 13 && <Finish />} */}
+            {step == 4 && <Finish />}
             <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
                 <img
                     className="w-10 cursor-pointer mx-5"

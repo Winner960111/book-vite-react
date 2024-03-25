@@ -143,7 +143,7 @@ const FifthPage = () => {
                     <p className="w-full text-4xl my-3 font-medium text-center">
                         Please enter your contact information to schedule your appointment.
                     </p>
-                    <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
+                    <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center min-w-[600px]">
                         <div className="w-full p-5 flex justify-between flex-col md:flex-row">
                             <div className="flex flex-col w-full my-3 md:mx-5">
                                 <TextField

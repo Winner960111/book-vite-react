@@ -102,11 +102,11 @@ const FirstPage = () => {
     return (
         <>
             <div className="flex bg-gray-50 w-full justify-center items-center">
-                <div className=" w-2/3 flex flex-col mt-20 mx-20 items-center">
+                <div className=" w-2/3 flex flex-col mt-20 mx-20">
                     <p className="w-full text-4xl my-3 font-medium">
                         When would you like to start your appointment?
                     </p>
-                    <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
+                    <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center  min-w-[600px]">
                         {Object.keys(selectDate).length > 0 &&
                             <div className="flex flex-col items-center">
                                 <b
@@ -155,7 +155,7 @@ const FirstPage = () => {
                         }
 
                         {Object.keys(selectDate).length == 0 &&
-                            <div className="flex p-5 items-center w-full">
+                            <div className="flex p-5 items-center w-full flex-wrap justify-between">
                                 {nextSevenDays.map((day, item) =>
                                     <DateButton
                                         key={item}

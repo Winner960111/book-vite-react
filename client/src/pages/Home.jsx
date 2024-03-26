@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { getDealerInfo } from '../store/reducers/checker';
+import { getDealerInfo, clearHistory } from '../store/reducers/checker';
 
 const Home = () => {
   const { dealer_id } = useParams();
@@ -22,6 +22,10 @@ const Home = () => {
 
   const changePagePrequalified = () => {
     navigate(`/info-checker/${dealer_id}/prequalified`);
+  };
+  const changePageAppointment = () => {
+    dispatch(clearHistory());
+    navigate(`/info-checker/${dealer_id}/appointment`);
   };
 
   return (
@@ -72,6 +76,12 @@ const Home = () => {
             className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 hover:bg-purple-800"
           >
             CHECK APPLICATION STATUS
+          </button>
+          <button
+            onClick={changePageAppointment}
+            className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+          >
+            APPOINTMENT
           </button>
         </div>
       </div>

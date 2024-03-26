@@ -8,6 +8,7 @@ import WebHome from './pages/WebHome';
 import Prequalified from './pages/Prequalified';
 import Quote from './pages/Quote';
 import WebQuote from './pages/WebQuote';
+import Appointment from './pages/Appointment';
 import WebPrequalified from './pages/WebPrequalified';
 import WebTrade from './pages/WebTrade';
 import { detectAgent } from './api';
@@ -65,7 +66,7 @@ const App = () => {
         />
         <Route
           path="/info-checker/:dealer_id/appointment"
-          element={type == 'web' ? <WebAppointment /> : null}
+          element={type == 'web' ? <WebAppointment /> : <Appointment/>}
         />
       </Routes>
     </>

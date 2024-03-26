@@ -7,8 +7,7 @@ import {
   setCheckerMobileNumber,
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-import TextField from '@mui/material/TextField';
-
+import { TextField } from '@mui/material';
 const SendPhoneVerificationCode = () => {
   const { history, step, dealerName, dealerId, checkerMobileNumber } =
     useSelector((state) => state.checker);
@@ -70,13 +69,11 @@ const SendPhoneVerificationCode = () => {
           <TextField
             id="outlined-multiline-flexible"
             label="Phone number"
-            multiline
-            autoFocus
             fullWidth
             value={phoneNumber}
             onChange={handleChangeInput}
             type="tel"
-            maxRows={4}
+            autoFocus
             InputProps={{
               style: {
                 height: '70px', // Set the height of the TextField
@@ -111,7 +108,7 @@ const SendPhoneVerificationCode = () => {
   );
 
   const renderReply = () => (
-    <div className="mt-4 flex justify-end text-lg">
+    <div className="mt-4 flex justify-end text-sm md:text-lg">
       <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
         {checkerMobileNumber}
       </div>

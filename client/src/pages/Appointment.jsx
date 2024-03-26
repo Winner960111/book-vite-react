@@ -7,11 +7,11 @@ import { browserName, osName } from 'react-device-detect';
 import Greeting from '../components/Mobile/appointment/Greeting';
 import SendPhoneVerificationCode from '../components/Mobile/appointment/SendPhoneVerificationCode';
 import CheckPhoneVerificationCode from '../components/Mobile/appointment/CheckPhoneVerificationCode';
-import AppointmentDate from '../components/Mobile/appointment/AppointmentDate';
 import InputFirstName from '../components/Mobile/appointment/InputFirstName';
 import InputLastName from '../components/Mobile/appointment/InputLastName';
 import InputEmail from '../components/Mobile/appointment/InputEmail';
 import Submit from '../components/Mobile/appointment/Submit';
+import AppointmentDate from '../components/Mobile/appointment/AppointmentDate';
 import {
   getDealerInfo,
   setDealerId,

@@ -102,7 +102,7 @@ const FifthPage = () => {
                 status: 'Completed',
                 lang: 'EN',
                 phone: checkerMobileNumber,
-                page: 'Full',
+                page: 'Book Appointment',
                 last_question: '2',
             };
             const res = await usersUpdate(data, intentID);

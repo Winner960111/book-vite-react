@@ -62,7 +62,7 @@ const InputLastName = () => {
         status: 'Started',
         lang: 'EN',
         phone: checkerMobileNumber,
-        page: 'Get Quote',
+        page: 'Book Appointment',
         last_question: '3',
       };
       const res = await usersUpdate(data, intentID);

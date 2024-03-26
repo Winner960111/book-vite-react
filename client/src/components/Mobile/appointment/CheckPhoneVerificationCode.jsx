@@ -65,7 +65,7 @@ const CheckPhoneVerificationCode = () => {
           status: 'Started',
           lang: 'EN',
           phone: checkerMobileNumber,
-          page: 'Get Quote',
+          page: 'Book Appointment',
           last_question: '0',
         };
         const intentRes = await usersStatus(data);

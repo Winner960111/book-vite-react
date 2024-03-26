@@ -51,7 +51,7 @@ const Submit = () => {
       status: 'Completed',
       lang: 'EN',
       phone: checkerMobileNumber,
-      page: 'Short',
+      page: 'Book Appointment',
       last_question: '5',
     };
     const intent_res = await usersUpdate(intent_data, intentID);

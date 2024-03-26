@@ -181,10 +181,7 @@ const FirstPage = () => {
                   </p>
                 )}
               </div>
-            </div>
-
-            <div className="w-full p-5 flex justify-between">
-              <div className="flex flex-col w-[46%] my-3 md:mx-5">
+              <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
                   onFocus={() => setFocusEmailAddress(true)}
                   onBlur={() => setFocusEmailAddress(false)} // onBlur is triggered when the input loses focus
@@ -218,6 +215,10 @@ const FirstPage = () => {
                   </p>
                 )}
               </div>
+            </div>
+
+            <div className="w-full p-5 flex justify-end">
+
               <button
                 type="button"
                 onClick={handlesubmit}

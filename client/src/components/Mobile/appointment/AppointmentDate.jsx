@@ -69,7 +69,7 @@ const SendPhoneVerificationCode = () => {
         status: 'Started',
         lang: 'EN',
         phone: checkerMobileNumber,
-        page: 'Get Quote',
+        page: 'Book Appointment',
         last_question: '1',
       };
       const res = await usersUpdate(data, intentID);

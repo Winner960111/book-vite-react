@@ -74,7 +74,7 @@ const FirstPage = () => {
             status: 'Started',
             lang: 'EN',
             phone: checkerMobileNumber,
-            page: 'Full',
+            page: 'Book Appointment',
             last_question: '1',
         };
         const res = await usersUpdate(data, intentID);

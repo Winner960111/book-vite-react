@@ -27,6 +27,10 @@ const Home = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/appointment`);
   };
+  const changePageTradeIn = () => {
+    dispatch(clearHistory());
+    navigate(`/info-checker/${dealer_id}/trade`);
+  };
 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
@@ -54,7 +58,7 @@ const Home = () => {
             GET PREQUALIFIED
           </button>
           <button
-            // onClick={changePagePrequalified}
+            onClick={changePageTradeIn}
             className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 hover:bg-purple-800"
           >
             TRADE IN VALUE

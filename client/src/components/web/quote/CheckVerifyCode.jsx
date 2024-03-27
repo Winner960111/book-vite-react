@@ -42,12 +42,12 @@ const CheckVerifyCode = () => {
     } else if (!/^[0-9]+$/.test(verifyCode)) {
       setError('The verification code contains only numbers');
     } else {
-      // const res = await checkVerification(
-      //   checkerMobileNumber,
-      //   dealerId,
-      //   verifyCode
-      // );
-      const res = { status: 201 };
+      const res = await checkVerification(
+        checkerMobileNumber,
+        dealerId,
+        verifyCode
+      );
+      // const res = { status: 201 };
 
       if (res.status === 201) {
         const data = {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkPhoneNumber } from '../../api';
+import { checkPhoneNumber, checkPhoneNumberCall } from '../../api';
 import {
   setCheckerMobileNumber,
   addHistory,
@@ -32,7 +32,7 @@ const PhoneVerification = () => {
     setError(null);
   };
 
-  const handleSubmit = async (e) => {
+  const handleTextCode = async (e) => {
     e.preventDefault();
 
     if (!phoneNumber.trim()) {
@@ -53,6 +53,27 @@ const PhoneVerification = () => {
     }
   };
 
+  const handleCallCode = async (e) => {
+    e.preventDefault();
+
+    if (!phoneNumber.trim()) {
+      setError('You should input your phone number');
+    } else if (!/^\d{3}-\d{3}-\d{4}$/.test(phoneNumber)) {
+      setError('Invalid phone number type');
+    } else {
+      const res = await checkPhoneNumberCall(phoneNumber, dealerId);
+
+      if (res.status === 201) {
+        dispatch(setCheckerMobileNumber(phoneNumber));
+        dispatch(addHistory(true));
+        dispatch(setProgress());
+        setPhoneNumber('');
+      } else {
+        setError('Invalid phone number. Please try again.');
+      }
+    }
+  };
+
   return (
     <>
       <div className="w-full flex flex-col items-center">
@@ -60,7 +81,6 @@ const PhoneVerification = () => {
           <b>Verify your mobile number</b>
         </p>
         <form
-          onSubmit={handleSubmit}
           className={
             'w-4/5 md:w-[600px] text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
           }
@@ -94,17 +114,30 @@ const PhoneVerification = () => {
             ) : null}
           </div>
           <p className=" bg-gray-50 rounded-3xl p-4">
-            by providing your mobile number you agree to receive recurring
+            We will send a <strong>verification code</strong> to the phone number you provide.<br />
+            <p className=''>Don&apos;t include &apos;+&apos; or &lsquo;()&rsquo;</p>
+            {/* by providing your mobile number you agree to receive recurring
             messages from <b>{dealerName}</b> to the provided mobile number and
             agree to <b>{dealerName}</b>. terms and privacy policy. Message &
-            data rates may apply.
+            data rates may apply. */}
           </p>
-          <button
-            type="submit"
-            className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
-          >
-            CONTINUE
-          </button>
+          <div className="flex justify-between">
+            <button
+              type="button"
+              onClick={handleTextCode}
+              className="bg-[#854fff] w-[30%] h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+            >
+              Text code
+            </button>
+
+            <button
+              type="button"
+              onClick={handleCallCode}
+              className="bg-[#854fff] w-[30%] h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+            >
+              Call code
+            </button>
+          </div>
         </form>
       </div>
     </>

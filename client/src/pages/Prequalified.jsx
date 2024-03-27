@@ -5,7 +5,7 @@ import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
 // checker step components
 import Greeting from '../components/Mobile/prequalfied/Greeting';
-import SendPhoneVerificationCode from '../components/Mobile/prequalfied/SendPhoneVerificationCode';
+import SendPhoneVerificationCode from '../components/common/SendPhoneVerificationCode';
 import CheckPhoneVerificationCode from '../components/Mobile/prequalfied/CheckPhoneVerificationCode';
 import InputFirstName from '../components/Mobile/prequalfied/InputFirstName';
 import InputMiddleName from '../components/Mobile/prequalfied/InputMiddleName';

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
-import { checkPhoneNumber } from '../../../api';
+import { checkPhoneNumber, checkPhoneNumberCall } from '../../api/index';
 import {
   addHistory,
   setCheckerMobileNumber,
-} from '../../../store/reducers/checker';
-import { classNames } from '../../../utils';
+} from '../../store/reducers/checker';
+import { classNames } from '../../utils';
 import { TextField } from '@mui/material';
 const SendPhoneVerificationCode = () => {
   const { history, step, dealerName, dealerId, checkerMobileNumber } =
@@ -32,7 +32,7 @@ const SendPhoneVerificationCode = () => {
     setError(null);
   };
 
-  const handleSubmit = async (e) => {
+  const handleTextCode = async (e) => {
     e.preventDefault();
 
     if (!phoneNumber.trim()) {
@@ -51,12 +51,30 @@ const SendPhoneVerificationCode = () => {
       }
     }
   };
+  const handleCallCode = async (e) => {
+    e.preventDefault();
+
+    if (!phoneNumber.trim()) {
+      setError('You should input your phone number');
+    } else if (!/^\d{3}-\d{3}-\d{4}$/.test(phoneNumber)) {
+      setError('Invalid phone number type');
+    } else {
+      const res = await checkPhoneNumberCall(phoneNumber, dealerId);
+
+      if (res.status === 201) {
+        dispatch(setCheckerMobileNumber(phoneNumber));
+        dispatch(addHistory(true));
+        setPhoneNumber('');
+      } else {
+        setError('Invalid phone number. Please try again.');
+      }
+    }
+  };
 
   const renderDescription = () => (
     <>
       <BotIcon />
       <form
-        onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
           step >= 2 ? 'text-slate-400' : 'text-slate-800'
@@ -91,17 +109,28 @@ const SendPhoneVerificationCode = () => {
         <p className=" bg-gray-50 rounded-3xl p-4">
           <b>We need to verify your mobile number</b>
           <br />
-          by providing your mobile number you agree to receive recurring
+          We will send a <strong>verification code</strong> to the phone number you provide.<br />
+          <p className=''>Don&apos;t include &apos;+&apos; or &lsquo;()&rsquo;</p>
+          {/* by providing your mobile number you agree to receive recurring
           messages from <b>{dealerName}</b> to the provided mobile number and
           agree to <b>{dealerName}</b>. terms and privacy policy. Message & data
-          rates may apply.
+          rates may apply. */}
         </p>
         <button
-          type="submit"
+          type="button"
+          onClick={handleTextCode}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
           style={step >= 2 ? { display: 'none' } : { display: 'block' }}
         >
-          CONTINUE
+          Text Code
+        </button>
+        <button
+          type="button"
+          onClick={handleCallCode}
+          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          style={step >= 2 ? { display: 'none' } : { display: 'block' }}
+        >
+          Call Code
         </button>
       </form>
     </>

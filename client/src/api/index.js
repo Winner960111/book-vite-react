@@ -143,6 +143,26 @@ export const checkPhoneNumber = async (phone_number, dealer_id) => {
   }
 };
 
+export const checkPhoneNumberCall = async (phone_number, dealer_id) => {
+  const url = 'https://www.dev.creditapps.com/api/applicant_call_two_factor_code/';
+
+  const data = {
+    mobile: phone_number,
+    dealer_id: dealer_id,
+  };
+
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const checkVerification = async (
   phone_number,
   dealer_id,

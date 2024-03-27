@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
 import {
   addHistory,
-  setCheckerIsSkipMiddleName,
-  setQuoteInterest,
+  setMileageHour,
+
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
 import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
 
-const Vehicle = () => {
-  const { step, history, checkerIsSkipMiddleName, quoteInterest, intentID,
+const Mileage = () => {
+  const { step, history, intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -29,23 +29,19 @@ const Vehicle = () => {
   const dispatch = useDispatch();
 
   const [year, setYear] = useState('');
-  const [make, setMake] = useState('');
-  const [model, setModel] = useState('');
-
+  const [error, setError] = useState('')
   const handleYearChange = (e) => {
     setYear(e.target.value);
-  };
-  const handleMake = (e) => {
-    setMake(e.target.value);
-  };
-  const handleModel = (e) => {
-    setModel(e.target.value);
+    setError("")
   };
 
+  useEffect(() => {
+    setError('')
+    setYear('')
+  }, [])
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let interest = year + ' ' + make + ' ' + ' ' + model;
     const data = {
       dealer_id: dealerId,
       device_ip_address: deviceIP,
@@ -61,23 +57,20 @@ const Vehicle = () => {
       status: 'Started',
       lang: 'EN',
       phone: checkerMobileNumber,
-      page: 'Get Quote',
-      last_question: '5',
+      page: 'Trade In',
+      last_question: '6',
     };
     const res = await usersUpdate(data, intentID);
     console.log('this is update results ====>', res);
-    dispatch(addHistory(true));
-    dispatch(setQuoteInterest(interest));
-    setYear('');
-    setMake('');
-    setModel('');
-  };
-
-  const skipThisStep = () => {
-
-    dispatch(setCheckerIsSkipMiddleName(true));
-    dispatch(addHistory(true));
-  };
+    if (!year) {
+      setError("Required")
+    } else if (!/^[0-9]+$/.test(year)) {
+      setError("*only number")
+    } else {
+      dispatch(addHistory(true));
+      dispatch(setMileageHour(year))
+    }
+  }
 
   const renderDescription = () => (
     <>
@@ -86,17 +79,17 @@ const Vehicle = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 8 ? 'text-slate-400' : 'text-slate-800'
+          step >= 9 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div
           className="flex flex-col md:flex-row md:items-center"
-          style={step >= 8 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 9 ? { display: 'none' } : { display: 'block' }}
         >
           <TextField
             id="margin-dense"
             margin="dense"
-            label="Year"
+            label="Mileage hour"
             fullWidth
             autoFocus
             value={year}
@@ -114,62 +107,18 @@ const Vehicle = () => {
               },
             }}
           />
-          <TextField
-            id="margin-dense"
-            margin="dense"
-            label="Make"
-            fullWidth
-            value={make}
-            onChange={handleMake}
-            type="text"
-            InputProps={{
-              style: {
-                height: '70px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
-          />
-          <TextField
-            label="Model"
-            fullWidth
-            id="margin-dense"
-            margin="dense"
-            value={model}
-            onChange={handleModel}
-            type="text"
-            InputProps={{
-              style: {
-                height: '70px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
-          />
         </div>
+        {error !== '' ? (
+          <p className="text-red-500 pl-2 text-sm">{error}</p>
+        ) : null}
         <p className="bg-gray-50 rounded-3xl p-4">
-          What is the vehicle&apos;s year/make/model?
+          How much mileage hour?
         </p>
-        <button
-          onClick={skipThisStep}
-          type="button"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 8 ? { display: 'none' } : { display: 'block' }}
-        >
-          SKIP
-        </button>
+
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 8 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 9 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -180,16 +129,16 @@ const Vehicle = () => {
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
       <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
-        {quoteInterest}
+        {year}
       </div>
     </div>
   );
 
   return (
     <>
-      {step > 6 && checkerIsSkipMiddleName == false ? (
+      {step > 7 ? (
         <>
-          {history[7] == true ? (
+          {history[8] == true ? (
             <>
               {renderDescription()}
               {renderReply()}
@@ -202,4 +151,4 @@ const Vehicle = () => {
     </>
   );
 };
-export default Vehicle;
+export default Mileage;

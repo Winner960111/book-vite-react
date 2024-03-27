@@ -7,12 +7,15 @@ import { browserName, osName } from 'react-device-detect';
 import Greeting from '../components/Mobile/trade/Greeting';
 import SendPhoneVerificationCode from '../components/common/SendPhoneVerificationCode';
 import CheckPhoneVerificationCode from '../components/Mobile/trade/CheckPhoneVerificationCode';
+import Instant from "../components/Mobile/trade/Instant"
 import InputFirstName from '../components/Mobile/trade/InputFirstName';
 import InputLastName from '../components/Mobile/trade/InputLastName';
 import InputEmail from '../components/Mobile/trade/InputEmail';
-import Submit from '../components/Mobile/trade/Submit';
+// import Submit from '../components/Mobile/trade/Submit';
+import Status from '../components/Mobile/trade/Status';
 import DealType from '../components/Mobile/trade/DealType';
-import Vehicle from '../components/Mobile/trade/Vehicle';
+import Mileage from '../components/Mobile/trade/Mileage';
+import Original from '../components/Mobile/trade/Original';
 import {
   getDealerInfo,
   setDealerId,
@@ -110,12 +113,15 @@ const Quote = () => {
           <Greeting />
           <SendPhoneVerificationCode />
           <CheckPhoneVerificationCode />
+          <Instant/>
           <InputFirstName />
           <InputLastName />
           <InputEmail />
+          <Status />
+          <Mileage />
           <DealType />
-          <Vehicle />
-          <Submit />
+          <Original/>
+          {/* <Submit /> */}
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
-import { addHistory, setDealType } from '../../../store/reducers/checker';
+import { addHistory, setOriginalOwner } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 
 const DealType = () => {
@@ -21,16 +21,16 @@ const DealType = () => {
     checkerMobileNumber, } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
-  const [dealClick, setDealClick] = useState('');
   const [error, setError] = useState(null);
+  const [owner, setOwner] = useState('');
 
   useEffect(() => {
     setError(null);
-    setDealClick('');
+    setOwner('')
   }, [step]);
 
   const handleSubmit = async () => {
-    if (dealClick) {
+    if (owner) {
       const data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,
@@ -47,12 +47,12 @@ const DealType = () => {
         lang: 'EN',
         phone: checkerMobileNumber,
         page: 'Trade In',
-        last_question: '7',
+        last_question: '8',
       };
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
       dispatch(addHistory(true));
-      dispatch(setDealType(dealClick));
+      dispatch(setOriginalOwner(owner));
     } else {
       setError('You must select one of above methodes.');
     }
@@ -64,7 +64,7 @@ const DealType = () => {
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 10 ? 'text-slate-400' : 'text-slate-800'
+          step >= 11 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="flex flex-col md:justify-between bg-gray-50 rounded-3xl p-4">
@@ -73,10 +73,10 @@ const DealType = () => {
               htmlFor="radio1"
               className="text-lg md:text-2xl m-2 p-2 cursor-pointer"
               onClick={() => {
-                setDealClick('Finance');
+                setOwner('Yes');
               }}
             >
-              {step != 9 ? (
+              {step != 10 ? (
                 <input
                   type="radio"
                   id="radio1"
@@ -92,16 +92,16 @@ const DealType = () => {
                   className="w-[17px] h-[17px] mx-2"
                 />
               )}
-              Finance
+              Yes
             </label>
             <label
               htmlFor="radio2"
               className="text-lg md:text-2xl m-2 p-2 cursor-pointer"
               onClick={() => {
-                setDealClick('Cash');
+                setOwner('No');
               }}
             >
-              {step != 9 ? (
+              {step != 10 ? (
                 <input
                   type="radio"
                   id="radio2"
@@ -117,37 +117,12 @@ const DealType = () => {
                   className="w-[17px] h-[17px] mx-2"
                 />
               )}
-              Cash
-            </label>
-            <label
-              htmlFor="radio3"
-              className="text-lg md:text-2xl m-2 p-2 cursor-pointer"
-              onClick={() => {
-                setDealClick('Lease');
-              }}
-            >
-              {step != 9 ? (
-                <input
-                  type="radio"
-                  id="radio3"
-                  name="deal_type"
-                  className="w-[17px] h-[17px] mx-2"
-                  disabled
-                />
-              ) : (
-                <input
-                  type="radio"
-                  id="radio3"
-                  name="deal_type"
-                  className="w-[17px] h-[17px] mx-2"
-                />
-              )}
-              Lease
+              No
             </label>
           </div>
 
           <p className=" px-6">
-            <b>Please select deal type.</b>
+            <b> Are you original owner?</b>
           </p>
           {error !== '' ? (
             <p className="text-red-500 pl-2 pt-2">{error}</p>
@@ -158,7 +133,7 @@ const DealType = () => {
           type="button"
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 10 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 11 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -166,7 +141,7 @@ const DealType = () => {
     </>
   );
 
-  return <>{step > 8 ? renderDescription() : null}</>;
+  return <>{step > 9 ? renderDescription() : null}</>;
 };
 
 export default DealType;

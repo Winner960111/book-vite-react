@@ -59,8 +59,8 @@ const InputEmail = () => {
         status: 'Started',
         lang: 'EN',
         phone: checkerMobileNumber,
-        page: 'Get Quote',
-        last_question: '3',
+        page: 'Trade In',
+        last_question: '4',
       };
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
@@ -77,12 +77,12 @@ const InputEmail = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 6 ? 'text-slate-400' : 'text-slate-800'
+          step >= 7 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div
           className="py-2 flex flex-col md:flex-row md:items-center"
-          style={step >= 6 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 7 ? { display: 'none' } : { display: 'block' }}
         >
           <TextField
             id="outlined-multiline-flexible"
@@ -113,7 +113,7 @@ const InputEmail = () => {
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 6 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 7 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -131,9 +131,9 @@ const InputEmail = () => {
 
   return (
     <>
-      {step > 4 ? (
+      {step > 5 ? (
         <>
-          {history[5] == true ? (
+          {history[6] == true ? (
             <>
               {renderDescription()}
               {renderReply()}

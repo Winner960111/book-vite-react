@@ -62,8 +62,8 @@ const InputFirstName = () => {
         status: 'Started',
         lang: 'EN',
         phone: checkerMobileNumber,
-        page: 'Get Quote',
-        last_question: '1',
+        page: 'Trade In',
+        last_question: '2',
       };
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
@@ -80,17 +80,14 @@ const InputFirstName = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 4 ? 'text-slate-400' : 'text-slate-800'
+          step >= 5 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div
           className="flex flex-col md:flex-row md:items-center"
-          style={step >= 4 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 5 ? { display: 'none' } : { display: 'block' }}
         >
-          <p className="bg-gray-50 rounded-3xl p-4 text-left">
-            <b>🎊 Congratulation! you successfully verified.</b>
-          </p>
-          <TextField
+           <TextField
             id="outlined-multiline-flexible"
             label="first name"
             fullWidth
@@ -118,7 +115,7 @@ const InputFirstName = () => {
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 4 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 5 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -136,9 +133,9 @@ const InputFirstName = () => {
 
   return (
     <>
-      {step > 2 ? (
+      {step > 3 ? (
         <>
-          {history[3] == true ? (
+          {history[4] == true ? (
             <>
               {renderDescription()}
               {renderReply()}

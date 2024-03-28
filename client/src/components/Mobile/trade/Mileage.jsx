@@ -58,7 +58,7 @@ const Mileage = () => {
       lang: 'EN',
       phone: checkerMobileNumber,
       page: 'Trade In',
-      last_question: '6',
+      last_question: '7',
     };
     const res = await usersUpdate(data, intentID);
     console.log('this is update results ====>', res);
@@ -79,12 +79,12 @@ const Mileage = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 9 ? 'text-slate-400' : 'text-slate-800'
+          step >= 10 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div
           className="flex flex-col md:flex-row md:items-center"
-          style={step >= 9 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 10 ? { display: 'none' } : { display: 'block' }}
         >
           <TextField
             id="margin-dense"
@@ -118,7 +118,7 @@ const Mileage = () => {
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 9 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 10 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -136,9 +136,9 @@ const Mileage = () => {
 
   return (
     <>
-      {step > 7 ? (
+      {step > 8 ? (
         <>
-          {history[8] == true ? (
+          {history[9] == true ? (
             <>
               {renderDescription()}
               {renderReply()}

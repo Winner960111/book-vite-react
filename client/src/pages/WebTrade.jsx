@@ -12,6 +12,7 @@ import FirstPage from '../components/web/trade/FirstPage';
 import SecondPage from '../components/web/trade/SecondPage';
 import ThirdPage from '../components/web/trade/ThirdPage';
 import Finish from '../components/web/trade/Finish';
+import VehicleType from '../components/web/trade/VehicleType';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
 import {
@@ -126,10 +127,11 @@ const WebTrade = () => {
       {step == 0 && <PhoneVerification />}
       {step == 1 && <CheckVerifyCode />}
       {step == 2 && <Instant />}
-      {step == 3 && <FirstPage />}
-      {step == 4 && <SecondPage />}
-      {step == 5 && <ThirdPage />}
-      {step == 6 && <Finish />}
+      {step == 3 && <VehicleType/>}
+      {step == 4 && <FirstPage />}
+      {step == 5 && <SecondPage />}
+      {step == 6 && <ThirdPage />}
+      {step == 7 && <Finish />}
       <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
         <img
           className="w-10 cursor-pointer mx-5"

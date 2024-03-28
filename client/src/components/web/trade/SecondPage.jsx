@@ -74,7 +74,7 @@ const DealType = () => {
         lang: 'EN',
         phone: checkerMobileNumber,
         page: 'Trade In',
-        last_question: '3',
+        last_question: '4',
       };
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);

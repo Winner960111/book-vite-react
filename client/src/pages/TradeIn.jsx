@@ -17,6 +17,7 @@ import DealType from '../components/Mobile/trade/DealType';
 import Mileage from '../components/Mobile/trade/Mileage';
 import Original from '../components/Mobile/trade/Original';
 import Comment from '../components/Mobile/trade/Comment';
+import VehicleType from '../components/Mobile/trade/VehicleType';
 import {
   getDealerInfo,
   setDealerId,
@@ -114,7 +115,8 @@ const Quote = () => {
           <Greeting />
           <SendPhoneVerificationCode />
           <CheckPhoneVerificationCode />
-          <Instant/>
+          <Instant />
+          <VehicleType/>
           <InputFirstName />
           <InputLastName />
           <InputEmail />

@@ -61,7 +61,7 @@ const Inputcomment = () => {
         lang: 'EN',
         phone: checkerMobileNumber,
         page: 'Trade In',
-        last_question: '9',
+        last_question: '10',
       };
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
@@ -77,12 +77,12 @@ const Inputcomment = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 12 ? 'text-slate-400' : 'text-slate-800'
+          step >= 13 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div
           className="flex flex-col md:flex-row md:items-center"
-          style={step >= 12 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 13 ? { display: 'none' } : { display: 'block' }}
         >
           <textarea
             className="w-full h-20 border-2 rounded-md text-xl my-5 md:my-5 p-5 placeholder-blue-200 text-blue-600"
@@ -102,7 +102,7 @@ const Inputcomment = () => {
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 12 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 13 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -120,9 +120,9 @@ const Inputcomment = () => {
 
   return (
     <>
-      {step > 10 ? (
+      {step > 11 ? (
         <>
-          {history[11] == true ? (
+          {history[12] == true ? (
             <>
               {renderDescription()}
               {renderReply()}

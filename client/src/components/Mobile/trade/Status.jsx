@@ -47,7 +47,7 @@ const DealType = () => {
         lang: 'EN',
         phone: checkerMobileNumber,
         page: 'Trade In',
-        last_question: '5',
+        last_question: '6',
       };
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
@@ -64,7 +64,7 @@ const DealType = () => {
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 8 ? 'text-slate-400' : 'text-slate-800'
+          step >= 9 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="flex flex-col md:justify-between bg-gray-50 rounded-3xl p-4">
@@ -76,7 +76,7 @@ const DealType = () => {
                 setDealClick('Excellent');
               }}
             >
-              {step != 7 ? (
+              {step != 8 ? (
                 <input
                   type="radio"
                   id="radio1"
@@ -101,7 +101,7 @@ const DealType = () => {
                 setDealClick('Good');
               }}
             >
-              {step != 7 ? (
+              {step != 8 ? (
                 <input
                   type="radio"
                   id="radio2"
@@ -126,7 +126,7 @@ const DealType = () => {
                 setDealClick('Fair');
               }}
             >
-              {step != 7 ? (
+              {step != 8 ? (
                 <input
                   type="radio"
                   id="radio3"
@@ -158,7 +158,7 @@ const DealType = () => {
           type="button"
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 8 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 9 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -166,7 +166,7 @@ const DealType = () => {
     </>
   );
 
-  return <>{step > 6 ? renderDescription() : null}</>;
+  return <>{step > 7 ? renderDescription() : null}</>;
 };
 
 export default DealType;

@@ -65,7 +65,7 @@ const Submit = () => {
     const res = await SubmitTrade(data);
     if (res.status == 201) {
       console.log('status ImageSend', res);
-      const data = {
+      const new_data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,
         device_operating_system: deviceOS,
@@ -81,10 +81,10 @@ const Submit = () => {
         lang: 'EN',
         phone: checkerMobileNumber,
         page: 'Trade In',
-        last_question: '10',
+        last_question: '11',
       };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      const newRes = await usersUpdate(new_data, intentID);
+      console.log('this is update results ====>', newRes);
       dispatch(addHistory(true));
     } else {
       console.log('Faild ImageSend');
@@ -97,7 +97,7 @@ const Submit = () => {
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 13 ? 'text-slate-400' : 'text-slate-800'
+          step >= 14 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <p className="bg-gray-50 rounded-3xl p-4">We are almost done:</p>
@@ -117,7 +117,7 @@ const Submit = () => {
             }
           >
             Please click{' '}
-            {step == 12 ? (
+            {step == 13 ? (
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -130,7 +130,7 @@ const Submit = () => {
               'here'
             )}{' '}
             to read our Privacy Notice and click{' '}
-            {step == 12 ? (
+            {step == 13 ? (
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -144,7 +144,7 @@ const Submit = () => {
             )}{' '}
             to read our full Privacy Policy. If you would like to opt-out of
             having your information shared at all, please do so now by clicking{' '}
-            {step == 12 ? (
+            {step == 13 ? (
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -161,7 +161,7 @@ const Submit = () => {
           <span
             onClick={() => setReadStatePara1(!readStatePara1)}
             className={
-              step == 12
+              step == 13
                 ? 'text-blue-600 text-sm hover:underline cursor-pointer'
                 : null
             }
@@ -181,7 +181,7 @@ const Submit = () => {
             email, phone, or text messages regarding this inquiry, I also
             acknowledge that I have read, understand, and agree to be bound by
             our End User{' '}
-            {step == 12 ? (
+            {step == 13 ? (
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -194,7 +194,7 @@ const Submit = () => {
               'here'
             )}{' '}
             and our{' '}
-            {step == 12 ? (
+            {step == 13 ? (
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -211,7 +211,7 @@ const Submit = () => {
           <span
             onClick={() => setReadStatePara2(!readStatePara2)}
             className={
-              step == 12
+              step == 13
                 ? 'text-blue-600 text-sm hover:underline cursor-pointer'
                 : null
             }
@@ -222,7 +222,7 @@ const Submit = () => {
         <button
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 13 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 14 ? { display: 'none' } : { display: 'block' }}
         >
           Submit
         </button>
@@ -243,10 +243,10 @@ const Submit = () => {
 
   return (
     <>
-      {step > 11 ? (
+      {step > 12 ? (
         <>
           {renderDescription()}
-          {history[12] == true ? renderReply() : null}
+          {history[13] == true ? renderReply() : null}
         </>
       ) : null}
     </>

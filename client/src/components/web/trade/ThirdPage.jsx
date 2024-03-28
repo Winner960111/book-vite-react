@@ -62,9 +62,9 @@ const ThirdPage = () => {
       email: checkerEmail,
     };
     const res = await SubmitTrade(data);
+    console.log('status ImageSend', res);
     if (res.status == 201) {
-      console.log('status ImageSend', res);
-      const data = {
+      const new_data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,
         device_operating_system: deviceOS,
@@ -80,10 +80,10 @@ const ThirdPage = () => {
         lang: 'EN',
         phone: checkerMobileNumber,
         page: 'Trade In',
-        last_question: '4',
+        last_question: '5',
       };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      const passRes = await usersUpdate(new_data, intentID);
+      console.log('this is update results ====>', passRes);
       dispatch(addHistory(true));
     } else {
       console.log('Faild ImageSend');

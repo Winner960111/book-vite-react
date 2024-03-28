@@ -11,11 +11,12 @@ import Instant from "../components/Mobile/trade/Instant"
 import InputFirstName from '../components/Mobile/trade/InputFirstName';
 import InputLastName from '../components/Mobile/trade/InputLastName';
 import InputEmail from '../components/Mobile/trade/InputEmail';
-// import Submit from '../components/Mobile/trade/Submit';
+import Submit from '../components/Mobile/trade/Submit';
 import Status from '../components/Mobile/trade/Status';
 import DealType from '../components/Mobile/trade/DealType';
 import Mileage from '../components/Mobile/trade/Mileage';
 import Original from '../components/Mobile/trade/Original';
+import Comment from '../components/Mobile/trade/Comment';
 import {
   getDealerInfo,
   setDealerId,
@@ -120,8 +121,9 @@ const Quote = () => {
           <Status />
           <Mileage />
           <DealType />
-          <Original/>
-          {/* <Submit /> */}
+          <Original />
+          <Comment/>
+          <Submit />
         </div>
       </div>
     </div>

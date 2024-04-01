@@ -31,6 +31,10 @@ const Home = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/trade`);
   };
+  const changePageCheckApp = () => {
+    dispatch(clearHistory());
+    navigate(`/info-checker/${dealer_id}/check`);
+  };
 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
@@ -76,7 +80,7 @@ const Home = () => {
             FULL CREDIT APPLICATION
           </button>
           <button
-            // onClick={changePagePrequalified}
+            onClick={changePageCheckApp}
             className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 hover:bg-purple-800"
           >
             CHECK APPLICATION STATUS

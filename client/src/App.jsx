@@ -17,6 +17,7 @@ import { setRenderType } from './store/reducers/checker';
 import Loading from './components/common/Loading';
 import WebFullApp from './pages/WebFullApp';
 import WebAppointment from "./pages/WebAppointment"
+import WebCheckApp from "./pages/WebCheckApp"
 
 const App = () => {
   const dispatch = useDispatch();
@@ -67,7 +68,11 @@ const App = () => {
         />
         <Route
           path="/info-checker/:dealer_id/appointment"
-          element={type == 'web' ? <WebAppointment /> : <Appointment/>}
+          element={type == 'web' ? <WebAppointment /> : <Appointment />}
+        />
+        <Route
+          path="/info-checker/:dealer_id/check"
+          element={type == 'web' ? <WebCheckApp /> : null}
         />
       </Routes>
     </>

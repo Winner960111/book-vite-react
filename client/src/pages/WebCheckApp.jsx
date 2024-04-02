@@ -7,9 +7,7 @@ import { browserName, osName } from 'react-device-detect';
 // checker step components
 import PhoneVerification from '../components/common/PhoneVerification';
 import CheckVerifyCode from '../components/web/check/CheckVerifyCode';
-import FirstPage from '../components/web/check/FirstPage';
-import SecondPage from '../components/web/check/SecondPage';
-import ThirdPage from '../components/web/check/ThirdPage';
+import SubmitContent from '../components/web/check/SubmitContent';
 import Finish from '../components/web/check/Finish';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
@@ -122,10 +120,8 @@ const WebPrequalified = () => {
       </div>
       {step == 0 && <PhoneVerification />}
       {step == 1 && <CheckVerifyCode />}
-      {step == 2 && <FirstPage />}
-      {step == 3 && <SecondPage />}
-      {step == 4 && <ThirdPage />}
-      {step == 5 && <Finish />}
+      {step == 2 && <SubmitContent />}
+      {step == 3 && <Finish />}
       <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
         <img
           className="w-10 cursor-pointer mx-5"

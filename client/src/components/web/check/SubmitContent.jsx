@@ -1,28 +1,15 @@
 import { useState, useEffect } from 'react';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setCheckerLastName,
-  setCheckerSocialNumber,
-} from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
-const FirstPage = () => {
+import {checkapp} from '../../../api/index'
+
+const SubmitContent = () => {
   const {
     step,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
     checkerMobileNumber,
+    dealerId,
+ 
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [errorLastName, setErrorLastName] = useState('');
@@ -51,47 +38,24 @@ const FirstPage = () => {
   }, [step]);
 
   const handlesubmit = async () => {
-    let pass = 0;
 
     if (!lastName) {
       setErrorLastName('*field is required');
     } else if (!/^[A-Za-z]+$/.test(lastName)) {
       setErrorLastName('*contains only characters');
     } else {
-      pass += 1;
-    }
-
-    if (!socialNumber) {
-      setErrorSocialNumber('input your social security number');
-    } else if (!/^\d{3}-\d{2}-\d{4}$/.test(socialNumber)) {
-      setErrorSocialNumber('Invalid social security number');
-    } else {
-      pass += 1;
-    }
-    if (pass == 2) {
-      const data = {
+        const data = {
         dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Short',
-        last_question: '1',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
-      dispatch(addHistory(true));
-      dispatch(setCheckerLastName(lastName));
-      dispatch(setCheckerSocialNumber(socialNumber));
+        last_name: lastName,
+        ssn: socialNumber,
+        mobile_phone: checkerMobileNumber
+      }
+      const res = await checkapp(data)
+      if (res.status == 201) {
+        dispatch(addHistory(true));
+      } else {
+        console.log("failed API calling.")
+      }
     }
   };
 
@@ -189,4 +153,4 @@ const FirstPage = () => {
     </>
   );
 };
-export default FirstPage;
+export default SubmitContent;

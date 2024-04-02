@@ -3,6 +3,21 @@ import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 
 
+export const checkapp = async (data) => {
+  console.log("this is appointment items ===>", data)
+  const url = 'https://dev.creditapps.com/api/app_status/';
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'content-type': 'application/json',
+      }
+    })
+    return response
+  } catch (e) {
+    return { status: 400 }
+  }
+}
+
 export const appointment = async (data) => {
   console.log("this is appointment items ===>", data)
   const url = 'https://dev.creditapps.com/api/appointment/';

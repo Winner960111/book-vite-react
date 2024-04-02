@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { addHistory } from '../../../store/reducers/checker';
+import { addHistory, setAppDescription, setAppStatus } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { TextField } from '@mui/material';
 import {checkapp} from '../../../api/index'
@@ -52,7 +52,10 @@ const SubmitContent = () => {
       }
       const res = await checkapp(data)
       if (res.status == 201) {
-        dispatch(addHistory(true));
+        console.log(res.data)
+        dispatch(setAppStatus(res.data.status))
+        dispatch(setAppDescription(res.data.describe))
+        dispatch(addHistory(true))
       } else {
         console.log("failed API calling.")
       }
@@ -142,7 +145,7 @@ const SubmitContent = () => {
               <button
                 type="button"
                 onClick={handlesubmit}
-                className="bg-[#854fff] w-full me:w-[30%] h-16 md:mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="bg-[#854fff] w-full md:w-[40%] h-16 md:mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
               >
                 CONTINUE
               </button>

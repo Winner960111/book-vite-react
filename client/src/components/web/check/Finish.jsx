@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { clearHistory } from '../../../store/reducers/checker';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 const Finish = () => {
+
+  const {appStatus, appDescription} = useSelector((state)=>state.checker)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
@@ -18,16 +21,16 @@ const Finish = () => {
       <form
         onSubmit={handleSubmit}
         className={
-          ' w-2/6 text-justify bg-white rounded-3xl p-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
+          ' w-2/6 text-justify bg-white rounded-3xl p-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
         }
       >
         <p className=" bg-gray-50 rounded-3xl p-4">
-          Our team is already working diligently to review your information and
-          will get back to you promptly with the next steps.
+          <b className='text-3xl'>{appStatus}</b><br/>
+          {appDescription}
         </p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+          className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-lg my-4 hover:bg-purple-800"
         >
           FINISH
         </button>

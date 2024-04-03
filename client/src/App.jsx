@@ -18,6 +18,7 @@ import Loading from './components/common/Loading';
 import WebFullApp from './pages/WebFullApp';
 import WebAppointment from "./pages/WebAppointment"
 import WebCheckApp from "./pages/WebCheckApp"
+import CheckApp from './pages/CheckApp';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const App = () => {
         />
         <Route
           path="/info-checker/:dealer_id/check"
-          element={type == 'web' ? <WebCheckApp /> : null}
+          element={type == 'web' ? <WebCheckApp /> : <CheckApp/>}
         />
       </Routes>
     </>

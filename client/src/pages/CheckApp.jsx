@@ -4,17 +4,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
 // checker step components
-import Greeting from '../components/Mobile/prequalfied/Greeting';
+import Greeting from '../components/Mobile/check/Greeting';
 import SendPhoneVerificationCode from '../components/common/SendPhoneVerificationCode';
-import CheckPhoneVerificationCode from '../components/Mobile/prequalfied/CheckPhoneVerificationCode';
-import InputFirstName from '../components/Mobile/prequalfied/InputFirstName';
-import InputMiddleName from '../components/Mobile/prequalfied/InputMiddleName';
-import InputLastName from '../components/Mobile/prequalfied/InputLastName';
-import InputEmail from '../components/Mobile/prequalfied/InputEmail';
-import InputBirthday from '../components/Mobile/prequalfied/InputBirthday';
-import Address from '../components/Mobile/prequalfied/Address';
-import Submit from '../components/Mobile/prequalfied/Submit';
-import InputSocialNumber from '../components/Mobile/prequalfied/InputSocialNumber';
+import CheckPhoneVerificationCode from '../components/Mobile/check/CheckPhoneVerificationCode';
+import InputLastName from '../components/Mobile/check/InputLastName';
+import Submit from '../components/Mobile/check/Submit';
+import InputSocialNumber from '../components/Mobile/check/InputSocialNumber';
 import {
   getDealerInfo,
   setDealerId,
@@ -109,13 +104,8 @@ const CheckApp = () => {
           <Greeting />
           <SendPhoneVerificationCode />
           <CheckPhoneVerificationCode />
-          <InputFirstName />
-          <InputMiddleName />
           <InputLastName />
-          <InputEmail />
           <InputSocialNumber />
-          <InputBirthday />
-          <Address />
           <Submit />
         </div>
       </div>

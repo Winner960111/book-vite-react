@@ -1,213 +1,356 @@
 import { useState, useEffect } from 'react';
+import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  addHistory,
-  setDealType,
-  setQuoteInterest,
-} from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
-const DealType = () => {
+import { referenceInfo } from '../../../api/index'
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+
+const FirstPage = () => {
   const {
     step,
-    type,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
     checkerMobileNumber,
+    refFirstName,
+    refLastName,
+    refRelation,
+    refCity,
+    refState,
+    refPhoneNumber,
+    dealerId,
+    customerId,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
+  const [errorFirstName, setErrorFirstName] = useState('');
+  const [errorLastName, setErrorLastName] = useState('');
+  const [errorPhoneNumber, setErrorPhoneNumber] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [focusFirstName, setFocusFirstName] = useState(Boolean);
+  const [focusLastName, setFocusLastName] = useState(Boolean);
+  const [focusPhoneNumber, setFocusPhoneNumber] = useState(Boolean);
+  const [relation, setRelation] = useState('Spouse')
+  const [errorRelation, setErrorRelation] = useState('')
+  const [focusCity, setFocusCity] = useState(Boolean)
+  const [city, setCity] = useState('')
+  const [errorCity, setErrorCity] = useState('')
+  const [focusState, setFocusState] = useState(Boolean)
+  const [state, setState] = useState('')
+  const [errorState, setErrorState] = useState('')
+  
+  const handleState = (e) => {
+    setState(e.target.value);
+    setErrorState('');
+    };
+  const handleCity = (e) => {
+    setCity(e.target.value);
+    setErrorCity('');
+  };
+  const handleRelation = (e) => {
+    setRelation(e.target.value);
+    setErrorRelation('');
+  };
 
-  const [dealClick, setDealClick] = useState('');
-  const [error, setError] = useState(null);
-  const [year, setYear] = useState('');
-  const [make, setMake] = useState('');
-  const [model, setModel] = useState('');
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
+    setErrorFirstName('');
+  };
+  const handleLastName = (e) => {
+    setLastName(e.target.value);
+    setErrorLastName('');
+  };
+  const handlePhoneNumber = (e) => {
+    const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    const formattedInputValue =
+      inputValue.substring(0, 3) +
+      (inputValue.length > 3 ? '-' : '') +
+      inputValue.substring(3, 6) +
+      (inputValue.length > 6 ? '-' : '') +
+      inputValue.substring(6, 10);
+    setPhoneNumber(formattedInputValue);
+    setErrorPhoneNumber(null);
+  };
 
   useEffect(() => {
-    setError(null);
-    setDealClick('');
+    setErrorFirstName('');
+    setErrorLastName('');
+    setErrorPhoneNumber('');
+    setErrorRelation('');
+    setErrorCity('');
+    setErrorState('');
   }, [step]);
 
-  const handleSubmit = async () => {
-    if (dealClick) {
-      let interest = year + ' ' + make + ' ' + ' ' + model;
-      setYear('');
-      setMake('');
-      setModel('');
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Get Quote',
-        last_question: '2',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
-      dispatch(addHistory(true));
-      dispatch(setDealType(dealClick));
-      dispatch(setQuoteInterest(interest));
+  const handlesubmit = async () => {
+    let pass = 0;
+    if (!firstName) {
+      setErrorFirstName('*field is required');
+    } else if (!/^[A-Za-z]+$/.test(firstName)) {
+      setErrorFirstName('*contains only characters');
     } else {
-      setError('You must select one of above methodes.');
+      pass += 1;
+    }
+    if (!lastName) {
+      setErrorLastName('*field is required');
+    } else if (!/^[A-Za-z]+$/.test(lastName)) {
+      setErrorLastName('*contains only characters');
+    } else {
+      pass += 1;
+    }
+    if (!phoneNumber) {
+      setErrorPhoneNumber('*Required');
+    }else {
+      pass += 1;
+    }
+    if (!city) {
+      setErrorCity('*Required');
+    } else {
+      pass += 1;
+    }
+    if (!state) {
+      setErrorState('*Required');
+    } else {
+      pass += 1;
+    }
+    if (!relation) {
+      setErrorRelation('*Required');
+    } else if (!/^[A-Za-z]+$/.test(relation)) {
+      setErrorRelation('*contains only characters');
+    } else {
+      pass += 1;
+    }
+    if (pass == 6) {
+      const data = {
+        
+        dealer_id: dealerId,
+        reference1_first_name: refFirstName,
+        reference1_last_name: refLastName,
+        reference1_phone: refPhoneNumber,
+        reference1_city: refCity,
+        reference1_relationship: refRelation,
+        reference1_state: refState,
+        reference2_first_name: firstName,
+        reference2_last_name: lastName,
+        reference2_phone: phoneNumber,
+        reference2_city: city,
+        reference2_relationship: relation,
+        reference2_state: state
+      };
+      
+      const res = await referenceInfo(data, customerId)
+      console.log("this is res==>",res)
+      if (res.status == 200) {
+        
+        dispatch(addHistory(true));
+        
+      } else {
+        console.log("Failed")
+      }
     }
   };
 
   return (
-    <div className="flex flex-col bg-gray-50 w-full justify-center items-center">
-      <p className="w-2/3 text-4xl mt-44 font-medium">
-        What is the vehicle&apos;s year/make/model?
-      </p>
-      <div className="w-2/3 flex flex-col md:flex-row text-justify bg-white rounded-3xl p-4 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
-        <div className="flex w-full md:w-[40%] flex-col md:mx-10">
-          <TextField
-            id="margin-dense"
-            margin="dense"
-            label="Year"
-            fullWidth
-            autoFocus
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-            type="text"
-            InputProps={{
-              style: {
-                height: '70px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
-          />
-          <TextField
-            id="margin-dense"
-            margin="dense"
-            label="Make"
-            fullWidth
-            value={make}
-            onChange={(e) => setMake(e.target.value)}
-            type="text"
-            InputProps={{
-              style: {
-                height: '70px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
-          />
-          <TextField
-            label="Model"
-            fullWidth
-            id="margin-dense"
-            margin="dense"
-            value={model}
-            onChange={(e) => setModel(e.target.value)}
-            type="text"
-            InputProps={{
-              style: {
-                height: '70px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
-          />
-        </div>
-        <div className="w-full md:w-[60%] flex flex-col justify-between">
-          <div className="flex flex-col justify-between bg-gray-50 rounded-3xl p-4">
-            <div className="flex flex-col md:flex-row justify-between">
-              <label
-                htmlFor="radio1"
-                className="text-2xl m-2 p-2 cursor-pointer"
-                onClick={() => {
-                  setDealClick('Finance');
-                }}
-              >
-                <input
-                  type="radio"
-                  id="radio1"
-                  name="deal_type"
-                  className="w-[17px] h-[17px] mx-2"
+    <>
+      <div className="flex bg-gray-50 w-full justify-center items-center">
+        <div className=" w-2/3 flex flex-col mt-28 mx-20">
+          <p className="w-full text-4xl my-3 font-medium">
+            We need one more reference information.
+          </p>
+          <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
+            <div className="w-full p-5 flex justify-between flex-col md:flex-row">
+              <div className="flex flex-col w-full my-3 md:mx-5">
+                <TextField
+                  onFocus={() => setFocusFirstName(true)}
+                  onBlur={() => setFocusFirstName(false)} // onBlur is triggered when the input loses focus
+                  value={firstName}
+                  onChange={handleFirstName}
+                  fullWidth
+                  autoFocus
+                  label="First Name"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px',
+                    },
+                  }}
                 />
-                Finance
-              </label>
-              <label
-                htmlFor="radio2"
-                className="text-2xl m-2 p-2 cursor-pointer"
-                onClick={() => {
-                  setDealClick('Cash');
-                }}
-              >
-                <input
-                  type="radio"
-                  id="radio2"
-                  name="deal_type"
-                  className="w-[17px] h-[17px] mx-2"
+                {errorFirstName !== '' && (
+                  <p className="text-red-500 pl-2">{errorFirstName}</p>
+                )}
+                {focusFirstName && (
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                    Please enter your reference first name.
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col w-full my-3 md:mx-5">
+                <TextField
+                  onFocus={() => setFocusLastName(true)}
+                  onBlur={() => setFocusLastName(false)} // onBlur is triggered when the input loses focus
+                  value={lastName}
+                  onChange={handleLastName}
+                  fullWidth
+                  label="Last Name"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px',
+                    },
+                  }}
                 />
-                Cash
-              </label>
-              <label
-                htmlFor="radio3"
-                className="text-2xl m-2 p-2 cursor-pointer"
-                onClick={() => {
-                  setDealClick('Lease');
-                }}
-              >
-                <input
-                  type="radio"
-                  id="radio3"
-                  name="deal_type"
-                  className="w-[17px] h-[17px] mx-2"
+                {errorLastName !== '' && (
+                  <p className="text-red-500 pl-2">{errorLastName}</p>
+                )}
+                {focusLastName && (
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                    Please enter your reference last name.
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col w-full my-3 md:mx-5">
+                <TextField
+                  onFocus={() => setFocusPhoneNumber(true)}
+                  onBlur={() => setFocusPhoneNumber(false)} // onBlur is triggered when the input loses focus
+                  value={phoneNumber}
+                  onChange={handlePhoneNumber}
+                  fullWidth
+                  label="Phone Number"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px',
+                    },
+                  }}
                 />
-                Lease
-              </label>
+                {errorPhoneNumber !== '' && (
+                  <p className="text-red-500 pl-2">{errorPhoneNumber}</p>
+                )}
+                {focusPhoneNumber && (
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                    Please input your reference phone number.
+                  </p>
+                )}
+              </div>
             </div>
-
-            <p className=" px-6">
-              <p>Please select deal type.</p>
-            </p>
-            {error !== '' ? (
-              <p className="text-red-500 pl-6 pt-2">{error}</p>
-            ) : null}
+            <div className="w-full p-5 flex justify-between flex-col md:flex-row">
+              <div className="flex flex-col w-full mt-4 md:mx-5">
+                <FormControl variant="filled" sx={{ m: 1, minwidth: 120 }}>
+                  <InputLabel
+                    id="demo-simple-select-standard-label"
+                    style={{ fontSize: '15px' }}
+                  >
+                    RelationShip
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    value={relation}
+                    onChange={handleRelation}
+                  >
+                    <MenuItem value={'Spouse'}>Spouse</MenuItem>
+                    <MenuItem value={'Employeer'}>Employeer</MenuItem>
+                    <MenuItem value={'Relative'}>Relative</MenuItem>
+                    <MenuItem value={'Friend'}>Friend</MenuItem>
+                    <MenuItem value={'Other'}>Other</MenuItem>
+                  </Select>
+                </FormControl>
+                {errorRelation !== '' && (
+                  <p className="text-red-500 pl-2">{errorRelation}</p>
+                )}
+              </div>
+              <div className="flex flex-col w-full my-3 md:mx-5">
+                <TextField
+                  onFocus={() => setFocusCity(true)}
+                  onBlur={() => setFocusCity(false)} // onBlur is triggered when the input loses focus
+                  value={city}
+                  onChange={handleCity}
+                  fullWidth
+                  label="City"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px',
+                    },
+                  }}
+                />
+                {errorCity !== '' && (
+                  <p className="text-red-500 pl-2">{errorCity}</p>
+                )}
+                {focusCity && (
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                    Please enter your reference person&apos;s city.
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col w-full my-3 md:mx-5">
+                <TextField
+                  onFocus={() => setFocusState(true)}
+                  onBlur={() => setFocusState(false)} // onBlur is triggered when the input loses focus
+                  value={state}
+                  onChange={handleState}
+                  fullWidth
+                  label="State"
+                  variant="standard"
+                  InputProps={{
+                    style: {
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px',
+                    },
+                  }}
+                />
+                {errorState !== '' && (
+                  <p className="text-red-500 pl-2">{errorState}</p>
+                )}
+                {focusState && (
+                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                    Please enter your reference person&apos;s state.
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="w-full p-5 flex justify-end">
+              <button
+                type="button"
+                onClick={handlesubmit}
+                className="bg-[#854fff] w-full md:w-[30%] h-16 md:mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+              >
+                CONTINUE
+              </button>
+            </div>
           </div>
-          <button
-            type="button"
-            onClick={handleSubmit}
-            className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          >
-            CONTINUE
-          </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
-
-export default DealType;
+export default FirstPage;

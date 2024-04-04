@@ -1,25 +1,16 @@
 import { useState, useEffect } from 'react';
 import { addHistory, setRefPhoneNumber, setRefRelation, setRefFirstName, setRefLastName, setRefCity, setRefState } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
-import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 const FirstPage = () => {
   const {
     step,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
     checkerMobileNumber,
-    type,
     customerName,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
@@ -32,8 +23,7 @@ const FirstPage = () => {
   const [focusFirstName, setFocusFirstName] = useState(Boolean);
   const [focusLastName, setFocusLastName] = useState(Boolean);
   const [focusPhoneNumber, setFocusPhoneNumber] = useState(Boolean);
-  const [relation, setRelation] = useState('')
-  const [focusRelation, setFocusRelation] = useState(Boolean)
+  const [relation, setRelation] = useState('Spouse')
   const [errorRelation, setErrorRelation] = useState('')
   const [focusCity, setFocusCity] = useState(Boolean)
   const [city, setCity] = useState('')
@@ -118,38 +108,18 @@ const FirstPage = () => {
     if (!relation) {
       setErrorRelation('*Required');
     } else if (!/^[A-Za-z]+$/.test(relation)) {
-      setErrorLastName('*contains only characters');
+      setErrorRelation('*contains only characters');
     } else {
       pass += 1;
     }
     if (pass == 6) {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Get Quote',
-        last_question: '1',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
-      dispatch(addHistory(true));
       dispatch(setRefFirstName(firstName));
       dispatch(setRefLastName(lastName));
       dispatch(setRefPhoneNumber(phoneNumber));
       dispatch(setRefRelation(relation));
       dispatch(setRefCity(city));
       dispatch(setRefState(state));
+      dispatch(addHistory(true));
     }
   };
 
@@ -171,8 +141,6 @@ const FirstPage = () => {
                   onChange={handleFirstName}
                   fullWidth
                   autoFocus
-                  type="text"
-                  defaultValue="Normal"
                   label="First Name"
                   variant="standard"
                   InputProps={{
@@ -203,8 +171,6 @@ const FirstPage = () => {
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
-                  type="text"
-                  defaultValue="Normal"
                   label="Last Name"
                   variant="standard"
                   InputProps={{
@@ -235,8 +201,6 @@ const FirstPage = () => {
                   value={phoneNumber}
                   onChange={handlePhoneNumber}
                   fullWidth
-                  type="text"
-                  defaultValue="Normal"
                   label="Phone Number"
                   variant="standard"
                   InputProps={{
@@ -262,37 +226,29 @@ const FirstPage = () => {
               </div>
             </div>
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
-              <div className="flex flex-col w-full my-3 md:mx-5">
-                <TextField
-                  onFocus={() => setFocusRelation(true)}
-                  onBlur={() => setFocusRelation(false)} // onBlur is triggered when the input loses focus
-                  value={relation}
-                  onChange={handleRelation}
-                  fullWidth
-                  autoFocus
-                  type="text"
-                  defaultValue="Normal"
-                  label="Relationship"
-                  variant="standard"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
+              <div className="flex flex-col w-full mt-4 md:mx-5">
+                <FormControl variant="filled" sx={{ m: 1, minwidth: 120 }}>
+                  <InputLabel
+                    id="demo-simple-select-standard-label"
+                    style={{ fontSize: '15px' }}
+                  >
+                    RelationShip
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    value={relation}
+                    onChange={handleRelation}
+                  >
+                    <MenuItem value={'Spouse'}>Spouse</MenuItem>
+                    <MenuItem value={'Employeer'}>Employeer</MenuItem>
+                    <MenuItem value={'Relative'}>Relative</MenuItem>
+                    <MenuItem value={'Friend'}>Friend</MenuItem>
+                    <MenuItem value={'Other'}>Other</MenuItem>
+                  </Select>
+                </FormControl>
                 {errorRelation !== '' && (
                   <p className="text-red-500 pl-2">{errorRelation}</p>
-                )}
-                {focusRelation && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your first name.
-                  </p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
@@ -302,8 +258,6 @@ const FirstPage = () => {
                   value={city}
                   onChange={handleCity}
                   fullWidth
-                  type="text"
-                  defaultValue="Normal"
                   label="City"
                   variant="standard"
                   InputProps={{
@@ -323,7 +277,7 @@ const FirstPage = () => {
                 )}
                 {focusCity && (
                   <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your last name.
+                    Please enter your reference person&apos;s city.
                   </p>
                 )}
               </div>
@@ -334,8 +288,6 @@ const FirstPage = () => {
                   value={state}
                   onChange={handleState}
                   fullWidth
-                  type="text"
-                  defaultValue="Normal"
                   label="State"
                   variant="standard"
                   InputProps={{
@@ -355,7 +307,7 @@ const FirstPage = () => {
                 )}
                 {focusState && (
                   <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your last name.
+                    Please enter your reference person&apos;s state.
                   </p>
                 )}
               </div>

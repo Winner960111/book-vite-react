@@ -2,6 +2,23 @@ import axios from 'axios';
 import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 
+export const referenceInfo = async (data, customer_id) => {
+  console.log('this is reference items ===>', data);
+  console.log('this is customer_id items ===>', customer_id);
+  const url =
+    `https://www.dev.creditapps.com/api/add_references/${customer_id}/`;
+  try {
+    const response = await axios.put(url, data, {
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    return response;
+  } catch (e) {
+    return { status: 400 };
+  }
+};
+
 export const customerInfo = async (dealer_id, customer_id) =>
   new Promise((resolve, reject) => {
   const data = {

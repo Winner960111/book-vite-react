@@ -20,6 +20,7 @@ import WebAppointment from "./pages/WebAppointment"
 import WebCheckApp from "./pages/WebCheckApp"
 import CheckApp from './pages/CheckApp';
 import WebReference from './pages/WebReference';
+import Reference from './pages/Reference'
 
 const App = () => {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ const App = () => {
           path="/info-checker/:dealer_id/check"
           element={type == 'web' ? <WebCheckApp /> : <CheckApp />}
         />
-        <Route path="/reference/:dealer_slug/:customer_slug" element = {<WebReference />}
+        <Route path="/reference/:dealer_slug/:customer_slug" element = {type == 'web'? <WebReference />:<Reference/>}
         />
       </Routes>
     </>

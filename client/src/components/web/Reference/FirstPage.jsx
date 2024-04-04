@@ -10,7 +10,6 @@ import Select from '@mui/material/Select';
 const FirstPage = () => {
   const {
     step,
-    checkerMobileNumber,
     customerName,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
@@ -227,7 +226,7 @@ const FirstPage = () => {
             </div>
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full mt-4 md:mx-5">
-                <FormControl variant="filled" sx={{ m: 1, minwidth: 120 }}>
+                <FormControl variant="filled" sx={{ my: 1, minwidth: 120 }}>
                   <InputLabel
                     id="demo-simple-select-standard-label"
                     style={{ fontSize: '15px' }}

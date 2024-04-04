@@ -57,7 +57,7 @@ const InputRelation = () => {
           className="my-2 flex flex-col md:flex-row md:items-center"
           style={step >= 9 ? { display: 'none' } : { display: 'block' }}
         >
-          <FormControl variant="filled" sx={{ my: 1, width: "100" }}>
+          <FormControl variant="filled" sx={{ my: 1, width: "100%" }}>
             <InputLabel
               id="demo-simple-select-standard-label"
               style={{ fontSize: '15px' }}

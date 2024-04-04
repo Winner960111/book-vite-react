@@ -12,9 +12,15 @@ import InputLastName from '../components/Mobile/Reference/InputLastName';
 import InputState from '../components/Mobile/Reference/InputState';
 import InputCity from '../components/Mobile/Reference/InputCity';
 import InputRelation from '../components/Mobile/Reference/InputRelation';
-import Address from '../components/Mobile/Reference/Address';
-import Submit from '../components/Mobile/Reference/Submit';
 import InputPhoneNumber from '../components/Mobile/Reference/InputPhoneNumber';
+import FirstName from '../components/Mobile/Reference/FirstName';
+import LastName from '../components/Mobile/Reference/LastName';
+import State from '../components/Mobile/Reference/State';
+import City from '../components/Mobile/Reference/City';
+import Relation from '../components/Mobile/Reference/Relation';
+import PhoneNumber from '../components/Mobile/Reference/PhoneNumber';
+import Submit from '../components/Mobile/Reference/Submit';
+
 import {
   getDealerInfo,
   setCustomerId,
@@ -127,8 +133,13 @@ const Prequalified = () => {
           <InputPhoneNumber />
           <InputState />
           <InputCity />
-          <InputRelation/>
-          <Address />
+          <InputRelation />
+          <FirstName />
+          <LastName />
+          <PhoneNumber />
+          <State />
+          <City />
+          <Relation />
           <Submit />
         </div>
       </div>

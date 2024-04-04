@@ -7,11 +7,17 @@ const initialState = {
   refPhoneNumber: '',
   refRelation: '',
   refCity: '',
-  refState:'',
+  refState: '',
+  refFirstName1: '',
+  refLastName1: '',
+  refPhoneNumber1: '',
+  refRelation1: '',
+  refCity1: '',
+  refState1: '',
   customerId: '',
-  customerName:'',
+  customerName: '',
   appStatus: '',
-  appDescription:'',
+  appDescription: '',
   timezone: '',
   appointDate: '',
   appointTime: '',
@@ -131,6 +137,24 @@ export const checkerSlice = createSlice({
     },
     setRefState: (state, action) => {
       state.refState = action.payload
+    },
+    setRefFirstName1: (state, action) => {
+      state.refFirstName1 = action.payload
+    },
+    setRefLastName1: (state, action) => {
+      state.refLastName1 = action.payload
+    },
+    setRefPhoneNumber1: (state, action) => {
+      state.refPhoneNumber1 = action.payload
+    },
+    setRefRelation1: (state, action) => {
+      state.refRelation1 = action.payload
+    },
+    setRefCity1: (state, action) => {
+      state.refCity1 = action.payload
+    },
+    setRefState1: (state, action) => {
+      state.refState1 = action.payload
     },
     setCustomerId: (state, action) => {
       state.customerId = action.payload
@@ -524,6 +548,12 @@ export const checkerSlice = createSlice({
       state.refRelation = initialState.refRelation;
       state.refCity = initialState.refCity;
       state.refState = initialState.refState;
+      state.refFirstName1 = initialState.refFirstName1;
+      state.refLastName1 = initialState.refLastName1;
+      state.refPhoneNumber1 = initialState.refPhoneNumber1;
+      state.refRelation1 = initialState.refRelation1;
+      state.refCity1 = initialState.refCity1;
+      state.refState1 = initialState.refState1;
       state.customerId = initialState.customerId;
       state.customerName = initialState.customerName;
       state.appStatus = initialState.appStatus;
@@ -632,6 +662,12 @@ export const {
   setRefCity,
   setRefRelation,
   setRefState,
+  setRefFirstName1,
+  setRefLastName1,
+  setRefPhoneNumber1,
+  setRefCity1,
+  setRefRelation1,
+  setRefState1,
   setCustomerId,
   setCustomerName,
   setAppStatus,
@@ -734,7 +770,6 @@ export const {
   setDeviceOS,
   setDeviceState,
   setIntentID,
-
 } = checkerSlice.actions;
 
 // fetch dealer name and dealer logo

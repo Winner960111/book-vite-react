@@ -1,7 +1,7 @@
 import BotIcon from './BotIcon';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkVerification, usersStatus } from '../../../api/index';
+import { checkVerification } from '../../../api/index';
 import { addHistory} from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';

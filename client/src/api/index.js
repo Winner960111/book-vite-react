@@ -2,6 +2,25 @@ import axios from 'axios';
 import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 
+export const customerInfo = async (dealer_id, customer_id) =>
+  new Promise((resolve, reject) => {
+  const data = {
+    slug: customer_id,
+    dealer_id: dealer_id
+  }
+  const url = 'https://www.dev.creditapps.com/api/decode_customer/';
+  axios.post(url, data, {
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+  .then((res) => {
+     resolve(res)
+  })
+  .catch((e) => {
+    reject({ status: 400 })
+  })
+  });
 
 export const checkapp = async (data) => {
   console.log("this is appointment items ===>", data)

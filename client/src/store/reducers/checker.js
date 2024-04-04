@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
+  customerId: '',
+  customerName:'',
   appStatus: '',
   appDescription:'',
   timezone: '',
@@ -106,6 +108,12 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setCustomerId: (state, action) => {
+      state.customerId = action.payload
+    },
+    setCustomerName: (state, action) => {
+      state.customerName = action.payload
+    },
     setAppStatus: (state, action) => {
       state.appStatus = action.payload
     },
@@ -486,6 +494,8 @@ export const checkerSlice = createSlice({
 
     // Clear history
     clearHistory: (state) => {
+      state.customerId = initialState.customerId;
+      state.customerName = initialState.customerName;
       state.appStatus = initialState.appStatus;
       state.appDescription = initialState.appDescription;
       state.timezone = initialState.timezone;
@@ -586,6 +596,8 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setCustomerId,
+  setCustomerName,
   setAppStatus,
   setAppDescription,
   setTimezone,

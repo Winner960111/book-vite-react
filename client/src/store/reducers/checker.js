@@ -2,6 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
+  refFirstName: '',
+  refLastName: '',
+  refPhoneNumber: '',
+  refRelation: '',
+  refCity: '',
+  refState:'',
   customerId: '',
   customerName:'',
   appStatus: '',
@@ -108,6 +114,24 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setRefFirstName: (state, action) => {
+      state.refFirstName = action.payload
+    },
+    setRefLastName: (state, action) => {
+      state.refLastName = action.payload
+    },
+    setRefPhoneNumber: (state, action) => {
+      state.refPhoneNumber = action.payload
+    },
+    setRefRelation: (state, action) => {
+      state.refRelation = action.payload
+    },
+    setRefCity: (state, action) => {
+      state.refCity = action.payload
+    },
+    setRefState: (state, action) => {
+      state.refState = action.payload
+    },
     setCustomerId: (state, action) => {
       state.customerId = action.payload
     },
@@ -494,6 +518,12 @@ export const checkerSlice = createSlice({
 
     // Clear history
     clearHistory: (state) => {
+      state.refFirstName = initialState.refFirstName;
+      state.refLastName = initialState.refLastName;
+      state.refPhoneNumber = initialState.refPhoneNumber;
+      state.refRelation = initialState.refRelation;
+      state.refCity = initialState.refCity;
+      state.refState = initialState.refState;
       state.customerId = initialState.customerId;
       state.customerName = initialState.customerName;
       state.appStatus = initialState.appStatus;
@@ -596,6 +626,12 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setRefFirstName,
+  setRefLastName,
+  setRefPhoneNumber,
+  setRefCity,
+  setRefRelation,
+  setRefState,
   setCustomerId,
   setCustomerName,
   setAppStatus,

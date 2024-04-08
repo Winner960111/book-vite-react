@@ -2,11 +2,25 @@ import axios from 'axios';
 import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 
+export const submitReference = async (data) => {
+  console.log('this is submit====>', data);
+  const url = 'https://www.dev.creditapps.com/api/add_documents/';
+  try {
+    const response = await axios.post(url, JSON.stringify(data), {
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    return response;
+  } catch (e) {
+    return { status: 400 };
+  }
+};
+
 export const referenceInfo = async (data, customer_id) => {
   console.log('this is reference items ===>', data);
   console.log('this is customer_id items ===>', customer_id);
-  const url =
-    `https://www.dev.creditapps.com/api/add_references/${customer_id}/`;
+  const url = `https://www.dev.creditapps.com/api/add_references/${customer_id}/`;
   try {
     const response = await axios.put(url, data, {
       headers: {
@@ -21,99 +35,100 @@ export const referenceInfo = async (data, customer_id) => {
 
 export const customerInfo = async (dealer_id, customer_id) =>
   new Promise((resolve, reject) => {
-  const data = {
-    slug: customer_id,
-    dealer_id: dealer_id
-  }
-  const url = 'https://www.dev.creditapps.com/api/decode_customer/';
-  axios.post(url, data, {
-      headers: {
-        'content-type': 'application/json',
-      },
-    })
-  .then((res) => {
-     resolve(res)
-  })
-  .catch((e) => {
-    reject({ status: 400 })
-  })
+    const data = {
+      slug: customer_id,
+      dealer_id: dealer_id,
+    };
+    const url = 'https://www.dev.creditapps.com/api/decode_customer/';
+    axios
+      .post(url, data, {
+        headers: {
+          'content-type': 'application/json',
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch(() => {
+        reject({ status: 400 });
+      });
   });
 
 export const checkapp = async (data) => {
-  console.log("this is appointment items ===>", data)
+  console.log('this is appointment items ===>', data);
   const url = 'https://dev.creditapps.com/api/app_status/';
   try {
     const response = await axios.post(url, data, {
       headers: {
         'content-type': 'application/json',
-      }
-    })
-    return response
+      },
+    });
+    return response;
   } catch (e) {
-    return { status: 400 }
+    return { status: 400 };
   }
-}
+};
 
 export const appointment = async (data) => {
-  console.log("this is appointment items ===>", data)
+  console.log('this is appointment items ===>', data);
   const url = 'https://dev.creditapps.com/api/appointment/';
   try {
     const response = await axios.post(url, data, {
       headers: {
         'content-type': 'application/json',
-      }
-    })
-    return response
+      },
+    });
+    return response;
   } catch (e) {
-    return { status: 400 }
+    return { status: 400 };
   }
-}
+};
 
 export const application = async (data) => {
-  console.log("this is application items ===>", data)
+  console.log('this is application items ===>', data);
   const url = 'https://www.dev.creditapps.com/api/application/';
   try {
     const response = await axios.post(url, data, {
       headers: {
         'content-type': 'application/json',
-      }
-    })
-    return response
+      },
+    });
+    return response;
   } catch (e) {
-    return { status: 400 }
+    return { status: 400 };
   }
-}
+};
 
 export const fullcustomer = async (data) => {
-  console.log("this is full app items ===>", data)
+  console.log('this is full app items ===>', data);
   const url = 'https://www.dev.creditapps.com/api/customer/';
   try {
     const response = await axios.post(url, data, {
       headers: {
         'content-type': 'application/json',
-      }
-    })
-    return response
+      },
+    });
+    return response;
   } catch (e) {
-    return { status: 400 }
+    return { status: 400 };
   }
-}
+};
 export const vehicleList = async (id) => {
   const url = 'https://dev.creditapps.com/api/decode_dealer/';
   const data = {
-    slug: id
-  }
+    slug: id,
+  };
   try {
     const response = await axios.post(url, data, {
       headers: {
         'content-type': 'application/json',
-      }
-    })
-    return response
+      },
+    });
+    return response;
   } catch (e) {
-    return { status: 400 }
+    return { status: 400 };
   }
-}
+};
 
 export const usersUpdate = async (data, id) => {
   const url = `https://www.dev.creditapps.com/api/intent/${id}/`;
@@ -161,7 +176,6 @@ export const deviceInfo = async (ip) =>
       });
   });
 
-
 export const detectAgent = () => async (dispatch) => {
   console.log('Call Detect Agent');
   await api
@@ -195,7 +209,8 @@ export const checkPhoneNumber = async (phone_number, dealer_id) => {
 };
 
 export const checkPhoneNumberCall = async (phone_number, dealer_id) => {
-  const url = 'https://www.dev.creditapps.com/api/applicant_call_two_factor_code/';
+  const url =
+    'https://www.dev.creditapps.com/api/applicant_call_two_factor_code/';
 
   const data = {
     mobile: phone_number,

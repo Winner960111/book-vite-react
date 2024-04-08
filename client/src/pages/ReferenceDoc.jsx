@@ -7,18 +7,8 @@ import { browserName, osName } from 'react-device-detect';
 import Greeting from '../components/Mobile/ReferenceDoc/Greeting';
 import SendPhoneVerificationCode from '../components/common/SendPhoneVerificationCode';
 import CheckPhoneVerificationCode from '../components/Mobile/ReferenceDoc/CheckPhoneVerificationCode';
-import InputFirstName from '../components/Mobile/ReferenceDoc/InputFirstName';
-import InputLastName from '../components/Mobile/ReferenceDoc/InputLastName';
-import InputState from '../components/Mobile/ReferenceDoc/InputState';
 import InputCity from '../components/Mobile/ReferenceDoc/InputCity';
 import InputRelation from '../components/Mobile/ReferenceDoc/InputRelation';
-import InputPhoneNumber from '../components/Mobile/ReferenceDoc/InputPhoneNumber';
-import FirstName from '../components/Mobile/ReferenceDoc/FirstName';
-import LastName from '../components/Mobile/ReferenceDoc/LastName';
-import State from '../components/Mobile/ReferenceDoc/State';
-import City from '../components/Mobile/ReferenceDoc/City';
-import Relation from '../components/Mobile/ReferenceDoc/Relation';
-import PhoneNumber from '../components/Mobile/ReferenceDoc/PhoneNumber';
 import Submit from '../components/Mobile/ReferenceDoc/Submit';
 
 import {
@@ -128,19 +118,9 @@ const Prequalified = () => {
           <Greeting />
           <SendPhoneVerificationCode />
           <CheckPhoneVerificationCode />
-          <InputFirstName />
-          <InputLastName />
-          <InputPhoneNumber />
-          <InputState />
-          <InputCity />
           <InputRelation />
-          <FirstName />
-          <LastName />
-          <PhoneNumber />
-          <State />
-          <City />
-          <Relation />
-          <Submit />
+          <InputCity />
+          <Submit/>
         </div>
       </div>
     </div>

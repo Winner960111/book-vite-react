@@ -4,7 +4,6 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
   theme: {
     fontFamily: {
       montserrat: ['Montserrat'],

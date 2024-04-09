@@ -61,7 +61,13 @@ const InputCity = () => {
           style={step >= 5 ? { display: 'none' } : { display: 'block' }}
         >
           <div className="flex flex-row w-full">
-            <input onChange={handleChangeInput} type="file" hidden id="upload" />
+            <input
+              accept=".pdf,.png,.jpeg"
+              onChange={handleChangeInput}
+              type="file"
+              hidden
+              id="upload"
+            />
             <label
               htmlFor="upload"
               className="bg-[#854fff] w-full md:w-[30%] md:mx-4 rounded-lg text-white text-xl text-center hover:bg-purple-800 p-3 mt-4"
@@ -74,9 +80,7 @@ const InputCity = () => {
           </div>
           {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-          Please Upload file.
-        </p>
+        <p className="bg-gray-50 rounded-3xl p-4 mt-2">Please Upload file.</p>
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
@@ -90,9 +94,9 @@ const InputCity = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="w-[150px] p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white line-clamp-2">
+      <p className="w-[150px] p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white line-clamp-2">
         {refCity}
-      </div>
+      </p>
     </div>
   );
 

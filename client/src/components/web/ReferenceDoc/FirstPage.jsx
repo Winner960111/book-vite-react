@@ -102,16 +102,22 @@ const FirstPage = () => {
               </div>
               <div className="flex flex-col w-full md:w-[55%] my-3 md:mx-5">
                 <div className="flex flex-row w-full">
-                  <input onChange={handleCity} type="file" hidden id="upload" />
+                  <input
+                    accept=".pdf,.png,.jpeg"
+                    onChange={handleCity}
+                    type="file"
+                    hidden
+                    id="upload"
+                  />
                   <label
                     htmlFor="upload"
                     className="bg-[#854fff] w-full md:w-[30%] md:mx-4 rounded-lg text-white text-xl text-center hover:bg-purple-800 p-3 mt-4"
                   >
                     Upload
                   </label>
-                  <div
-                    className="bg-gray-100 w-full md:w-[70%] rounded-lg text-black text-xl p-3 mt-4 overflow-hidden"
-                  >{city}</div>
+                  <div className="bg-gray-100 w-full md:w-[70%] rounded-lg text-black text-xl p-3 mt-4 overflow-hidden">
+                    {city}
+                  </div>
                 </div>
                 {errorCity !== '' && (
                   <p className="text-red-500 pl-2">{errorCity}</p>

@@ -7,10 +7,10 @@ import { browserName, osName } from 'react-device-detect';
 import {customerInfo} from '../api/index'
 // checker step components
 import PhoneVerification from '../components/common/PhoneVerification';
-import CheckVerifyCode from '../components/web/ReferenceDoc/CheckVerifyCode';
-import FirstPage from '../components/web/ReferenceDoc/FirstPage';
-import SecondPage from '../components/web/ReferenceDoc/SecondPage';
-import Finish from '../components/web/ReferenceDoc/Finish';
+import CheckVerifyCode from '../components/web/IdentityVerify/CheckVerifyCode';
+import FirstPage from '../components/web/IdentityVerify/FirstPage';
+import SecondPage from '../components/web/IdentityVerify/SecondPage';
+import Finish from '../components/web/IdentityVerify/Finish';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
 import {
@@ -32,7 +32,7 @@ import {
 import { deviceInfo } from '../api/index';
 
 
-const WebReferenceDoc = () => {
+const WebIdentityVerify = () => {
   const { dealerLogo, step, history, dealerId } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_slug } = useParams();
@@ -101,7 +101,7 @@ const WebReferenceDoc = () => {
           />
           <div className=" w-32 h-10">
             <Flat
-              progress={(step / 4) * 100}
+              progress={(step / 5) * 100}
               range={{ from: 0, to: 100 }}
               sign={{ value: '%', position: 'end' }}
               text={'Complete'}
@@ -154,4 +154,4 @@ const WebReferenceDoc = () => {
     </div>
   );
 };
-export default WebReferenceDoc;
+export default WebIdentityVerify;

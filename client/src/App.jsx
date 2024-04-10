@@ -23,7 +23,7 @@ import WebReference from './pages/WebReference';
 import Reference from './pages/Reference'
 import WebReferenceDoc from './pages/WebReferenceDoc';
 import ReferenceDoc from './pages/ReferenceDoc';
-
+import WebIdentityVerify from './pages/WebIdentityVerify'
 const App = () => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -85,7 +85,11 @@ const App = () => {
         />
         <Route
           path="/documents/:dealer_slug/:customer_slug"
-          element={type == 'web' ? <WebReferenceDoc /> : <ReferenceDoc/>}
+          element={type == 'web' ? <WebReferenceDoc /> : <ReferenceDoc />}
+        />
+        <Route
+          path="/verification/:dealer_slug/:customer_slug"
+          element={type == 'web' ? <WebIdentityVerify /> : null}
         />
       </Routes>
     </>

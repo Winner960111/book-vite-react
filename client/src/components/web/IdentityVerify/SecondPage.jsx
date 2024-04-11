@@ -7,7 +7,6 @@ import Questionaire from '../../web/IdentityVerify/Questionaire';
 
 const SecondPage = () => {
   const {
-    dealerName,
     dealerId,
     customerId,
     refRelation,
@@ -75,12 +74,12 @@ const SecondPage = () => {
   return (
     <div className="flex bg-gray-50 w-full justify-center items-center">
       <div className="w-2/3 flex flex-col mt-10 mx-20 justify-center items-center">
-        <p className="w-[50%] text-4xl text-black my-3 font-medium">
+        <p className="w-[70%] text-4xl text-black my-3 font-medium">
           Please answer following questions.
         </p>
         <form
           className={classNames(
-            ' w-[50%] text-justify bg-white rounded-3xl p-8 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg font-sans'
+            ' w-[70%] text-justify bg-white rounded-3xl p-8 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg font-sans'
           )}
         >
           <div className="flex flex-col overflow-auto">
@@ -99,7 +98,7 @@ const SecondPage = () => {
               onClick={handleSubmit}
               className="bg-[#854fff] w-2/6 h-16 p-2 rounded-lg text-white text-xl  hover:bg-purple-800"
             >
-              Submit
+              Continue
             </button>
           </div>
         </form>

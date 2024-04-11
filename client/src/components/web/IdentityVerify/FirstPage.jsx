@@ -19,7 +19,7 @@ const FirstPage = () => {
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className=" w-2/3 flex flex-col mt-28 mx-20 justify-center items-center">
+        <div className=" w-2/3 flex flex-col mt-10 mx-20 justify-center items-center">
           <p className="w-[50%] text-3xl my-3 font-medium">
             Lightning verification
           </p>

@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+
 import { useState, useEffect } from 'react';
 
 const Questionaire = ({ question, answer }) => {
@@ -14,30 +16,40 @@ const Questionaire = ({ question, answer }) => {
   }, [answerItem]);
   return (
     <>
-      <p className="text-2xl my-2">{question.question}</p>
-      <FormControl variant="filled" sx={{ my: 1, width: '100%' }}>
-        <InputLabel
-          id="demo-simple-select-standard-label"
-          style={{ fontSize: '20px' }}
-        >
-          Select correct answer
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          value={answerItem}
-          onChange={(e) => {
-              setAnswerItem(e.target.value);
-          }}
-          style={{ fontSize: '20px' }}
-        >
-          {question.answer.map((item, index) => (
-            <MenuItem value={item} key={index}>
-              {item}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <div className="w-full flex justify-between bg-gray-50 items-center py-5 px-2 mt-2 rounded-xl">
+        <FormControl style={{width:"100%"}}>
+          <FormLabel
+            id="demo-row-radio-buttons-group-label"
+            style={{ padding: '0 5px', fontSize: '25px', margin: '0 15px' }}
+          >
+            {question.question}
+          </FormLabel>
+          
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+              style={{
+                margin: '10px 0 0 30px',
+                display: 'flex',
+                flexWrap: 'wrap',
+              }}
+              onChange={(e) => {
+                setAnswerItem(e.target.value);
+              }}
+            >
+              {question.answer.map((item, key) => (
+                <FormControlLabel
+                  key={key}
+                  value={item}
+                  control={<Radio />}
+                  label={item}
+                  className="hover:bg-violet-200 w-[40%] xl:w-[30%] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1"
+                />
+              ))}
+            </RadioGroup>
+        </FormControl>
+      </div>
     </>
   );
 };

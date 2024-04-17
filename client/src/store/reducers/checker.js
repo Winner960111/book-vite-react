@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
+  identifyId: '',
+  identifyStatus:'',
   refFirstName: '',
   refLastName: '',
   refPhoneNumber: '',
@@ -120,179 +122,185 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setIdentifyId: (state, action) => {
+      state.identifyId = action.payload;
+    },
+    setIdentifyStatus: (state, action) => {
+      state.identifyStatus = action.payload;
+    },
     setRefFirstName: (state, action) => {
-      state.refFirstName = action.payload
+      state.refFirstName = action.payload;
     },
     setRefLastName: (state, action) => {
-      state.refLastName = action.payload
+      state.refLastName = action.payload;
     },
     setRefPhoneNumber: (state, action) => {
-      state.refPhoneNumber = action.payload
+      state.refPhoneNumber = action.payload;
     },
     setRefRelation: (state, action) => {
-      state.refRelation = action.payload
+      state.refRelation = action.payload;
     },
     setRefCity: (state, action) => {
-      state.refCity = action.payload
+      state.refCity = action.payload;
     },
     setRefState: (state, action) => {
-      state.refState = action.payload
+      state.refState = action.payload;
     },
     setRefFirstName1: (state, action) => {
-      state.refFirstName1 = action.payload
+      state.refFirstName1 = action.payload;
     },
     setRefLastName1: (state, action) => {
-      state.refLastName1 = action.payload
+      state.refLastName1 = action.payload;
     },
     setRefPhoneNumber1: (state, action) => {
-      state.refPhoneNumber1 = action.payload
+      state.refPhoneNumber1 = action.payload;
     },
     setRefRelation1: (state, action) => {
-      state.refRelation1 = action.payload
+      state.refRelation1 = action.payload;
     },
     setRefCity1: (state, action) => {
-      state.refCity1 = action.payload
+      state.refCity1 = action.payload;
     },
     setRefState1: (state, action) => {
-      state.refState1 = action.payload
+      state.refState1 = action.payload;
     },
     setCustomerId: (state, action) => {
-      state.customerId = action.payload
+      state.customerId = action.payload;
     },
     setCustomerName: (state, action) => {
-      state.customerName = action.payload
+      state.customerName = action.payload;
     },
     setAppStatus: (state, action) => {
-      state.appStatus = action.payload
+      state.appStatus = action.payload;
     },
     setAppDescription: (state, action) => {
-      state.appDescription = action.payload
+      state.appDescription = action.payload;
     },
     setTimezone: (state, action) => {
-      state.timezone = action.payload
+      state.timezone = action.payload;
     },
     setAppointDate: (state, action) => {
-      state.appointDate = action.payload
+      state.appointDate = action.payload;
     },
     setAppointTime: (state, action) => {
-      state.appointTime = action.payload
+      state.appointTime = action.payload;
     },
     setBankrupcy: (state, action) => {
-      state.bankrupcy = action.payload
+      state.bankrupcy = action.payload;
     },
     setPreviousResidentalStatus: (state, action) => {
-      state.previousResidentalStatus = action.payload
+      state.previousResidentalStatus = action.payload;
     },
     setResidentalStatus: (state, action) => {
-      state.residentalStatus = action.payload
+      state.residentalStatus = action.payload;
     },
     setIncomeAmount: (state, action) => {
-      state.incomeAmount = action.payload
+      state.incomeAmount = action.payload;
     },
     setSourceIncome: (state, action) => {
-      state.sourceIncome = action.payload
+      state.sourceIncome = action.payload;
     },
     setConfirm: (state, action) => {
-      state.confirm = action.payload
+      state.confirm = action.payload;
     },
     setJobEndDate: (state, action) => {
-      state.jobEndDate = action.payload
+      state.jobEndDate = action.payload;
     },
     setJobAddress: (state, action) => {
-      state.jobAddress = action.payload
+      state.jobAddress = action.payload;
     },
     prevJobAddress: (state, action) => {
-      state.prevJobAddress = action.prevJobAddress
+      state.prevJobAddress = action.prevJobAddress;
     },
     setJobOccupation: (state, action) => {
-      state.jobOccupation = action.payload
+      state.jobOccupation = action.payload;
     },
     setEmployerName: (state, action) => {
-      state.employerName = action.payload
+      state.employerName = action.payload;
     },
     setEmployerPhoneNumber: (state, action) => {
-      state.employerPhoneNumber = action.payload
+      state.employerPhoneNumber = action.payload;
     },
     setJobApt: (state, action) => {
-      state.jobApt = action.payload
+      state.jobApt = action.payload;
     },
     setJobCity: (state, action) => {
-      state.jobCity = action.payload
+      state.jobCity = action.payload;
     },
     setJobState: (state, action) => {
-      state.jobState = action.payload
+      state.jobState = action.payload;
     },
     setJobZipcode: (state, action) => {
-      state.jobZipcode = action.payload
+      state.jobZipcode = action.payload;
     },
     setJobSalary: (state, action) => {
-      state.jobSalary = action.payload
+      state.jobSalary = action.payload;
     },
     setJobstatus: (state, action) => {
-      state.jobstatus = action.payload
+      state.jobstatus = action.payload;
     },
     setJobYear: (state, action) => {
-      state.jobYear = action.payload
+      state.jobYear = action.payload;
     },
     setPrevjobOccupation: (state, action) => {
-      state.prevjobOccupation = action.payload
+      state.prevjobOccupation = action.payload;
     },
     setPrevEmployerName: (state, action) => {
-      state.employerName = action.payload
+      state.employerName = action.payload;
     },
     setPrevEmployerPhoneNumber: (state, action) => {
-      state.prevemployerPhoneNumber = action.payload
+      state.prevemployerPhoneNumber = action.payload;
     },
     setPrevJobApt: (state, action) => {
-      state.prevjobApt = action.payload
+      state.prevjobApt = action.payload;
     },
     setPrevJobCity: (state, action) => {
-      state.prevjobCity = action.payload
+      state.prevjobCity = action.payload;
     },
     setPrevJobState: (state, action) => {
-      state.prevjobState = action.payload
+      state.prevjobState = action.payload;
     },
     setPrevJobZipcode: (state, action) => {
-      state.prevjobZipcode = action.payload
+      state.prevjobZipcode = action.payload;
     },
     setPrevJobSalary: (state, action) => {
-      state.prevjobSalary = action.payload
+      state.prevjobSalary = action.payload;
     },
     setPrevJobstatus: (state, action) => {
-      state.prevjobstatus = action.payload
+      state.prevjobstatus = action.payload;
     },
     setPrevJobYear: (state, action) => {
-      state.prevjobYear = action.payload
+      state.prevjobYear = action.payload;
     },
     setProgress: (state) => {
-      state.progress += 1
+      state.progress += 1;
     },
     //set Residental information
     setMonthlyPay: (state, action) => {
-      state.monthlyPay = action.payload
+      state.monthlyPay = action.payload;
     },
     setResidentalYears: (state, action) => {
-      state.residentalYears = action.payload
+      state.residentalYears = action.payload;
     },
     setResidentalMonths: (state, action) => {
-      state.residentalMonths = action.payload
+      state.residentalMonths = action.payload;
     },
     //set previous residental information
     setPreviousMonthlyPay: (state, action) => {
-      state.previousMonthlyPay = action.payload
+      state.previousMonthlyPay = action.payload;
     },
     setPreviousResidentalYears: (state, action) => {
-      state.previousResidentalYears = action.payload
+      state.previousResidentalYears = action.payload;
     },
     setPreviousResidentalMonths: (state, action) => {
-      state.previousResidentalMonths = action.payload
+      state.previousResidentalMonths = action.payload;
     },
     setPayDown: (state, action) => {
-      state.payDwon = action.payload
+      state.payDwon = action.payload;
     },
     //set dealer Converted ID
     setDealerConvertedID: (state, action) => {
-      state.dealerConvertId = action.payload
+      state.dealerConvertId = action.payload;
     },
     //driver license information
     setDriverNumber: (state, action) => {
@@ -308,10 +316,10 @@ export const checkerSlice = createSlice({
       state.iType = action.payload;
     },
     setIIsuer: (state, action) => {
-      state.iIsuer = action.payload
+      state.iIsuer = action.payload;
     },
     setIDate: (state, action) => {
-      state.iDate = action.payload
+      state.iDate = action.payload;
     },
     // decision if us citizen
     setUSCitizen: (state, action) => {
@@ -542,6 +550,8 @@ export const checkerSlice = createSlice({
 
     // Clear history
     clearHistory: (state) => {
+      state.identifyId = initialState.identifyId;
+      state.identifyStatus = initialState.identifyStatus;
       state.refFirstName = initialState.refFirstName;
       state.refLastName = initialState.refLastName;
       state.refPhoneNumber = initialState.refPhoneNumber;
@@ -656,6 +666,8 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setIdentifyId,
+  setIdentifyStatus,
   setRefFirstName,
   setRefLastName,
   setRefPhoneNumber,

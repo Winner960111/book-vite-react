@@ -2,6 +2,21 @@ import axios from 'axios';
 import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 
+export const checkVerify = async (data) => {
+  console.log('this is submit====>', data);
+  const url = 'https://www.dev.creditapps.com/api/verify_mobile/';
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    return response;
+  } catch (e) {
+    return { status: 400 };
+  }
+};
+
 export const submitReference = async (data) => {
   console.log('this is submit====>', data);
   const url = 'https://www.dev.creditapps.com/api/add_documents/';

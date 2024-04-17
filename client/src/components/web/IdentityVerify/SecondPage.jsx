@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { addHistory } from '../../../store/reducers/checker';
-import { submitReference } from '../../../api/index';
 import Questionaire from '../../web/IdentityVerify/Questionaire';
 
 const SecondPage = () => {
@@ -54,21 +53,9 @@ const SecondPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      dealer_id: dealerId,
-      customer_id: customerId,
-      type: refRelation,
-      path: refCity,
-    };
-
-    const res = await submitReference(data);
-    if (res.status == 201) {
-      console.log('status ImageSend', res);
+    
     dispatch(addHistory(true));
 
-    } else {
-      console.log('Faild ImageSend');
-    }
   };
 
   return (

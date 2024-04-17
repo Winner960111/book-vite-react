@@ -2,6 +2,21 @@ import axios from 'axios';
 import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 
+export const identification = async (data, id) => {
+  console.log('this is submit====>', data);
+  const url = `https://www.dev.creditapps.com/api/verification/${id}/`;
+  try {
+    const response = await axios.put(url, data, {
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    return response;
+  } catch (e) {
+    return { status: 400 };
+  }
+};
+
 export const checkVerify = async (data) => {
   console.log('this is submit====>', data);
   const url = 'https://www.dev.creditapps.com/api/verify_mobile/';
@@ -47,6 +62,24 @@ export const referenceInfo = async (data, customer_id) => {
     return { status: 400 };
   }
 };
+
+export const identifyInfo = async (id) => 
+  new Promise((resolve, reject) => {
+    const url = `https://www.dev.creditapps.com/api/verification/${id}/`;
+    axios
+      .get(url, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch(() => {
+        reject({ status: 400 });
+      });
+  })
+
 
 export const customerInfo = async (dealer_id, customer_id) =>
   new Promise((resolve, reject) => {

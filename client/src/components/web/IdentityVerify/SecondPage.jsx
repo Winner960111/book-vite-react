@@ -3,19 +3,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { addHistory } from '../../../store/reducers/checker';
 import Questionaire from '../../web/IdentityVerify/Questionaire';
+import { identifyInfo, identification } from '../../../api/index';
 
 const SecondPage = () => {
   const {
+    identifyId,
     dealerId,
-    customerId,
-    refRelation,
-    refCity,
+    customerId
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [answer, setAnswer] = useState({});
   const [answers, setAnswers] = useState([])
-  const question = [{ "question": 'what is your name?', "answer": ["Alex", "HaoMing", "Alexis"] }, { "question": "what is your last occupation?", "answer": ["developer", "client", "assistant"] }, { "question": "Hou much salary do you expect for our company?", "answer":["700~900USD", "900~1100USD", "1100~1300USD"] }]
+  const [question, setQuestion] = useState([])
+  const [temp_data, setTemp] = useState([]);
 
+  useEffect(() => {
+    console.log('useEffect===>');
+    identifyInfo(identifyId).then((res) => {
+      setQuestion(res.questions);
+      setTemp(res)
+    });
+  }, []);
+console.log("thisisi data question ===>", question)
+console.log('thisisi data temp data ===>', temp_data);
  
   useEffect(() => {
     let double = -1
@@ -40,7 +50,7 @@ const SecondPage = () => {
       } else {
         const newobject = {
           answer: answer.ans,
-          questionID: answer.index,
+          questionID: answer.index
         };
         setAnswers([...answers, newobject]);
       }
@@ -53,20 +63,35 @@ const SecondPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    const data = {
+      dealer_id: dealerId,
+      customer_id: customerId,
+      kba_status: temp_data.kba_status,
+      dl_status: temp_data.dl_status,
+      questionAnswers: answers,
+      completed: temp_data.completed,
+    };
+
+    const res = await identification(data, identifyId)
+    console.log("this is status",res.status)
+    if (res.status == 200) {
+      console.log("Success")
     dispatch(addHistory(true));
+    } else {
+      console.log("failed")
+    }
 
   };
 
   return (
     <div className="flex bg-gray-50 w-full justify-center items-center">
       <div className="w-2/3 flex flex-col mt-10 mx-20 justify-center items-center">
-        <p className="w-[70%] text-4xl text-black my-3 font-medium">
+        <p className="w-full text-4xl text-black my-3 font-medium">
           Please answer following questions.
         </p>
         <form
           className={classNames(
-            ' w-[70%] text-justify bg-white rounded-3xl p-8 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg font-sans'
+            ' w-full text-justify bg-white rounded-3xl p-8 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg font-sans'
           )}
         >
           <div className="flex flex-col overflow-auto">

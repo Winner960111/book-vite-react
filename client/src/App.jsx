@@ -91,6 +91,15 @@ const App = () => {
           path="/verification/:dealer_slug/:customer_slug"
           element={type == 'web' ? <WebIdentityVerify /> : null}
         />
+        {/* https://www.credit-apps.com/verification_failed/?reference=YD88YUMVQM&customid=19286 */}
+        <Route
+          path="/verification_failed/:string"
+          element={type == 'web' ? <WebHome /> : null}
+        />
+        <Route
+          path="/verification_success/:string"
+          element={type == 'web' ? <WebIdentityVerify /> : null}
+        />
       </Routes>
     </>
   );

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
 import moment from 'moment-timezone';
@@ -39,6 +39,7 @@ const WebIdentityVerify = () => {
   const { dealer_slug } = useParams();
   const { customer_slug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
@@ -69,6 +70,10 @@ const WebIdentityVerify = () => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_slug));
     new Promise(dealerInfoCall);
   }, [history, step, dealer_slug, dispatch]);
+
+  useEffect(() => {
+    console.log("this is location++==>",location)
+  },[location])
 
   useEffect(() => {
     if (dealerId) {
@@ -137,6 +142,9 @@ const WebIdentityVerify = () => {
       {step == 1 && <FirstPage />}
       {step == 2 && <SecondPage />}
       {step == 3 && <ThirdPage />}
+      {step == 3 && location.path == 'verification_failed' ? 
+        navigate(-1) : null}
+      
       {/* {step == 4 && <Finish />} */}
       <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
         <img

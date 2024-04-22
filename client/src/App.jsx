@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // page component
@@ -26,21 +26,18 @@ import ReferenceDoc from './pages/ReferenceDoc';
 import WebIdentityVerify from './pages/WebIdentityVerify'
 const App = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
   const { type } = useSelector((state) => state.checker);
-
   const initialize = useCallback(() => {
     dispatch(detectAgent());
   }, [dispatch]);
 
   useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const source = queryParams.get('source');
-    console.log('this is following', source);
-    if (source == 'iframe') {
-      console.log('iframe');
-      dispatch(setRenderType(source));
+
+    if (window !== window.parent) {
+      console.log('embedded in iframe or object');
+      dispatch(setRenderType('iframe'));
     } else {
+      console.log('not embedded or cross-origin');
       initialize();
     }
   }, [dispatch, initialize]);
@@ -89,15 +86,6 @@ const App = () => {
         />
         <Route
           path="/verification/:dealer_slug/:customer_slug"
-          element={type == 'web' ? <WebIdentityVerify /> : null}
-        />
-        {/* https://www.credit-apps.com/verification_failed/?reference=YD88YUMVQM&customid=19286 */}
-        <Route
-          path="/verification_failed/:string"
-          element={type == 'web' ? <WebHome /> : null}
-        />
-        <Route
-          path="/verification_success/:string"
           element={type == 'web' ? <WebIdentityVerify /> : null}
         />
       </Routes>

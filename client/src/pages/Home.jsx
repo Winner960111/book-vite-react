@@ -37,51 +37,25 @@ const Home = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center bg-gray-50">
+    <div className="w-screen h-screen flex flex-col items-center bg-gray-50">
       <div className="flex w-full justify-center bg-white">
-        <div className="flex w-full justify-between py-5 px-5">
+        <div className="w-full rounded-lg flex justify-end items-center py-6 px-4 bg-white shadow-[10px_10px_20px_-5px_rgba(0,0,0,0.3)]">
           <img
-            className="w-40 h-16 cursor-pointer"
+            className="w-24 h-12 mr-[20%]"
             src={dealerLogo}
             alt="avatar"
           />
-          <img className="w-35 h-20 cursor-pointer" src={shield} alt="avatar" />
+          <img className="w-12 h-10 cursor-pointer" src={shield} alt="avatar" />
         </div>
       </div>
-      <div className="w-3/4 md:w-1/2 flex-col text-center">
-        <p className="text-2xl md:text-4xl font-bold">
-          🌟 Welcome to {dealerName}! Let&apos;s Tailor Your Experience Together
-          🤖
-        </p>
-        <p className="text-xl md:text-2xl font-serif mt-6">
-          We&apos;re thrilled to have you here! At {dealerName}, we understand
-          that your time is valuable, and we want to make sure your experience
-          is seamless and tailored to your needs.
-        </p>
-        <div className="flex flex-col mt-10 justify-around">
-          <button
-            onClick={changePageQuote}
-            className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 hover:bg-purple-800"
-          >
-            GET A QUOTE
-          </button>
+      <div className="w-full mt-20 flex-col text-center">
+        <p className="text-xl font-bold">🌟 Welcome to {dealerName}!🤖</p>
+        <div className="flex flex-col mt-10 px-16 justify-around">
           <button
             onClick={changePagePrequalified}
             className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 hover:bg-purple-800"
           >
             GET PREQUALIFIED
-          </button>
-          <button
-            onClick={changePageTradeIn}
-            className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 hover:bg-purple-800"
-          >
-            TRADE IN VALUE
-          </button>
-          <button
-            // onClick={changePagePrequalified}
-            className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 hover:bg-purple-800"
-          >
-            CALL BACK
           </button>
           <button
             // onClick={changePagePrequalified}
@@ -90,16 +64,34 @@ const Home = () => {
             FULL CREDIT APPLICATION
           </button>
           <button
-            onClick={changePageCheckApp}
+            onClick={changePageQuote}
             className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 hover:bg-purple-800"
           >
-            CHECK APPLICATION STATUS
+            GET A QUOTE
+          </button>
+          <button
+            onClick={changePageTradeIn}
+            className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 hover:bg-purple-800"
+          >
+            TRADE IN VALUE
           </button>
           <button
             onClick={changePageAppointment}
             className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
           >
             APPOINTMENT
+          </button>
+          <button
+            onClick={changePageCheckApp}
+            className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 hover:bg-purple-800"
+          >
+            CHECK APPLICATION STATUS
+          </button>
+          <button
+            // onClick={changePagePrequalified}
+            className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 hover:bg-purple-800"
+          >
+            CALL BACK
           </button>
         </div>
       </div>

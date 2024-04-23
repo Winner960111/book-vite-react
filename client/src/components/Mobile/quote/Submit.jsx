@@ -88,7 +88,9 @@ const Submit = () => {
           step >= 9 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
-        <p className="bg-gray-50 rounded-3xl p-4">We are almost done:</p>
+        <p className="bg-gray-50 rounded-3xl p-4">
+          Please take a moment to review the information below.
+        </p>
         <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           We are committed to protecting your privacy. The information that you
           provided is only shared with the dealership to assess your credit
@@ -155,56 +157,6 @@ const Submit = () => {
             }
           >
             {readStatePara1 == false ? 'More' : 'Less'}
-          </span>
-        </div>
-        <div className="bg-gray-50 rounded-3xl p-4 mt-2">
-          <p
-            className={
-              readStatePara2 == false
-                ? 'w-full whitespace-nowrap text-ellipsis overflow-hidden'
-                : null
-            }
-          >
-            By Submitting this form I authorize {dealerName} to contact me by
-            email, phone, or text messages regarding this inquiry, I also
-            acknowledge that I have read, understand, and agree to be bound by
-            our End User{' '}
-            {step == 8 ? (
-              <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Terms of use
-              </a>
-            ) : (
-              'here'
-            )}{' '}
-            and our{' '}
-            {step == 8 ? (
-              <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Privacy Policy
-              </a>
-            ) : (
-              'here'
-            )}
-            .
-          </p>
-          <span
-            onClick={() => setReadStatePara2(!readStatePara2)}
-            className={
-              step == 8
-                ? 'text-blue-600 text-sm hover:underline cursor-pointer'
-                : null
-            }
-          >
-            {readStatePara2 == false ? 'More' : 'Less'}
           </span>
         </div>
         <button

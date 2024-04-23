@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkVerification, usersStatus } from '../../../api/index';
 import { addHistory, setIntentID } from '../../../store/reducers/checker';
-import { TextField } from '@mui/material';
 import OtpInput from 'react-otp-input';
 import verify from '../../../assets/verify.png'
 

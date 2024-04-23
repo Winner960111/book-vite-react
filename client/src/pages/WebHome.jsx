@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-
 import { clearHistory, getDealerInfo } from '../store/reducers/checker';
+import shield from '../assets/shield.jpg'
 
 const WebHome = () => {
   const { dealer_id } = useParams();
-  const { dealerName } = useSelector((state) => state.checker);
+  const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -44,35 +44,59 @@ const WebHome = () => {
   }
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      <div className="w-3/4 md:w-1/2 flex flex-col text-center items-center">
-        <p className="text-2xl md:text-4xl font-bold">
-          🌟 Welcome to {dealerName}! Let&apos;s Tailor Your Experience Together
-          🤖
+    <div className="w-screen h-screen flex flex-col items-center bg-gray-50">
+      <div className="flex w-full justify-center bg-white">
+        <div className="flex w-3/4 justify-between py-5 px-20">
+          <img
+            className="w-40 h-16 cursor-pointer"
+            src={dealerLogo}
+            alt="avatar"
+          />
+          <img className="w-35 h-20 cursor-pointer" src={shield} alt="avatar" />
+        </div>
+      </div>
+      <div className="w-3/4 flex flex-col text-center items-center mt-28">
+        <p className="text-4xl font-bold">
+          🌟 Welcome to {dealerName}! Let&apos;s Tailor Your Experience
+          Together🤖
         </p>
-        <p className="text-xl md:text-2xl font-serif mt-6">
-          We&apos;re thrilled to have you here! At {dealerName}, we understand
-          that your time is valuable, and we want to make sure your experience
-          is seamless and tailored to your needs.
-        </p>
-        <div className="flex flex-col mt-10 w-[70%] justify-around md:flex-wrap">
-          <button
-            onClick={changePageQuote}
-            className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
-          >
-            GET A QUOTE
-          </button>
+        <div className="flex flex-col mt-10 w-[50%] justify-around md:flex-wrap">
           <button
             onClick={changePagePrequalified}
-            className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
           >
             GET PREQUALIFIED
           </button>
           <button
+            onClick={changePageFullApp}
+            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+          >
+            FULL CREDIT APPLICATION
+          </button>
+          <button
+            onClick={changePageQuote}
+            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+          >
+            GET A QUOTE
+          </button>
+
+          <button
             onClick={changePageTradeInValue}
-            className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
           >
             TRADE IN VALUE
+          </button>
+          <button
+            onClick={changePageAppointment}
+            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+          >
+            APPOINTMENT
+          </button>
+          <button
+            onClick={changePageCheckApp}
+            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+          >
+            CHECK APPLICATION STATUS
           </button>
           <button
             // onClick={changePageTradeInValue}
@@ -80,24 +104,8 @@ const WebHome = () => {
           >
             CALL BACK
           </button>
-          <button
-            onClick={changePageFullApp}
-            className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
-          >
-            FULL CREDIT APPLICATION
-          </button>
-          <button
-            onClick={changePageCheckApp}
-            className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
-          >
-            CHECK APPLICATION STATUS
-          </button>
-          <button
-            onClick={changePageAppointment}
-            className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
-          >
-            APPOINTMENT
-          </button>
+
+          
         </div>
       </div>
     </div>

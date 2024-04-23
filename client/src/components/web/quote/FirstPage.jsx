@@ -124,6 +124,7 @@ const FirstPage = () => {
                   onChange={handleFirstName}
                   fullWidth
                   autoFocus
+                  autoComplete='off'
                   type="text"
                   defaultValue="Normal"
                   label="First Name"
@@ -156,6 +157,7 @@ const FirstPage = () => {
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
+                  autoComplete='off'
                   type="text"
                   defaultValue="Normal"
                   label="Last Name"
@@ -188,6 +190,7 @@ const FirstPage = () => {
                   value={emailAddress}
                   onChange={handleEmailAddress}
                   fullWidth
+                  autoComplete='off'
                   type="text"
                   defaultValue="Normal"
                   label="Email Address"

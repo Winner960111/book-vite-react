@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-
 import { getDealerInfo, clearHistory } from '../store/reducers/checker';
+import shield from '../assets/shield.jpg';
 
 const Home = () => {
   const { dealer_id } = useParams();
-  const { dealerName } = useSelector((state) => state.checker);
+  const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -37,7 +37,17 @@ const Home = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
+    <div className="w-screen h-screen flex flex-col justify-center items-center bg-gray-50">
+      <div className="flex w-full justify-center bg-white">
+        <div className="flex w-full justify-between py-5 px-5">
+          <img
+            className="w-40 h-16 cursor-pointer"
+            src={dealerLogo}
+            alt="avatar"
+          />
+          <img className="w-35 h-20 cursor-pointer" src={shield} alt="avatar" />
+        </div>
+      </div>
       <div className="w-3/4 md:w-1/2 flex-col text-center">
         <p className="text-2xl md:text-4xl font-bold">
           🌟 Welcome to {dealerName}! Let&apos;s Tailor Your Experience Together

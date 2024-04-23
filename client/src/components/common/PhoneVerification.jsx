@@ -77,7 +77,7 @@ const PhoneVerification = () => {
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <p className="w-4/5 md:w-[600px] text-4xl my-3 mt-36 font-medium">
+        <p className="w-4/5 md:w-[600px] text-4xl my-3 mt-20 font-medium">
           <b>Verify your mobile number</b>
         </p>
         <div
@@ -94,18 +94,19 @@ const PhoneVerification = () => {
               value={phoneNumber}
               onChange={handleChangeInput}
               fullWidth
+              autoComplete='off'
               type="text"
               InputProps={{
                 style: {
                   height: '70px', // Set the height of the TextField
                   fontSize: '25px',
-                  textAlign: 'center'
+                  textAlign: 'center',
                 },
               }}
               InputLabelProps={{
                 style: {
                   textAlign: 'center',
-                  fontSize: '25px'
+                  fontSize: '25px',
                 },
               }}
             />
@@ -114,12 +115,18 @@ const PhoneVerification = () => {
             ) : null}
           </div>
           <p className=" bg-gray-50 rounded-3xl p-4">
-            We will send a <strong>verification code</strong> to the phone number you provide.<br />
+            To ensure the security of our platform, we&apos;ll send you a
+            verification code via call or text. This step helps us confirm that
+            you&apos;re a real person.{' '}
             <i>Don&apos;t include &apos;+&apos; or &lsquo;()&rsquo;</i>
-            {/* by providing your mobile number you agree to receive recurring
-            messages from <b>{dealerName}</b> to the provided mobile number and
-            agree to <b>{dealerName}</b>. terms and privacy policy. Message &
-            data rates may apply. */}
+          </p>
+          <p className=" bg-gray-50 rounded-3xl p-4 mt-5">
+            By agreeing, you authorize us to send future messages regarding your
+            request, You&apos;re in control of your messaging. Reply
+            &lsquo;Stop&rsquo; to unsubscribe at any time. Please review our
+            privacy policy at {' '}
+            <a href="https://www.credit-apps.com/privacy/">https://www.credit-apps.com/privacy/
+            </a>{' '}for more details.
           </p>
           <div className="flex justify-between">
             <button
@@ -127,7 +134,7 @@ const PhoneVerification = () => {
               onClick={handleTextCode}
               className="bg-[#854fff] w-[30%] h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
             >
-              Text code
+              Text
             </button>
 
             <button
@@ -135,7 +142,7 @@ const PhoneVerification = () => {
               onClick={handleCallCode}
               className="bg-[#854fff] w-[30%] h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
             >
-              Call code
+              Call
             </button>
           </div>
         </div>

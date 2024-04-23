@@ -26,7 +26,7 @@ const DealType = () => {
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
-  const [dealClick, setDealClick] = useState('');
+  const [dealClick, setDealClick] = useState('Finance');
   const [error, setError] = useState(null);
   const [year, setYear] = useState('');
   const [make, setMake] = useState('');
@@ -34,9 +34,9 @@ const DealType = () => {
 
   useEffect(() => {
     setError(null);
-    setDealClick('');
   }, [step]);
 
+    console.log("this is value===>", dealClick)
   const handleSubmit = async () => {
     if (dealClick) {
       let interest = year + ' ' + make + ' ' + ' ' + model;
@@ -153,6 +153,7 @@ const DealType = () => {
                 <input
                   type="radio"
                   id="radio1"
+                  checked={dealClick == 'Finance' ? true : false}
                   name="deal_type"
                   className="w-[17px] h-[17px] mx-2"
                 />
@@ -191,7 +192,7 @@ const DealType = () => {
             </div>
 
             <p className=" px-6">
-              <p>Please select deal type.</p>
+              <p>What option are you considering for your purchase?</p>
             </p>
             {error !== '' ? (
               <p className="text-red-500 pl-6 pt-2">{error}</p>

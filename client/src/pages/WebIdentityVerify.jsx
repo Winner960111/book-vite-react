@@ -10,8 +10,6 @@ import PhoneVerification from '../components/web/IdentityVerify/PhoneVerificatio
 import FirstPage from '../components/web/IdentityVerify/FirstPage';
 import SecondPage from '../components/web/IdentityVerify/SecondPage';
 import ThirdPage from '../components/web/IdentityVerify/ThirdPage';
-// import SecondPage from '../components/web/IdentityVerify/SecondPage';
-// import Finish from '../components/web/IdentityVerify/Finish';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
 import {
@@ -142,9 +140,6 @@ const WebIdentityVerify = () => {
       {step == 1 && <FirstPage />}
       {step == 2 && <SecondPage />}
       {step == 3 && <ThirdPage />}
-      {step == 3 && location.path == 'verification_failed' ? 
-        navigate(-1) : null}
-      
       {/* {step == 4 && <Finish />} */}
       <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
         <img

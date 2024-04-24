@@ -32,8 +32,6 @@ const Submit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(addHistory(true));
-
     const data = {
       dealer_id: dealerId,
       reference1_first_name: refFirstName,

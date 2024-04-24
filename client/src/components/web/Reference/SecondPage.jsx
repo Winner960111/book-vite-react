@@ -266,7 +266,7 @@ const FirstPage = () => {
                     onChange={handleRelation}
                   >
                     <MenuItem value={'Spouse'}>Spouse</MenuItem>
-                    <MenuItem value={'Employeer'}>Employeer</MenuItem>
+                    <MenuItem value={'Employer'}>Employer</MenuItem>
                     <MenuItem value={'Relative'}>Relative</MenuItem>
                     <MenuItem value={'Friend'}>Friend</MenuItem>
                     <MenuItem value={'Other'}>Other</MenuItem>

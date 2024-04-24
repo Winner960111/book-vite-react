@@ -2,20 +2,13 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { addHistory } from '../../../store/reducers/checker';
-import { SubmitQuote, usersUpdate } from '../../../api/index';
+import { usersUpdate } from '../../../api/index';
 
 const ThirdPage = () => {
   const {
     dealerName,
     dealerId,
     checkerMobileNumber,
-    checkerFirstName,
-    quoteStatus,
-    checkerLastName,
-    checkerEmail,
-    quoteSource,
-    dealType,
-    quoteInterest,
     intentID,
     deviceIP,
     deviceOS,
@@ -56,25 +49,6 @@ const ThirdPage = () => {
     const res = await usersUpdate(data, intentID);
     console.log('this is update results ====>', res);
     dispatch(addHistory(true));
-
-    const sub_data = {
-      dealer_id: dealerId,
-      first_name: checkerFirstName,
-      last_name: checkerLastName,
-      email: checkerEmail,
-      mobile_phone: checkerMobileNumber,
-      status: quoteStatus,
-      source: quoteSource,
-      interested_in: quoteInterest,
-      deal_type: dealType,
-    };
-
-    const sub_res = await SubmitQuote(sub_data);
-    if (sub_res.status == 201) {
-      console.log('status ImageSend', sub_res);
-    } else {
-      console.log('Faild ImageSend');
-    }
   };
 
   return (

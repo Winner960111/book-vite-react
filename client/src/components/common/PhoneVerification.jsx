@@ -78,7 +78,7 @@ const PhoneVerification = () => {
     <>
       <div className="w-full flex flex-col items-center">
         <p className="w-4/5 md:w-[600px] text-4xl my-3 mt-20 font-medium">
-          <b>Verify your mobile number</b>
+          Verify your mobile number
         </p>
         <div
           className={
@@ -125,7 +125,7 @@ const PhoneVerification = () => {
             request, You&apos;re in control of your messaging. Reply
             &lsquo;Stop&rsquo; to unsubscribe at any time. Please review our
             privacy policy at {' '}
-            <a href="https://www.credit-apps.com/privacy/">https://www.credit-apps.com/privacy/
+            <a href="https://www.credit-apps.com/privacy/" target='__blank'>https://www.credit-apps.com/privacy/
             </a>{' '}for more details.
           </p>
           <div className="flex justify-between">

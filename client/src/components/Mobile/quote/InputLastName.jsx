@@ -91,7 +91,6 @@ const InputLastName = () => {
             id="outlined-multiline-flexible"
             label="Last name"
             fullWidth
-            autoFocus
             autoComplete='off'
             value={lastName}
             onChange={handleChangeInput}

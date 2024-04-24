@@ -83,19 +83,18 @@ const InputFirstName = () => {
           step >= 4 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
+        <p className="bg-gray-50 rounded-3xl p-4 text-left mb-5">
+          <b>🎊 Congratulation! you successfully verified.</b>
+        </p>
         <div
           className="flex flex-col md:flex-row md:items-center"
           style={step >= 4 ? { display: 'none' } : { display: 'block' }}
         >
-          <p className="bg-gray-50 rounded-3xl p-4 text-left mb-5">
-            <b>🎊 Congratulation! you successfully verified.</b>
-          </p>
           <TextField
             id="outlined-multiline-flexible"
             label="First name"
             fullWidth
-            autoFocus
-            autoComplete='off'
+            autoComplete="off"
             value={firstName}
             onChange={handleChangeInput}
             type="text"

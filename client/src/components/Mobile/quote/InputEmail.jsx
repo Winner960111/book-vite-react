@@ -88,7 +88,6 @@ const InputEmail = () => {
             id="outlined-multiline-flexible"
             label="email address"
             fullWidth
-            autoFocus
             autoComplete='off'
             value={email.toLowerCase()}
             onChange={handleChangeInputEmail}

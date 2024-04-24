@@ -80,33 +80,6 @@ const SendPhoneVerificationCode = () => {
           step >= 2 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
-        <div
-          className="py-2 flex flex-col md:flex-row md:items-center"
-          style={step >= 2 ? { display: 'none' } : { display: 'block' }}
-        >
-          <TextField
-            id="outlined-multiline-flexible"
-            label="Phone number"
-            fullWidth
-            value={phoneNumber}
-            onChange={handleChangeInput}
-            type="tel"
-            autoFocus
-            autoComplete="off"
-            InputProps={{
-              style: {
-                height: '70px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
-          />
-          {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
-        </div>
         <p className=" bg-gray-50 rounded-3xl p-4">
           To ensure the security of our platform, we&apos;ll send you a
           verification code via call or text. This step helps us confirm that
@@ -123,6 +96,33 @@ const SendPhoneVerificationCode = () => {
           </a>{' '}
           for more details.
         </p>
+        <div
+          className="py-2 flex flex-col md:flex-row md:items-center"
+          style={step >= 2 ? { display: 'none' } : { display: 'block' }}
+        >
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Phone number"
+            fullWidth
+            value={phoneNumber}
+            onChange={handleChangeInput}
+            type="tel"
+            autoComplete="off"
+            InputProps={{
+              style: {
+                height: '70px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                fontSize: '25px',
+              },
+            }}
+          />
+          {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
+        </div>
+
         <button
           type="button"
           onClick={handleTextCode}

@@ -101,14 +101,13 @@ const CheckPhoneVerificationCode = () => {
             onChange={setVerifyCode}
             numInputs={6}
             renderSeparator={<span>&nbsp; - &nbsp;</span>}
-            shouldAutoFocus
             renderInput={(props) => (
               <input
                 {...props}
                 style={{
                   border: '1px solid black',
-                  width: '45px',
-                  height: '60px',
+                  width: '40px',
+                  height: '55px',
                   borderRadius: '10px',
                   fontSize: '30px',
                   textAlign: 'center',

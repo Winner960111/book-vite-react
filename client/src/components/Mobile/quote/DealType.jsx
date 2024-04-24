@@ -66,8 +66,8 @@ const DealType = () => {
           step >= 7 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
-        <div className="flex flex-col md:justify-between bg-gray-50 rounded-3xl p-4">
-          <div className="flex flex-col md:flex-row ">
+        <div className="flex flex-col md:justify-between p-4">
+          <div className="flex flex-col md:flex-row bg-gray-50 rounded-3xl">
             <label
               htmlFor="radio1"
               className="text-lg md:text-2xl m-2 p-2 cursor-pointer"
@@ -145,8 +145,7 @@ const DealType = () => {
               Lease
             </label>
           </div>
-
-          <p className=" px-6">
+          <p className=" p-4 bg-gray-50 rounded-3xl mt-3">
             What option are you considering for your purchase?
           </p>
           {error !== '' ? (

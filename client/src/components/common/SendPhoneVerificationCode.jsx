@@ -9,8 +9,9 @@ import {
 import { classNames } from '../../utils';
 import { TextField } from '@mui/material';
 const SendPhoneVerificationCode = () => {
-  const { history, step, dealerId, checkerMobileNumber } =
-    useSelector((state) => state.checker);
+  const { history, step, dealerId, checkerMobileNumber } = useSelector(
+    (state) => state.checker
+  );
   const dispatch = useDispatch();
 
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -85,7 +86,16 @@ const SendPhoneVerificationCode = () => {
           verification code via call or text. This step helps us confirm that
           you&apos;re a real person.{' '}
           <i>Don&apos;t include &apos;+&apos; or &lsquo;()&rsquo;</i>
+          <br />
+          <br />
         </p>
+      </div>
+      <div
+        className={classNames(
+          'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
+          step >= 2 ? 'text-slate-400' : 'text-slate-800'
+        )}
+      >
         <p className=" bg-gray-50 rounded-3xl p-4 mt-5">
           By agreeing, you authorize us to send future messages regarding your
           request, You&apos;re in control of your messaging. Reply
@@ -96,10 +106,15 @@ const SendPhoneVerificationCode = () => {
           </a>{' '}
           for more details.
         </p>
-        <div
-          className="py-2 flex flex-col md:flex-row md:items-center"
-          style={step >= 2 ? { display: 'none' } : { display: 'block' }}
-        >
+      </div>
+      <div
+        className={classNames(
+          'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
+          step >= 2 ? 'text-slate-400' : 'text-slate-800'
+        )}
+        style={step >= 2 ? { display: 'none' } : { display: 'block' }}
+      >
+        <div className="py-2 flex flex-col md:flex-row md:items-center">
           <TextField
             id="outlined-multiline-flexible"
             label="Phone number"

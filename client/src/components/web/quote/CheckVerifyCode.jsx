@@ -32,7 +32,6 @@ const CheckVerifyCode = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!verifyCode.trim()) {
       setError('You should input verification code');
     } else if (!/^[0-9]+$/.test(verifyCode)) {

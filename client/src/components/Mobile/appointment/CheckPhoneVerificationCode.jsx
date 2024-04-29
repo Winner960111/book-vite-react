@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkVerification, usersStatus } from '../../../api/index';
 import { addHistory, setIntentID } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-import TextField from '@mui/material/TextField';
+import verify from '../../../assets/verify.png';
+import OtpInput from 'react-otp-input';
 
 const CheckPhoneVerificationCode = () => {
   const [verifyCode, setVerifyCode] = useState('');
@@ -91,43 +92,43 @@ const CheckPhoneVerificationCode = () => {
         )}
       >
         <div
-          className="py-2 flex flex-col md:flex-row md:items-center"
+          className="w-full flex flex-col justify-center items-center py-2"
           style={step >= 3 ? { display: 'none' } : { display: 'block' }}
         >
-          <TextField
-            id="outlined-multiline-flexible"
-            label="Verify Code"
-            fullWidth
-            autoFocus
+          <div className="flex justify-center">
+            <img className="w-40" src={verify} alt="verify icon" />
+          </div>
+          <OtpInput
             value={verifyCode}
-            onChange={handleChangeInput}
-            type="tel"
-            InputProps={{
-              style: {
-                height: '70px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
+            onChange={setVerifyCode}
+            numInputs={6}
+            renderSeparator={<span>&nbsp; - &nbsp;</span>}
+            renderInput={(props) => (
+              <input
+                {...props}
+                style={{
+                  border: '1px solid black',
+                  width: '40px',
+                  height: '55px',
+                  borderRadius: '10px',
+                  fontSize: '30px',
+                  textAlign: 'center',
+                }}
+              />
+            )}
           />
           {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
         <p className="bg-gray-50 rounded-3xl p-4">
-          <b>
-            We sent a verification code to the mobile number you provided,
-            please enter the code below.
-          </b>
+          We Call or Text a one-time access code to the mobile number you
+          provided.
         </p>
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
           style={step >= 3 ? { display: 'none' } : { display: 'block' }}
         >
-          CONFIRM
+          VERIFY
         </button>
       </form>
     </>

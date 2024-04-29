@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkVerification } from '../../../api/index';
 import { addHistory} from '../../../store/reducers/checker';
-import { TextField } from '@mui/material';
+import OtpInput from 'react-otp-input';
+import verify from '../../../assets/verify.png';
 
 const CheckVerifyCode = () => {
   const [verifyCode, setVerifyCode] = useState('');
@@ -17,11 +18,6 @@ const CheckVerifyCode = () => {
   useEffect(() => {
     setError(null);
   }, [step]);
-
-  const handleChangeInput = (e) => {
-    setVerifyCode(e.target.value);
-    setError(null);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,42 +54,40 @@ const CheckVerifyCode = () => {
         }
       >
         <div className="py-2 flex flex-col items-center">
-          <TextField
-            helperText=" "
-            id="demo-helper-text-aligned-no-helper"
-            label="Verify Code"
-            autoFocus
+          <img className=" w-52" src={verify} alt="verify icon" />
+          <OtpInput
             value={verifyCode}
-            onChange={handleChangeInput}
-            fullWidth
-            type="text"
-            InputProps={{
-              style: {
-                height: '70px', // Set the height of the TextField
-                fontSize: '25px',
-                textAlign: 'center'
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                textAlign: 'center',
-                fontSize: '25px'
-              },
-            }}
+            onChange={setVerifyCode}
+            numInputs={6}
+            renderSeparator={<span>&nbsp; - &nbsp;</span>}
+            shouldAutoFocus
+            renderInput={(props) => (
+              <input
+                {...props}
+                style={{
+                  border: '1px solid black',
+                  width: '45px',
+                  height: '60px',
+                  borderRadius: '10px',
+                  fontSize: '30px',
+                  textAlign: 'center',
+                }}
+              />
+            )}
           />
           {error !== '' ? (
             <p className="text-red-500 pl-2 text-sm">{error}</p>
           ) : null}
         </div>
         <p className=" bg-gray-50 rounded-3xl p-4">
-          We sent a verification code to the mobile number you provided, please
-          enter the code.
+          We Call or Text a one-time access code to the mobile number you
+          provided.
         </p>
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
         >
-          CONFIRM
+          VERIFY
         </button>
       </form>
     </div>

@@ -124,11 +124,10 @@ const FirstPage = () => {
                   onChange={handleFirstName}
                   fullWidth
                   autoFocus
-                  autoComplete='off'
-                  type="text"
+                  autoComplete="off"
                   defaultValue="Normal"
-                  label="First Name"
                   variant="standard"
+                  label="First Name"
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -137,7 +136,7 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
@@ -157,8 +156,7 @@ const FirstPage = () => {
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
-                  autoComplete='off'
-                  type="text"
+                  autoComplete="off"
                   defaultValue="Normal"
                   label="Last Name"
                   variant="standard"
@@ -170,7 +168,7 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
@@ -190,8 +188,7 @@ const FirstPage = () => {
                   value={emailAddress}
                   onChange={handleEmailAddress}
                   fullWidth
-                  autoComplete='off'
-                  type="text"
+                  autoComplete="off"
                   defaultValue="Normal"
                   label="Email Address"
                   variant="standard"
@@ -203,7 +200,7 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
@@ -221,11 +218,10 @@ const FirstPage = () => {
             </div>
 
             <div className="w-full p-5 flex justify-end">
-
               <button
                 type="button"
                 onClick={handlesubmit}
-                className="bg-[#854fff] w-full md:w-1/4 h-20 p-2 md:mx-5 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="bg-[#854fff] w-full md:w-[29%] h-16 p-2 md:mx-5 rounded-lg text-white text-xl  hover:bg-purple-800"
               >
                 CONTINUE
               </button>

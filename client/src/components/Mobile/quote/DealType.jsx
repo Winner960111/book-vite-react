@@ -145,7 +145,7 @@ const DealType = () => {
               Lease
             </label>
           </div>
-          <p className=" p-4 bg-gray-50 rounded-3xl mt-3">
+          <p className=" p-4 bg-gray-50 rounded-3xl mt-3 text-left">
             What option are you considering for your purchase?
           </p>
           {error !== '' ? (

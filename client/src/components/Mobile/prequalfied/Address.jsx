@@ -187,7 +187,6 @@ const Address = () => {
               sx={{ ml: 1, flex: 1 }}
               placeholder="Search Google Maps"
               inputProps={{ 'aria-label': 'search google maps' }}
-              autoFocus
               autoComplete="off"
               id="autocomplete"
               ref={addressRef}

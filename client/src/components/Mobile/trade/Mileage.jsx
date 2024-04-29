@@ -91,7 +91,6 @@ const Mileage = () => {
             margin="dense"
             label="Mileage hour"
             fullWidth
-            autoFocus
             value={year}
             onChange={handleYearChange}
             type="text"

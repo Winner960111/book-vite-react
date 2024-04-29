@@ -97,7 +97,6 @@ const InputMiddleName = () => {
             label="middle name"
             fullWidth
             value={middleName}
-            autoFocus
             onChange={handleChangeInput}
             type="text"
             InputProps={{

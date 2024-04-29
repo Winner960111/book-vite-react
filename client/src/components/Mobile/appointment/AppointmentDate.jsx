@@ -97,7 +97,6 @@ const SendPhoneVerificationCode = () => {
           <TextField
             id="outlined-multiline-flexible"
             label=""
-            autoFocus
             fullWidth
             value={appointmentDate}
             onChange={(e) => setAppointmentDate(e.target.value)}

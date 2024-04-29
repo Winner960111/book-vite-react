@@ -20,11 +20,6 @@ const CheckPhoneVerificationCode = () => {
     setError(null);
   }, [step]);
 
-  const handleChangeInput = (e) => {
-    setVerifyCode(e.target.value);
-    setError(null);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 

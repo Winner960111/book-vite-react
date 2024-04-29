@@ -62,7 +62,6 @@ const InputState = () => {
             value={State}
             onChange={handleChangeInput}
             type="text"
-            autoFocus
             InputProps={{
               style: {
                 height: '70px', // Set the height of the TextField

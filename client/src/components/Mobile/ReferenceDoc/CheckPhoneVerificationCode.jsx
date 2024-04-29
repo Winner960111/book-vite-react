@@ -2,7 +2,8 @@ import BotIcon from './BotIcon';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkVerification } from '../../../api/index';
-import { addHistory} from '../../../store/reducers/checker';
+import { addHistory } from '../../../store/reducers/checker';
+import { classNames } from '../../../utils';
 import verify from '../../../assets/verify.png';
 import OtpInput from 'react-otp-input';
 
@@ -18,11 +19,6 @@ const CheckPhoneVerificationCode = () => {
   useEffect(() => {
     setError(null);
   }, [step]);
-
-  const handleChangeInput = (e) => {
-    setVerifyCode(e.target.value);
-    setError(null);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

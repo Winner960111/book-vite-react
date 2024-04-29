@@ -101,7 +101,6 @@ const InputSocialNumber = () => {
             id="outlined-multiline-flexible"
             label="Social security number"
             fullWidth
-            autoFocus
             value={socialNumber}
             onChange={handleChangeInputSocialNumber}
             type="text"

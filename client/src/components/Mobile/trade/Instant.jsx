@@ -184,7 +184,6 @@ const Instant = () => {
                   helperText=" "
                   id="demo-helper-text-aligned-no-helper"
                   label="VIN"
-                  autoFocus
                   value={vinValue}
                   onChange={(e) => {
                     handleInputVin(e);
@@ -228,7 +227,6 @@ const Instant = () => {
                 margin="dense"
                 label="Year"
                 fullWidth
-                autoFocus
                 value={year}
                 onChange={(e) => {
                   handleInputYear(e);

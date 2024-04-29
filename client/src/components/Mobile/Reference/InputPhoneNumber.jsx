@@ -66,7 +66,6 @@ const InputPhoneNumber = () => {
             id="outlined-multiline-flexible"
             label="Phone number"
             fullWidth
-            autoFocus
             value={phoneNumber}
             onChange={handleChangeInputPhoneNumber}
             type="text"

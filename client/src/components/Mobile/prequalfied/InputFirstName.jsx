@@ -77,6 +77,17 @@ const InputFirstName = () => {
   const renderDescription = () => (
     <>
       <BotIcon />
+      <div
+        onSubmit={handleSubmit}
+        className={classNames(
+          'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
+          step >= 4 ? 'text-slate-400' : 'text-slate-800'
+        )}
+      >
+        <p className="bg-gray-50 rounded-3xl p-4 text-left mb-5">
+          <b>🎊 Congratulation! you successfully verified.</b>
+        </p>
+      </div>
       <form
         onSubmit={handleSubmit}
         className={classNames(
@@ -88,12 +99,9 @@ const InputFirstName = () => {
           className="flex flex-col md:flex-row md:items-center"
           style={step >= 4 ? { display: 'none' } : { display: 'block' }}
         >
-          <p className="bg-gray-50 rounded-3xl p-4 text-left">
-            <b>🎊 Congratulation! you successfully verified.</b>
-          </p>
           <TextField
             id="outlined-multiline-flexible"
-            label="first name"
+            label="First name"
             fullWidth
             value={firstName}
             onChange={handleChangeInput}

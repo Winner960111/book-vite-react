@@ -127,7 +127,7 @@ const FirstPage = () => {
                   autoComplete="off"
                   defaultValue="Normal"
                   variant="standard"
-                  label="First Name"
+                  label="First name"
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -158,7 +158,7 @@ const FirstPage = () => {
                   fullWidth
                   autoComplete="off"
                   defaultValue="Normal"
-                  label="Last Name"
+                  label="Last name"
                   variant="standard"
                   InputProps={{
                     style: {
@@ -190,7 +190,7 @@ const FirstPage = () => {
                   fullWidth
                   autoComplete="off"
                   defaultValue="Normal"
-                  label="Email Address"
+                  label="Email address"
                   variant="standard"
                   InputProps={{
                     style: {

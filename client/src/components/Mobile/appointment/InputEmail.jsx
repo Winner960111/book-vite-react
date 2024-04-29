@@ -86,7 +86,7 @@ const InputEmail = () => {
         >
           <TextField
             id="outlined-multiline-flexible"
-            label="email address"
+            label="Email address"
             fullWidth
             value={email.toLowerCase()}
             onChange={handleChangeInputEmail}

@@ -74,7 +74,7 @@ const DealType = () => {
   return (
     <div className="flex flex-col bg-gray-50 w-full justify-center items-center">
       <p className="w-2/3 text-4xl mt-44 font-medium">
-        What is the vehicle&apos;s year/make/model?
+        What option are you considering for your purchase?
       </p>
       <div className="w-2/3 flex flex-col md:flex-row text-justify bg-white rounded-3xl p-4 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
         <div className="flex w-full md:w-[40%] flex-col md:mx-10">

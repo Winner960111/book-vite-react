@@ -135,6 +135,16 @@ const Instant = () => {
   const renderDescription = () => (
     <>
       <BotIcon />
+      <div
+        className={classNames(
+          'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
+          step >= 4 ? 'text-slate-400' : 'text-slate-800'
+        )}
+      >
+        <p className="bg-gray-50 rounded-3xl p-4 text-left mb-5">
+          <b>🎊 Congratulation! you successfully verified.</b>
+        </p>
+      </div>
       <form
         onSubmit={handleSubmit}
         className={classNames(
@@ -142,12 +152,7 @@ const Instant = () => {
           step >= 4 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
-        <div
-          className="flex flex-col md:flex-row md:items-center"
-        >
-          <p className="bg-gray-50 rounded-3xl p-4 text-left">
-            <b>🎊 Congratulation! you successfully verified.</b>
-          </p>
+        <div className="flex flex-col md:flex-row md:items-center">
           <div className="flex w-full mt-10 justify-center">
             <button
               type="button"
@@ -179,7 +184,10 @@ const Instant = () => {
 
           {vinState && (
             <>
-              <div className="py-2 flex flex-col items-center">
+              <div
+                className="py-2 flex flex-col items-center"
+                style={step >= 4 ? { display: 'none' } : { display: 'block' }}
+              >
                 <TextField
                   helperText=" "
                   id="demo-helper-text-aligned-no-helper"
@@ -194,13 +202,13 @@ const Instant = () => {
                     style: {
                       height: '70px', // Set the height of the TextField
                       fontSize: '25px',
-                      textAlign: 'center'
+                      textAlign: 'center',
                     },
                   }}
                   InputLabelProps={{
                     style: {
                       textAlign: 'center',
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
@@ -222,6 +230,7 @@ const Instant = () => {
           )}
           {makeState && (
             <>
+            <div style={step >= 4 ? { display: 'none' } : { display: 'block' }}>
               <TextField
                 id="margin-dense"
                 margin="dense"
@@ -287,25 +296,24 @@ const Instant = () => {
                     fontSize: '25px',
                   },
                 }}
-              />
+                />
+                </div>
               {error !== '' ? (
                 <p className="text-red-500 pl-2 text-sm">{error}</p>
               ) : null}
-              <p className="bg-gray-50 rounded-3xl p-4">
+              <p className="bg-gray-50 rounded-3xl p-4 mt-2">
                 Get an instant offer in minute
               </p>
               <button
                 type="submit"
                 className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-lg my-4 hover:bg-purple-800"
                 style={step >= 4 ? { display: 'none' } : { display: 'block' }}
-
               >
                 Save Vehicle
               </button>
             </>
           )}
         </div>
-
       </form>
     </>
   );
@@ -313,9 +321,9 @@ const Instant = () => {
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
       <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
-        {instantYear}<br />
-        {instantMake}<br />
-        {instantModel}
+        Year: {instantYear}<br />
+        Make: {instantMake}<br />
+        Model: {instantModel}
       </div>
     </div>
   );

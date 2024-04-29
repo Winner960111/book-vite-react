@@ -139,7 +139,7 @@ const FirstPage = () => {
                   autoFocus
                   type="text"
                   defaultValue="Normal"
-                  label="First Name"
+                  label="First name"
                   variant="standard"
                   InputProps={{
                     style: {
@@ -171,7 +171,7 @@ const FirstPage = () => {
                   fullWidth
                   type="text"
                   defaultValue="Normal"
-                  label="Last Name"
+                  label="Last name"
                   variant="standard"
                   InputProps={{
                     style: {
@@ -203,7 +203,7 @@ const FirstPage = () => {
                   fullWidth
                   type="text"
                   defaultValue="Normal"
-                  label="Email Address"
+                  label="Email address"
                   variant="standard"
                   InputProps={{
                     style: {

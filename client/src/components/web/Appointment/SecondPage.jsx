@@ -153,7 +153,7 @@ const FifthPage = () => {
                                     onChange={handleFirstName}
                                     fullWidth
                                     autoFocus
-                                    label="First Name"
+                                    label="First name"
                                     variant="standard"
                                     InputProps={{
                                         style: {
@@ -185,7 +185,7 @@ const FifthPage = () => {
                                     value={lastName}
                                     onChange={handleLastName}
                                     fullWidth
-                                    label="Last Name"
+                                    label="Last name"
                                     variant="standard"
                                     InputProps={{
                                         style: {
@@ -215,7 +215,7 @@ const FifthPage = () => {
                                     value={emailAddress}
                                     onChange={handleEmailAddress}
                                     fullWidth
-                                    label="Email Address"
+                                    label="Email address"
                                     variant="standard"
                                     InputProps={{
                                         style: {

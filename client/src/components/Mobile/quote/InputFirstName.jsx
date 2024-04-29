@@ -77,7 +77,6 @@ const InputFirstName = () => {
     <>
       <BotIcon />
       <div
-        onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
           step >= 4 ? 'text-slate-400' : 'text-slate-800'

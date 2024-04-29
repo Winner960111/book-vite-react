@@ -158,7 +158,7 @@ const Vehicle = () => {
           />
         </div>
         <p className="bg-gray-50 rounded-3xl p-4">
-          What is the vehicle&apos;s year/make/model?
+          What option are you considering for your purchase?
         </p>
         <button
           onClick={skipThisStep}

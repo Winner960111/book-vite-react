@@ -59,7 +59,7 @@ const InputFirstName = () => {
           </p>
           <TextField
             id="outlined-multiline-flexible"
-            label="first name"
+            label="First name"
             fullWidth
             value={firstName}
             onChange={handleChangeInput}

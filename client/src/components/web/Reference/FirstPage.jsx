@@ -140,7 +140,7 @@ const FirstPage = () => {
                   onChange={handleFirstName}
                   fullWidth
                   autoFocus
-                  label="First Name"
+                  label="First name"
                   variant="standard"
                   InputProps={{
                     style: {
@@ -170,7 +170,7 @@ const FirstPage = () => {
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
-                  label="Last Name"
+                  label="Last name"
                   variant="standard"
                   InputProps={{
                     style: {

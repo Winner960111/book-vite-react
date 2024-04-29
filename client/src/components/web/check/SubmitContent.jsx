@@ -81,7 +81,7 @@ const SubmitContent = () => {
                   fullWidth
                   type="text"
                   defaultValue="Normal"
-                  label="Last Name"
+                  label="Last name"
                   variant="standard"
                   InputProps={{
                     style: {

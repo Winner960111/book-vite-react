@@ -7,7 +7,6 @@ import { SubmitQuote, usersUpdate } from '../../../api/index';
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
-  const [readStatePara2, setReadStatePara2] = useState(false);
   const dispatch = useDispatch();
   const {
     step,

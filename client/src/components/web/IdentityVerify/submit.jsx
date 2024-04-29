@@ -14,7 +14,6 @@ const SecondPage = () => {
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [readStatePara1, setReadStatePara1] = useState(false);
-  const [readStatePara2, setReadStatePara2] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +38,7 @@ const SecondPage = () => {
     <div className="flex bg-gray-50 w-full justify-center items-center">
       <div className="w-2/3 flex flex-col mt-10 mx-20">
         <p className="w-2/3 text-4xl text-black my-3 font-medium">
-          Please confirm bellow contents
+          Please take a moment to review the information below.
         </p>
         <form
           className={classNames(
@@ -47,10 +46,10 @@ const SecondPage = () => {
           )}
         >
           <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-            We are committed to protecting your privacy. The information that
-            you provided is only shared with the dealership to assess your
-            credit history and not otherwise sold, marketed, or distributed in
-            any way by {dealerName}.
+            We are committed to protecting your privacy. The information you
+            provide is solely shared with our dealership for the purpose of
+            assessing your request. It is not sold, marketed, or distributed in
+            any way by {dealerName}. Your trust is paramount to us.
           </p>
           <div className="bg-gray-50 rounded-3xl p-4 mt-2">
             <p
@@ -97,47 +96,6 @@ const SecondPage = () => {
               className={'text-blue-600 text-sm hover:underline cursor-pointer'}
             >
               {readStatePara1 == false ? 'More' : 'Less'}
-            </span>
-          </div>
-          <div className="bg-gray-50 rounded-3xl p-4 mt-2">
-            <p
-              className={
-                readStatePara2 == false
-                  ? 'w-full whitespace-nowrap text-ellipsis overflow-hidden'
-                  : null
-              }
-            >
-              By typing my name and clicking submit, I authorize {dealerName} to
-              investigate my credit history solely to determine the best
-              available offers to fund my loan, I also acknowledge that I have
-              read, understand, and agree to be bound by our End User{' '}
-              <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Terms of use
-              </a>{' '}
-              and our{' '}
-              <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Privacy Policy
-              </a>{' '}
-              and agree to have the information that I provided shared with
-              lenders in accordance therewith. I also understand that if a
-              prequalified offer is found by any of our lenders, they will
-              perform a hard inquiry which can impact my credit history.
-            </p>
-            <span
-              onClick={() => setReadStatePara2(!readStatePara2)}
-              className={'text-blue-600 text-sm hover:underline cursor-pointer'}
-            >
-              {readStatePara2 == false ? 'More' : 'Less'}
             </span>
           </div>
           <div className="w-full mt-5 flex justify-end">

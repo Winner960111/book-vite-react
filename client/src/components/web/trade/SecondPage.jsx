@@ -27,8 +27,7 @@ const DealType = () => {
     type,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
-
-  const [dealClick, setDealClick] = useState('');
+  const [dealClick, setDealClick] = useState('Finance');
   const [error, setError] = useState(null);
   const [ownerError, setOwnerError] = useState(null);
   const [commentError, setCommentError] = useState(null);
@@ -40,7 +39,6 @@ const DealType = () => {
   const [focus, setFocus] = useState(Boolean)
   useEffect(() => {
     setError(null);
-    setDealClick('');
     setOwner('');
     setOwnerError('');
     setCommentError('');
@@ -107,6 +105,7 @@ const DealType = () => {
                     type="radio"
                     id="radio1"
                     name="deal_type"
+                    checked={dealClick == 'Finance' ? true : false}
                     className="w-[17px] h-[17px] mx-2"
                   />
                   Finance
@@ -143,9 +142,7 @@ const DealType = () => {
                 </label>
               </div>
 
-              <p className=" px-6">
-                Please select deal type.
-              </p>
+              <p className=" px-6">Please select deal type.</p>
               {error !== '' ? (
                 <p className="text-red-500 pl-6 pt-2">{error}</p>
               ) : null}
@@ -185,9 +182,7 @@ const DealType = () => {
                   No
                 </label>
               </div>
-              <p className=" px-6">
-                Are you original owner?
-              </p>
+              <p className=" px-6">Are you original owner?</p>
               {ownerError !== '' ? (
                 <p className="text-red-500 pl-6 pt-2">{ownerError}</p>
               ) : null}
@@ -210,9 +205,11 @@ const DealType = () => {
           {commentError !== '' ? (
             <p className="text-red-500 pl-6 p-2 -mt-5">{commentError}</p>
           ) : null}
-          {focus && <p className="bg-gray-50 rounded-3xl p-4 -mt-2">
-            Please input your comment
-          </p>}
+          {focus && (
+            <p className="bg-gray-50 rounded-3xl p-4 -mt-2">
+              Please input your comment
+            </p>
+          )}
 
           <div className="w-full flex justify-end my-2">
             <button

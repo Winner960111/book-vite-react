@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { addHistory } from '../../../store/reducers/checker';
@@ -29,7 +28,6 @@ const ThirdPage = () => {
     type,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
-  const [readStatePara1, setReadStatePara1] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

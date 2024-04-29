@@ -21,12 +21,11 @@ const DealType = () => {
     checkerMobileNumber, } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
-  const [dealClick, setDealClick] = useState('');
+  const [dealClick, setDealClick] = useState('Finance');
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setError(null);
-    setDealClick('');
   }, [step]);
 
   const handleSubmit = async () => {
@@ -90,6 +89,7 @@ const DealType = () => {
                   id="radio1"
                   name="deal_type"
                   className="w-[17px] h-[17px] mx-2"
+                  checked={dealClick == 'Finance' ? true : false}
                 />
               )}
               Finance

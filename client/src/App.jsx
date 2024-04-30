@@ -9,6 +9,7 @@ import Prequalified from './pages/Prequalified';
 import Quote from './pages/Quote';
 import WebQuote from './pages/WebQuote';
 import TradeIn from './pages/TradeIn';
+import Full from './pages/Full';
 import Appointment from './pages/Appointment';
 import WebPrequalified from './pages/WebPrequalified';
 import WebTrade from './pages/WebTrade';
@@ -66,7 +67,7 @@ const App = () => {
         />
         <Route
           path="/info-checker/:dealer_id/full"
-          element={type == 'web' ? <WebFullApp /> : null}
+          element={type == 'web' ? <WebFullApp /> : <Full/>}
         />
         <Route
           path="/info-checker/:dealer_id/appointment"

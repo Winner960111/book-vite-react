@@ -43,6 +43,11 @@ const Home = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/check`);
   };
+  const changePageFull = () => {
+    dispatch(clearHistory());
+    navigate(`/info-checker/${dealer_id}/full`);
+  };
+
 
   return (
     <div className="w-screen h-screen flex flex-col items-center bg-gray-50">
@@ -62,7 +67,7 @@ const Home = () => {
             GET PREQUALIFIED
           </button>
           <button
-            // onClick={changePagePrequalified}
+            onClick={changePageFull}
             className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 active:bg-purple-800"
           >
             FULL CREDIT APPLICATION

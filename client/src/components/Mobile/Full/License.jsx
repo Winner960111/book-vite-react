@@ -119,6 +119,7 @@ const License = () => {
             fullWidth
             label="Driver license number"
             variant="standard"
+            autoComplete='off'
             InputProps={{
               style: {
                 height: '50px', // Set the height of the TextField
@@ -139,6 +140,7 @@ const License = () => {
             label=" "
             type="date"
             variant="standard"
+            autoComplete='off'
             InputProps={{
               style: {
                 height: '50px', // Set the height of the TextField
@@ -158,6 +160,7 @@ const License = () => {
             fullWidth
             label="State"
             variant="standard"
+            autoComplete='off'
             InputProps={{
               style: {
                 height: '50px', // Set the height of the TextField

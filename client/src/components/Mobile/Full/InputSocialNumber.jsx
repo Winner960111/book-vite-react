@@ -102,6 +102,7 @@ const InputSocialNumber = () => {
             label="Social security number"
             fullWidth
             value={socialNumber}
+            autoComplete='off'
             onChange={handleChangeInputSocialNumber}
             type="text"
             InputProps={{

@@ -16,6 +16,7 @@ import InputSocialNumber from '../components/Mobile/Full/InputSocialNumber';
 import Selects from '../components/Mobile/Full/Selects';
 import License from '../components/Mobile/Full/License';
 import Paymethod from '../components/Mobile/Full/Paymethod';
+import Vehicles from '../components/Mobile/Full/Vehicles';
 // import Address from '../components/Mobile/Full/Address';
 // import Submit from '../components/Mobile/Full/Submit';
 import {
@@ -119,7 +120,8 @@ const Full = () => {
           <InputBirthday />
           <Selects />
           <License />
-          <Paymethod/>
+          <Paymethod />
+          <Vehicles />
           {/* <Address />
           <Submit /> */}
         </div>

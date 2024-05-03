@@ -3,18 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
 import {
   addHistory,
-  setIDate,
-  setIIsuer,
-  setIType,
+  setVehicleCondition,
+  setVehicleType,
 } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
+import { usersUpdate, vehicleList } from '../../../api/index';
 import { classNames } from '../../../utils';
-import TextField from '@mui/material/TextField';
+import { useParams } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-const Paymethod = () => {
+
+const Vehicle = () => {
+  const { dealer_id } = useParams();
   const {
     step,
     intentID,
@@ -33,51 +34,39 @@ const Paymethod = () => {
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
-  const [eDate, seteDate] = useState('');
-  const [payType, setPayType] = useState('');
-  const [isuer, setIsuer] = useState('');
+  const [vehicles, setVehicles] = useState([]);
+  const [select, setSelect] = useState('');
+  const [condition, setCondition] = useState('');
   const [error, setError] = useState('');
 
-  const handleEDate = (e) => {
-    seteDate(e.target.value);
-    setError('');
+    const vehicleListGet = async () => {
+      const vehicleLists = await vehicleList(dealer_id);
+      setVehicles(vehicleLists.data.sold_by_dealer);
   };
-  const handlePayType = (e) => {
-    setPayType(e.target.value);
-    setError('');
-  };
-  const handleIsuer = (e) => {
-    setIsuer(e.target.value);
-    setError('');
-  };
-
-  useEffect(() => {
-    setError(null);
-    setPayType('');
-    setIsuer('');
-    seteDate('');
-  }, []);
+    useEffect(() => {
+      setError('');
+      setCondition('');
+      setSelect('');
+      vehicleListGet();
+    }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     let pass = 0;
-    if (!eDate) {
-      setError('*input your expiration date');
+    if (!select) {
+      setError('*Please select vehicle type');
     } else {
       pass += 1;
     }
-    if (!payType) {
-      setError('*Select option in Type');
+    if (!condition) {
+      setError('*Please select vehicle condition');
     } else {
       pass += 1;
     }
-    if (payType != 'other' && !isuer) {
-      setError('*select option in Isuer');
-    } else {
-      pass += 1;
-    }
-    if (pass == 3) {
+    if (pass == 2) {
+      dispatch(setVehicleCondition(condition));
+      dispatch(setVehicleType(select));
       const data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,
@@ -94,17 +83,14 @@ const Paymethod = () => {
         lang: 'EN',
         phone: checkerMobileNumber,
         page: 'Full',
-        last_question: '8',
+        last_question: '3',
       };
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
-      dispatch(setIDate(eDate));
-      dispatch(setIIsuer(isuer));
-      dispatch(setIType(payType));
       dispatch(addHistory(true));
     }
   };
-
+console.log("vehicles===>", vehicles)
   const renderDescription = () => (
     <>
       <BotIcon />
@@ -112,7 +98,7 @@ const Paymethod = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 11 ? 'text-slate-400' : 'text-slate-800'
+          step >=  12 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col items-center">
@@ -124,17 +110,22 @@ const Paymethod = () => {
               id="demo-simple-select-standard-label"
               style={{ fontSize: '15px' }}
             >
-              Type
+              What vehicle are you interested in?
             </InputLabel>
             <Select
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
-              value={payType}
-              onChange={handlePayType}
-              disabled={step >= 11 ? true : false}
+              value={select}
+              onChange={(e) => {
+                setSelect(e.target.value);
+              }}
+              disabled={step >=  12 ? true : false}
             >
-              <MenuItem value={'credit'}>Credit Card</MenuItem>
-              <MenuItem value={'other'}>Other</MenuItem>
+              {vehicles.map((item, key) => (
+                <MenuItem value={item.name} key={key}>
+                  {item.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <FormControl
@@ -150,41 +141,16 @@ const Paymethod = () => {
             <Select
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
-              value={isuer}
-              onChange={handleIsuer}
-              disabled={step >= 11 ? true : false}
+              value={condition}
+              onChange={(e) => {
+                setCondition(e.target.value);
+              }}
+              disabled={step >=  12 ? true : false}
             >
-              <MenuItem value=" " style={{ height: '40px' }}>
-                <em> </em>
-              </MenuItem>
-              <MenuItem value={'visa'}>VISA</MenuItem>
-              <MenuItem value={'mastercard'}>MasterCard</MenuItem>
-              <MenuItem value={'amex'}>AMEX</MenuItem>
-              <MenuItem value={'discover'}>Discover</MenuItem>
+              <MenuItem value={'New'}>New</MenuItem>
+              <MenuItem value={'Used'}>Used</MenuItem>
             </Select>
           </FormControl>
-          <div className="flex flex-col w-[95%] my-3">
-            <TextField
-              type="date"
-              value={eDate}
-              onChange={handleEDate}
-              fullWidth
-              label="   "
-              variant="standard"
-              InputProps={{
-                style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
-                },
-              }}
-              InputLabelProps={{
-                style: {
-                  fontSize: '25px',
-                },
-              }}
-              disabled={step >= 11 ? true : false}
-            />
-          </div>
           {error !== null ? (
             <p className="text-red-500 pl-2 mt-1">{error}</p>
           ) : null}
@@ -195,7 +161,7 @@ const Paymethod = () => {
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 11 ? { display: 'none' } : { display: 'block' }}
+          style={step >=  12 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -203,6 +169,6 @@ const Paymethod = () => {
     </>
   );
 
-  return <>{step > 9 ? renderDescription() : null}</>;
+  return <>{step > 10 ? renderDescription() : null}</>;
 };
-export default Paymethod;
+export default Vehicle;

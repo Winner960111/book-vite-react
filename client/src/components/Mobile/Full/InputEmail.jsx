@@ -59,7 +59,7 @@ const InputEmail = () => {
         status: 'Started',
         lang: 'EN',
         phone: checkerMobileNumber,
-        page: 'Short',
+        page: 'Full',
         last_question: '4',
       };
       const res = await usersUpdate(data, intentID);

@@ -40,9 +40,9 @@ const SecondPage = () => {
   const [errordriverDate, setErrordriverDate] = useState('');
   const [errordriverState, setErrordriverState] = useState('');
   const [erroreDate, setErroreDate] = useState('');
-  const [driverNumber, setdriverNumber] = useState('');
-  const [driverDate, setdriverDate] = useState('');
-  const [driverState, setdriverState] = useState('');
+  const [driverNumber, setdriverNumbers] = useState('');
+  const [driverDate, setdriverDates] = useState('');
+  const [driverState, setdriverStates] = useState('');
   const [eDate, seteDate] = useState('');
   const [focusdriverNumber, setFocusDriverNumber] = useState(Boolean);
   const [focusdriverDate, setFocusDriverDate] = useState(Boolean);
@@ -57,15 +57,15 @@ const SecondPage = () => {
   //   removeHistory(true)
   // }
   const handleDriverNumber = (e) => {
-    setdriverNumber(e.target.value);
+    setdriverNumbers(e.target.value);
     setErrordriverNumber('');
   };
   const handleDriverDate = (e) => {
-    setdriverDate(e.target.value);
+    setdriverDates(e.target.value);
     setErrordriverDate('');
   };
   const handleDriverState = (e) => {
-    setdriverState(e.target.value);
+    setdriverStates(e.target.value);
     setErrordriverState('');
   };
 

@@ -61,7 +61,7 @@ const CheckPhoneVerificationCode = () => {
           status: 'Started',
           lang: 'EN',
           phone: checkerMobileNumber,
-          page: 'Short',
+          page: 'Full',
           last_question: '0',
         };
         const intentRes = await usersStatus(data);
@@ -97,7 +97,7 @@ const CheckPhoneVerificationCode = () => {
             value={verifyCode}
             onChange={setVerifyCode}
             numInputs={6}
-            renderSeparator={<span>&nbsp; - &nbsp;</span>}
+            renderSeparator={<span className='mt-4'>&nbsp; - &nbsp;</span>}
             renderInput={(props) => (
               <input
                 {...props}

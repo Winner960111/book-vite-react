@@ -7,12 +7,16 @@ import { browserName, osName } from 'react-device-detect';
 import Greeting from '../components/Mobile/Full/Greeting';
 import SendPhoneVerificationCode from '../components/common/SendPhoneVerificationCode';
 import CheckPhoneVerificationCode from '../components/Mobile/Full/CheckPhoneVerificationCode';
-// import InputFirstName from '../components/Mobile/Full/InputFirstName';
-// import InputLastName from '../components/Mobile/Full/InputLastName';
-// import InputEmail from '../components/Mobile/Full/InputEmail';
+import InputFirstName from '../components/Mobile/Full/InputFirstName';
+import InputMiddleName from '../components/Mobile/Full/InputMiddleName';
+import InputLastName from '../components/Mobile/Full/InputLastName';
+import InputEmail from '../components/Mobile/Full/InputEmail';
+import InputBirthday from '../components/Mobile/Full/InputBirthday';
+import InputSocialNumber from '../components/Mobile/Full/InputSocialNumber';
+import Selects from '../components/Mobile/Full/Selects';
+import License from '../components/Mobile/Full/License';
+// import Address from '../components/Mobile/Full/Address';
 // import Submit from '../components/Mobile/Full/Submit';
-// import DealType from '../components/Mobile/Full/DealType';
-// import Vehicle from '../components/Mobile/Full/Vehicle';
 import {
   getDealerInfo,
   setDealerId,
@@ -31,7 +35,7 @@ import refreshImg from '../assets/refresh.png';
 import backImg from '../assets/back.png';
 import { deviceInfo } from '../api/index';
 
-const Quote = () => {
+const Full = () => {
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const containerRef = useRef(null);
   const dispatch = useDispatch();
@@ -63,8 +67,9 @@ const Quote = () => {
   }, []);
 
   useEffect(() => {
-      // You can access the DOM node directly with myDivRef.current
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    // You can access the DOM node directly with myDivRef.current
+    containerRef.current.scrollTop = containerRef.current.scrollHeight;
+
     // when refresh app, set dealer_id and dealer_info of store
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
@@ -86,7 +91,7 @@ const Quote = () => {
       ref={containerRef}
     >
       <div className="h-full w-[95%] md:w-full flex flex-col items-center">
-        <div className="w-[95%] md:w-[500px] fixed rounded-lg flex justify-between items-center py-6 px-4 bg-white shadow-[10px_10px_20px_-5px_rgba(0,0,0,0.3)]">
+        <div className="w-[95%] md:w-[500px] fixed rounded-lg flex justify-between items-center py-6 px-4 bg-white shadow-[10px_10px_20px_-5px_rgba(0,0,0,0.3)] z-10">
           <img
             className="w-4 md:w-6 cursor-pointer"
             src={backImg}
@@ -101,15 +106,19 @@ const Quote = () => {
             onClick={handleRestart}
           />
         </div>
-        <div className="w-full md:w-[500px] text-lg font-serif pb-[15vh] pt-32 px-4">
+        <div className="w-full md:w-[500px] text-lg font-serif pb-[15vh] pt-44 px-4">
           <Greeting />
           <SendPhoneVerificationCode />
           <CheckPhoneVerificationCode />
-          {/* <InputFirstName />
+          <InputFirstName />
+          <InputMiddleName />
           <InputLastName />
           <InputEmail />
-          <DealType />
-          <Vehicle />
+          <InputSocialNumber />
+          <InputBirthday />
+          <Selects />
+          <License/>
+          {/* <Address />
           <Submit /> */}
         </div>
       </div>
@@ -117,4 +126,4 @@ const Quote = () => {
   );
 };
 
-export default Quote;
+export default Full;

@@ -62,7 +62,7 @@ const InputMiddleName = () => {
         status: 'Started',
         lang: 'EN',
         phone: checkerMobileNumber,
-        page: 'Short',
+        page: 'Full',
         last_question: '2',
       };
       const res = await usersUpdate(data, intentID);

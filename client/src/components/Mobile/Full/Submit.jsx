@@ -156,7 +156,7 @@ const Submit = () => {
       status: 'Completed',
       lang: 'EN',
       phone: checkerMobileNumber,
-      page: 'Short',
+      page: 'Full',
       last_question: '8',
     };
     const intent_res = await usersUpdate(intent_data, intentID);

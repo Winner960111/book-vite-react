@@ -19,6 +19,8 @@ import Paymethod from '../components/Mobile/Full/Paymethod';
 import Vehicles from '../components/Mobile/Full/Vehicles';
 import Interest from '../components/Mobile/Full/Interest';
 import NewAddress from "../components/Mobile/Full/NewAddress"
+import NewAddressMore from '../components/Mobile/Full/NewAddressMore';
+import NewAddressPay from '../components/Mobile/Full/NewAddressPay';
 // import Address from '../components/Mobile/Full/Address';
 // import Submit from '../components/Mobile/Full/Submit';
 import {
@@ -125,7 +127,9 @@ const Full = () => {
           <Paymethod />
           <Vehicles />
           <Interest />
-          <NewAddress/>
+          <NewAddress />
+          <NewAddressMore />
+          <NewAddressPay />
           {/* <Address />
           <Submit /> */}
         </div>

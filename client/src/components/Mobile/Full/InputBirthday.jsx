@@ -107,14 +107,8 @@ const InputBirthday = () => {
         </div>
         <p
           className="bg-gray-50 rounded-3xl p-4 mt-2"
-          style={step >= 9 ? { display: 'none' } : { display: 'block' }}
         >
           Please input your date of birth.
-        </p>
-        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-          Your Privacy Matters: Rest assured, the information you provide is
-          strictly confidential. We take your privacy seriously and only use
-          your details to enhance your experience with us.
         </p>
         <button
           type="submit"

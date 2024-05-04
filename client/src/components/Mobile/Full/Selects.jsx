@@ -98,7 +98,7 @@ const InputRelation = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 9 ? 'text-slate-400' : 'text-slate-800'
+          step >=  10 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col md:flex-row md:items-center">
@@ -114,7 +114,7 @@ const InputRelation = () => {
               id="demo-simple-select-standard"
               value={citizen}
               onChange={handleCitizen}
-              disabled={step >= 9 ? true : false}
+              disabled={step >=  10 ? true : false}
             >
               <MenuItem value={'Yes'}>Yes</MenuItem>
               <MenuItem value={'No'}>No</MenuItem>
@@ -132,7 +132,7 @@ const InputRelation = () => {
               id="demo-simple-select-standard"
               value={bank}
               onChange={handleBank}
-              disabled={step >= 9 ? true : false}
+              disabled={step >=  10 ? true : false}
             >
               <MenuItem value={'Yes'}>Yes</MenuItem>
               <MenuItem value={'No'}>No</MenuItem>
@@ -146,7 +146,7 @@ const InputRelation = () => {
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 9 ? { display: 'none' } : { display: 'block' }}
+          style={step >=  10 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -154,6 +154,6 @@ const InputRelation = () => {
     </>
   );
 
-  return <>{step > 7 ? renderDescription() : null}</>;
+  return <>{step > 8 ? renderDescription() : null}</>;
 };
 export default InputRelation;

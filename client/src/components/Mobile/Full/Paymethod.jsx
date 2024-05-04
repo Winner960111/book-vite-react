@@ -112,7 +112,7 @@ const Paymethod = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 11 ? 'text-slate-400' : 'text-slate-800'
+          step >=  12 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col items-center">
@@ -131,7 +131,7 @@ const Paymethod = () => {
               id="demo-simple-select-standard"
               value={payType}
               onChange={handlePayType}
-              disabled={step >= 11 ? true : false}
+              disabled={step >=  12 ? true : false}
             >
               <MenuItem value={'credit'}>Credit Card</MenuItem>
               <MenuItem value={'other'}>Other</MenuItem>
@@ -152,7 +152,7 @@ const Paymethod = () => {
               id="demo-simple-select-standard"
               value={isuer}
               onChange={handleIsuer}
-              disabled={step >= 11 ? true : false}
+              disabled={step >=  12 ? true : false}
             >
               <MenuItem value=" " style={{ height: '40px' }}>
                 <em> </em>
@@ -182,7 +182,7 @@ const Paymethod = () => {
                   fontSize: '25px',
                 },
               }}
-              disabled={step >= 11 ? true : false}
+              disabled={step >=  12 ? true : false}
             />
           </div>
           {error !== null ? (
@@ -195,7 +195,7 @@ const Paymethod = () => {
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 11 ? { display: 'none' } : { display: 'block' }}
+          style={step >=  12 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -203,6 +203,6 @@ const Paymethod = () => {
     </>
   );
 
-  return <>{step > 9 ? renderDescription() : null}</>;
+  return <>{step > 10 ? renderDescription() : null}</>;
 };
 export default Paymethod;

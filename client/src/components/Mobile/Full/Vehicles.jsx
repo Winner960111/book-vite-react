@@ -83,7 +83,7 @@ const Vehicle = () => {
         lang: 'EN',
         phone: checkerMobileNumber,
         page: 'Full',
-        last_question: '3',
+        last_question: '9',
       };
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
@@ -98,7 +98,7 @@ console.log("vehicles===>", vehicles)
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >=  12 ? 'text-slate-400' : 'text-slate-800'
+          step >=   13 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col items-center">
@@ -119,7 +119,7 @@ console.log("vehicles===>", vehicles)
               onChange={(e) => {
                 setSelect(e.target.value);
               }}
-              disabled={step >=  12 ? true : false}
+              disabled={step >=   13 ? true : false}
             >
               {vehicles.map((item, key) => (
                 <MenuItem value={item.name} key={key}>
@@ -145,7 +145,7 @@ console.log("vehicles===>", vehicles)
               onChange={(e) => {
                 setCondition(e.target.value);
               }}
-              disabled={step >=  12 ? true : false}
+              disabled={step >=   13 ? true : false}
             >
               <MenuItem value={'New'}>New</MenuItem>
               <MenuItem value={'Used'}>Used</MenuItem>
@@ -161,7 +161,7 @@ console.log("vehicles===>", vehicles)
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >=  12 ? { display: 'none' } : { display: 'block' }}
+          style={step >=   13 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -169,6 +169,6 @@ console.log("vehicles===>", vehicles)
     </>
   );
 
-  return <>{step > 10 ? renderDescription() : null}</>;
+  return <>{step > 11 ? renderDescription() : null}</>;
 };
 export default Vehicle;

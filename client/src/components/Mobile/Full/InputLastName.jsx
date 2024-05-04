@@ -92,6 +92,7 @@ const InputLastName = () => {
             label="Last name"
             fullWidth
             value={lastName}
+            autoComplete='off'
             onChange={handleChangeInput}
             type="text"
             InputProps={{

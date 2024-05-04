@@ -109,7 +109,7 @@ const License = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 10 ? 'text-slate-400' : 'text-slate-800'
+          step >=  11 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col md:flex-row md:items-center">
@@ -131,7 +131,7 @@ const License = () => {
                 fontSize: '25px',
               },
             }}
-            disabled={step >= 10 ? true : false}
+            disabled={step >=  11 ? true : false}
           />
           <TextField
             value={driverDate}
@@ -152,7 +152,7 @@ const License = () => {
                 fontSize: '25px',
               },
             }}
-            disabled={step >= 10 ? true : false}
+            disabled={step >=  11 ? true : false}
           />
           <TextField
             value={driverState}
@@ -172,7 +172,7 @@ const License = () => {
                 fontSize: '25px',
               },
             }}
-            disabled={step >= 10 ? true : false}
+            disabled={step >=  11 ? true : false}
           />
           {error !== null ? (
             <p className="text-red-500 pl-2 mt-1">{error}</p>
@@ -184,7 +184,7 @@ const License = () => {
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 10 ? { display: 'none' } : { display: 'block' }}
+          style={step >=  11 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -194,7 +194,7 @@ const License = () => {
 
 return (
   <>
-    {step > 8 ? (
+    {step > 9 ? (
           renderDescription()
     ) : null}
   </>

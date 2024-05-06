@@ -52,7 +52,7 @@ const OldInterest = () => {
     setLocality('');
     setState('');
     setZipcode('')
-  }, [step]);
+  }, []);
 
   const initializeAutocomplete = useCallback(() => {
     const input = document.getElementById('autocomplete1');

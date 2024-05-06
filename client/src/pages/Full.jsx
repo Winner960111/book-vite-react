@@ -84,6 +84,7 @@ const Full = () => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
     dispatch(setDealerId(dealer_id));
+    console.log("this is step===>",step)
   }, [history, step, dealer_id, dispatch]);
 
   const handleRestart = () => {
@@ -136,17 +137,17 @@ const plusStep = () => {
           <NewAddress />
           <NewAddressMore />
           <NewAddressPay />
-          {parseInt(residentalYears) >= 2 && step == 18 ? (
+          {parseInt(residentalYears) >= 2 && step == 17 ? (
             plusStep()
           ) : (
             <OldAddress />
           )}
-          {parseInt(residentalYears) >= 2 && step == 19 ? (
+          {parseInt(residentalYears) >= 2 && step == 18 ? (
             plusStep()
           ) : (
             <OldAddressMore />
           )}
-          {parseInt(residentalYears) >= 2 && step == 20 ? (
+          {parseInt(residentalYears) >= 2 && step == 19 ? (
             plusStep()
           ) : (
             <OldAddressPay />

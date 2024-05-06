@@ -126,9 +126,9 @@ const OldAddressMore = () => {
               <MenuItem value={'Other'}>Other</MenuItem>
             </Select>
           </FormControl>
-          <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+          {/* <p className="bg-gray-50 rounded-3xl p-4 mt-2">
             What is your residental status in this address?
-          </p>
+          </p> */}
           <TextField
             variant="standard"
             defaultValue="Normal"

@@ -19,6 +19,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import { TextField } from '@mui/material';
 
 const NewInterest = () => {
+
+  const [address, setAddress] = useState('');
+  const [locality, setLocality] = useState('');
+  const [state, setState] = useState('');
+  const [zipcode, setZipcode] = useState('');
+  const [apt, setApt] = useState('');
+  const [error, setError] = useState('');
+  const addressRef = useRef(null);
+
   const {
     step,
     intentID,
@@ -37,22 +46,14 @@ const NewInterest = () => {
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
-  const [address, setAddress] = useState('');
-  const [locality, setLocality] = useState('');
-  const [state, setState] = useState('');
-  const [zipcode, setZipcode] = useState('');
-  const [apt, setApt] = useState('');
-  const [error, setError] = useState('');
-  const addressRef = useRef(null);
-
   useEffect(() => {
     setError('');
     setAddress('');
     setApt('');
     setLocality('');
     setState('');
-    setZipcode('')
-  }, []);
+    setZipcode('');
+  }, [step]);
 
   const initializeAutocomplete = useCallback(() => {
     const input = document.getElementById('autocomplete');
@@ -92,6 +93,11 @@ const NewInterest = () => {
     }
   }, [initializeAutocomplete, step]);
 
+
+  useEffect(() => {
+    console.log("this is current addressref===>", addressRef.current)
+  }, [addressRef])
+  
   const parseAddressComponents = (place) => {
     for (const component of place.address_components) {
       const componentType = component.types[0];
@@ -113,8 +119,6 @@ const NewInterest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    let newErrors = {};
-    console.log(locality);
 
     if (!locality.trim()) {
       setError('City field is required');
@@ -125,7 +129,7 @@ const NewInterest = () => {
     if (!zipcode.trim()) {
       setError('ZipCode field is required');
     }
-    if (Object.keys(newErrors).length === 0) {
+    if (error == '') {
       const data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,
@@ -179,7 +183,6 @@ const NewInterest = () => {
               sx={{ ml: 1, flex: 1, fontSize: '25px' }}
               placeholder="Search Google Maps"
               inputProps={{ 'aria-label': 'search google maps' }}
-              autoFocus
               autoComplete="off"
               id="autocomplete"
               ref={addressRef}

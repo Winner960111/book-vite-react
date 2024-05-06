@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
 import {
   addHistory,
-  setResidentalYears,
-  setResidentalMonths,
-  setResidentalStatus,
+  setPreviousResidentalYears,
+  setPreviousResidentalMonths,
+  setPreviousResidentalStatus,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
@@ -15,7 +15,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
-const NewInterestMore = () => {
+const OldAddressMore = () => {
   const {
     step,
     intentID,
@@ -83,14 +83,14 @@ const NewInterestMore = () => {
         lang: 'EN',
         phone: checkerMobileNumber,
         page: 'Full',
-        last_question: '12',
+        last_question: '15',
       };
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
       dispatch(addHistory(true));
-      dispatch(setResidentalMonths(residentalMonth));
-      dispatch(setResidentalYears(residentalYear));
-      dispatch(setResidentalStatus(residental));
+      dispatch(setPreviousResidentalMonths(residentalMonth));
+      dispatch(setPreviousResidentalYears(residentalYear));
+      dispatch(setPreviousResidentalStatus(residental));
     }
   };
 
@@ -100,7 +100,7 @@ const NewInterestMore = () => {
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 16 ? 'text-slate-400' : 'text-slate-800'
+          step >=  19 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col items-center">
@@ -118,7 +118,7 @@ const NewInterestMore = () => {
               onChange={(e) => {
                 setResidental(e.target.value);
               }}
-              disabled={step >= 16 ? true : false}
+              disabled={step >=  19 ? true : false}
             >
               <MenuItem value={'Rent'}>Rent</MenuItem>
               <MenuItem value={'Own'}>Own</MenuItem>
@@ -133,6 +133,7 @@ const NewInterestMore = () => {
             variant="standard"
             defaultValue="Normal"
             margin="dense"
+            autoComplete='off'
             label="Year"
             value={residentalYear}
             style={{ margin: '0 10px 0 10px', width: '95%' }}
@@ -149,13 +150,14 @@ const NewInterestMore = () => {
                 fontSize: '20px',
               },
             }}
-            disabled={step >= 16 ? true : false}
+            disabled={step >=  19 ? true : false}
           />
 
           <TextField
             variant="standard"
             defaultValue="Normal"
             margin="dense"
+            autoComplete='off'
             label="Month"
             value={residentalMonth}
             style={{ margin: '0 10px 0 10px', width: '95%' }}
@@ -172,20 +174,20 @@ const NewInterestMore = () => {
                 fontSize: '20px',
               },
             }}
-            disabled={step >= 16 ? true : false}
+            disabled={step >=  19 ? true : false}
           />
           {error !== null ? (
             <p className="text-red-500 pl-2 mt-1">{error}</p>
           ) : null}
         </div>
         <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-          How long have you lived at your current address?
+          How long did you live at your previous address?
         </p>
         <button
           type="button"
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 16 ? { display: 'none' } : { display: 'block' }}
+          style={step >=  19 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -193,6 +195,6 @@ const NewInterestMore = () => {
     </>
   );
 
-  return <>{step > 14 ? renderDescription() : null}</>;
+  return <>{step > 17 ? renderDescription() : null}</>;
 };
-export default NewInterestMore;
+export default OldAddressMore;

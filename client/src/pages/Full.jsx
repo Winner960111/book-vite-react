@@ -21,9 +21,13 @@ import Interest from '../components/Mobile/Full/Interest';
 import NewAddress from "../components/Mobile/Full/NewAddress"
 import NewAddressMore from '../components/Mobile/Full/NewAddressMore';
 import NewAddressPay from '../components/Mobile/Full/NewAddressPay';
+import OldAddress from '../components/Mobile/Full/OldAddress';
+import OldAddressMore from '../components/Mobile/Full/OldAddressMore';
+import OldAddressPay from '../components/Mobile/Full/OldAddressPay';
 // import Address from '../components/Mobile/Full/Address';
 // import Submit from '../components/Mobile/Full/Submit';
 import {
+  addHistory,
   getDealerInfo,
   setDealerId,
   clearHistory,
@@ -42,7 +46,7 @@ import backImg from '../assets/back.png';
 import { deviceInfo } from '../api/index';
 
 const Full = () => {
-  const { dealerLogo, step, history } = useSelector((state) => state.checker);
+  const { dealerLogo, step, history, residentalYears } = useSelector((state) => state.checker);
   const containerRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -90,7 +94,9 @@ const Full = () => {
     navigate(-1);
     dispatch(clearHistory());
   };
-
+const plusStep = () => {
+  dispatch(addHistory(true));
+};
   return (
     <div
       className="relative w-full h-screen flex justify-center items-center overflow-y-scroll scroll-smooth"
@@ -130,6 +136,21 @@ const Full = () => {
           <NewAddress />
           <NewAddressMore />
           <NewAddressPay />
+          {parseInt(residentalYears) >= 2 && step == 18 ? (
+            plusStep()
+          ) : (
+            <OldAddress />
+          )}
+          {parseInt(residentalYears) >= 2 && step == 19 ? (
+            plusStep()
+          ) : (
+            <OldAddressMore />
+          )}
+          {parseInt(residentalYears) >= 2 && step == 20 ? (
+            plusStep()
+          ) : (
+            <OldAddressPay />
+          )}
           {/* <Address />
           <Submit /> */}
         </div>

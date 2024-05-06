@@ -112,7 +112,7 @@ const Paymethod = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >=  12 ? 'text-slate-400' : 'text-slate-800'
+          step >= 12 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col items-center">
@@ -131,7 +131,7 @@ const Paymethod = () => {
               id="demo-simple-select-standard"
               value={payType}
               onChange={handlePayType}
-              disabled={step >=  12 ? true : false}
+              disabled={step >= 12 ? true : false}
             >
               <MenuItem value={'credit'}>Credit Card</MenuItem>
               <MenuItem value={'other'}>Other</MenuItem>
@@ -152,7 +152,7 @@ const Paymethod = () => {
               id="demo-simple-select-standard"
               value={isuer}
               onChange={handleIsuer}
-              disabled={step >=  12 ? true : false}
+              disabled={step >= 12 ? true : false}
             >
               <MenuItem value=" " style={{ height: '40px' }}>
                 <em> </em>
@@ -182,20 +182,21 @@ const Paymethod = () => {
                   fontSize: '25px',
                 },
               }}
-              disabled={step >=  12 ? true : false}
+              disabled={step >= 12 ? true : false}
             />
+            <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+              Please input expieration date.
+            </p>
           </div>
           {error !== null ? (
             <p className="text-red-500 pl-2 mt-1">{error}</p>
           ) : null}
         </div>
-        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-          Please input correct info.
-        </p>
+
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >=  12 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 12 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>

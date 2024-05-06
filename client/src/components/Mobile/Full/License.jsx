@@ -109,7 +109,7 @@ const License = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >=  11 ? 'text-slate-400' : 'text-slate-800'
+          step >= 11 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col md:flex-row md:items-center">
@@ -119,7 +119,7 @@ const License = () => {
             fullWidth
             label="Driver license number"
             variant="standard"
-            autoComplete='off'
+            autoComplete="off"
             InputProps={{
               style: {
                 height: '50px', // Set the height of the TextField
@@ -131,7 +131,27 @@ const License = () => {
                 fontSize: '25px',
               },
             }}
-            disabled={step >=  11 ? true : false}
+            disabled={step >= 11 ? true : false}
+          />
+          <TextField
+            value={driverState}
+            onChange={handleDriverState}
+            fullWidth
+            label="State"
+            variant="standard"
+            autoComplete="off"
+            InputProps={{
+              style: {
+                height: '50px', // Set the height of the TextField
+                fontSize: '25px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                fontSize: '25px',
+              },
+            }}
+            disabled={step >= 11 ? true : false}
           />
           <TextField
             value={driverDate}
@@ -140,7 +160,7 @@ const License = () => {
             label=" "
             type="date"
             variant="standard"
-            autoComplete='off'
+            autoComplete="off"
             InputProps={{
               style: {
                 height: '50px', // Set the height of the TextField
@@ -152,39 +172,23 @@ const License = () => {
                 fontSize: '25px',
               },
             }}
-            disabled={step >=  11 ? true : false}
+            disabled={step >= 11 ? true : false}
           />
-          <TextField
-            value={driverState}
-            onChange={handleDriverState}
-            fullWidth
-            label="State"
-            variant="standard"
-            autoComplete='off'
-            InputProps={{
-              style: {
-                height: '50px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
-            disabled={step >=  11 ? true : false}
-          />
+          <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+            Please input expieration date.
+          </p>
+
           {error !== null ? (
             <p className="text-red-500 pl-2 mt-1">{error}</p>
           ) : null}
         </div>
-        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+        {/* <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           Please input correct info.
-        </p>
+        </p> */}
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >=  11 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 11 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>

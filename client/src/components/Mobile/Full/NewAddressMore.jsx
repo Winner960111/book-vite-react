@@ -126,14 +126,15 @@ const NewInterestMore = () => {
               <MenuItem value={'Other'}>Other</MenuItem>
             </Select>
           </FormControl>
-          <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+          {/* <p className="bg-gray-50 rounded-3xl p-4 mt-2">
             What is your residental status in this address?
-          </p>
+          </p> */}
           <TextField
             variant="standard"
             defaultValue="Normal"
             margin="dense"
             label="Year"
+            autoComplete='off'
             value={residentalYear}
             style={{ margin: '0 10px 0 10px', width: '95%' }}
             onChange={(e) => {
@@ -157,6 +158,7 @@ const NewInterestMore = () => {
             defaultValue="Normal"
             margin="dense"
             label="Month"
+            autoComplete='off'
             value={residentalMonth}
             style={{ margin: '0 10px 0 10px', width: '95%' }}
             onChange={(e) => {
@@ -174,13 +176,14 @@ const NewInterestMore = () => {
             }}
             disabled={step >= 16 ? true : false}
           />
+          <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+            How long have you lived at your current address?
+          </p>
           {error !== null ? (
             <p className="text-red-500 pl-2 mt-1">{error}</p>
           ) : null}
         </div>
-        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-          How long have you lived at your current address?
-        </p>
+
         <button
           type="button"
           onClick={handleSubmit}

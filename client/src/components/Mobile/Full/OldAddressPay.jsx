@@ -68,7 +68,7 @@ const NewInterestMore = () => {
   const renderDescription = () => (
     <>
       <BotIcon />
-      <form
+      <div
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
           step >=  20 ? 'text-slate-400' : 'text-slate-800'
@@ -118,7 +118,7 @@ const NewInterestMore = () => {
         >
           CONTINUE
         </button>
-      </form>
+      </div>
     </>
   );
   const renderReply = () => (

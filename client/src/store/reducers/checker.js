@@ -246,7 +246,7 @@ export const checkerSlice = createSlice({
       state.prevjobOccupation = action.payload;
     },
     setPrevEmployerName: (state, action) => {
-      state.employerName = action.payload;
+      state.prevemployerName = action.payload;
     },
     setPrevEmployerPhoneNumber: (state, action) => {
       state.prevemployerPhoneNumber = action.payload;

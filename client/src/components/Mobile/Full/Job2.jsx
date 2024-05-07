@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
 import {
   addHistory,
-  setCheckerAddress,
-  setCheckerApt,
-  setCheckerLocality,
-  setCheckerState,
-  setCheckerZipcode,
+  setJobAddress,
+  setJobApt,
+  setJobCity,
+  setJobState,
+  setJobZipcode,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
@@ -18,13 +18,13 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import { TextField } from '@mui/material';
 
-const NewInterest = () => {
+const Job2 = () => {
 
-  const [address, setAddress] = useState('');
-  const [locality, setLocality] = useState('');
-  const [state, setState] = useState('');
-  const [zipcode, setZipcode] = useState('');
-  const [apt, setApt] = useState('');
+    const [address, setAddress] = useState('');
+    const [locality, setLocality] = useState('');
+    const [state, setState] = useState('');
+    const [zipcode, setZipcode] = useState('');
+    const [apt, setApt] = useState('');
   const [error, setError] = useState('');
   const addressRef = useRef(null);
 
@@ -56,7 +56,7 @@ const NewInterest = () => {
   }, []);
 
   const initializeAutocomplete = useCallback(() => {
-    const input = document.getElementById('autocompleteNew');
+    const input = document.getElementById('autocomplete2');
     const newAutocomplete = new window.google.maps.places.Autocomplete(input);
 
     newAutocomplete.addListener('place_changed', () => {
@@ -118,7 +118,6 @@ const NewInterest = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
 
     if (!locality.trim()) {
       setError('City field is required');
@@ -146,16 +145,17 @@ const NewInterest = () => {
         lang: 'EN',
         phone: checkerMobileNumber,
         page: 'Full',
-        last_question: '11',
+        last_question: '18',
       };
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
       dispatch(addHistory(true));
-      dispatch(setCheckerAddress(address));
-      dispatch(setCheckerApt(apt));
-      dispatch(setCheckerLocality(locality));
-      dispatch(setCheckerState(state));
-      dispatch(setCheckerZipcode(zipcode));
+      dispatch(setJobAddress(address));
+      dispatch(setJobApt(apt));
+      dispatch(setJobCity(locality));
+      dispatch(setJobState(state));
+      dispatch(setJobZipcode(zipcode));
+
     }
   };
 
@@ -165,7 +165,7 @@ const NewInterest = () => {
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 15 ? 'text-slate-400' : 'text-slate-800'
+          step >= 22 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col items-center">
@@ -184,9 +184,9 @@ const NewInterest = () => {
               placeholder="Search Google Maps"
               inputProps={{ 'aria-label': 'search google maps' }}
               autoComplete="off"
-              id="autocompleteNew"
+              id="autocomplete2"
               ref={addressRef}
-              disabled={step >= 15 ? true : false}
+              disabled={step >= 22 ? true : false}
             />
             <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
               <SearchIcon />
@@ -213,7 +213,7 @@ const NewInterest = () => {
                   textAlign: 'center',
                 },
               }}
-              disabled={step >= 15 ? true : false}
+              disabled={step >= 22 ? true : false}
             />
           </div>
           <div className="w-[95%] mx-5 mt-2">
@@ -238,7 +238,7 @@ const NewInterest = () => {
                   fontSize: '20px',
                 },
               }}
-              disabled={step >= 15 ? true : false}
+              disabled={step >= 22 ? true : false}
             />
           </div>
           <div className="w-[95%] mx-5 mt-2">
@@ -263,7 +263,7 @@ const NewInterest = () => {
                   fontSize: '20px',
                 },
               }}
-              disabled={step >= 15 ? true : false}
+              disabled={step >= 22 ? true : false}
             />
           </div>
           <div className="w-[95%] mx-5 mt-2">
@@ -288,7 +288,7 @@ const NewInterest = () => {
                   fontSize: '20px',
                 },
               }}
-              disabled={step >= 15 ? true : false}
+              disabled={step >= 22 ? true : false}
             />
           </div>
           {error !== null ? (
@@ -296,13 +296,13 @@ const NewInterest = () => {
           ) : null}
         </div>
         <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-          What is your current address information?
+          What is your current job address?
         </p>
         <button
           type="button"
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 15 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 22 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -310,6 +310,6 @@ const NewInterest = () => {
     </>
   );
 
-  return <>{step > 13 ? renderDescription() : null}</>;
+  return <>{step > 20 ? renderDescription() : null}</>;
 };
-export default NewInterest;
+export default Job2;

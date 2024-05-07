@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment-timezone';
@@ -18,12 +18,18 @@ import License from '../components/Mobile/Full/License';
 import Paymethod from '../components/Mobile/Full/Paymethod';
 import Vehicles from '../components/Mobile/Full/Vehicles';
 import Interest from '../components/Mobile/Full/Interest';
-import NewAddress from "../components/Mobile/Full/NewAddress"
+import NewAddress from '../components/Mobile/Full/NewAddress';
 import NewAddressMore from '../components/Mobile/Full/NewAddressMore';
 import NewAddressPay from '../components/Mobile/Full/NewAddressPay';
 import OldAddress from '../components/Mobile/Full/OldAddress';
 import OldAddressMore from '../components/Mobile/Full/OldAddressMore';
 import OldAddressPay from '../components/Mobile/Full/OldAddressPay';
+import Job1 from '../components/Mobile/Full/Job1';
+import Job2 from '../components/Mobile/Full/Job2';
+import Job3 from '../components/Mobile/Full/Job3';
+import OldJob1 from '../components/Mobile/Full/OldJob1';
+import OldJob2 from '../components/Mobile/Full/OldJob2';
+import OldJob3 from '../components/Mobile/Full/OldJob3';
 // import Address from '../components/Mobile/Full/Address';
 // import Submit from '../components/Mobile/Full/Submit';
 import {
@@ -46,11 +52,23 @@ import backImg from '../assets/back.png';
 import { deviceInfo } from '../api/index';
 
 const Full = () => {
-  const { dealerLogo, step, history, residentalYears } = useSelector((state) => state.checker);
+  const { dealerLogo, step, history, residentalYears, jobYear } = useSelector(
+    (state) => state.checker
+  );
   const containerRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dealer_id } = useParams();
+  const [delta, setDelta] = useState(0);
+  console.log('this is delta===>', delta);
+
+  useEffect(() => {
+    if (jobYear) {
+      const current = new Date().getFullYear();
+      const jobtime = jobYear.split('-')[0];
+      setDelta(Math.abs(current - parseInt(jobtime)));
+    }
+  }, [jobYear]);
 
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
@@ -84,7 +102,7 @@ const Full = () => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
     dispatch(setDealerId(dealer_id));
-    console.log("this is step===>",step)
+    console.log('this is step===>', step);
   }, [history, step, dealer_id, dispatch]);
 
   const handleRestart = () => {
@@ -95,9 +113,10 @@ const Full = () => {
     navigate(-1);
     dispatch(clearHistory());
   };
-const plusStep = () => {
-  dispatch(addHistory(true));
-};
+  const plusStep = () => {
+    dispatch(addHistory(true));
+    console.log('this is current step===>', step);
+  };
   return (
     <div
       className="relative w-full h-screen flex justify-center items-center overflow-y-scroll scroll-smooth"
@@ -139,21 +158,38 @@ const plusStep = () => {
           <NewAddressPay />
           {parseInt(residentalYears) >= 2 && step == 17 ? (
             plusStep()
-          ) : (
+          ) : parseInt(residentalYears) < 2 && step >= 17 ? (
             <OldAddress />
-          )}
+          ) : null}
           {parseInt(residentalYears) >= 2 && step == 18 ? (
             plusStep()
-          ) : (
+          ) : parseInt(residentalYears) < 2 && step >= 18 ? (
             <OldAddressMore />
-          )}
+          ) : null}
           {parseInt(residentalYears) >= 2 && step == 19 ? (
             plusStep()
-          ) : (
+          ) : parseInt(residentalYears) < 2 && step >= 19 ? (
             <OldAddressPay />
-          )}
-          {/* <Address />
-          <Submit /> */}
+          ) : null}
+          <Job1 />
+          <Job2 />
+          <Job3 />
+          {delta >= 2 && step == 23 ? (
+            plusStep()
+          ) : delta < 2 && step >= 23 ? (
+            <OldJob1 />
+          ) : null}
+          {delta >= 2 && step == 24 ? (
+            plusStep()
+          ) : delta < 2 && step >= 24 ? (
+            <OldJob2 />
+          ) : null}
+          {delta >= 2 && step == 25 ? (
+            plusStep()
+          ) : delta < 2 && step >= 25 ? (
+            <OldJob3 />
+          ) : null}
+          {/* <Submit /> */}
         </div>
       </div>
     </div>

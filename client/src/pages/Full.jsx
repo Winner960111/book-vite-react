@@ -30,8 +30,9 @@ import Job3 from '../components/Mobile/Full/Job3';
 import OldJob1 from '../components/Mobile/Full/OldJob1';
 import OldJob2 from '../components/Mobile/Full/OldJob2';
 import OldJob3 from '../components/Mobile/Full/OldJob3';
-// import Address from '../components/Mobile/Full/Address';
-// import Submit from '../components/Mobile/Full/Submit';
+import Confirm from '../components/Mobile/Full/Confirm';
+import Income from '../components/Mobile/Full/Income';
+import Submit from '../components/Mobile/Full/Submit';
 import {
   addHistory,
   getDealerInfo,
@@ -52,7 +53,7 @@ import backImg from '../assets/back.png';
 import { deviceInfo } from '../api/index';
 
 const Full = () => {
-  const { dealerLogo, step, history, residentalYears, jobYear } = useSelector(
+  const { dealerLogo, step, history, residentalYears, jobYear, confirm } = useSelector(
     (state) => state.checker
   );
   const containerRef = useRef(null);
@@ -189,7 +190,9 @@ const Full = () => {
           ) : delta < 2 && step >= 25 ? (
             <OldJob3 />
           ) : null}
-          {/* <Submit /> */}
+          <Confirm />
+          {confirm === 'No' && step == 27 ? plusStep(): <Income /> }
+          <Submit />
         </div>
       </div>
     </div>

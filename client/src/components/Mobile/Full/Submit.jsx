@@ -3,14 +3,15 @@ import BotIcon from './BotIcon';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { signatureImg, usersUpdate } from '../../../api/index';
+import { fullcustomer, application, usersUpdate } from '../../../api/index';
+
 
 import './Canvas.css';
 const Submit = () => {
   const dispatch = useDispatch();
   const {
-    step,
     history,
+    step,
     dealerName,
     dealerId,
     checkerMobileNumber,
@@ -20,11 +21,7 @@ const Submit = () => {
     checkerEmail,
     checkerSocialNumber,
     checkerBirthday,
-    checkerAddress,
-    checkerApt,
-    checkerLocality,
-    checkerState,
-    checkerZipcode,
+    usCitizen,
     deviceIP,
     deviceOS,
     deviceCity,
@@ -36,6 +33,58 @@ const Submit = () => {
     deviceBrowser,
     intentID,
     type,
+    jobOccupation,
+    employerName,
+    employerPhoneNumber,
+    jobAddress,
+    jobCity,
+    jobState,
+    jobZipcode,
+    jobSalary,
+    jobYear,
+    jobstatus,
+    prevjobOccupation,
+    prevemployerName,
+    prevemployerPhoneNumber,
+    prevJobAddress,
+    prevjobCity,
+    prevjobState,
+    prevjobZipcode,
+    prevjobSalary,
+    prevjobstatus,
+    prevjobYear,
+    jobEndDate,
+    driverNumber,
+    driverDate,
+    driverState,
+    iDate,
+    iIsuer,
+    iType,
+    checkerAddress,
+    checkerState,
+    checkerZipcode,
+    checkerLocality,
+    residentalMonths,
+    residentalYears,
+    monthlyPay,
+    residentalStatus,
+    previousResidentalStatus,
+    previousCheckerAddress,
+    previousCheckerLocality,
+    previousCheckerState,
+    previousCheckerZipcode,
+    previousMonthlyPay,
+    previousResidentalYears,
+    previousResidentalMonths,
+    incomeAmount,
+    sourceIncome,
+    bankrupcy,
+    instantYear,
+    instantMake,
+    instantModel,
+    vehicleCondition,
+    vehicleType,
+    payDwon,
   } = useSelector((state) => state.checker);
 
   const canvasRef = useRef(null);
@@ -46,7 +95,6 @@ const Submit = () => {
 
   const handleResize = () => {
     // Rerun your code to set canvas size based on the new dimensions
-    console.log('web and mobile situation is exchanged.');
     prepareCanvas();
   };
 
@@ -157,7 +205,7 @@ const Submit = () => {
       lang: 'EN',
       phone: checkerMobileNumber,
       page: 'Full',
-      last_question: '8',
+      last_question: '19',
     };
     const intent_res = await usersUpdate(intent_data, intentID);
     console.log('this is update results ====>', intent_res);
@@ -184,21 +232,120 @@ const Submit = () => {
       mobile_phone: checkerMobileNumber,
       ssn: checkerSocialNumber,
       dob: checkerBirthday,
-      primary_address: checkerAddress,
-      primary_address2: checkerApt,
+      signature_img: image.src,
+      citizenship: usCitizen,
+      signature_name: fullName,
+      device_ip_address: deviceIP,
+      device_operating_system: deviceOS,
+      device_browser: deviceBrowser,
+      device_type: type,
+      device_state: deviceState,
+      device_city: deviceCity,
+      device_country: deviceCountry,
+      device_date_time: deviceDate,
+      device_lat: deviceLat,
+      device_lon: deviceLon,
+      employer_occupation: jobOccupation,
+      employer_name: employerName,
+      employer_contact_name: '',
+      employer_contact_phone: '',
+      employer_address: jobAddress,
+      employer_address2: '',
+      employer_city: jobCity,
+      employer_state: jobState,
+      employer_zip_code: jobZipcode,
+      employer_phone: employerPhoneNumber,
+      employer_salary: jobSalary,
+      employer_start_date: jobYear,
+      employer_type: jobstatus,
+      previous_employer_occupation: prevjobOccupation,
+      previous_employer_name: prevemployerName,
+      previous_employer_contact_name: '',
+      previous_employer_contact_phone: '',
+      previous_employer_address: prevJobAddress,
+      previous_employer_address2: '',
+      previous_employer_city: prevjobCity,
+      previous_employer_state: prevjobState,
+      previous_employer_zip_code: prevjobZipcode,
+      previous_employer_phone: prevemployerPhoneNumber,
+      previous_employer_salary: prevjobSalary,
+      previous_employer_start_date: prevjobYear,
+      previous_employer_end_date: jobEndDate,
+      previous_employer_type: prevjobstatus,
+      driver_licenced_number: driverNumber,
+      driver_licenced_exp_date: driverDate,
+      driver_licenced_state: driverState,
+      secondary_ID_type: iType,
+      secondary_ID_exp_date: iDate,
+      secondary_ID_issuer: iIsuer,
+      primary_address2: '',
       primary_city: checkerLocality,
+      primary_address: checkerAddress,
       primary_state: checkerState,
       primary_zip_code: checkerZipcode,
-      signature_name: fullName,
-      signature_img: image.src,
-      custom_id: '',
+      primary_housing_status: residentalStatus,
+      primary_housing_time_years: residentalYears,
+      primary_housing_time_months: residentalMonths,
+      primary_housing_payment_amount: monthlyPay,
+      primary_landLord_mortgage_holder: '',
+      primary_landLord_mortgage_phone: '',
+      previous_address: previousCheckerAddress,
+      previous_address2: '',
+      previous_city: previousCheckerLocality,
+      previous_state: previousCheckerState,
+      previous_zip_code: previousCheckerZipcode,
+      previous_housing_time_years: previousResidentalYears,
+      previous_housing_time_months: previousResidentalMonths,
+      previous_housing_payment_amount: previousMonthlyPay,
+      previous_landLord_mortgage_holder: '',
+      previous_landLord_mortgage_phone: '',
+      previous_housing_status: previousResidentalStatus,
+      extra_income: incomeAmount,
+      extra_income_frequency: sourceIncome,
+      marital_status: '',
+      reference1_first_name: '',
+      reference1_last_name: '',
+      reference1_phone: '',
+      reference1_city: '',
+      reference1_relationship: '',
+      reference1_state: '',
+      reference2_first_name: '',
+      reference2_last_name: '',
+      reference2_phone: '',
+      reference2_city: '',
+      reference2_relationship: '',
+      reference2_state: '',
+      inv_id: '',
+      source: 'Full',
+      bankruptcy: bankrupcy,
     };
 
-    const res = await signatureImg(data);
+    const res = await fullcustomer(data);
     if (res.status == 201) {
-      console.log('status ImageSend', res);
+      console.log('status CustomerItems_Send', res);
+      const appData = {
+        dealer_id: dealerId,
+        customer_id: res.data.id,
+        cosigner_id: '',
+        usr_id: '',
+        vehicle_year: instantYear,
+        vehicle_make: instantMake,
+        vehicle_model: instantModel,
+        vehicle_condition: vehicleCondition,
+        vehicle_type: vehicleType,
+        need_co_signer: false,
+        cosigner_phone: '',
+        down_payment: payDwon,
+      };
+      const appRes = await application(appData);
+      if (appRes.status == 201) {
+        console.log('status ApplicationItems_Send', res);
+        dispatch(addHistory(true));
+      } else {
+        console.log('Faild ApplicationItmes_send');
+      }
     } else {
-      console.log('Faild ImageSend');
+      console.log('Faild CustomerItems_Send');
     }
   };
 
@@ -208,7 +355,7 @@ const Submit = () => {
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step > 10 ? 'text-slate-400' : 'text-slate-800'
+          step >= 29 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <p className="bg-gray-50 rounded-3xl p-4">We are almost done:</p>
@@ -228,7 +375,7 @@ const Submit = () => {
             }
           >
             Please click{' '}
-            {step == 10 ? (
+            {step == 29 ? (
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -241,7 +388,7 @@ const Submit = () => {
               'here'
             )}{' '}
             to read our Privacy Notice and click{' '}
-            {step == 10 ? (
+            {step == 29 ? (
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -255,7 +402,7 @@ const Submit = () => {
             )}{' '}
             to read our full Privacy Policy. If you would like to opt-out of
             having your information shared at all, please do so now by clicking{' '}
-            {step == 10 ? (
+            {step == 29 ? (
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -272,7 +419,7 @@ const Submit = () => {
           <span
             onClick={() => setReadStatePara1(!readStatePara1)}
             className={
-              step == 10
+              step == 29
                 ? 'text-blue-600 text-sm hover:underline cursor-pointer'
                 : null
             }
@@ -292,7 +439,7 @@ const Submit = () => {
             investigate my credit history solely to determine the best available
             offers to fund my loan, I also acknowledge that I have read,
             understand, and agree to be bound by our End User{' '}
-            {step == 10 ? (
+            {step == 29 ? (
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -305,7 +452,7 @@ const Submit = () => {
               'here'
             )}{' '}
             and our{' '}
-            {step == 10 ? (
+            {step == 29 ? (
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -325,7 +472,7 @@ const Submit = () => {
           <span
             onClick={() => setReadStatePara2(!readStatePara2)}
             className={
-              step == 10
+              step == 29
                 ? 'text-blue-600 text-sm hover:underline cursor-pointer'
                 : null
             }
@@ -336,7 +483,7 @@ const Submit = () => {
 
         <div
           className="flex flex-col md:flex-row md:items-center mt-2"
-          style={step >= 11 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 29 ? { display: 'none' } : { display: 'block' }}
         >
           <canvas
             ref={canvasRef}
@@ -356,7 +503,7 @@ const Submit = () => {
         <button
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 11 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 29 ? { display: 'none' } : { display: 'block' }}
         >
           Submit
         </button>
@@ -377,10 +524,16 @@ const Submit = () => {
 
   return (
     <>
-      {step > 9 ? (
+      {step > 27 ? (
         <>
-          {renderDescription()}
-          {history[10] == true ? renderReply() : null}
+          {history[28] == true ? (
+            <>
+              {renderDescription()}
+              {renderReply()}
+            </>
+          ) : (
+            renderDescription()
+          )}
         </>
       ) : null}
     </>

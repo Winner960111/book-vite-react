@@ -56,6 +56,9 @@ const ThirdPage = () => {
   }, [])
 
   const handleSubmit = async () => {
+     //temperary 
+    dispatch(addHistory(true));
+    
     let pass = 0;
     if (!select) {
       setErrorVehicle('*Required')

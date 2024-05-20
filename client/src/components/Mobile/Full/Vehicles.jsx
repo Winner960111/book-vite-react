@@ -53,6 +53,10 @@ const Vehicle = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //temperary
+    
+      dispatch(addHistory(true));
+
     let pass = 0;
     if (!select) {
       setError('*Please select vehicle type');

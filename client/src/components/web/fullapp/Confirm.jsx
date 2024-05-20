@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { addHistory, setConfirm } from '../../../store/reducers/checker';
-const CheckVerifyCode = () => {
+
+const Confirm = () => {
     
     const dispatch = useDispatch();
 
@@ -47,4 +48,4 @@ const CheckVerifyCode = () => {
         </div>
     );
 };
-export default CheckVerifyCode;
+export default Confirm;

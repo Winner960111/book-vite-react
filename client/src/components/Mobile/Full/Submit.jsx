@@ -209,7 +209,6 @@ const Submit = () => {
     };
     const intent_res = await usersUpdate(intent_data, intentID);
     console.log('this is update results ====>', intent_res);
-    dispatch(addHistory(true));
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');
     const image = new Image();

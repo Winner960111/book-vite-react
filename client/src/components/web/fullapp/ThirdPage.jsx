@@ -56,8 +56,6 @@ const ThirdPage = () => {
   }, [])
 
   const handleSubmit = async () => {
-     //temperary 
-    dispatch(addHistory(true));
     
     let pass = 0;
     if (!select) {
@@ -111,16 +109,16 @@ const ThirdPage = () => {
           <div className='w-full flex justify-between bg-gray-50 items-center py-5 px-2 rounded-xl'>
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label" style={{ padding: '0 5px', fontSize: '18px', margin: '0 15px' }}>What type of vehicle are you interested in?</FormLabel>
-              <div className='h-[30vh] overflow-y-scroll'>
+              <div className='overflow-y-auto'>
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
-                  style={{ margin: '10px 0', display: 'flex', justifyContent: 'center' }}
+                  style={{ margin: '10px 30px', display: 'flex',flexWrap:"wrap" }}
                   onChange={(e) => { setSelect(e.target.value) }}
                 >
                   {vehicles.map((item, key) => {
-                    return <FormControlLabel key={key} value={item['name']} control={<Radio />} label={item['name']} className='hover:bg-violet-200 w-[40%] xl:w-[30%] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
+                    return <FormControlLabel key={key} value={item['name']} control={<Radio />} label={item['name']} className='hover:bg-violet-200 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
                   })}
                 </RadioGroup>
               </div>

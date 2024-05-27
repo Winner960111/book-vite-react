@@ -48,11 +48,11 @@ const WebHome = () => {
       <div className="flex w-full justify-center bg-white">
         <div className="flex w-3/4 justify-between py-5 px-20">
           <img
-            className="w-40 h-16 cursor-pointer"
+            className="w-40 h-16"
             src={dealerLogo}
             alt="avatar"
           />
-          <img className="w-35 h-20 cursor-pointer" src={shield} alt="avatar" />
+          <img className="w-35 h-20" src={shield} alt="avatar" />
         </div>
       </div>
       <div className="w-3/4 flex flex-col text-center items-center mt-28">

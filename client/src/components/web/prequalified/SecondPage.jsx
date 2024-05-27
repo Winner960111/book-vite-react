@@ -104,6 +104,10 @@ const SecondPage = () => {
     }
   };
 
+  useEffect(() => {
+    setErrors('')
+  },[zipcode, locality, state])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -112,13 +116,15 @@ const SecondPage = () => {
     console.log(locality);
 
     if (!locality.trim()) {
-      newErrors.locality = 'City field is required';
+      newErrors.locality = '*City field is required';
     }
     if (!state.trim()) {
-      newErrors.state = 'State field is required';
+      newErrors.state = '*State field is required';
     }
     if (!zipcode.trim()) {
-      newErrors.zipcode = 'ZipCode field is required';
+      newErrors.zipcode = '*ZipCode field is required';
+    } else if(!/^[0-9]+$/.test(zipcode)) {
+      newErrors.zipcode = '*ZipCode foramt is wrong'
     }
 
     setErrors(newErrors);
@@ -168,9 +174,15 @@ const SecondPage = () => {
             <div className="w-full flex p-5 flex-col md:flex-row">
               <div className="md:w-[68%] w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
                 <Paper
-                  sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', height: '70px' }}
+                  sx={{
+                    p: '2px 4px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    width: '100%',
+                    height: '70px',
+                  }}
                 >
-                  <GiPositionMarker className='text-4xl mx-2' />
+                  <GiPositionMarker className="text-4xl mx-2" />
                   <InputBase
                     sx={{ ml: 1, flex: 1, fontSize: '25px' }}
                     placeholder="Search Google Maps"
@@ -180,14 +192,19 @@ const SecondPage = () => {
                     id="autocomplete"
                     ref={addressRef}
                   />
-                  <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                  <IconButton
+                    type="button"
+                    sx={{ p: '10px' }}
+                    aria-label="search"
+                  >
                     <SearchIcon />
                   </IconButton>
                 </Paper>
+                {errors.address ? (
+                  <p className="text-red-500 pl-2">{errors.address}</p>
+                ) : null}
               </div>
-              {errors.address ? (
-                <p className="text-red-500 pl-2">{errors.address}</p>
-              ) : null}
+
               <div className="md:w-[32%] w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
                 <TextField
                   value={apt}
@@ -205,14 +222,14 @@ const SecondPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
               </div>
             </div>
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
-              <div className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
+              <div className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5 flex flex-col">
                 <TextField
                   value={locality}
                   onChange={(e) => {
@@ -232,14 +249,17 @@ const SecondPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
+                {errors.locality ? (
+                  <p className="text-red-500 text-[16px] flex justify-start">
+                    {errors.locality}
+                  </p>
+                ) : null}
               </div>
-              {errors.locality ? (
-                <p className="text-red-500 pl-2">{errors.locality}</p>
-              ) : null}
+
               <div className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
                 <TextField
                   value={state}
@@ -260,14 +280,17 @@ const SecondPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
+                {errors.state ? (
+                  <p className="text-red-500 text-[16px] flex justify-start">
+                    {errors.state}
+                  </p>
+                ) : null}
               </div>
-              {errors.state ? (
-                <p className="text-red-500 pl-2">{errors.state}</p>
-              ) : null}
+
               <div className="md:w-1/3 w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
                 <TextField
                   value={zipcode}
@@ -288,14 +311,16 @@ const SecondPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
+                {errors.zipcode ? (
+                  <p className="text-red-500 text-[16px] flex justify-start">
+                    {errors.zipcode}
+                  </p>
+                ) : null}
               </div>
-              {errors.zipcode ? (
-                <p className="text-red-500 pl-2">{errors.zipcode}</p>
-              ) : null}
             </div>
             <div className="w-full p-5 flex justify-end">
               <button

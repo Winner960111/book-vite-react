@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { classNames } from '../../../utils';
 import { signatureImg } from '../../../api/index';
 import './Canvas.css';
-import { addHistory } from '../../../store/reducers/checker';
+import { addHistory, clearHistory } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 
 const ThirdPage = () => {
@@ -41,6 +42,7 @@ const ThirdPage = () => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
+  const navigate = useNavigate();
 
   const handleResize = () => {
     // Rerun your code to set canvas size based on the new dimensions
@@ -168,10 +170,15 @@ const ThirdPage = () => {
       console.log('Faild ImageSend');
     }
   };
+  const Tobegin = () => {
+    console.log("I'm here")
+    navigate(-1);
+    dispatch(clearHistory());
+  }
 
   return (
     <div className="flex bg-gray-50 w-full justify-center items-center">
-      <div className="w-2/3 flex flex-col mt-10 mx-20">
+      <div className="w-2/3 flex flex-col mt-5 mx-20">
         <p className="w-2/3 text-4xl text-black my-3 font-medium">
           Please Sign on DrawBox
         </p>
@@ -206,7 +213,7 @@ const ThirdPage = () => {
               </a>{' '}
               to read our Privacy Notice and click{' '}
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.credit-apps.com/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -216,14 +223,9 @@ const ThirdPage = () => {
               to read our full Privacy Policy. If you would like to opt-out of
               having your information shared at all, please do so now by
               clicking{' '}
-              <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <span onClick={Tobegin} className="cursor-pointer text-blue-600">
                 here
-              </a>{' '}
+              </span>{' '}
               and exiting the application.
             </p>
             <span
@@ -246,7 +248,7 @@ const ThirdPage = () => {
               available offers to fund my loan, I also acknowledge that I have
               read, understand, and agree to be bound by our End User{' '}
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.credit-apps.com/terms/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -255,7 +257,7 @@ const ThirdPage = () => {
               </a>{' '}
               and our{' '}
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.credit-apps.com/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

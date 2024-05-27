@@ -77,7 +77,7 @@ const PhoneVerification = () => {
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <p className="w-4/5 md:w-[600px] text-4xl my-3 mt-20 font-medium">
+        <p className="w-4/5 md:w-[600px] text-4xl my-3 mt-5 font-medium">
           Verify your mobile number
         </p>
         <div

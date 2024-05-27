@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +12,13 @@ import {
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+
 const FirstPage = () => {
   const {
     step,
@@ -42,12 +50,11 @@ const FirstPage = () => {
   const [socialNumber, setSocialNumber] = useState('');
   const [birthday, setBirthday] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
-  const [focusFirstName, setFocusFirstName] = useState(Boolean);
-  const [focusMiddleName, setFocusMiddleName] = useState(Boolean);
-  const [focusLastName, setFocusLastName] = useState(Boolean);
-  const [focusEmailAddress, setFocusEmailAddress] = useState(Boolean);
-  const [focusSocialNumber, setFocusSocialNumber] = useState(Boolean);
-  const [focusBirthday, setFocusBirthday] = useState(Boolean);
+  const [emailHover, setHoverEmail] = useState(null);
+  const [first, setFirst] = useState(null);
+  const [middle, setMiddle] = useState(null);
+  const [last, setLast] = useState(null);
+  const [social, setSocial] = useState(null);
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
@@ -76,11 +83,19 @@ const FirstPage = () => {
       inputValue.substring(5, 9);
     setSocialNumber(formattedInputValue);
   };
-  const handleBirthday = (e) => {
-    setBirthday(e.target.value);
+  const handleBirthday = (value) => {
     setErrorBirthday('');
+    console.log('value==>', value);
+    let year, month, date;
+    year = value.$y;
+    month = parseInt(value.$M) + 1;
+    date = value.$D;
+    if (Number(year) < 1900 || Number(year) > 2100) {
+      setErrorBirthday('*Invalid Date');
+    }
+    setBirthday(year + '-' + String(month) + '-' + date);
   };
-
+  console.log(birthday);
   useEffect(() => {
     setErrorFirstName('');
     setErrorMiddleName('');
@@ -112,7 +127,7 @@ const FirstPage = () => {
       pass += 1;
     }
     if (!birthday) {
-      setErrorLastName('*input your birthday');
+      setErrorBirthday('*input your correct birthday');
     } else {
       pass += 1;
     }
@@ -166,20 +181,24 @@ const FirstPage = () => {
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className=" w-2/3 flex flex-col mt-28 mx-20">
+        <div className=" w-2/3 flex flex-col mt-10 mx-20">
           <p className="w-2/3 text-4xl my-3 font-medium">
-            We need to your some information
+            We need your some information
           </p>
           <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusFirstName(true)}
-                  onBlur={() => setFocusFirstName(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={first ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFirst(event.currentTarget)}
+                  onMouseLeave={() => setFirst(null)}
+                  onMouseDown={() => setFirst(null)}
                   value={firstName}
                   onChange={handleFirstName}
                   fullWidth
                   type="text"
+                  autoComplete='off'
                   defaultValue="Normal"
                   label="First name"
                   variant="standard"
@@ -191,28 +210,48 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
-
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(first)}
+                  anchorEl={first}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFirst(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please enter your first name.
+                  </Typography>
+                </Popover>
                 {errorFirstName !== '' && (
                   <p className="text-red-500 pl-2">{errorFirstName}</p>
-                )}
-                {focusFirstName && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your first name.
-                  </p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusMiddleName(true)}
-                  onBlur={() => setFocusMiddleName(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={middle ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setMiddle(event.currentTarget)}
+                  onMouseLeave={() => setMiddle(null)}
+                  onMouseDown={() => setMiddle(null)}
                   value={middleName}
                   onChange={handleMiddleName}
                   fullWidth
                   type="text"
+                  autoComplete='off'
                   defaultValue="Normal"
                   label="Middle Initial(optional)"
                   variant="standard"
@@ -224,28 +263,49 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
-                {errorMiddleName !== '' && (
-                  <p className="text-red-500 pl-2">{errorMiddleName}</p>
-                )}
-                {focusMiddleName && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(middle)}
+                  anchorEl={middle}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setMiddle(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }} style={{ width: '300px' }}>
                     In the case you have a middle name on your credit report
                     please enter here.
-                  </p>
+                  </Typography>
+                </Popover>
+                {errorMiddleName !== '' && (
+                  <p className="text-red-500 pl-2">{errorMiddleName}</p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusLastName(true)}
-                  onBlur={() => setFocusLastName(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={last ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setLast(event.currentTarget)}
+                  onMouseLeave={() => setLast(null)}
+                  onMouseDown={() => setLast(null)}
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
                   type="text"
+                  autoComplete='off'
                   defaultValue="Normal"
                   label="Last name"
                   variant="standard"
@@ -257,66 +317,50 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(last)}
+                  anchorEl={last}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setLast(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please enter your last name.
+                  </Typography>
+                </Popover>
                 {errorLastName !== '' && (
                   <p className="text-red-500 pl-2">{errorLastName}</p>
-                )}
-                {focusLastName && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your last name.
-                  </p>
                 )}
               </div>
             </div>
             <div className="w-full flex p-5 justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusBirthday(true)}
-                  onBlur={() => setFocusBirthday(false)} // onBlur is triggered when the input loses focus
-                  type="date"
-                  value={birthday}
-                  onChange={handleBirthday}
-                  fullWidth
-                  defaultValue="Normal"
-                  label="   "
-                  variant="standard"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px'
-                    },
-                  }}
-                />
-                {errorBirthday !== '' && (
-                  <p className="text-red-500 pl-2">{errorBirthday}</p>
-                )}
-                {focusBirthday && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    <b className="text-justify ">Please input your birthday.</b>
-                    <br />
-                    Your Privacy Matters: Rest assured, the information you
-                    provide is strictly confidential. We take your privacy
-                    seriously and only use your details to enhance your
-                    experience with us.
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col w-full my-3 md:mx-5">
-                <TextField
-                  onFocus={() => setFocusSocialNumber(true)}
-                  onBlur={() => setFocusSocialNumber(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={social ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setSocial(event.currentTarget)}
+                  onMouseLeave={() => setSocial(null)}
+                  onMouseDown={() => setSocial(null)}
                   value={socialNumber}
                   onChange={handleSocialNumber}
                   fullWidth
                   type="text"
+                  autoComplete='off'
                   defaultValue="Normal"
                   label="Social security number"
                   variant="standard"
@@ -328,29 +372,50 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
-                {errorSocialNumber !== '' && (
-                  <p className="text-red-500 pl-2">{errorSocialNumber}</p>
-                )}
-                {focusSocialNumber && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(social)}
+                  anchorEl={social}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setSocial(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }} style={{width:'300px'}}>
                     We will not hurt your credit report. This is not an
                     application for credit. Authorization is solely for
                     prequalification only.
-                  </p>
+                  </Typography>
+                </Popover>
+                {errorSocialNumber !== '' && (
+                  <p className="text-red-500 pl-2">{errorSocialNumber}</p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusEmailAddress(true)}
-                  onBlur={() => setFocusEmailAddress(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={emailHover ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setHoverEmail(event.currentTarget)}
+                  onMouseLeave={() => setHoverEmail(null)}
+                  onMouseDown={() => setHoverEmail(null)}
                   value={emailAddress}
                   onChange={handleEmailAddress}
                   type="text"
                   fullWidth
+                  autoComplete="off"
                   defaultValue="Normal"
                   label="Email address"
                   variant="standard"
@@ -362,19 +427,55 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
-                {errorEmailAddress !== '' && (
-                  <p className="text-red-500 pl-2">{errorEmailAddress}</p>
-                )}
-                {focusEmailAddress && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(emailHover)}
+                  anchorEl={emailHover}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setHoverEmail(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }} style={{ width: '30vw' }}>
                     By providing your email you agree to receive notification
                     messages from <b>{dealerName}</b> to the provided email
                     address.
-                  </p>
+                  </Typography>
+                </Popover>
+                {errorEmailAddress !== '' && (
+                  <p className="text-red-500 pl-2">{errorEmailAddress}</p>
+                )}
+              </div>
+
+              <div className="flex flex-col w-full my-3 md:mx-5">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoContainer
+                    components={['DatePicker']}
+                    minDate="1900-01-01"
+                    maxDate="2100-01-01"
+                  >
+                    <DatePicker
+                      label="Birthday"
+                      onChange={(newValue) => handleBirthday(newValue)}
+                      className="w-full"
+                    />
+                  </DemoContainer>
+                </LocalizationProvider>
+                {errorBirthday !== '' && (
+                  <p className="text-red-500 pl-2">{errorBirthday}</p>
                 )}
               </div>
             </div>

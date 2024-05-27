@@ -66,9 +66,9 @@ const WebPrequalified = () => {
     dispatch(setDealerId(dealer_id));
   }, [history, step, dealer_id, dispatch]);
 
-  const Refresh = () => {
-    dispatch(clearHistory());
-  };
+  // const Refresh = () => {
+  //   dispatch(clearHistory());
+  // };
   const handleRestart = () => {
     dispatch(clearHistory());
   };
@@ -82,8 +82,8 @@ const WebPrequalified = () => {
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img
-            onClick={Refresh}
-            className="w-40 h-16 cursor-pointer"
+            // onClick={Refresh}
+            className="w-40 h-16"
             src={dealerLogo}
             alt="avatar"
           />

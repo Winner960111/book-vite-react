@@ -267,6 +267,7 @@ const SecondPage = () => {
                   onChange={handleDriverState}
                   fullWidth
                   label="State"
+                  autoComplete='off'
                   variant="standard"
                   InputProps={{
                     style: {

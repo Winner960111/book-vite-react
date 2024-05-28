@@ -26,6 +26,12 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
 
 const FifthPage = () => {
     const dispatch = useDispatch();
@@ -77,6 +83,20 @@ const FifthPage = () => {
         setErrorPay('');
         setZipcode('');
     }, [step]);
+
+    const handleDate = (value) => {
+      setErrorDate('');
+      console.log('value==>', value);
+      let year, month, date;
+      year = value.$y;
+      month = parseInt(value.$M) + 1;
+      date = value.$D;
+      if (Number(year) < 1900 || Number(year) > 2100) {
+        setErrorDate('*Invalid Date');
+      }
+      setDate(year + '-' + String(month) + '-' + date);
+    };
+
     const handleEnumber = (e) => {
         const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
         const formattedInputValue =
@@ -158,7 +178,9 @@ const FifthPage = () => {
             newErrors.state = '*Required';
         }
         if (!zipcode.trim()) {
-            newErrors.zipcode = '*Required';
+          newErrors.zipcode = '*ZipCode field is required';
+        } else if (!/^[0-9]+$/.test(zipcode)) {
+          newErrors.zipcode = '*Invalid format';
         }
         if (!address) {
             newErrors.address = "*Required"
@@ -238,316 +260,336 @@ const FifthPage = () => {
         }
     };
     return (
-        <>
-            <div className="flex bg-gray-50 w-full justify-center items-center">
-                <div className="w-2/3 flex flex-col mt-28 mx-20">
-                    <p className="w-3/4 text-4xl my-3 font-medium">
-                        What is your current job information?
-                    </p>
-                    <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
-                        <div className="w-full px-5 flex justify-between flex-col lg:flex-row">
-                            <div className="lg:w-1/3 w-full my-3 lg:mx-5">
-                                <TextField
-                                    value={occupation}
-                                    onChange={(e) => { setOccupation(e.target.value) }}
-                                    fullWidth
-                                    defaultValue="Normal"
-                                    label="Occupation"
-                                    autoFocus
-                                    variant="standard"
-                                    InputProps={{
-                                        style: {
-                                            height: '50px', // Set the height of the TextField
-                                            fontSize: '25px',
-                                        },
-                                    }}
-                                    InputLabelProps={{
-                                        style: {
-                                            fontSize: '25px'
-                                        },
-                                    }}
-                                />
-                                {errors.occupation ? (
-                                    <p className="text-red-500 pl-2">{errors.occupation}</p>
-                                ) : null}
-                            </div>
-                            <div className="lg:w-1/3 w-full my-3 lg:mx-5">
-                                <TextField
-                                    value={Ename}
-                                    onChange={(e) => { setEname(e.target.value) }}
-                                    fullWidth
-                                    defaultValue="Normal"
-                                    label="Employeer's name"
-                                    variant="standard"
-                                    InputProps={{
-                                        style: {
-                                            height: '50px', // Set the height of the TextField
-                                            fontSize: '25px',
-                                        },
-                                    }}
-                                    InputLabelProps={{
-                                        style: {
-                                            fontSize: '25px'
-                                        },
-                                    }}
-                                />
-                                {errors.Ename ? (
-                                    <p className="text-red-500 pl-2">{errors.Ename}</p>
-                                ) : null}
-                            </div>
-
-                            <div className="lg:w-1/3 w-full my-3 lg:mx-5">
-                                <TextField
-                                    value={Enumber}
-                                    onChange={handleEnumber}
-                                    fullWidth
-                                    defaultValue="Normal"
-                                    label="Employeer's phone number"
-                                    variant="standard"
-                                    InputProps={{
-                                        style: {
-                                            height: '50px', // Set the height of the TextField
-                                            fontSize: '25px',
-                                        },
-                                    }}
-                                    InputLabelProps={{
-                                        style: {
-                                            fontSize: '25px'
-                                        },
-                                    }}
-                                />
-                                {errors.Enumber ? (
-                                    <p className="text-red-500 pl-2">{errors.Enumber}</p>
-                                ) : null}
-                            </div>
-
-                        </div>
-                        <div className="w-full flex px-5 pt-5 flex-col lg:flex-row">
-                            <div className="lg:w-[31%] w-full my-3 lg:mx-5 flex flex-col">
-                                <Paper
-                                    sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', height: '70px' }}
-                                >
-                                    <GiPositionMarker className='text-4xl mx-2' />
-                                    <InputBase
-                                        onFocus={() => setFocus(true)}
-                                        onBlur={() => setFocus(false)}
-                                        sx={{ ml: 1, flex: 1, fontSize: '25px' }}
-                                        placeholder="Search Google Maps"
-                                        inputProps={{ 'aria-label': 'search google maps' }}
-                                        autoComplete="off"
-                                        id="autocomplete"
-                                        ref={addressRef}
-                                    />
-                                    <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-                                        <SearchIcon />
-                                    </IconButton>
-                                </Paper>
-                                {focus && <p className="bg-gray-50 rounded-3xl text-[17px] p-4 mt-2">Please input your job address.</p>}
-                                {errors.address ? (
-                                    <p className="text-red-500 pl-2">{errors.address}</p>
-                                ) : null}
-                            </div>
-                            <div className="lg:w-[69%] w-full flex flex-col lg:flex-row lg:mx-5">
-                                <div className="lg:w-1/4 w-full my-3 lg:mx-3">
-                                    <TextField
-                                        value={apt}
-                                        onChange={(e) => setApt(e.target.value)}
-                                        fullWidth
-                                        type="text"
-                                        defaultValue="Normal"
-                                        label="Apt/Suite (Optional)"
-                                        variant="standard"
-                                        InputProps={{
-                                            style: {
-                                                height: '50px', // Set the height of the TextField
-                                                fontSize: '25px',
-                                            },
-                                        }}
-                                        InputLabelProps={{
-                                            style: {
-                                                fontSize: '25px'
-                                            },
-                                        }}
-                                    />
-                                </div>
-                                <div className="lg:w-1/4 w-full my-3 lg:mx-3">
-                                    <TextField
-                                        value={locality}
-                                        onChange={(e) => {
-                                            setLocality(e.target.value);
-                                            setErrors((prev) => ({ ...prev, locality: '' }));
-                                        }}
-                                        fullWidth
-                                        type="text"
-                                        defaultValue="Normal"
-                                        label="City"
-                                        variant="standard"
-                                        InputProps={{
-                                            style: {
-                                                height: '50px', // Set the height of the TextField
-                                                fontSize: '25px',
-                                            },
-                                        }}
-                                        InputLabelProps={{
-                                            style: {
-                                                fontSize: '25px'
-                                            },
-                                        }}
-                                    />
-                                    {errors.locality ? (
-                                        <p className="text-red-500 pl-2">{errors.locality}</p>
-                                    ) : null}
-                                </div>
-                                <div className="lg:w-1/4 w-full my-3 lg:mx-3">
-                                    <TextField
-                                        value={state}
-                                        onChange={(e) => {
-                                            setState(e.target.value);
-                                            setErrors((prev) => ({ ...prev, state: '' }));
-                                        }}
-                                        fullWidth
-                                        type="text"
-                                        defaultValue="Normal"
-                                        label="State"
-                                        variant="standard"
-                                        InputProps={{
-                                            style: {
-                                                height: '50px', // Set the height of the TextField
-                                                fontSize: '25px',
-                                            },
-                                        }}
-                                        InputLabelProps={{
-                                            style: {
-                                                fontSize: '25px'
-                                            },
-                                        }}
-                                    />
-                                    {errors.state ? (
-                                        <p className="text-red-500 pl-2">{errors.state}</p>
-                                    ) : null}
-                                </div>
-                                <div className="lg:w-1/4 w-full my-3 lg:mx-3">
-                                    <TextField
-                                        value={zipcode}
-                                        onChange={(e) => {
-                                            setZipcode(e.target.value);
-                                            setErrors((prev) => ({ ...prev, zipcode: '' }));
-                                        }}
-                                        fullWidth
-                                        type="text"
-                                        defaultValue="Normal"
-                                        label="Zip Code"
-                                        variant="standard"
-                                        InputProps={{
-                                            style: {
-                                                height: '50px', // Set the height of the TextField
-                                                fontSize: '25px',
-                                            },
-                                        }}
-                                        InputLabelProps={{
-                                            style: {
-                                                fontSize: '25px'
-                                            },
-                                        }}
-                                    />
-                                    {errors.zipcode ? (
-                                        <p className="text-red-500 pl-2">{errors.zipcode}</p>
-                                    ) : null}
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div className="flex w-[93%] flex-col lg:flex-row">
-                            <div className="lg:w-1/3 w-full flex flex-col">
-                                <TextField
-                                    onFocus={() => { setFocusPay(true) }}
-                                    onBlur={() => { setFocusPay(false) }}
-                                    variant="standard"
-                                    defaultValue="Normal"
-                                    margin="dense"
-                                    label="Salary"
-                                    fullWidth
-                                    value={pay}
-                                    onChange={(e) => { setPay(e.target.value) }}
-                                    InputProps={{
-                                        style: {
-                                            fontSize: '25px',
-                                            height: '50px'
-                                        },
-
-                                    }}
-                                    InputLabelProps={{
-                                        style: {
-                                            fontSize: '25px',
-                                        },
-                                    }}
-                                />
-                                {focusPay && <p className='bg-gray-50 pt-2 rounded-xl'>What is your annual gross salary?</p>}
-                                {errorPay !== '' ? (
-                                    <p className="text-red-500 pl-6 pt-2">{errorPay}</p>
-                                ) : null}
-                            </div>
-                            <div className="lg:w-1/3 w-full mt-3 md:mx-5 bg-gray-50 rounded-2xl flex flex-col">
-                                <FormControl variant="filled" sx={{ m: 1, minwidth: 120 }}>
-                                    <InputLabel id="demo-simple-select-standard-label" style={{ fontSize: '15px' }}>Are you full time or part time?</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-standard-label"
-                                        id="demo-simple-select-standard"
-                                        onChange={(e) => { setJobKind(e.target.value) }}
-                                    >
-                                        <MenuItem value={'Full Time'}>Full time</MenuItem>
-                                        <MenuItem value={'Part Time'}>Part time</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                {errorJobKind !== '' && (
-                                    <p className="text-red-500 pl-2">{errorJobKind}</p>
-                                )}
-                            </div>
-                            <div className="w-full lg:w-1/3 flex flex-col">
-                                <TextField
-                                    onFocus={() => { setFocusDate(true) }}
-                                    onBlur={() => { setFocusDate(false) }}
-                                    variant="standard"
-                                    defaultValue="Normal"
-                                    margin="dense"
-                                    type='date'
-                                    label=" "
-                                    fullWidth
-                                    value={date}
-                                    onChange={(e) => { setDate(e.target.value) }}
-                                    InputProps={{
-                                        style: {
-                                            fontSize: '25px',
-                                            height: '50px'
-                                        },
-
-                                    }}
-                                    InputLabelProps={{
-                                        style: {
-                                            fontSize: '25px',
-                                        },
-                                    }}
-                                />
-                                {focusDate && <p className='bg-gray-50 pt-2 rounded-xl'>Approximatley, when did you start working here?</p>}
-                                {errorDate !== '' ? (
-                                    <p className="text-red-500 pl-6 pt-2">{errorDate}</p>
-                                ) : null}
-                            </div>
-                        </div>
-                        <div className="w-full p-5 flex justify-end">
-                            <button
-                                type="button"
-                                onClick={handleSubmit}
-                                className="bg-[#854fff] w-[30%] h-16 p-2 mx-6 rounded-lg text-white text-xl  hover:bg-purple-800"
-                            >
-                                CONTINUE
-                            </button>
-                        </div>
-                    </div>
+      <>
+        <div className="flex bg-gray-50 w-full justify-center items-center">
+          <div className="w-2/3 flex flex-col mt-28 mx-20">
+            <p className="w-3/4 text-4xl my-3 font-medium">
+              What is your current job information?
+            </p>
+            <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
+              <div className="w-full px-5 flex justify-between flex-col lg:flex-row">
+                <div className="lg:w-1/3 w-full my-3 lg:mx-5">
+                  <TextField
+                    value={occupation}
+                    onChange={(e) => {
+                      setOccupation(e.target.value);
+                    }}
+                    fullWidth
+                    defaultValue="Normal"
+                    label="Occupation"
+                    autoFocus
+                    variant="standard"
+                    InputProps={{
+                      style: {
+                        height: '50px', // Set the height of the TextField
+                        fontSize: '25px',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        fontSize: '25px',
+                      },
+                    }}
+                  />
+                  {errors.occupation ? (
+                    <p className="text-red-500 pl-2">{errors.occupation}</p>
+                  ) : null}
                 </div>
+                <div className="lg:w-1/3 w-full my-3 lg:mx-5">
+                  <TextField
+                    value={Ename}
+                    onChange={(e) => {
+                      setEname(e.target.value);
+                    }}
+                    fullWidth
+                    defaultValue="Normal"
+                    label="Employeer's name"
+                    variant="standard"
+                    InputProps={{
+                      style: {
+                        height: '50px', // Set the height of the TextField
+                        fontSize: '25px',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        fontSize: '25px',
+                      },
+                    }}
+                  />
+                  {errors.Ename ? (
+                    <p className="text-red-500 pl-2">{errors.Ename}</p>
+                  ) : null}
+                </div>
+
+                <div className="lg:w-1/3 w-full my-3 lg:mx-5">
+                  <TextField
+                    value={Enumber}
+                    onChange={handleEnumber}
+                    fullWidth
+                    defaultValue="Normal"
+                    label="Employeer's phone number"
+                    variant="standard"
+                    InputProps={{
+                      style: {
+                        height: '50px', // Set the height of the TextField
+                        fontSize: '25px',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        fontSize: '25px',
+                      },
+                    }}
+                  />
+                  {errors.Enumber ? (
+                    <p className="text-red-500 pl-2">{errors.Enumber}</p>
+                  ) : null}
+                </div>
+              </div>
+              <div className="w-full flex px-5 pt-5 flex-col lg:flex-row">
+                <div className="lg:w-[31%] w-full my-3 lg:mx-5 flex flex-col">
+                  <Paper
+                    sx={{
+                      p: '2px 4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      width: '100%',
+                      height: '70px',
+                    }}
+                  >
+                    <GiPositionMarker className="text-4xl mx-2" />
+                    <InputBase
+                      onFocus={() => setFocus(true)}
+                      onBlur={() => setFocus(false)}
+                      sx={{ ml: 1, flex: 1, fontSize: '25px' }}
+                      placeholder="Search Google Maps"
+                      inputProps={{ 'aria-label': 'search google maps' }}
+                      autoComplete="off"
+                      id="autocomplete"
+                      ref={addressRef}
+                    />
+                    <IconButton
+                      type="button"
+                      sx={{ p: '10px' }}
+                      aria-label="search"
+                    >
+                      <SearchIcon />
+                    </IconButton>
+                  </Paper>
+                  {focus && (
+                    <p className="bg-gray-50 rounded-3xl text-[17px] p-4 mt-2">
+                      Please input your job address.
+                    </p>
+                  )}
+                  {errors.address ? (
+                    <p className="text-red-500 pl-2">{errors.address}</p>
+                  ) : null}
+                </div>
+                <div className="lg:w-[69%] w-full flex flex-col lg:flex-row lg:mx-5">
+                  <div className="lg:w-1/4 w-full my-3 lg:mx-3">
+                    <TextField
+                      value={apt}
+                      onChange={(e) => setApt(e.target.value)}
+                      fullWidth
+                      type="text"
+                      defaultValue="Normal"
+                      label="Apt/Suite (Optional)"
+                      variant="standard"
+                      InputProps={{
+                        style: {
+                          height: '50px', // Set the height of the TextField
+                          fontSize: '25px',
+                        },
+                      }}
+                      InputLabelProps={{
+                        style: {
+                          fontSize: '25px',
+                        },
+                      }}
+                    />
+                  </div>
+                  <div className="lg:w-1/4 w-full my-3 lg:mx-3">
+                    <TextField
+                      value={locality}
+                      onChange={(e) => {
+                        setLocality(e.target.value);
+                        setErrors((prev) => ({ ...prev, locality: '' }));
+                      }}
+                      fullWidth
+                      type="text"
+                      defaultValue="Normal"
+                      label="City"
+                      variant="standard"
+                      InputProps={{
+                        style: {
+                          height: '50px', // Set the height of the TextField
+                          fontSize: '25px',
+                        },
+                      }}
+                      InputLabelProps={{
+                        style: {
+                          fontSize: '25px',
+                        },
+                      }}
+                    />
+                    {errors.locality ? (
+                      <p className="text-red-500 pl-2">{errors.locality}</p>
+                    ) : null}
+                  </div>
+                  <div className="lg:w-1/4 w-full my-3 lg:mx-3">
+                    <TextField
+                      value={state}
+                      onChange={(e) => {
+                        setState(e.target.value);
+                        setErrors((prev) => ({ ...prev, state: '' }));
+                      }}
+                      fullWidth
+                      type="text"
+                      defaultValue="Normal"
+                      label="State"
+                      variant="standard"
+                      InputProps={{
+                        style: {
+                          height: '50px', // Set the height of the TextField
+                          fontSize: '25px',
+                        },
+                      }}
+                      InputLabelProps={{
+                        style: {
+                          fontSize: '25px',
+                        },
+                      }}
+                    />
+                    {errors.state ? (
+                      <p className="text-red-500 pl-2">{errors.state}</p>
+                    ) : null}
+                  </div>
+                  <div className="lg:w-1/4 w-full my-3 lg:mx-3">
+                    <TextField
+                      value={zipcode}
+                      onChange={(e) => {
+                        setZipcode(e.target.value);
+                        setErrors((prev) => ({ ...prev, zipcode: '' }));
+                      }}
+                      fullWidth
+                      type="text"
+                      defaultValue="Normal"
+                      label="Zip Code"
+                      variant="standard"
+                      InputProps={{
+                        style: {
+                          height: '50px', // Set the height of the TextField
+                          fontSize: '25px',
+                        },
+                      }}
+                      InputLabelProps={{
+                        style: {
+                          fontSize: '25px',
+                        },
+                      }}
+                    />
+                    {errors.zipcode ? (
+                      <p className="text-red-500 pl-2">{errors.zipcode}</p>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex w-[93%] flex-col lg:flex-row items-center">
+                <div className="lg:w-1/3 w-full flex flex-col">
+                  <TextField
+                    onFocus={() => {
+                      setFocusPay(true);
+                    }}
+                    onBlur={() => {
+                      setFocusPay(false);
+                    }}
+                    variant="standard"
+                    defaultValue="Normal"
+                    margin="dense"
+                    label="Salary"
+                    fullWidth
+                    value={pay}
+                    onChange={(e) => {
+                      setPay(e.target.value);
+                    }}
+                    InputProps={{
+                      style: {
+                        fontSize: '25px',
+                        height: '50px',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        fontSize: '25px',
+                      },
+                    }}
+                  />
+                  {focusPay && (
+                    <p className="bg-gray-50 pt-2 rounded-xl">
+                      What is your annual gross salary?
+                    </p>
+                  )}
+                  {errorPay !== '' ? (
+                    <p className="text-red-500 pl-6 pt-2">{errorPay}</p>
+                  ) : null}
+                </div>
+                <div className="lg:w-1/3 w-full mt-3 md:mx-5 bg-gray-50 rounded-2xl flex flex-col">
+                  <FormControl variant="filled" sx={{ m: 1, minwidth: 120 }}>
+                    <InputLabel
+                      id="demo-simple-select-standard-label"
+                      style={{ fontSize: '15px' }}
+                    >
+                      Are you full time or part time?
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      onChange={(e) => {
+                        setJobKind(e.target.value);
+                      }}
+                    >
+                      <MenuItem value={'Full Time'}>Full time</MenuItem>
+                      <MenuItem value={'Part Time'}>Part time</MenuItem>
+                    </Select>
+                  </FormControl>
+                  {errorJobKind !== '' && (
+                    <p className="text-red-500 pl-2">{errorJobKind}</p>
+                  )}
+                </div>
+                <div className="w-full lg:w-1/3 flex flex-col">
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer
+                      components={['DatePicker']}
+                      minDate="1900-01-01"
+                      maxDate="2100-01-01"
+                    >
+                      <DatePicker
+                        label="when did you start working here?"
+                        onChange={(newValue) => handleDate(newValue)}
+                        className="w-full"
+                      />
+                    </DemoContainer>
+                  </LocalizationProvider>
+                  {errorDate !== '' ? (
+                    <p className="text-red-500 pl-6 pt-2">{errorDate}</p>
+                  ) : null}
+                </div>
+              </div>
+              <div className="w-full p-5 flex justify-end">
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  className="bg-[#854fff] w-[30%] h-16 p-2 mx-6 rounded-lg text-white text-xl  hover:bg-purple-800"
+                >
+                  CONTINUE
+                </button>
+              </div>
             </div>
-        </>
+          </div>
+        </div>
+      </>
     );
 };
 export default FifthPage;

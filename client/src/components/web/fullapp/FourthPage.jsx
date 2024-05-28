@@ -25,6 +25,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
 
 const FourthPageItem = () => {
   const dispatch = useDispatch();
@@ -35,12 +37,12 @@ const FourthPageItem = () => {
   const [zipcode, setZipcode] = useState('');
   const [apt, setApt] = useState('');
   const [errors, setErrors] = useState({});
-  const [focus, setFocus] = useState(Boolean);
+  const [focus, setFocus] = useState('');
   const [residental, setResidental] = useState('');
   const [errorResidental, setErrorResidental] = useState('');
   const [pay, setPay] = useState('');
   const [errorPay, setErrorPay] = useState('');
-  const [focusPay, setFocusPay] = useState(Boolean);
+  const [focusPay, setFocusPay] = useState('');
   const [residentalYear, setResidentalYear] = useState('');
   const [errorYear, setErrorYear] = useState('');
   const [errorMonth, setErrorMonth] = useState('');
@@ -76,6 +78,7 @@ const FourthPageItem = () => {
     setZipcode('');
     setErrorMonth('');
     setErrorYear('');
+    setErrorResidental('');
   }, [step]);
 
   useEffect(() => {
@@ -95,6 +98,10 @@ const FourthPageItem = () => {
     });
   }, []);
 
+  useEffect(() => {
+    setErrorResidental('')
+  }, [residental])
+  
   useEffect(() => {
     if (addressRef.current) {
       const loadGoogleMapsScript = (callback) => {
@@ -138,6 +145,27 @@ const FourthPageItem = () => {
     }
   };
 
+  const handleYear = (e) => {
+    setErrorMonth('');
+    setErrorYear('');
+    if (/^[0-9]/.test(e.target.value) || !e.target.value.trim()) {
+      setResidentalYear(e.target.value);
+    }
+  }
+  const handlePay = (e) => {
+    setErrorPay('');
+    if (/^[0-9]/.test(e.target.value) || !e.target.value.trim()) {
+      setPay(e.target.value);
+    }
+  };
+  const handleMonth = (e) => {
+    setErrorMonth('');
+    setErrorYear('');
+    if (/^[0-9]/.test(e.target.value) || !e.target.value.trim()) {
+      setResidentalMonth(e.target.value);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -147,13 +175,13 @@ const FourthPageItem = () => {
     console.log(locality);
 
     if (!locality.trim()) {
-      newErrors.locality = 'City field is required';
+      newErrors.locality = '*City field is required';
     }
     if (!state.trim()) {
-      newErrors.state = 'State field is required';
+      newErrors.state = '*State field is required';
     }
     if (!zipcode.trim()) {
-      newErrors.zipcode = 'ZipCode field is required';
+      newErrors.zipcode = '*ZipCode field is required';
     } else if (!/^[0-9]+$/.test(zipcode)) {
         newErrors.zipcode = '*Invalid format'
     }
@@ -219,7 +247,7 @@ const FourthPageItem = () => {
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className="w-2/3 flex flex-col mt-28 mx-20">
+        <div className="w-2/3 flex flex-col mt-5 mx-20">
           <p className="w-3/4 text-4xl my-3 font-medium">
             What is your current address information?
           </p>
@@ -237,8 +265,11 @@ const FourthPageItem = () => {
                 >
                   <GiPositionMarker className="text-4xl mx-2" />
                   <InputBase
-                    onFocus={() => setFocus(true)}
-                    onBlur={() => setFocus(false)}
+                    aria-owns={focus ? 'mouse-over-popover' : undefined}
+                    aria-haspopup="true"
+                    onMouseEnter={(event) => setFocus(event.currentTarget)}
+                    onMouseLeave={() => setFocus(null)}
+                    onMouseDown={() => setFocus(null)}
                     sx={{ ml: 1, flex: 1, fontSize: '25px' }}
                     placeholder="Search Google Maps"
                     inputProps={{ 'aria-label': 'search google maps' }}
@@ -255,11 +286,28 @@ const FourthPageItem = () => {
                     <SearchIcon />
                   </IconButton>
                 </Paper>
-                {focus && (
-                  <p className="bg-gray-50 rounded-3xl text-[17px] p-4 mt-2">
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focus)}
+                  anchorEl={focus}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocus(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
                     Please input your current address.
-                  </p>
-                )}
+                  </Typography>
+                </Popover>
               </div>
               {errors.address ? (
                 <p className="text-red-500 pl-2">{errors.address}</p>
@@ -272,6 +320,7 @@ const FourthPageItem = () => {
                   defaultValue="Normal"
                   label="Apt/Suite (Optional)"
                   variant="standard"
+                  autoComplete="off"
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -298,6 +347,7 @@ const FourthPageItem = () => {
                   defaultValue="Normal"
                   label="City"
                   variant="standard"
+                  autoComplete="off"
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -325,6 +375,7 @@ const FourthPageItem = () => {
                   defaultValue="Normal"
                   label="State"
                   variant="standard"
+                  autoComplete="off"
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -353,6 +404,7 @@ const FourthPageItem = () => {
                   defaultValue="Normal"
                   label="Zip Code"
                   variant="standard"
+                  autoComplete="off"
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -422,7 +474,7 @@ const FourthPageItem = () => {
                   </FormControl>
                 </div>
                 {errorResidental !== '' ? (
-                  <p className="text-red-500 pl-6 pt-2">{errorResidental}</p>
+                  <p className="text-red-500 pl-5 -mt-2">{errorResidental}</p>
                 ) : null}
               </div>
 
@@ -436,10 +488,11 @@ const FourthPageItem = () => {
                     defaultValue="Normal"
                     margin="dense"
                     label="Year"
+                    autoComplete="off"
                     value={residentalYear}
                     style={{ margin: '0 10px 0 10px' }}
                     onChange={(e) => {
-                      setResidentalYear(e.target.value);
+                      handleYear(e);
                     }}
                     InputProps={{
                       style: {
@@ -457,10 +510,11 @@ const FourthPageItem = () => {
                     defaultValue="Normal"
                     margin="dense"
                     label="Month"
+                    Autocomplete="off"
                     value={residentalMonth}
                     style={{ margin: '0 10px 0 10px' }}
                     onChange={(e) => {
-                      setResidentalMonth(e.target.value);
+                      handleMonth(e);
                     }}
                     InputProps={{
                       style: {
@@ -475,27 +529,27 @@ const FourthPageItem = () => {
                   />
                 </div>
                 {errorMonth !== '' || errorYear !== '' ? (
-                  <p className="text-red-500 pl-6 pt-2">{errorMonth}</p>
+                  <p className="text-red-500 pl-2 pt-2">{errorMonth}</p>
                 ) : null}
               </div>
             </div>
             <div className="w-full p-5 flex justify-between">
               <div className="w-[40%] flex flex-col -mt-4 ml-5">
                 <TextField
-                  onFocus={() => {
-                    setFocusPay(true);
-                  }}
-                  onBlur={() => {
-                    setFocusPay(false);
-                  }}
+                  aria-owns={focusPay ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusPay(event.currentTarget)}
+                  onMouseLeave={() => setFocusPay(null)}
+                  onMouseDown={() => setFocusPay(null)}
                   variant="standard"
                   defaultValue="Normal"
                   margin="dense"
+                  autoComplete="off"
                   label="Monthly mortage/rent"
                   fullWidth
                   value={pay}
                   onChange={(e) => {
-                    setPay(e.target.value);
+                    handlePay(e);
                   }}
                   InputProps={{
                     style: {
@@ -509,13 +563,30 @@ const FourthPageItem = () => {
                     },
                   }}
                 />
-                {focusPay && (
-                  <p className="bg-gray-50 pt-2 rounded-xl">
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusPay)}
+                  anchorEl={focusPay}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusPay(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
                     How much is your mortage/rent payment?
-                  </p>
-                )}
+                  </Typography>
+                </Popover>
                 {errorPay !== '' ? (
-                  <p className="text-red-500 pl-6 pt-2">{errorPay}</p>
+                  <p className="text-red-500 flex justify-start">{errorPay}</p>
                 ) : null}
               </div>
               <button

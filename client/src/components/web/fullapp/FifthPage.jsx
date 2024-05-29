@@ -97,7 +97,7 @@ const FifthPage = () => {
   };
 
   const handlePay = (e) => {
-    if (!/^[0-9]+ $/.test(e.target.value) || !e.target.value.trim()) {
+    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
       setPay(e.target.value)
     }
     setErrorPay('');

@@ -70,9 +70,11 @@ const WebFullApp = () => {
             .catch((error) => console.log(error));
     }, []);
     useEffect(() => {
-        const current = new Date().getFullYear()
-        const jobtime = jobYear ? jobYear.split('-')[0] : "0"
-        setDelta(Math.abs(current - parseInt(jobtime)))
+        if (jobYear) {
+            const current = new Date().getFullYear()
+            const jobtime = jobYear ? jobYear.split('-')[0] : "0"
+            setDelta(Math.abs(current - parseInt(jobtime)))
+        }
     }, [jobYear])
     useEffect(() => {
         // when refresh app, set dealer_id and dealer_info of store

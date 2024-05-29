@@ -148,20 +148,20 @@ const FourthPageItem = () => {
   const handleYear = (e) => {
     setErrorMonth('');
     setErrorYear('');
-    if (/^[0-9]/.test(e.target.value) || !e.target.value.trim()) {
+    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
       setResidentalYear(e.target.value);
     }
   }
   const handlePay = (e) => {
     setErrorPay('');
-    if (/^[0-9]/.test(e.target.value) || !e.target.value.trim()) {
+    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
       setPay(e.target.value);
     }
   };
   const handleMonth = (e) => {
     setErrorMonth('');
     setErrorYear('');
-    if (/^[0-9]/.test(e.target.value) || !e.target.value.trim()) {
+    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
       setResidentalMonth(e.target.value);
     }
   };

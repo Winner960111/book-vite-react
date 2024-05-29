@@ -8,6 +8,8 @@ import {
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
 
 const SecondPage = () => {
     const {
@@ -31,15 +33,20 @@ const SecondPage = () => {
     const [errorHowIncome, setErrorHowIncome] = useState('');
     const [amountIncome, setAmountIncome] = useState('');
     const [howIncome, setHowIncome] = useState('');
-    const [focusAmountIncome, setFocusAmountIncome] = useState(Boolean);
-    const [focusHowIncome, setFocusHowIncome] = useState(Boolean);
+    const [focusAmountIncome, setFocusAmountIncome] = useState('');
+    const [focusHowIncome, setFocusHowIncome] = useState('');
 
     const handleAmountIncome = (e) => {
-        setAmountIncome(e.target.value);
+
+        if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
+            setAmountIncome(e.target.value);
+        }
         setErrorAmountIncome('');
     };
     const handleHowIncome = (e) => {
-        setHowIncome(e.target.value);
+        if (/^[a-zA-Z]+$/.test(e.target.value) || !e.target.value.trim()) {
+            setHowIncome(e.target.value);
+        }
         setErrorHowIncome('');
     };
 
@@ -104,13 +111,17 @@ const SecondPage = () => {
                     <div className="w-[60%] text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
                         <div className="flex flex-col w-full my-3 md:mx-5 p-5">
                             <TextField
-                                onFocus={() => setFocusAmountIncome(true)}
-                                onBlur={() => setFocusAmountIncome(false)} // onBlur is triggered when the input loses focus
+                                aria-owns={focus ? 'mouse-over-popover' : undefined}
+                                aria-haspopup="true"
+                                onMouseEnter={(event) => setFocusAmountIncome(event.currentTarget)}
+                                onMouseLeave={() => setFocusAmountIncome(null)}
+                                onMouseDown={() => setFocusAmountIncome(null)}
                                 value={amountIncome}
                                 onChange={handleAmountIncome}
                                 fullWidth
                                 autoFocus
                                 label="Amount of Income"
+                                autoComplete='off'
                                 variant="standard"
                                 InputProps={{
                                     style: {
@@ -124,25 +135,45 @@ const SecondPage = () => {
                                     },
                                 }}
                             />
-
+                            <Popover
+                                id="mouse-over-popover"
+                                sx={{
+                                    pointerEvents: 'none',
+                                }}
+                                open={Boolean(focusAmountIncome)}
+                                anchorEl={focusAmountIncome}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                onClose={() => setFocusAmountIncome(null)}
+                                disableRestoreFocus
+                            >
+                                <Typography sx={{ p: 2 }}>
+                                    What is the annually additional income amount you earn?
+                                </Typography>
+                            </Popover>
                             {errorAmountIncome !== '' && (
                                 <p className="text-red-500 pl-2">{errorAmountIncome}</p>
-                            )}
-                            {focusAmountIncome && (
-                                <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                                    What is the annually additional income amount you earn?
-                                </p>
                             )}
                         </div>
                         <div className="flex flex-col w-full my-3 md:mx-5 p-5">
                             <TextField
-                                onFocus={() => setFocusHowIncome(true)}
-                                onBlur={() => setFocusHowIncome(false)} // onBlur is triggered when the input loses focus
+                                aria-owns={focus ? 'mouse-over-popover' : undefined}
+                                aria-haspopup="true"
+                                onMouseEnter={(event) => setFocusHowIncome(event.currentTarget)}
+                                onMouseLeave={() => setFocusHowIncome(null)}
+                                onMouseDown={() => setFocusHowIncome(null)}
                                 value={howIncome}
                                 onChange={handleHowIncome}
                                 fullWidth
                                 label="Source"
                                 variant="standard"
+                                autoComplete='off'
                                 InputProps={{
                                     style: {
                                         height: '50px', // Set the height of the TextField
@@ -155,14 +186,30 @@ const SecondPage = () => {
                                     },
                                 }}
                             />
-
+                            <Popover
+                                id="mouse-over-popover"
+                                sx={{
+                                    pointerEvents: 'none',
+                                }}
+                                open={Boolean(focusHowIncome)}
+                                anchorEl={focusHowIncome}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                onClose={() => setFocusHowIncome(null)}
+                                disableRestoreFocus
+                            >
+                                <Typography sx={{ p: 2 }}>
+                                    Where do you earn this income?
+                                </Typography>
+                            </Popover>
                             {errorHowIncome !== '' && (
                                 <p className="text-red-500 pl-2">{errorHowIncome}</p>
-                            )}
-                            {focusHowIncome && (
-                                <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                                    please enter as show on your driver licensed.
-                                </p>
                             )}
                         </div>
 

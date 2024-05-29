@@ -101,7 +101,7 @@ const FourthPageItem = () => {
   useEffect(() => {
     setErrorResidental('')
   }, [residental])
-  
+
   useEffect(() => {
     if (addressRef.current) {
       const loadGoogleMapsScript = (callback) => {
@@ -183,7 +183,7 @@ const FourthPageItem = () => {
     if (!zipcode.trim()) {
       newErrors.zipcode = '*ZipCode field is required';
     } else if (!/^[0-9]+$/.test(zipcode)) {
-        newErrors.zipcode = '*Invalid format'
+      newErrors.zipcode = '*Invalid format'
     }
     if (!pay) {
       setErrorPay('*Required');
@@ -510,7 +510,7 @@ const FourthPageItem = () => {
                     defaultValue="Normal"
                     margin="dense"
                     label="Month"
-                    Autocomplete="off"
+                    autocomplete="off"
                     value={residentalMonth}
                     style={{ margin: '0 10px 0 10px' }}
                     onChange={(e) => {

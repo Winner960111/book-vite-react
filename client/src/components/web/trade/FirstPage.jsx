@@ -10,6 +10,9 @@ import {
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+
 const FirstPage = () => {
   const {
     step,
@@ -50,6 +53,14 @@ const FirstPage = () => {
     setLastName(e.target.value);
     setErrorLastName('');
   };
+
+  const handleMileage = (e) => {
+
+    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
+      setMileage(e.target.value)
+    }
+  }
+
   const handleEmailAddress = (e) => {
     setEmailAddress(e.target.value);
     setErrorEmailAddress('');
@@ -123,7 +134,7 @@ const FirstPage = () => {
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className=" w-2/3 flex flex-col mt-28 mx-20">
+        <div className=" w-2/3 flex flex-col mt-10 mx-20">
           <p className="w-2/3 text-4xl my-3 font-medium">
             We need to your some information
           </p>
@@ -131,12 +142,16 @@ const FirstPage = () => {
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusFirstName(true)}
-                  onBlur={() => setFocusFirstName(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focus ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusFirstName(event.currentTarget)}
+                  onMouseLeave={() => setFocusFirstName(null)}
+                  onMouseDown={() => setFocusFirstName(null)}
                   value={firstName}
                   onChange={handleFirstName}
                   fullWidth
                   autoFocus
+                  autoComplete='off'
                   type="text"
                   defaultValue="Normal"
                   label="First name"
@@ -153,22 +168,43 @@ const FirstPage = () => {
                     },
                   }}
                 />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusFirstName)}
+                  anchorEl={focusFirstName}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusFirstName(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please enter your first name.
+                  </Typography>
+                </Popover>
                 {errorFirstName !== '' && (
                   <p className="text-red-500 pl-2">{errorFirstName}</p>
-                )}
-                {focusFirstName && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your first name.
-                  </p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusLastName(true)}
-                  onBlur={() => setFocusLastName(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focus ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusLastName(event.currentTarget)}
+                  onMouseLeave={() => setFocusLastName(null)}
+                  onMouseDown={() => setFocusLastName(null)}
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
+                  autoComplete='off'
                   type="text"
                   defaultValue="Normal"
                   label="Last name"
@@ -185,22 +221,43 @@ const FirstPage = () => {
                     },
                   }}
                 />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusLastName)}
+                  anchorEl={focusLastName}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusLastName(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please enter your Last name.
+                  </Typography>
+                </Popover>
                 {errorLastName !== '' && (
                   <p className="text-red-500 pl-2">{errorFirstName}</p>
-                )}
-                {focusLastName && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your Last name.
-                  </p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusEmailAddress(true)}
-                  onBlur={() => setFocusEmailAddress(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focusEmailAddress ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusEmailAddress(event.currentTarget)}
+                  onMouseLeave={() => setFocusEmailAddress(null)}
+                  onMouseDown={() => setFocusEmailAddress(null)}
                   value={emailAddress}
                   onChange={handleEmailAddress}
                   fullWidth
+                  autoComplete='off'
                   type="text"
                   defaultValue="Normal"
                   label="Email address"
@@ -217,21 +274,42 @@ const FirstPage = () => {
                     },
                   }}
                 />
-                {errorEmailAddress !== '' && (
-                  <p className="text-red-500 pl-2">{errorEmailAddress}</p>
-                )}
-                {focusEmailAddress && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusEmailAddress)}
+                  anchorEl={focusEmailAddress}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusEmailAddress(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2, width: '300px' }}>
                     By providing your email you agree to receive notification
                     messages from <b>{dealerName}</b> to the provided email
                     address.
-                  </p>
+                  </Typography>
+                </Popover>
+                {errorEmailAddress !== '' && (
+                  <p className="text-red-500 pl-2">{errorEmailAddress}</p>
                 )}
               </div>
             </div>
             <div className="w-full p-5 flex justify-between flex-col md:flex-row -my-8">
               <div className="flex flex-col w-full md:w-[66%] md:px-5">
                 <div className="flex flex-col justify-between bg-gray-50 rounded-3xl px-4">
+
+                  <p className="px-6 py-2">
+                    <p>Please select vehicle condition</p>
+                  </p>
                   <div className="flex flex-col md:flex-row justify-between font-bold">
                     <label
                       htmlFor="radio1"
@@ -280,9 +358,6 @@ const FirstPage = () => {
                     </label>
                   </div>
 
-                  <p className="px-6">
-                    <p>Please select vehicle condition</p>
-                  </p>
                   {errorCondition !== '' ? (
                     <p className="text-red-500 pl-6 pt-2">{errorCondition}</p>
                   ) : null}
@@ -292,11 +367,12 @@ const FirstPage = () => {
                 <TextField
                   value={mileage}
                   onChange={(e) => {
-                    setMileage(e.target.value);
+                    handleMileage(e);
                   }}
                   fullWidth
                   type="text"
                   defaultValue="Normal"
+                  autoComplete='off'
                   label="Mileage"
                   variant="standard"
                   InputProps={{

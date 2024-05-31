@@ -25,7 +25,7 @@ const CheckVerifyCode = () => {
   } = useSelector((state) => state.checker);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     setError(null);
   }, [step]);
@@ -75,7 +75,7 @@ const CheckVerifyCode = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <p className="w-2/6 text-4xl my-3 mt-20 font-medium">
+      <p className="w-2/6 text-4xl my-3 mt-10 font-medium">
         <b>Check access code</b>
       </p>
       <form

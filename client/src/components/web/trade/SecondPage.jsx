@@ -86,7 +86,7 @@ const DealType = () => {
 
   return (
     <div className="flex flex-col bg-gray-50 w-full justify-center items-center">
-      <p className="w-2/3 text-4xl mt-44 font-medium">
+      <p className="w-2/3 text-4xl mt-10 font-medium">
         Please select correct answer
       </p>
       <div className="w-2/3 flex flex-col text-justify bg-white rounded-3xl p-8 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">

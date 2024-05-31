@@ -16,7 +16,7 @@ const Instant = () => {
   const [makeState, setMakeState] = useState(false);
   const [vinValue, setVinValue] = useState('');
   const [make, setMake] = useState('');
-  const [year, setYear] = useState(null);
+  const [year, setYear] = useState('');
   const [model, setModel] = useState('');
   const {
     dealerId,
@@ -36,10 +36,6 @@ const Instant = () => {
   const dispatch = useDispatch();
 
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setError('');
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,30 +61,34 @@ const Instant = () => {
       }
     } else if (makeState) {
       if (make && year && model) {
-        dispatch(setInstantMake(make));
-        dispatch(setInstantModel(model));
-        dispatch(setInstantYear(year));
-        const data = {
-          dealer_id: dealerId,
-          device_ip_address: deviceIP,
-          device_operating_system: deviceOS,
-          device_browser: deviceBrowser,
-          device_type: type,
-          device_state: deviceState,
-          device_city: deviceCity,
-          device_country: deviceCountry,
-          device_date_time: deviceDate,
-          device_lat: deviceLat,
-          device_lon: deviceLon,
-          status: 'Started',
-          lang: 'EN',
-          phone: checkerMobileNumber,
-          page: 'Trade In',
-          last_question: '2',
-        };
-        const res = await usersUpdate(data, intentID);
-        console.log('this is update results ====>', res);
-        dispatch(addHistory(true));
+
+        if (!error) {
+          console.log("this is yDate===>", year, make, model)
+          dispatch(setInstantMake(make));
+          dispatch(setInstantModel(model));
+          dispatch(setInstantYear(year));
+          const data = {
+            dealer_id: dealerId,
+            device_ip_address: deviceIP,
+            device_operating_system: deviceOS,
+            device_browser: deviceBrowser,
+            device_type: type,
+            device_state: deviceState,
+            device_city: deviceCity,
+            device_country: deviceCountry,
+            device_date_time: deviceDate,
+            device_lat: deviceLat,
+            device_lon: deviceLon,
+            status: 'Started',
+            lang: 'EN',
+            phone: checkerMobileNumber,
+            page: 'Trade In',
+            last_question: '2',
+          };
+          const res = await usersUpdate(data, intentID);
+          console.log('this is update results ====>', res);
+          dispatch(addHistory(true));
+        }
       } else {
         setError('Please fill in the input field');
       }
@@ -110,8 +110,10 @@ const Instant = () => {
   };
 
   const handleInputYear = (e) => {
-    setYear(e.target.value);
-    setError('');
+    if (/^[0-9]+$/.test(e.target.value) && e.target.value.length <= 4 || !e.target.value.trim()) {
+      setYear(e.target.value)
+    }
+    setError('')
   };
   const handleInputMake = (e) => {
     setMake(e.target.value);
@@ -123,10 +125,19 @@ const Instant = () => {
     setError('');
   };
 
+  useEffect(() => {
+    setError('')
+    if (year.length >= 4) {
+      if (parseInt(year) < 1900 || parseInt(year) > 2100) {
+        console.log("this is invalid")
+        setError('*Invalid Year info')
+      }
+    }
+  }, [year, make, model])
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <p className="w-2/6 text-4xl my-3 mt-36 font-medium">
+        <p className="w-2/6 text-4xl my-3 mt-10 font-medium">
           <b>Get an instant offer in minute</b>
         </p>
         <form

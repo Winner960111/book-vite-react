@@ -8,6 +8,9 @@ import {
   setCheckerEmail,
 } from '../../../store/reducers/checker';
 import { TextField } from '@mui/material';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+
 const FirstPage = () => {
   const {
     step,
@@ -110,7 +113,7 @@ const FirstPage = () => {
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className=" w-2/3 flex flex-col mt-28 mx-20">
+        <div className=" w-2/3 flex flex-col mt-10 mx-20">
           <p className="w-2/3 text-4xl my-3 font-medium">
             We need to your some information
           </p>
@@ -118,8 +121,11 @@ const FirstPage = () => {
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusFirstName(true)}
-                  onBlur={() => setFocusFirstName(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focusFirstName ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusFirstName(event.currentTarget)}
+                  onMouseLeave={() => setFocusFirstName(null)}
+                  onMouseDown={() => setFocusFirstName(null)}
                   value={firstName}
                   onChange={handleFirstName}
                   fullWidth
@@ -140,19 +146,39 @@ const FirstPage = () => {
                     },
                   }}
                 />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusFirstName)}
+                  anchorEl={focusFirstName}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusFirstName(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please enter your first name.
+                  </Typography>
+                </Popover>
                 {errorFirstName !== '' && (
                   <p className="text-red-500 pl-2">{errorFirstName}</p>
-                )}
-                {focusFirstName && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your first name.
-                  </p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusLastName(true)}
-                  onBlur={() => setFocusLastName(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focusLastName ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusLastName(event.currentTarget)}
+                  onMouseLeave={() => setFocusLastName(null)}
+                  onMouseDown={() => setFocusLastName(null)}
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
@@ -172,19 +198,39 @@ const FirstPage = () => {
                     },
                   }}
                 />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusLastName)}
+                  anchorEl={focusLastName}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusLastName(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please enter your Last name.
+                  </Typography>
+                </Popover>
                 {errorLastName !== '' && (
                   <p className="text-red-500 pl-2">{errorLastName}</p>
-                )}
-                {focusLastName && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your last name.
-                  </p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusEmailAddress(true)}
-                  onBlur={() => setFocusEmailAddress(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focus ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusEmailAddress(event.currentTarget)}
+                  onMouseLeave={() => setFocusEmailAddress(null)}
+                  onMouseDown={() => setFocusEmailAddress(null)}
                   value={emailAddress}
                   onChange={handleEmailAddress}
                   fullWidth
@@ -204,15 +250,32 @@ const FirstPage = () => {
                     },
                   }}
                 />
-                {errorEmailAddress !== '' && (
-                  <p className="text-red-500 pl-2">{errorEmailAddress}</p>
-                )}
-                {focusEmailAddress && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusEmailAddress)}
+                  anchorEl={focusEmailAddress}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusEmailAddress(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2, width: '300px' }}>
                     By providing your email you agree to receive notification
                     messages from <b>{dealerName}</b> to the provided email
                     address.
-                  </p>
+                  </Typography>
+                </Popover>
+                {errorEmailAddress !== '' && (
+                  <p className="text-red-500 pl-2">{errorEmailAddress}</p>
                 )}
               </div>
             </div>

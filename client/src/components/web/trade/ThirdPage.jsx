@@ -1,10 +1,11 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { addHistory } from '../../../store/reducers/checker';
+import { addHistory, clearHistory } from '../../../store/reducers/checker';
 import { SubmitTrade, usersUpdate } from '../../../api/index';
+import { useNavigate } from 'react-router-dom';
 
 const ThirdPage = () => {
+
   const {
     dealerName,
     dealerId,
@@ -34,10 +35,14 @@ const ThirdPage = () => {
     deviceBrowser,
     type,
   } = useSelector((state) => state.checker);
+  const navigate = useNavigate()
 
+  const Tobegin = () => {
+    console.log("I'm here")
+    navigate(-1);
+    dispatch(clearHistory());
+  }
   const dispatch = useDispatch();
-  const [readStatePara1, setReadStatePara1] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -107,14 +112,7 @@ const ThirdPage = () => {
             any way by {dealerName}. Your trust is paramount to us.
           </p>
           <div className="bg-gray-50 rounded-3xl p-4 mt-2">
-            <p
-              onClick={() => setReadStatePara1(!readStatePara1)}
-              className={
-                readStatePara1 == false
-                  ? 'w-full whitespace-nowrap text-ellipsis overflow-hidden'
-                  : null
-              }
-            >
+            <p className="w-full">
               Please click{' '}
               <a
                 href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
@@ -126,7 +124,7 @@ const ThirdPage = () => {
               </a>{' '}
               to read our Privacy Notice and click{' '}
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.credit-apps.com/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -136,22 +134,11 @@ const ThirdPage = () => {
               to read our full Privacy Policy. If you would like to opt-out of
               having your information shared at all, please do so now by
               clicking{' '}
-              <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <span onClick={Tobegin} className="cursor-pointer text-blue-600">
                 here
-              </a>{' '}
+              </span>{' '}
               and exiting the application.
             </p>
-            <span
-              onClick={() => setReadStatePara1(!readStatePara1)}
-              className={'text-blue-600 text-sm hover:underline cursor-pointer'}
-            >
-              {readStatePara1 == false ? 'More' : 'Less'}
-            </span>
           </div>
           <div className="w-full mt-5 flex justify-end">
             <button

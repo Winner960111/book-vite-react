@@ -31,18 +31,36 @@ const FirstPage = () => {
     const dispatch = useDispatch();
     const [selectDate, setSelectDate] = useState({})
     const [selectTime, setSelectTime] = useState('')
+    const [timeArray, setTimeArray] = useState([])
     const [error, setError] = useState('')
-    useEffect(() => {
-        console.log("this is selecdate====>", selectDate)
-        console.log("this is selectime====>", selectTime)
-    }, [selectDate, selectTime])
 
     // Get the current date
     const currentDate = new Date();
-
     // Array to store the next seven days
     const nextSevenDays = [];
 
+    useEffect(() => {
+        let time = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30']
+        let selectedtime = []
+        console.log("this is selecdate====>", selectDate)
+        console.log("this is selectime====>", selectTime)
+        const month = selectDate.month
+        // Create a new Date object with the month name
+        const date = new Date(`${month} 1, 2000`);
+        const monthNumber = date.getMonth()
+        if (monthNumber == currentDate.getMonth() && selectDate.day == currentDate.getDate()) {
+            console.log("month and day are same with selected ones")
+            time.map((item) => {
+                if (parseInt(item.split(':')[0]) >= currentDate.getHours() && parseInt(item.split(':')[1]) >= currentDate.getMinutes()) {
+                    selectedtime.push(item)
+                }
+            })
+            setTimeArray(selectedtime)
+        } else {
+            setTimeArray(time)
+        }
+    }, [selectDate, selectTime])
+    console.log("this is timearray===>", timeArray)
     // Loop to get the month, day, and weekday for the next seven days
     for (let i = 0; i < 7; i++) {
         const nextDate = new Date();
@@ -58,6 +76,7 @@ const FirstPage = () => {
     const handleBack = () => {
         dispatch(removeHistory())
     };
+
     const handleSubmit = async () => {
         const data = {
             dealer_id: dealerId,
@@ -102,7 +121,7 @@ const FirstPage = () => {
     return (
         <>
             <div className="flex bg-gray-50 w-full justify-center items-center">
-                <div className=" w-2/3 flex flex-col mt-20 mx-20">
+                <div className=" w-2/3 flex flex-col mt-10 mx-20">
                     <p className="w-full text-4xl my-3 font-medium">
                         When would you like to start your appointment?
                     </p>
@@ -123,26 +142,7 @@ const FirstPage = () => {
                                                 onChange={(e) => { setSelectTime(e.target.value) }}
                                                 inputProps={{ 'aria-label': 'Without label' }}
                                             >
-                                                <MenuItem value={"09:00"}>09:00</MenuItem>
-                                                <MenuItem value={"09:30"}>09:30</MenuItem>
-                                                <MenuItem value={"10:00"}>10:00</MenuItem>
-                                                <MenuItem value={"10:30"}>10:30</MenuItem>
-                                                <MenuItem value={"11:00"}>11:00</MenuItem>
-                                                <MenuItem value={"11:30"}>11:30</MenuItem>
-                                                <MenuItem value={"12:00"}>12:00</MenuItem>
-                                                <MenuItem value={"12:30"}>12:30</MenuItem>
-                                                <MenuItem value={"13:00"}>13:00</MenuItem>
-                                                <MenuItem value={"13:30"}>13:30</MenuItem>
-                                                <MenuItem value={"14:00"}>14:00</MenuItem>
-                                                <MenuItem value={"14:30"}>14:30</MenuItem>
-                                                <MenuItem value={"15:00"}>15:00</MenuItem>
-                                                <MenuItem value={"15:30"}>15:30</MenuItem>
-                                                <MenuItem value={"16:00"}>16:00</MenuItem>
-                                                <MenuItem value={"16:30"}>16:30</MenuItem>
-                                                <MenuItem value={"17:00"}>17:00</MenuItem>
-                                                <MenuItem value={"17:30"}>17:30</MenuItem>
-                                                <MenuItem value={"18:00"}>18:00</MenuItem>
-                                                <MenuItem value={"18:30"}>18:30</MenuItem>
+                                                {timeArray.map((item) => { return <MenuItem value={item}>{item}</MenuItem> })}
 
                                             </Select>
                                         </FormControl>

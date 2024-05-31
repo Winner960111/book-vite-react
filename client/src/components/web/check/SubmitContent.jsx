@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react';
 import { addHistory, setAppDescription, setAppStatus } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { TextField } from '@mui/material';
-import {checkapp} from '../../../api/index'
+import { checkapp } from '../../../api/index'
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
 
 const SubmitContent = () => {
   const {
     step,
     checkerMobileNumber,
     dealerId,
- 
+
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [errorLastName, setErrorLastName] = useState('');
@@ -44,7 +46,7 @@ const SubmitContent = () => {
     } else if (!/^[A-Za-z]+$/.test(lastName)) {
       setErrorLastName('*contains only characters');
     } else {
-        const data = {
+      const data = {
         dealer_id: dealerId,
         last_name: lastName,
         ssn: socialNumber,
@@ -65,7 +67,7 @@ const SubmitContent = () => {
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className=" w-2/3 flex flex-col mt-28 mx-20 items-center">
+        <div className=" w-2/3 flex flex-col mt-10 mx-20 items-center">
           <p className="w-2/3 text-4xl my-3 font-medium">
             We need to your some information
           </p>
@@ -74,14 +76,18 @@ const SubmitContent = () => {
 
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusLastName(true)}
-                  onBlur={() => setFocusLastName(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focusLastName ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusLastName(event.currentTarget)}
+                  onMouseLeave={() => setFocusLastName(null)}
+                  onMouseDown={() => setFocusLastName(null)}
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
                   type="text"
                   defaultValue="Normal"
                   label="Last name"
+                  autoComplete='off'
                   variant="standard"
                   InputProps={{
                     style: {
@@ -95,24 +101,45 @@ const SubmitContent = () => {
                     },
                   }}
                 />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusLastName)}
+                  anchorEl={focusLastName}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusLastName(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2, width: '300px' }}>
+                    Please enter your last name.
+                  </Typography>
+                </Popover>
                 {errorLastName !== '' && (
                   <p className="text-red-500 pl-2">{errorLastName}</p>
-                )}
-                {focusLastName && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your last name.
-                  </p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusSocialNumber(true)}
-                  onBlur={() => setFocusSocialNumber(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focusSocialNumber ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusSocialNumber(event.currentTarget)}
+                  onMouseLeave={() => setFocusSocialNumber(null)}
+                  onMouseDown={() => setFocusSocialNumber(null)}
                   value={socialNumber}
                   onChange={handleSocialNumber}
                   fullWidth
                   type="text"
                   defaultValue="Normal"
+                  autoComplete='off'
                   label="Social security number"
                   variant="standard"
                   InputProps={{
@@ -127,16 +154,33 @@ const SubmitContent = () => {
                     },
                   }}
                 />
-                {errorSocialNumber !== '' && (
-                  <p className="text-red-500 pl-2">{errorSocialNumber}</p>
-                )}
-                {focusSocialNumber && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusSocialNumber)}
+                  anchorEl={focusSocialNumber}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusSocialNumber(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2, width: '300px' }}>
                     *Input only last 4 digit<br />
                     We will not hurt your credit report. This is not an
                     application for credit. Authorization is solely for
                     prequalification only.
-                  </p>
+                  </Typography>
+                </Popover>
+                {errorSocialNumber !== '' && (
+                  <p className="text-red-500 pl-2">{errorSocialNumber}</p>
                 )}
               </div>
             </div>

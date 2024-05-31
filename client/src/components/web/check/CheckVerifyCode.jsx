@@ -17,7 +17,7 @@ const CheckVerifyCode = () => {
   useEffect(() => {
     setError(null);
   }, [step]);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,7 +34,7 @@ const CheckVerifyCode = () => {
       const res = { status: 201 };
 
       if (res.status === 201) {
-        
+
         dispatch(addHistory(true));
       } else {
         setError('Invalid verification code. Please try again.');
@@ -44,7 +44,7 @@ const CheckVerifyCode = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <p className="w-2/6 text-4xl my-3 mt-36 font-medium">
+      <p className="w-2/6 text-4xl my-3 mt-10 font-medium">
         <p>Check your verify code</p>
       </p>
       <form

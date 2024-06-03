@@ -230,7 +230,7 @@ const Submit = () => {
             Please click{' '}
             {step == 10 ? (
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -243,7 +243,7 @@ const Submit = () => {
             to read our Privacy Notice and click{' '}
             {step == 10 ? (
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -257,7 +257,7 @@ const Submit = () => {
             having your information shared at all, please do so now by clicking{' '}
             {step == 10 ? (
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -294,7 +294,7 @@ const Submit = () => {
             understand, and agree to be bound by our End User{' '}
             {step == 10 ? (
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -307,7 +307,7 @@ const Submit = () => {
             and our{' '}
             {step == 10 ? (
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

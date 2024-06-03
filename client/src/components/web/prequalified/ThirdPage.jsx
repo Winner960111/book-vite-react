@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback} from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { classNames } from '../../../utils';
@@ -204,7 +204,7 @@ const ThirdPage = () => {
             >
               Please click{' '}
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

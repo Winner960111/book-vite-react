@@ -47,7 +47,7 @@ const PhoneVerification = () => {
         mobile_phone: phoneNumber
       };
       const res = await checkVerify(data);
-
+      console.log("this is res.stauts ===>", res.status)
       if (res.status === 201) {
         dispatch(setIdentifyId(res.data.id));
         dispatch(setIdentifyStatus(res.data.status));
@@ -63,7 +63,7 @@ const PhoneVerification = () => {
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <p className="w-4/5 md:w-[600px] text-4xl my-3 mt-36 font-medium">
+        <p className="w-4/5 md:w-[600px] text-4xl my-3 mt-10 font-medium">
           <b>Verify your mobile number</b>
         </p>
         <div

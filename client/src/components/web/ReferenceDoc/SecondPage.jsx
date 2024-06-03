@@ -27,7 +27,7 @@ const SecondPage = () => {
     const res = await submitReference(data);
     if (res.status == 201) {
       console.log('status ImageSend', res);
-    dispatch(addHistory(true));
+      dispatch(addHistory(true));
 
     } else {
       console.log('Faild ImageSend');
@@ -62,7 +62,7 @@ const SecondPage = () => {
             >
               Please click{' '}
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -71,7 +71,7 @@ const SecondPage = () => {
               </a>{' '}
               to read our Privacy Notice and click{' '}
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -82,7 +82,7 @@ const SecondPage = () => {
               having your information shared at all, please do so now by
               clicking{' '}
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

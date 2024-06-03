@@ -78,7 +78,7 @@ const ThirdPage = () => {
             >
               Please click{' '}
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -87,7 +87,7 @@ const ThirdPage = () => {
               </a>{' '}
               to read our Privacy Notice and click{' '}
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -98,7 +98,7 @@ const ThirdPage = () => {
               having your information shared at all, please do so now by
               clicking{' '}
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

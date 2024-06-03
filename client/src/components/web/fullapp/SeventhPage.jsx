@@ -356,7 +356,7 @@ const SeventhPage = () => {
                         >
                             Please click{' '}
                             <a
-                                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                                 style={{ color: 'blue' }}
                                 target="_blank"
                                 rel="noopener noreferrer"

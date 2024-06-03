@@ -88,11 +88,11 @@ const Submit = () => {
         )}
       >
         <p className="bg-gray-50 rounded-3xl p-4">
-          - Please take a moment to review the information below.<br/>
+          - Please take a moment to review the information below.<br />
           - We are committed to protecting your privacy. The information that you
           provided is only shared with the dealership to assess your credit
           history and not otherwise sold, marketed, or distributed in any way by{' '}
-          {dealerName}.<br/>
+          {dealerName}.<br />
         </p>
         <div className="bg-gray-50 rounded-3xl p-4 mt-2">
           <p
@@ -106,7 +106,7 @@ const Submit = () => {
             Please click{' '}
             {step == 8 ? (
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -119,7 +119,7 @@ const Submit = () => {
             to read our Privacy Notice and click{' '}
             {step == 8 ? (
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -133,7 +133,7 @@ const Submit = () => {
             having your information shared at all, please do so now by clicking{' '}
             {step == 8 ? (
               <a
-                href="https://www.credit-apps.com/static/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

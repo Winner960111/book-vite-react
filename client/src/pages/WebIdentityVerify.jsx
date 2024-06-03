@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
 import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
-import {customerInfo} from '../api/index'
+import { customerInfo } from '../api/index'
 // checker step components
 import PhoneVerification from '../components/web/IdentityVerify/PhoneVerification';
 import FirstPage from '../components/web/IdentityVerify/FirstPage';
@@ -70,8 +70,8 @@ const WebIdentityVerify = () => {
   }, [history, step, dealer_slug, dispatch]);
 
   useEffect(() => {
-    console.log("this is location++==>",location)
-  },[location])
+    console.log("this is location++==>", location)
+  }, [location])
 
   useEffect(() => {
     if (dealerId) {
@@ -80,7 +80,7 @@ const WebIdentityVerify = () => {
         dispatch(setCustomerName(res.data.get_full_name));
       });
     }
-  },[dealerId])
+  }, [dealerId])
 
   const Refresh = () => {
     dispatch(clearHistory());

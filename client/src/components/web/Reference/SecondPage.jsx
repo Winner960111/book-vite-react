@@ -7,8 +7,10 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
 
-const FirstPage = () => {
+const SecondPage = () => {
   const {
     step,
     refFirstName,
@@ -27,24 +29,31 @@ const FirstPage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [focusFirstName, setFocusFirstName] = useState(Boolean);
-  const [focusLastName, setFocusLastName] = useState(Boolean);
-  const [focusPhoneNumber, setFocusPhoneNumber] = useState(Boolean);
+  const [focusFirstName, setFocusFirstName] = useState('');
+  const [focusLastName, setFocusLastName] = useState('');
+  const [focusPhoneNumber, setFocusPhoneNumber] = useState('');
   const [relation, setRelation] = useState('Spouse')
   const [errorRelation, setErrorRelation] = useState('')
-  const [focusCity, setFocusCity] = useState(Boolean)
+  const [focusCity, setFocusCity] = useState('')
   const [city, setCity] = useState('')
   const [errorCity, setErrorCity] = useState('')
-  const [focusState, setFocusState] = useState(Boolean)
+  const [focusState, setFocusState] = useState('')
   const [state, setState] = useState('')
   const [errorState, setErrorState] = useState('')
-  
+
   const handleState = (e) => {
-    setState(e.target.value);
+    if (/^[a-zA-Z]+$/.test(e.target.value) || !e.target.value.trim()) {
+
+      setState(e.target.value);
+    }
+
     setErrorState('');
-    };
+  };
   const handleCity = (e) => {
-    setCity(e.target.value);
+    if (/^[a-zA-Z]+$/.test(e.target.value) || !e.target.value.trim()) {
+
+      setCity(e.target.value);
+    }
     setErrorCity('');
   };
   const handleRelation = (e) => {
@@ -99,7 +108,7 @@ const FirstPage = () => {
     }
     if (!phoneNumber) {
       setErrorPhoneNumber('*Required');
-    }else {
+    } else {
       pass += 1;
     }
     if (!city) {
@@ -121,7 +130,7 @@ const FirstPage = () => {
     }
     if (pass == 6) {
       const data = {
-        
+
         dealer_id: dealerId,
         reference1_first_name: refFirstName,
         reference1_last_name: refLastName,
@@ -136,13 +145,13 @@ const FirstPage = () => {
         reference2_relationship: relation,
         reference2_state: state
       };
-      
+
       const res = await referenceInfo(data, customerId)
-      console.log("this is res==>",res)
+      console.log("this is res==>", res)
       if (res.status == 200) {
-        
+
         dispatch(addHistory(true));
-        
+
       } else {
         console.log("Failed")
       }
@@ -152,7 +161,7 @@ const FirstPage = () => {
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className=" w-2/3 flex flex-col mt-28 mx-20">
+        <div className=" w-2/3 flex flex-col mt-10 mx-20">
           <p className="w-full text-4xl my-3 font-medium">
             We need one more reference information.
           </p>
@@ -160,12 +169,16 @@ const FirstPage = () => {
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusFirstName(true)}
-                  onBlur={() => setFocusFirstName(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focusFirstName ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusFirstName(event.currentTarget)}
+                  onMouseLeave={() => setFocusFirstName(null)}
+                  onMouseDown={() => setFocusFirstName(null)}
                   value={firstName}
                   onChange={handleFirstName}
                   fullWidth
                   autoFocus
+                  autoComplete='off'
                   label="First name"
                   variant="standard"
                   InputProps={{
@@ -180,23 +193,44 @@ const FirstPage = () => {
                     },
                   }}
                 />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusFirstName)}
+                  anchorEl={focusFirstName}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusFirstName(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please enter your reference first name.
+                  </Typography>
+                </Popover>
                 {errorFirstName !== '' && (
                   <p className="text-red-500 pl-2">{errorFirstName}</p>
-                )}
-                {focusFirstName && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your reference first name.
-                  </p>
                 )}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusLastName(true)}
-                  onBlur={() => setFocusLastName(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focusLastName ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusLastName(event.currentTarget)}
+                  onMouseLeave={() => setFocusLastName(null)}
+                  onMouseDown={() => setFocusLastName(null)}
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
                   label="Last name"
+                  autoComplete='off'
                   variant="standard"
                   InputProps={{
                     style: {
@@ -210,24 +244,46 @@ const FirstPage = () => {
                     },
                   }}
                 />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusLastName)}
+                  anchorEl={focusLastName}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusLastName(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please enter your reference last name.
+                  </Typography>
+                </Popover>
                 {errorLastName !== '' && (
                   <p className="text-red-500 pl-2">{errorLastName}</p>
                 )}
-                {focusLastName && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your reference last name.
-                  </p>
-                )}
+
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusPhoneNumber(true)}
-                  onBlur={() => setFocusPhoneNumber(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focusPhoneNumber ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusPhoneNumber(event.currentTarget)}
+                  onMouseLeave={() => setFocusPhoneNumber(null)}
+                  onMouseDown={() => setFocusPhoneNumber(null)}
                   value={phoneNumber}
                   onChange={handlePhoneNumber}
                   fullWidth
                   label="Phone Number"
                   variant="standard"
+                  autoComplete='off'
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -240,14 +296,32 @@ const FirstPage = () => {
                     },
                   }}
                 />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusPhoneNumber)}
+                  anchorEl={focusPhoneNumber}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusPhoneNumber(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please input your reference phone number.
+                  </Typography>
+                </Popover>
                 {errorPhoneNumber !== '' && (
                   <p className="text-red-500 pl-2">{errorPhoneNumber}</p>
                 )}
-                {focusPhoneNumber && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please input your reference phone number.
-                  </p>
-                )}
+
               </div>
             </div>
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
@@ -278,13 +352,17 @@ const FirstPage = () => {
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusCity(true)}
-                  onBlur={() => setFocusCity(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focusCity ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusCity(event.currentTarget)}
+                  onMouseLeave={() => setFocusCity(null)}
+                  onMouseDown={() => setFocusCity(null)}
                   value={city}
                   onChange={handleCity}
                   fullWidth
                   label="City"
                   variant="standard"
+                  autoComplete='off'
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -297,24 +375,46 @@ const FirstPage = () => {
                     },
                   }}
                 />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusCity)}
+                  anchorEl={focusCity}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusCity(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please enter your reference person&apos;s city.
+                  </Typography>
+                </Popover>
                 {errorCity !== '' && (
                   <p className="text-red-500 pl-2">{errorCity}</p>
                 )}
-                {focusCity && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your reference person&apos;s city.
-                  </p>
-                )}
+
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  onFocus={() => setFocusState(true)}
-                  onBlur={() => setFocusState(false)} // onBlur is triggered when the input loses focus
+                  aria-owns={focusState ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusState(event.currentTarget)}
+                  onMouseLeave={() => setFocusState(null)}
+                  onMouseDown={() => setFocusState(null)}
                   value={state}
                   onChange={handleState}
                   fullWidth
                   label="State"
                   variant="standard"
+                  autoComplete='off'
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -327,14 +427,32 @@ const FirstPage = () => {
                     },
                   }}
                 />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusState)}
+                  anchorEl={focusState}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusState(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please enter your reference person&apos;s state.
+                  </Typography>
+                </Popover>
                 {errorState !== '' && (
                   <p className="text-red-500 pl-2">{errorState}</p>
                 )}
-                {focusState && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    Please enter your reference person&apos;s state.
-                  </p>
-                )}
+
               </div>
             </div>
             <div className="w-full p-5 flex justify-end">
@@ -352,4 +470,4 @@ const FirstPage = () => {
     </>
   );
 };
-export default FirstPage;
+export default SecondPage;

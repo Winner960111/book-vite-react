@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkVerification } from '../../../api/index';
-import { addHistory} from '../../../store/reducers/checker';
+import { addHistory } from '../../../store/reducers/checker';
 import OtpInput from 'react-otp-input';
 import verify from '../../../assets/verify.png';
 
@@ -10,7 +10,7 @@ const CheckVerifyCode = () => {
   const {
     checkerMobileNumber,
     step,
-    
+
   } = useSelector((state) => state.checker);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -44,8 +44,8 @@ const CheckVerifyCode = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <p className="w-2/6 text-4xl my-3 mt-36 font-medium">
-        <b>Check your verify code</b>
+      <p className="w-2/6 text-4xl my-3 mt-10 font-medium">
+        Check your verify code
       </p>
       <form
         onSubmit={handleSubmit}

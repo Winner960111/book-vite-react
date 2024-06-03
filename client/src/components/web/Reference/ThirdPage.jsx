@@ -53,7 +53,7 @@ const ThirdPage = () => {
   return (
     <div className="flex bg-gray-50 w-full justify-center items-center">
       <div className="w-2/3 flex flex-col mt-10 mx-20">
-        <p className="w-2/3 text-4xl text-black my-3 font-medium">
+        <p className="w-full text-4xl text-black my-3 font-medium">
           Please take a moment to review the information below.
         </p>
         <form

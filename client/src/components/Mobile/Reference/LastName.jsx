@@ -9,9 +9,9 @@ import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';
 
 const InputLastName = () => {
-  const { step, history, refLastName1} = useSelector(
-      (state) => state.checker
-    );
+  const { step, history, refLastName1 } = useSelector(
+    (state) => state.checker
+  );
   const dispatch = useDispatch();
 
   const [lastName, setLastName] = useState('');
@@ -60,6 +60,7 @@ const InputLastName = () => {
             fullWidth
             value={lastName}
             onChange={handleChangeInput}
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {

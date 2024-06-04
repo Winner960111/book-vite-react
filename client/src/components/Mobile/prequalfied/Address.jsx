@@ -126,6 +126,8 @@ const Address = () => {
     }
     if (!zipcode.trim()) {
       newErrors.zipcode = 'ZipCode field is required';
+    } else if (!/^[0-9]+$/.test(zipcode)) {
+      newErrors.zipcode = '*Invalid ZipCode format'
     }
 
     setErrors(newErrors);

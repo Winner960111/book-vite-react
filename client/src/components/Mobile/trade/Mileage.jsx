@@ -93,6 +93,7 @@ const Mileage = () => {
             fullWidth
             value={year}
             onChange={handleYearChange}
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {

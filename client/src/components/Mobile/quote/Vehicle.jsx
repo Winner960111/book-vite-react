@@ -103,6 +103,7 @@ const Vehicle = () => {
             fullWidth
             value={year}
             onChange={handleYearChange}
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {
@@ -123,6 +124,7 @@ const Vehicle = () => {
             fullWidth
             value={make}
             onChange={handleMake}
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {
@@ -143,6 +145,7 @@ const Vehicle = () => {
             margin="dense"
             value={model}
             onChange={handleModel}
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {

@@ -10,9 +10,9 @@ import { TextField } from '@mui/material';
 
 const InputPhoneNumber = () => {
 
-  const { step, history, refPhoneNumber1} = useSelector(
-      (state) => state.checker
-    );
+  const { step, history, refPhoneNumber1 } = useSelector(
+    (state) => state.checker
+  );
   const dispatch = useDispatch();
 
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -68,6 +68,7 @@ const InputPhoneNumber = () => {
             fullWidth
             value={phoneNumber}
             onChange={handleChangeInputPhoneNumber}
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {

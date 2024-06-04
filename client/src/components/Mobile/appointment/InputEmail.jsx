@@ -91,6 +91,7 @@ const InputEmail = () => {
             value={email.toLowerCase()}
             onChange={handleChangeInputEmail}
             type="text"
+            autoComplete='off'
             InputProps={{
               style: {
                 height: '70px', // Set the height of the TextField

@@ -90,6 +90,7 @@ const InputEmail = () => {
             fullWidth
             value={email.toLowerCase()}
             onChange={handleChangeInputEmail}
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {

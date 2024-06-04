@@ -10,8 +10,8 @@ import { TextField } from '@mui/material';
 
 const InputLastName = () => {
   const { step, history, checkerLastName } = useSelector(
-      (state) => state.checker
-    );
+    (state) => state.checker
+  );
   const dispatch = useDispatch();
 
   const [lastName, setLastName] = useState('');
@@ -61,6 +61,7 @@ const InputLastName = () => {
             value={lastName}
             onChange={handleChangeInput}
             type="text"
+            autoComplete='off'
             InputProps={{
               style: {
                 height: '70px', // Set the height of the TextField

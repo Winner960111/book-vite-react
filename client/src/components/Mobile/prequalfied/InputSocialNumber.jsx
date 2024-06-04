@@ -101,6 +101,7 @@ const InputSocialNumber = () => {
             id="outlined-multiline-flexible"
             label="Social security number"
             fullWidth
+            autoComplete='off'
             value={socialNumber}
             onChange={handleChangeInputSocialNumber}
             type="text"

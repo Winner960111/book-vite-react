@@ -93,6 +93,7 @@ const InputFirstName = () => {
             fullWidth
             value={firstName}
             onChange={handleChangeInput}
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {

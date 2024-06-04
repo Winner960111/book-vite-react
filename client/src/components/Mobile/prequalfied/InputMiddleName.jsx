@@ -99,6 +99,7 @@ const InputMiddleName = () => {
             value={middleName}
             onChange={handleChangeInput}
             type="text"
+            autoComplete='off'
             InputProps={{
               style: {
                 height: '70px', // Set the height of the TextField

@@ -4,8 +4,9 @@ import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { signatureImg, usersUpdate } from '../../../api/index';
-
+import { useNavigate } from "react-router-dom"
 import './Canvas.css';
+
 const Submit = () => {
   const dispatch = useDispatch();
   const {
@@ -38,6 +39,7 @@ const Submit = () => {
     type,
   } = useSelector((state) => state.checker);
 
+  const navigate = useNavigate()
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -139,6 +141,9 @@ const Submit = () => {
     setIsDrawing(false);
   };
 
+  const returnBack = () => {
+    navigate(-1)
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const intent_data = {
@@ -161,7 +166,6 @@ const Submit = () => {
     };
     const intent_res = await usersUpdate(intent_data, intentID);
     console.log('this is update results ====>', intent_res);
-    dispatch(addHistory(true));
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');
     const image = new Image();
@@ -197,6 +201,8 @@ const Submit = () => {
     const res = await signatureImg(data);
     if (res.status == 201) {
       console.log('status ImageSend', res);
+      dispatch(addHistory(true));
+      returnBack()
     } else {
       console.log('Faild ImageSend');
     }

@@ -34,7 +34,7 @@ const Confirm = () => {
   const [error, setError] = useState('');
   const [amountIncome, setAmountIncome] = useState('');
   const [howIncome, setHowIncome] = useState('');
-  
+
   const handleAmountIncome = (e) => {
     setAmountIncome(e.target.value);
     setError('');
@@ -115,6 +115,7 @@ const Confirm = () => {
             onChange={handleAmountIncome}
             fullWidth
             label="Amount of Income"
+            autoComplete='off'
             variant="standard"
             InputProps={{
               style: {
@@ -133,6 +134,7 @@ const Confirm = () => {
             onChange={handleHowIncome}
             fullWidth
             label="Source of Income"
+            autoComplete='off'
             variant="standard"
             InputProps={{
               style: {

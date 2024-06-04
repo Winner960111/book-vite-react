@@ -159,6 +159,7 @@ const FifthPage = () => {
                                     fullWidth
                                     autoFocus
                                     label="First name"
+                                    autoComplete='off'
                                     variant="standard"
                                     InputProps={{
                                         style: {
@@ -210,6 +211,7 @@ const FifthPage = () => {
                                     onChange={handleLastName}
                                     fullWidth
                                     label="Last name"
+                                    autoComplete='off'
                                     variant="standard"
                                     InputProps={{
                                         style: {

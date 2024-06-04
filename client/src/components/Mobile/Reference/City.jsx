@@ -11,7 +11,7 @@ import { TextField } from '@mui/material';
 const InputCity = () => {
 
   const dispatch = useDispatch();
-  const { step, history, refCity1} = useSelector(
+  const { step, history, refCity1 } = useSelector(
     (state) => state.checker
   );
 
@@ -61,6 +61,7 @@ const InputCity = () => {
             fullWidth
             value={City}
             onChange={handleChangeInput}
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {

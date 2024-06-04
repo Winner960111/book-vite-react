@@ -197,6 +197,7 @@ const Instant = () => {
                     handleInputVin(e);
                   }}
                   fullWidth
+                  autoComplete='off'
                   type="text"
                   InputProps={{
                     style: {
@@ -230,74 +231,77 @@ const Instant = () => {
           )}
           {makeState && (
             <>
-            <div style={step >= 4 ? { display: 'none' } : { display: 'block' }}>
-              <TextField
-                id="margin-dense"
-                margin="dense"
-                label="Year"
-                fullWidth
-                value={year}
-                onChange={(e) => {
-                  handleInputYear(e);
-                }}
-                type="text"
-                InputProps={{
-                  style: {
-                    height: '70px', // Set the height of the TextField
-                    fontSize: '25px',
-                  },
-                }}
-                InputLabelProps={{
-                  style: {
-                    fontSize: '25px',
-                  },
-                }}
-              />
-              <TextField
-                id="margin-dense"
-                margin="dense"
-                label="Make"
-                fullWidth
-                value={make}
-                onChange={(e) => {
-                  handleInputMake(e);
-                }}
-                type="text"
-                InputProps={{
-                  style: {
-                    height: '70px', // Set the height of the TextField
-                    fontSize: '25px',
-                  },
-                }}
-                InputLabelProps={{
-                  style: {
-                    fontSize: '25px',
-                  },
-                }}
-              />
-              <TextField
-                label="Model"
-                fullWidth
-                id="margin-dense"
-                margin="dense"
-                value={model}
-                onChange={(e) => {
-                  handleInputModel(e);
-                }}
-                type="text"
-                InputProps={{
-                  style: {
-                    height: '70px', // Set the height of the TextField
-                    fontSize: '25px',
-                  },
-                }}
-                InputLabelProps={{
-                  style: {
-                    fontSize: '25px',
-                  },
-                }}
+              <div style={step >= 4 ? { display: 'none' } : { display: 'block' }}>
+                <TextField
+                  id="margin-dense"
+                  margin="dense"
+                  label="Year"
+                  fullWidth
+                  value={year}
+                  onChange={(e) => {
+                    handleInputYear(e);
+                  }}
+                  autoComplete='off'
+                  type="text"
+                  InputProps={{
+                    style: {
+                      height: '70px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px',
+                    },
+                  }}
                 />
-                </div>
+                <TextField
+                  id="margin-dense"
+                  margin="dense"
+                  label="Make"
+                  autoComplete='off'
+                  fullWidth
+                  value={make}
+                  onChange={(e) => {
+                    handleInputMake(e);
+                  }}
+                  type="text"
+                  InputProps={{
+                    style: {
+                      height: '70px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px',
+                    },
+                  }}
+                />
+                <TextField
+                  label="Model"
+                  fullWidth
+                  id="margin-dense"
+                  autoComplete='off'
+                  margin="dense"
+                  value={model}
+                  onChange={(e) => {
+                    handleInputModel(e);
+                  }}
+                  type="text"
+                  InputProps={{
+                    style: {
+                      height: '70px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px',
+                    },
+                  }}
+                />
+              </div>
               {error !== '' ? (
                 <p className="text-red-500 pl-2 text-sm">{error}</p>
               ) : null}

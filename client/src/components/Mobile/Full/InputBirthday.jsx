@@ -90,6 +90,7 @@ const InputBirthday = () => {
             fullWidth
             value={birthday}
             onChange={handleChangeInputBirthday}
+            autoComplete='off'
             type="date"
             InputProps={{
               style: {

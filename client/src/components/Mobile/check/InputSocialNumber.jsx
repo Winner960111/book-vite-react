@@ -13,9 +13,9 @@ import { checkapp } from '../../../api/index';
 
 const InputSocialNumber = () => {
 
-  const { step, history, checkerMobileNumber,checkerSocialNumber, dealerId, checkerLastName} = useSelector(
-      (state) => state.checker
-    );
+  const { step, history, checkerMobileNumber, checkerSocialNumber, dealerId, checkerLastName } = useSelector(
+    (state) => state.checker
+  );
   const dispatch = useDispatch();
 
   const [socialNumber, setSocialNumber] = useState('');
@@ -39,23 +39,23 @@ const InputSocialNumber = () => {
     if (socialNumber.length === 0) {
       setError('You should input your social security number');
     } else {
-       const data = {
-         dealer_id: dealerId,
-         last_name: checkerLastName,
-         ssn: socialNumber,
-         mobile_phone: checkerMobileNumber,
-       };
-       const res = await checkapp(data);
-       if (res.status == 201) {
-         console.log(res.data);
-         dispatch(setAppStatus(res.data.status));
-         dispatch(setAppDescription(res.data.describe));
-         dispatch(addHistory(true));
-         dispatch(setCheckerSocialNumber(socialNumber))
-         setSocialNumber('');
-       } else {
-         console.log('failed API calling.');
-       }
+      const data = {
+        dealer_id: dealerId,
+        last_name: checkerLastName,
+        ssn: socialNumber,
+        mobile_phone: checkerMobileNumber,
+      };
+      const res = await checkapp(data);
+      if (res.status == 201) {
+        console.log(res.data);
+        dispatch(setAppStatus(res.data.status));
+        dispatch(setAppDescription(res.data.describe));
+        dispatch(addHistory(true));
+        dispatch(setCheckerSocialNumber(socialNumber))
+        setSocialNumber('');
+      } else {
+        console.log('failed API calling.');
+      }
     }
   };
 
@@ -79,6 +79,7 @@ const InputSocialNumber = () => {
             fullWidth
             value={socialNumber}
             onChange={handleChangeInputSocialNumber}
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {

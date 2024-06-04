@@ -101,6 +101,7 @@ const SendPhoneVerificationCode = () => {
             value={appointmentDate}
             onChange={(e) => setAppointmentDate(e.target.value)}
             type="date"
+            autoComplete='off'
             InputProps={{
               style: {
                 height: '70px', // Set the height of the TextField
@@ -123,6 +124,7 @@ const SendPhoneVerificationCode = () => {
             id="outlined-multiline-flexible"
             label=""
             fullWidth
+            autoComplete='off'
             value={appointmentTime}
             onChange={(e) => setAppointmentTime(e.target.value)}
             type="datetime-local"

@@ -10,7 +10,7 @@ import { TextField } from '@mui/material';
 
 const InputFirstName = () => {
   const dispatch = useDispatch();
-  const { step, history, refFirstName1} = useSelector(
+  const { step, history, refFirstName1 } = useSelector(
     (state) => state.checker
   );
 
@@ -63,6 +63,7 @@ const InputFirstName = () => {
             fullWidth
             value={firstName}
             onChange={handleChangeInput}
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {

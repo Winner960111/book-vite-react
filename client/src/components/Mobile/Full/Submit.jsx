@@ -4,9 +4,9 @@ import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { fullcustomer, application, usersUpdate } from '../../../api/index';
-
-
 import './Canvas.css';
+import { useNavigate } from 'react-router-dom';
+
 const Submit = () => {
   const dispatch = useDispatch();
   const {
@@ -92,7 +92,7 @@ const Submit = () => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
-
+  const navigate = useNavigate()
   const handleResize = () => {
     // Rerun your code to set canvas size based on the new dimensions
     prepareCanvas();
@@ -103,35 +103,38 @@ const Submit = () => {
 
   // Initialize the canvas context
   const prepareCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    // Get the dimensions of the parent element
-    const { width, height } = canvas.parentElement.getBoundingClientRect();
+    if (canvasRef.current) {
 
-    const dpr = window.devicePixelRatio || 1;
+      const canvas = canvasRef.current;
+      // Get the dimensions of the parent element
+      const { width, height } = canvas.parentElement.getBoundingClientRect();
 
-    canvas.width = width * 2 * dpr; // Twice the actual size for high DPI screens
-    canvas.height = height * 2 * dpr;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
+      const dpr = window.devicePixelRatio || 1;
 
-    const context = canvas.getContext('2d');
-    context.scale(dpr * 2, dpr * 2); // Adjust for high DPI
-    context.lineCap = 'round';
-    context.strokeStyle = 'black';
-    context.lineWidth = 5;
-    contextRef.current = context;
+      canvas.width = width * 2 * dpr; // Twice the actual size for high DPI screens
+      canvas.height = height * 2 * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
 
-    const preventScroll = (event) => {
-      event.preventDefault();
-    };
+      const context = canvas.getContext('2d');
+      context.scale(dpr * 2, dpr * 2); // Adjust for high DPI
+      context.lineCap = 'round';
+      context.strokeStyle = 'black';
+      context.lineWidth = 5;
+      contextRef.current = context;
 
-    // Add event listeners to canvas with preventScroll
-    canvasRef.current.addEventListener('touchstart', preventScroll, {
-      passive: false,
-    });
-    canvasRef.current.addEventListener('touchmove', preventScroll, {
-      passive: false,
-    });
+      const preventScroll = (event) => {
+        event.preventDefault();
+      };
+
+      // Add event listeners to canvas with preventScroll
+      canvasRef.current.addEventListener('touchstart', preventScroll, {
+        passive: false,
+      });
+      canvasRef.current.addEventListener('touchmove', preventScroll, {
+        passive: false,
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -340,6 +343,7 @@ const Submit = () => {
       if (appRes.status == 201) {
         console.log('status ApplicationItems_Send', res);
         dispatch(addHistory(true));
+        navigate(-1)
       } else {
         console.log('Faild ApplicationItmes_send');
       }

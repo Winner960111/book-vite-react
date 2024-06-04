@@ -47,6 +47,10 @@ const OldInterest = () => {
 
   useEffect(() => {
     setError('');
+  }, [zipcode, address, locality, state])
+
+  useEffect(() => {
+    setError('');
     setAddress('');
     setApt('');
     setLocality('');
@@ -114,19 +118,29 @@ const OldInterest = () => {
   };
 
   const handleSubmit = async (e) => {
+    let pass = 0
     e.preventDefault();
     setError('');
 
     if (!locality.trim()) {
       setError('City field is required');
+    } else {
+      pass += 1
     }
     if (!state.trim()) {
       setError('State field is required');
+    } else {
+      pass += 1
     }
     if (!zipcode.trim()) {
       setError('ZipCode field is required');
+    } else if (!/^[0-9]+$/.test(zipcode)) {
+      setError('*Invalid ZipCode format')
+    } else {
+      pass += 1
     }
-    if (error == '') {
+
+    if (pass == 3) {
       const data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,
@@ -148,11 +162,11 @@ const OldInterest = () => {
       const res = await usersUpdate(data, intentID);
       console.log('this is update results ====>', res);
       dispatch(addHistory(true));
-       dispatch(setPreviousCheckerAddress(address));
-       dispatch(setPreviousCheckerApt(apt));
-       dispatch(setPreviousCheckerLocality(locality));
-       dispatch(setPreviousCheckerState(state));
-       dispatch(setPreviousCheckerZipcode(zipcode));
+      dispatch(setPreviousCheckerAddress(address));
+      dispatch(setPreviousCheckerApt(apt));
+      dispatch(setPreviousCheckerLocality(locality));
+      dispatch(setPreviousCheckerState(state));
+      dispatch(setPreviousCheckerZipcode(zipcode));
     }
   };
 

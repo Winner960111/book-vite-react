@@ -10,6 +10,10 @@ import {
 import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import TextField from '@mui/material/TextField';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const License = () => {
   const {
@@ -31,18 +35,30 @@ const License = () => {
   const dispatch = useDispatch();
 
   const [driverNumber, setdriverNumber] = useState('');
-  const[driverDate, setdriverDate] = useState('');
+  const [driverDate, setdriverDate] = useState('');
   const [driverState, setdriverState] = useState('');
   const [error, setError] = useState('')
 
   const handleDriverNumber = (e) => {
-    setdriverNumber(e.target.value);
-    setError('');
+    if (/^[0-9a-zA-Z-]+$/.test(e.target.value) || !e.target.value.trim()) {
+      setdriverNumber(e.target.value);
+      setError('');
+    }
   };
-  const handleDriverDate = (e) => {
-    setdriverDate(e.target.value);
+
+  const handleDriverDate = (value) => {
     setError('');
+    console.log('value==>', value);
+    let year, month, date;
+    year = value.$y;
+    month = parseInt(value.$M) + 1;
+    date = value.$D;
+    if (Number(year) < 2000 || Number(year) > 2100) {
+      setError('*Invalid Date');
+    }
+    setdriverDate(year + '-' + String(month) + '-' + date);
   };
+
   const handleDriverState = (e) => {
     setdriverState(e.target.value);
     setError('');
@@ -134,6 +150,7 @@ const License = () => {
             disabled={step >= 11 ? true : false}
           />
           <TextField
+            style={{ marginBottom: "10px" }}
             value={driverState}
             onChange={handleDriverState}
             fullWidth
@@ -153,27 +170,19 @@ const License = () => {
             }}
             disabled={step >= 11 ? true : false}
           />
-          <TextField
-            value={driverDate}
-            onChange={handleDriverDate}
-            fullWidth
-            label=" "
-            type="date"
-            variant="standard"
-            autoComplete="off"
-            InputProps={{
-              style: {
-                height: '50px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
-            disabled={step >= 11 ? true : false}
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer
+              components={['DatePicker']}
+              minDate="2000-01-01"
+            >
+              <DatePicker
+                label="driver expieration date"
+                onChange={(newValue) => handleDriverDate(newValue)}
+                className="w-full"
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+
           <p className="bg-gray-50 rounded-3xl p-4 mt-2">
             Please input expieration date.
           </p>
@@ -196,12 +205,12 @@ const License = () => {
     </>
   );
 
-return (
-  <>
-    {step > 9 ? (
-          renderDescription()
-    ) : null}
-  </>
-);
+  return (
+    <>
+      {step > 9 ? (
+        renderDescription()
+      ) : null}
+    </>
+  );
 };
 export default License;

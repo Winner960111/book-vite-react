@@ -56,12 +56,13 @@ const ThirdPage = () => {
       setYear(e.target.value);
     }
   };
+
   const handlePay = (e) => {
     setErrorPay('');
     if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
       setPay(e.target.value);
     }
-    
+
   };
   const handleSubmit = async () => {
     let pass = 0;

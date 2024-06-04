@@ -9,11 +9,15 @@ import {
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
-import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 const Paymethod = () => {
   const {
     step,
@@ -38,10 +42,19 @@ const Paymethod = () => {
   const [isuer, setIsuer] = useState('');
   const [error, setError] = useState('');
 
-  const handleEDate = (e) => {
-    seteDate(e.target.value);
+  const handleEDate = (value) => {
     setError('');
+    console.log('value==>', value);
+    let year, month, date;
+    year = value.$y;
+    month = parseInt(value.$M) + 1;
+    date = value.$D;
+    if (Number(year) < 2000 || Number(year) > 2100) {
+      setError('*Invalid Date');
+    }
+    seteDate(year + '-' + String(month) + '-' + date);
   };
+
   const handlePayType = (e) => {
     setPayType(e.target.value);
     setError('');
@@ -164,27 +177,18 @@ const Paymethod = () => {
             </Select>
           </FormControl>
           <div className="flex flex-col w-[95%] my-3">
-            <TextField
-              type="date"
-              value={eDate}
-              onChange={handleEDate}
-              fullWidth
-              label="   "
-              autoComplete='off'
-              variant="standard"
-              InputProps={{
-                style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
-                },
-              }}
-              InputLabelProps={{
-                style: {
-                  fontSize: '25px',
-                },
-              }}
-              disabled={step >= 12 ? true : false}
-            />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer
+                components={['DatePicker']}
+                minDate="2000-01-01"
+              >
+                <DatePicker
+                  label="Expiration Date"
+                  onChange={(newValue) => handleEDate(newValue)}
+                  className="w-full"
+                />
+              </DemoContainer>
+            </LocalizationProvider>
             <p className="bg-gray-50 rounded-3xl p-4 mt-2">
               Please input expieration date.
             </p>

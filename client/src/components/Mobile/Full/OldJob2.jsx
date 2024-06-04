@@ -20,11 +20,11 @@ import { TextField } from '@mui/material';
 
 const OldJob2 = () => {
 
-    const [address, setAddress] = useState('');
-    const [locality, setLocality] = useState('');
-    const [state, setState] = useState('');
-    const [zipcode, setZipcode] = useState('');
-    const [apt, setApt] = useState('');
+  const [address, setAddress] = useState('');
+  const [locality, setLocality] = useState('');
+  const [state, setState] = useState('');
+  const [zipcode, setZipcode] = useState('');
+  const [apt, setApt] = useState('');
   const [error, setError] = useState('');
   const addressRef = useRef(null);
 
@@ -45,15 +45,6 @@ const OldJob2 = () => {
     checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    setError('');
-    setAddress('');
-    setApt('');
-    setLocality('');
-    setState('');
-    setZipcode('');
-  }, []);
 
   const initializeAutocomplete = useCallback(() => {
     const input = document.getElementById('autocomplete3');
@@ -97,7 +88,7 @@ const OldJob2 = () => {
   useEffect(() => {
     console.log("this is current addressref===>", addressRef.current)
   }, [addressRef])
-  
+
   const parseAddressComponents = (place) => {
     for (const component of place.address_components) {
       const componentType = component.types[0];
@@ -116,19 +107,31 @@ const OldJob2 = () => {
     }
   };
 
+  useEffect(() => {
+    setError('')
+  }, [locality, zipcode, address, state])
   const handleSubmit = async (e) => {
+    let pass = 0
     e.preventDefault();
 
     if (!locality.trim()) {
       setError('City field is required');
+    } else {
+      pass += 1
     }
     if (!state.trim()) {
       setError('State field is required');
+    } else {
+      pass += 1
     }
     if (!zipcode.trim()) {
       setError('ZipCode field is required');
+    } else if (!/^[0-9]+$/.test(zipcode)) {
+      setError('*Invalid ZipCode format')
+    } else {
+      pass += 1
     }
-    if (error == '') {
+    if (pass == 3) {
       const data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,
@@ -165,7 +168,7 @@ const OldJob2 = () => {
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >=  25 ? 'text-slate-400' : 'text-slate-800'
+          step >= 25 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col items-center">
@@ -186,7 +189,7 @@ const OldJob2 = () => {
               autoComplete="off"
               id="autocomplete3"
               ref={addressRef}
-              disabled={step >=  25 ? true : false}
+              disabled={step >= 25 ? true : false}
             />
             <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
               <SearchIcon />
@@ -213,7 +216,7 @@ const OldJob2 = () => {
                   textAlign: 'center',
                 },
               }}
-              disabled={step >=  25 ? true : false}
+              disabled={step >= 25 ? true : false}
             />
           </div>
           <div className="w-[95%] mx-5 mt-2">
@@ -238,7 +241,7 @@ const OldJob2 = () => {
                   fontSize: '20px',
                 },
               }}
-              disabled={step >=  25 ? true : false}
+              disabled={step >= 25 ? true : false}
             />
           </div>
           <div className="w-[95%] mx-5 mt-2">
@@ -263,7 +266,7 @@ const OldJob2 = () => {
                   fontSize: '20px',
                 },
               }}
-              disabled={step >=  25 ? true : false}
+              disabled={step >= 25 ? true : false}
             />
           </div>
           <div className="w-[95%] mx-5 mt-2">
@@ -288,7 +291,7 @@ const OldJob2 = () => {
                   fontSize: '20px',
                 },
               }}
-              disabled={step >=  25 ? true : false}
+              disabled={step >= 25 ? true : false}
             />
           </div>
           {error !== null ? (
@@ -302,7 +305,7 @@ const OldJob2 = () => {
           type="button"
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >=  25 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 25 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>

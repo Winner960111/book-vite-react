@@ -36,11 +36,16 @@ const Confirm = () => {
   const [howIncome, setHowIncome] = useState('');
 
   const handleAmountIncome = (e) => {
-    setAmountIncome(e.target.value);
+    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
+      setAmountIncome(e.target.value);
+    }
     setError('');
   };
+
   const handleHowIncome = (e) => {
-    setHowIncome(e.target.value);
+    if (/^[a-zA-Z]+$/.test(e.target.value) || !e.target.value.trim()) {
+      setHowIncome(e.target.value);
+    }
     setError('');
   };
 
@@ -54,18 +59,12 @@ const Confirm = () => {
     let pass = 0;
     if (!amountIncome.trim()) {
       setError('*Amount field is required');
-    } else if (!/^\d+$/.test(amountIncome)) {
-      setError('*Amount is incorrect format')
-    }
-    else {
+    } else {
       pass += 1;
     }
     if (!howIncome.trim()) {
-      setError('*Method field is required');
-    } else if (!/^[A-Za-z]+$/.test(howIncome)) {
-      setError('*Method filed is not character')
-    }
-    else {
+      setError('*Source field is required');
+    } else {
       pass += 1;
     }
     if (pass == 2) {

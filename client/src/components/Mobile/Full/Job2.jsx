@@ -20,11 +20,11 @@ import { TextField } from '@mui/material';
 
 const Job2 = () => {
 
-    const [address, setAddress] = useState('');
-    const [locality, setLocality] = useState('');
-    const [state, setState] = useState('');
-    const [zipcode, setZipcode] = useState('');
-    const [apt, setApt] = useState('');
+  const [address, setAddress] = useState('');
+  const [locality, setLocality] = useState('');
+  const [state, setState] = useState('');
+  const [zipcode, setZipcode] = useState('');
+  const [apt, setApt] = useState('');
   const [error, setError] = useState('');
   const addressRef = useRef(null);
 
@@ -46,15 +46,6 @@ const Job2 = () => {
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setError('');
-    setAddress('');
-    setApt('');
-    setLocality('');
-    setState('');
-    setZipcode('');
-  }, []);
-
   const initializeAutocomplete = useCallback(() => {
     const input = document.getElementById('autocomplete2');
     const newAutocomplete = new window.google.maps.places.Autocomplete(input);
@@ -67,7 +58,9 @@ const Job2 = () => {
       }
     });
   }, []);
-
+  useEffect(() => {
+    setError('')
+  }, [state, zipcode, locality, address])
   useEffect(() => {
     if (addressRef.current) {
       const loadGoogleMapsScript = (callback) => {
@@ -97,7 +90,7 @@ const Job2 = () => {
   useEffect(() => {
     console.log("this is current addressref===>", addressRef.current)
   }, [addressRef])
-  
+
   const parseAddressComponents = (place) => {
     for (const component of place.address_components) {
       const componentType = component.types[0];
@@ -117,18 +110,27 @@ const Job2 = () => {
   };
 
   const handleSubmit = async (e) => {
+    let pass = 0
     e.preventDefault();
 
     if (!locality.trim()) {
       setError('City field is required');
+    } else {
+      pass += 1
     }
     if (!state.trim()) {
       setError('State field is required');
+    } else {
+      pass += 1
     }
     if (!zipcode.trim()) {
       setError('ZipCode field is required');
+    } else if (!/^[0-9]+$/.test(zipcode)) {
+      setError('*Invalid ZipCode format')
+    } else {
+      pass += 1
     }
-    if (error == '') {
+    if (pass == 3) {
       const data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,

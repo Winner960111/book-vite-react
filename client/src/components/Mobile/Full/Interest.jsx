@@ -36,19 +36,29 @@ const Interest = () => {
   const [make, setMake] = useState('');
   const [model, setModel] = useState('');
   const [pay, setPay] = useState('');
-  
-    useEffect(() => {
-      setError('');
-      setYear('');
-      setMake('');
-      setModel('');
-    }, []);
 
-    const handlePay = (e) => {
-      setError('');
-      setPay(e.target.value);
+  useEffect(() => {
+    setError('');
+    setYear('');
+    setMake('');
+    setModel('');
+  }, []);
+
+  const handleYear = (e) => {
+    setError('')
+    if (
+      (/^[0-9]+$/.test(e.target.value) && String(e.target.value).length <= 4) ||
+      !e.target.value.trim()
+    ) {
+      setYear(e.target.value);
+    }
   };
-  
+
+  const handlePay = (e) => {
+    setError('');
+    setPay(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -60,11 +70,18 @@ const Interest = () => {
     } else {
       pass += 1;
     }
-    if (pass == 1) {
-       dispatch(setInstantYear(year));
-       dispatch(setInstantMake(make));
-       dispatch(setInstantModel(model));
-       dispatch(setPayDown(pay));
+    if (!year.trim()) {
+      setError('*Required Year')
+    } else if (year > 2100 || year < 1900) {
+      setError('*Invalid Year');
+    } else {
+      pass += 1;
+    }
+    if (pass == 2) {
+      dispatch(setInstantYear(year));
+      dispatch(setInstantMake(make));
+      dispatch(setInstantModel(model));
+      dispatch(setPayDown(pay));
       const data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,
@@ -108,7 +125,7 @@ const Interest = () => {
             style={{ margin: '10px' }}
             value={year}
             autoComplete="off"
-            onChange={(e) => setYear(e.target.value)}
+            onChange={(e) => handleYear(e)}
             InputProps={{
               style: {
                 fontSize: '20px',

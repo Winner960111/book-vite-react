@@ -14,6 +14,10 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const Job3 = () => {
   const {
@@ -49,6 +53,30 @@ const Job3 = () => {
     setPay('');
     setJobKind('');
   }, []);
+
+  useEffect(() => {
+    console.log("this is job kind===>", jobKind)
+  }, [jobKind])
+
+  const handleEDate = (value) => {
+    setError('');
+    console.log('value==>', value);
+    let year, month, date;
+    year = value.$y;
+    month = parseInt(value.$M) + 1;
+    date = value.$D;
+    if (Number(year) < 2000 || Number(year) > 2100) {
+      setError('*Invalid Date');
+    }
+    setDate(year + '-' + String(month) + '-' + date);
+  };
+
+  const handlePay = (e) => {
+    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
+      setPay(e.target.value)
+    }
+    setError('')
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,9 +144,7 @@ const Job3 = () => {
               fullWidth
               autoComplete="off"
               value={pay}
-              onChange={(e) => {
-                setPay(e.target.value);
-              }}
+              onChange={handlePay}
               InputProps={{
                 style: {
                   fontSize: '25px',
@@ -133,7 +159,7 @@ const Job3 = () => {
             />
             <FormControl
               variant="filled"
-              sx={{ marginTop: '10px', width: '100%' }}
+              sx={{ marginTop: '10px', width: '100%', marginBottom: '10px' }}
             >
               <InputLabel
                 id="demo-simple-select-standard-label"
@@ -152,30 +178,18 @@ const Job3 = () => {
                 <MenuItem value={'Part Time'}>Part time</MenuItem>
               </Select>
             </FormControl>
-            <TextField
-              variant="standard"
-              defaultValue="Normal"
-              margin="dense"
-              label=" "
-              fullWidth
-              autoComplete="off"
-              type="date"
-              value={date}
-              onChange={(e) => {
-                setDate(e.target.value);
-              }}
-              InputProps={{
-                style: {
-                  fontSize: '25px',
-                  height: '50px',
-                },
-              }}
-              InputLabelProps={{
-                style: {
-                  fontSize: '25px',
-                },
-              }}
-            />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer
+                components={['DatePicker']}
+                minDate="2000-01-01"
+              >
+                <DatePicker
+                  label="Start Date"
+                  onChange={(newValue) => handleEDate(newValue)}
+                  className="w-full"
+                />
+              </DemoContainer>
+            </LocalizationProvider>
             <p className="bg-gray-50 rounded-3xl p-4 mt-2">
               Approximately, when did you start working here?
             </p>

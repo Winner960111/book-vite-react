@@ -39,16 +39,16 @@ const Vehicle = () => {
   const [condition, setCondition] = useState('');
   const [error, setError] = useState('');
 
-    const vehicleListGet = async () => {
-      const vehicleLists = await vehicleList(dealer_id);
-      setVehicles(vehicleLists.data.sold_by_dealer);
+  const vehicleListGet = async () => {
+    const vehicleLists = await vehicleList(dealer_id);
+    setVehicles(vehicleLists.data.sold_by_dealer);
   };
-    useEffect(() => {
-      setError('');
-      setCondition('');
-      setSelect('');
-      vehicleListGet();
-    }, []);
+  useEffect(() => {
+    setError('');
+    setCondition('');
+    setSelect('');
+    vehicleListGet();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,7 +89,7 @@ const Vehicle = () => {
       dispatch(addHistory(true));
     }
   };
-console.log("vehicles===>", vehicles)
+  console.log("vehicles===>", vehicles)
   const renderDescription = () => (
     <>
       <BotIcon />
@@ -97,7 +97,7 @@ console.log("vehicles===>", vehicles)
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >=   13 ? 'text-slate-400' : 'text-slate-800'
+          step >= 13 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col items-center">
@@ -118,7 +118,7 @@ console.log("vehicles===>", vehicles)
               onChange={(e) => {
                 setSelect(e.target.value);
               }}
-              disabled={step >=   13 ? true : false}
+              disabled={step >= 13 ? true : false}
             >
               {vehicles.map((item, key) => (
                 <MenuItem value={item.name} key={key}>
@@ -143,8 +143,9 @@ console.log("vehicles===>", vehicles)
               value={condition}
               onChange={(e) => {
                 setCondition(e.target.value);
+                setError('')
               }}
-              disabled={step >=   13 ? true : false}
+              disabled={step >= 13 ? true : false}
             >
               <MenuItem value={'New'}>New</MenuItem>
               <MenuItem value={'Used'}>Used</MenuItem>
@@ -160,7 +161,7 @@ console.log("vehicles===>", vehicles)
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >=   13 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 13 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>

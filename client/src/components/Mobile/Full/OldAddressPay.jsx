@@ -37,6 +37,13 @@ const NewInterestMore = () => {
     setPay('');
   }, []);
 
+  const handlePay = (e) => {
+    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
+      setPay(e.target.value)
+    }
+    setError('')
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -71,12 +78,12 @@ const NewInterestMore = () => {
       <div
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >=  20 ? 'text-slate-400' : 'text-slate-800'
+          step >= 20 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div
           className="my-2 flex flex-col items-center"
-          style={step >=  20 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 20 ? { display: 'none' } : { display: 'block' }}
         >
           <div className="w-[95%] mx-2 mt-2">
             <TextField
@@ -87,9 +94,7 @@ const NewInterestMore = () => {
               fullWidth
               autoComplete="off"
               value={pay}
-              onChange={(e) => {
-                setPay(e.target.value);
-              }}
+              onChange={handlePay}
               InputProps={{
                 style: {
                   fontSize: '25px',
@@ -114,7 +119,7 @@ const NewInterestMore = () => {
           type="button"
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >=  20 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 20 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -128,21 +133,21 @@ const NewInterestMore = () => {
       </div>
     </div>
   );
-return (
-  <>
-    {step > 18 ? (
-      <>
-        {history[19] == true ? (
-          <>
-            {renderDescription()}
-            {renderReply()}
-          </>
-        ) : (
-          renderDescription()
-        )}
-      </>
-    ) : null}
-  </>
-);
+  return (
+    <>
+      {step > 18 ? (
+        <>
+          {history[19] == true ? (
+            <>
+              {renderDescription()}
+              {renderReply()}
+            </>
+          ) : (
+            renderDescription()
+          )}
+        </>
+      ) : null}
+    </>
+  );
 };
 export default NewInterestMore;

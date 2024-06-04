@@ -34,6 +34,13 @@ const NewInterestMore = () => {
     setPay('');
   }, []);
 
+  const handlePay = (e) => {
+    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
+      setPay(e.target.value)
+    }
+    setError('')
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -84,9 +91,7 @@ const NewInterestMore = () => {
               fullWidth
               autoComplete="off"
               value={pay}
-              onChange={(e) => {
-                setPay(e.target.value);
-              }}
+              onChange={handlePay}
               InputProps={{
                 style: {
                   fontSize: '25px',
@@ -125,21 +130,21 @@ const NewInterestMore = () => {
       </div>
     </div>
   );
-return (
-  <>
-    {step > 15 ? (
-      <>
-        {history[16] == true ? (
-          <>
-            {renderDescription()}
-            {renderReply()}
-          </>
-        ) : (
-          renderDescription()
-        )}
-      </>
-    ) : null}
-  </>
-);
+  return (
+    <>
+      {step > 15 ? (
+        <>
+          {history[16] == true ? (
+            <>
+              {renderDescription()}
+              {renderReply()}
+            </>
+          ) : (
+            renderDescription()
+          )}
+        </>
+      ) : null}
+    </>
+  );
 };
 export default NewInterestMore;

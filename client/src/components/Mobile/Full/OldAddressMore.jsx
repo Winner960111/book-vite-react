@@ -47,6 +47,26 @@ const OldAddressMore = () => {
     setResidentalYear('');
   }, []);
 
+  const handleYear = (e) => {
+    setError('')
+    if (
+      (/^[0-9]+$/.test(e.target.value) && String(e.target.value).length <= 2) ||
+      !e.target.value.trim()
+    ) {
+      setResidentalYear(e.target.value);
+    }
+  };
+
+  const handleMonth = (e) => {
+    setError('')
+    if (
+      (/^[0-9]+$/.test(e.target.value) && String(e.target.value).length <= 2) ||
+      !e.target.value.trim()
+    ) {
+      setResidentalMonth(e.target.value);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -100,7 +120,7 @@ const OldAddressMore = () => {
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >=  19 ? 'text-slate-400' : 'text-slate-800'
+          step >= 19 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col items-center">
@@ -118,7 +138,7 @@ const OldAddressMore = () => {
               onChange={(e) => {
                 setResidental(e.target.value);
               }}
-              disabled={step >=  19 ? true : false}
+              disabled={step >= 19 ? true : false}
             >
               <MenuItem value={'Rent'}>Rent</MenuItem>
               <MenuItem value={'Own'}>Own</MenuItem>
@@ -137,9 +157,7 @@ const OldAddressMore = () => {
             label="Year"
             value={residentalYear}
             style={{ margin: '0 10px 0 10px', width: '95%' }}
-            onChange={(e) => {
-              setResidentalYear(e.target.value);
-            }}
+            onChange={handleYear}
             InputProps={{
               style: {
                 fontSize: '20px',
@@ -150,9 +168,8 @@ const OldAddressMore = () => {
                 fontSize: '20px',
               },
             }}
-            disabled={step >=  19 ? true : false}
+            disabled={step >= 19 ? true : false}
           />
-
           <TextField
             variant="standard"
             defaultValue="Normal"
@@ -161,9 +178,7 @@ const OldAddressMore = () => {
             label="Month"
             value={residentalMonth}
             style={{ margin: '0 10px 0 10px', width: '95%' }}
-            onChange={(e) => {
-              setResidentalMonth(e.target.value);
-            }}
+            onChange={handleMonth}
             InputProps={{
               style: {
                 fontSize: '20px',
@@ -174,7 +189,7 @@ const OldAddressMore = () => {
                 fontSize: '20px',
               },
             }}
-            disabled={step >=  19 ? true : false}
+            disabled={step >= 19 ? true : false}
           />
           {error !== null ? (
             <p className="text-red-500 pl-2 mt-1">{error}</p>
@@ -187,7 +202,7 @@ const OldAddressMore = () => {
           type="button"
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >=  19 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 19 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>

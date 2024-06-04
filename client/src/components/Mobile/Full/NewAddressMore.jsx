@@ -47,6 +47,26 @@ const NewInterestMore = () => {
     setResidentalYear('');
   }, []);
 
+  const handleYear = (e) => {
+    setError('')
+    if (
+      (/^[0-9]+$/.test(e.target.value) && String(e.target.value).length <= 2) ||
+      !e.target.value.trim()
+    ) {
+      setResidentalYear(e.target.value);
+    }
+  };
+
+  const handleMonth = (e) => {
+    setError('')
+    if (
+      (/^[0-9]+$/.test(e.target.value) && String(e.target.value).length <= 2) ||
+      !e.target.value.trim()
+    ) {
+      setResidentalMonth(e.target.value);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -56,13 +76,17 @@ const NewInterestMore = () => {
     } else {
       pass += 1;
     }
-    if (!residentalYear) {
-      setError('*Year is required');
+    if (!residentalYear.trim()) {
+      setError('*Year is required')
+    } else if (residentalYear > 100 || residentalYear < 1) {
+      setError('*Invalid Year');
     } else {
       pass += 1;
     }
     if (!residentalMonth) {
       setError('*Month is required');
+    } else if (residentalMonth > 12 || residentalMonth < 1) {
+      setError('*Invalid Month');
     } else {
       pass += 1;
     }
@@ -138,7 +162,7 @@ const NewInterestMore = () => {
             value={residentalYear}
             style={{ margin: '0 10px 0 10px', width: '95%' }}
             onChange={(e) => {
-              setResidentalYear(e.target.value);
+              handleYear(e);
             }}
             InputProps={{
               style: {
@@ -162,7 +186,7 @@ const NewInterestMore = () => {
             value={residentalMonth}
             style={{ margin: '0 10px 0 10px', width: '95%' }}
             onChange={(e) => {
-              setResidentalMonth(e.target.value);
+              handleMonth(e);
             }}
             InputProps={{
               style: {

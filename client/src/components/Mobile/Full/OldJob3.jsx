@@ -14,6 +14,10 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const OldJob3 = () => {
   const {
@@ -44,11 +48,28 @@ const OldJob3 = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    console.log("this is job kind===>", jobKind)
+  }, [jobKind])
+
+  useEffect(() => {
     setError('');
     setDate('');
     setPay('');
     setJobKind('');
   }, []);
+
+  const handleEDate = (value) => {
+    setError('');
+    console.log('value==>', value);
+    let year, month, date;
+    year = value.$y;
+    month = parseInt(value.$M) + 1;
+    date = value.$D;
+    if (Number(year) < 2000 || Number(year) > 2100) {
+      setError('*Invalid Date');
+    }
+    setDate(year + '-' + String(month) + '-' + date);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -97,7 +118,7 @@ const OldJob3 = () => {
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >=  26 ? 'text-slate-400' : 'text-slate-800'
+          step >= 26 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <p className="bg-gray-50 rounded-3xl p-4 mt-2">
@@ -105,7 +126,7 @@ const OldJob3 = () => {
         </p>
         <div
           className="my-2 flex flex-col items-center"
-          style={step >=  26 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 26 ? { display: 'none' } : { display: 'block' }}
         >
           <div className="w-[95%] mx-2">
             <TextField
@@ -133,7 +154,7 @@ const OldJob3 = () => {
             />
             <FormControl
               variant="filled"
-              sx={{ marginTop: '10px', width: '100%' }}
+              sx={{ marginTop: '10px', width: '100%', marginBottom: '10px' }}
             >
               <InputLabel
                 id="demo-simple-select-standard-label"
@@ -152,30 +173,18 @@ const OldJob3 = () => {
                 <MenuItem value={'Part Time'}>Part time</MenuItem>
               </Select>
             </FormControl>
-            <TextField
-              variant="standard"
-              defaultValue="Normal"
-              margin="dense"
-              label=" "
-              fullWidth
-              autoComplete="off"
-              type="date"
-              value={date}
-              onChange={(e) => {
-                setDate(e.target.value);
-              }}
-              InputProps={{
-                style: {
-                  fontSize: '25px',
-                  height: '50px',
-                },
-              }}
-              InputLabelProps={{
-                style: {
-                  fontSize: '25px',
-                },
-              }}
-            />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer
+                components={['DatePicker']}
+                minDate="2000-01-01"
+              >
+                <DatePicker
+                  label="Start Date"
+                  onChange={(newValue) => handleEDate(newValue)}
+                  className="w-full"
+                />
+              </DemoContainer>
+            </LocalizationProvider>
             <p className="bg-gray-50 rounded-3xl p-4 mt-2">
               Approximately, when did you start working previous job?
             </p>
@@ -190,7 +199,7 @@ const OldJob3 = () => {
           type="button"
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >=  26 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 26 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>

@@ -7,7 +7,11 @@ import {
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
 import { usersUpdate } from '../../../api/index';
-import { TextField } from '@mui/material';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 const InputBirthday = () => {
   const { step, history, checkerBirthday, intentID,
     dealerId,
@@ -33,10 +37,19 @@ const InputBirthday = () => {
     setError(null);
   }, [step]);
 
-  const handleChangeInputBirthday = (e) => {
-    setError(null);
-    setBirthday(e.target.value);
+  const handleBirthday = (value) => {
+    setError('');
+    console.log('value==>', value);
+    let year, month, date;
+    year = value.$y;
+    month = parseInt(value.$M) + 1;
+    date = value.$D;
+    if (Number(year) < 1900 || Number(year) > 2100) {
+      setError('*Invalid Date');
+    }
+    setBirthday(year + '-' + String(month) + '-' + date);
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -84,26 +97,19 @@ const InputBirthday = () => {
           className="flex flex-col md:flex-row md:items-center"
           style={step >= 9 ? { display: 'none' } : { display: 'block' }}
         >
-          <TextField
-            id="outlined-multiline-flexible"
-            label=""
-            fullWidth
-            value={birthday}
-            onChange={handleChangeInputBirthday}
-            autoComplete='off'
-            type="date"
-            InputProps={{
-              style: {
-                height: '70px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer
+              components={['DatePicker']}
+              minDate="1900-01-01"
+              maxDate="2100-01-01"
+            >
+              <DatePicker
+                label="Birthday"
+                onChange={(newValue) => handleBirthday(newValue)}
+                className="w-full"
+              />
+            </DemoContainer>
+          </LocalizationProvider>
           {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
         <p

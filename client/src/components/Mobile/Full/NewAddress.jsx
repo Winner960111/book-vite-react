@@ -95,9 +95,9 @@ const NewInterest = () => {
 
 
   useEffect(() => {
-    console.log("this is current addressref===>", addressRef.current)
-  }, [addressRef])
-  
+    setError('');
+  }, [zipcode, address, locality, state])
+
   const parseAddressComponents = (place) => {
     for (const component of place.address_components) {
       const componentType = component.types[0];
@@ -117,19 +117,28 @@ const NewInterest = () => {
   };
 
   const handleSubmit = async (e) => {
+    let pass = 0
     e.preventDefault();
     setError('');
 
     if (!locality.trim()) {
       setError('City field is required');
+    } else {
+      pass += 1
     }
     if (!state.trim()) {
       setError('State field is required');
+    } else {
+      pass += 1
     }
     if (!zipcode.trim()) {
       setError('ZipCode field is required');
+    } else if (!/^[0-9]+$/.test(zipcode)) {
+      setError('*Invalid ZipCode format')
+    } else {
+      pass += 1
     }
-    if (error == '') {
+    if (pass == 3) {
       const data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,

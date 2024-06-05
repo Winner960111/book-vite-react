@@ -31,13 +31,16 @@ const Vehicle = () => {
     checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
-
   const [year, setYear] = useState('');
   const [make, setMake] = useState('');
   const [model, setModel] = useState('');
 
   const handleYearChange = (e) => {
-    setYear(e.target.value);
+    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
+      if (e.target.value.length <= 4) {
+        setYear(e.target.value);
+      }
+    }
   };
   const handleMake = (e) => {
     setMake(e.target.value);

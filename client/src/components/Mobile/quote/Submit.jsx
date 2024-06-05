@@ -4,6 +4,7 @@ import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { SubmitQuote, usersUpdate } from '../../../api/index';
+import { useNavigate } from 'react-router-dom'
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
@@ -33,7 +34,10 @@ const Submit = () => {
     intentID,
     type,
   } = useSelector((state) => state.checker);
-
+  const navigate = useNavigate();
+  const returnBack = () => {
+    navigate(-1)
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const intent_data = {
@@ -56,7 +60,6 @@ const Submit = () => {
     };
     const intent_res = await usersUpdate(intent_data, intentID);
     console.log('this is update results ====>', intent_res);
-    dispatch(addHistory(true));
 
     const data = {
       dealer_id: dealerId,
@@ -73,6 +76,8 @@ const Submit = () => {
     const res = await SubmitQuote(data);
     if (res.status == 201) {
       console.log('status ImageSend', res);
+      dispatch(addHistory(true));
+      returnBack()
     } else {
       console.log('Faild ImageSend');
     }

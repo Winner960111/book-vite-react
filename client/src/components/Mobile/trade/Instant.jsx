@@ -103,6 +103,15 @@ const Instant = () => {
       }
     }
   };
+  const handleInputYear = (e) => {
+    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
+      if (e.target.value.length <= 4) {
+        setYear(e.target.value);
+      }
+    }
+    setError('')
+  }
+
   const handleInputVin = (e) => {
     setVinValue(e.target.value);
     setError('');
@@ -118,10 +127,6 @@ const Instant = () => {
     setMakeState(true);
   };
 
-  const handleInputYear = (e) => {
-    setYear(e.target.value);
-    setError('');
-  };
   const handleInputMake = (e) => {
     setMake(e.target.value);
     setError('');

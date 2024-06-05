@@ -4,6 +4,7 @@ import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { usersUpdate, SubmitTrade } from '../../../api/index';
+import { useNavigate } from 'react-router-dom';
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
@@ -39,7 +40,7 @@ const Submit = () => {
     originalOwner,
     commentValue
   } = useSelector((state) => state.checker);
-
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
@@ -85,6 +86,7 @@ const Submit = () => {
       const newRes = await usersUpdate(new_data, intentID);
       console.log('this is update results ====>', newRes);
       dispatch(addHistory(true));
+      navigate(-1)
     } else {
       console.log('Faild ImageSend');
     }

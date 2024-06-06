@@ -76,16 +76,7 @@ const InputFirstName = () => {
   const renderDescription = () => (
     <>
       <BotIcon />
-      <div
-        className={classNames(
-          'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 5 ? 'text-slate-400' : 'text-slate-800'
-        )}
-      >
-        <p className="bg-gray-50 rounded-3xl p-4 text-left mb-5">
-          <b>🎊 Congratulation! you successfully verified.</b>
-        </p>
-      </div>
+
       <form
         onSubmit={handleSubmit}
         className={classNames(

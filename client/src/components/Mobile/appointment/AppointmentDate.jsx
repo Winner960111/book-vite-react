@@ -7,10 +7,14 @@ import {
   setAppointTime,
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-import TextField from '@mui/material/TextField';
 import { usersUpdate } from '../../../api/index';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
-const SendPhoneVerificationCode = () => {
+const AppointmentDate = () => {
 
   const { history, step, appointDate, appointTime, dealerId, deviceIP, deviceOS,
     deviceCity,
@@ -36,6 +40,65 @@ const SendPhoneVerificationCode = () => {
     setAppointmentDate(null);
     setAppointmentTime(null);
   }, [step]);
+
+
+  const handleDate = (value) => {
+    const currentDate = new Date()
+    let currentYear = currentDate.getFullYear()
+    let currentDay = currentDate.getDate()
+    let currentMonth = currentDate.getMonth()
+    let wrong = false
+    setErrorDate('');
+    let year, month, date;
+    year = value.$y;
+    month = parseInt(value.$M) + 1;
+    date = value.$D;
+
+    // console.log("this is current====>", currentYear, currentDay, currentMonth)
+    // console.log("this is selected====>", year, date, month)
+    if (Number(year) < Number(currentYear)) {
+      wrong = true
+      setErrorDate('*Invalid Date')
+      console.log("Year is wrong")
+    } else if (Number(year) == Number(currentYear) && Number(month - 1) < Number(currentMonth)) {
+      wrong = true
+      console.log("Month is wrong")
+
+    } else if (Number(year) == Number(currentYear) && Number(month - 1) == Number(currentMonth) && Number(date) < Number(currentDay)) {
+      wrong = true
+      console.log("Day is wrong")
+    }
+    if (wrong == false) {
+
+      setAppointmentDate(year + '-' + String(month) + '-' + date);
+      console.log("Correct==========")
+    } else {
+      setErrorDate('*Invalid Date')
+    }
+  }
+
+  const handleTime = (value) => {
+    if (!appointmentDate) {
+      setErrorTime('*Input Date first')
+    } else {
+
+      setErrorTime('')
+      let hour = value.$H
+      let min = value.$m
+      console.log("this is timepicker===>", hour, min)
+      if (Number(hour) < 9 || Number(hour) > 18) {
+        setErrorTime('*invalid Time')
+      } else {
+
+        setAppointmentTime(appointmentDate + 'T' + hour + ':' + min)
+      }
+    }
+  }
+
+  useEffect(() => {
+    console.log("this is appointment==>", appointmentDate, appointmentTime)
+
+  }, [appointmentDate, appointmentTime])
 
   const handleSubmit = async (e) => {
     let pass = 0
@@ -83,6 +146,16 @@ const SendPhoneVerificationCode = () => {
   const renderDescription = () => (
     <>
       <BotIcon />
+      <div
+        className={classNames(
+          'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
+          step >= 4 ? 'text-slate-400' : 'text-slate-800'
+        )}
+      >
+        <p className="bg-gray-50 rounded-3xl p-4 text-left mb-5">
+          <b>🎊 Congratulation! you successfully verified.</b>
+        </p>
+      </div>
       <form
         onSubmit={handleSubmit}
         className={classNames(
@@ -94,52 +167,36 @@ const SendPhoneVerificationCode = () => {
           className="py-2 flex flex-col md:flex-row md:items-center"
           style={step >= 4 ? { display: 'none' } : { display: 'block' }}
         >
-          <TextField
-            id="outlined-multiline-flexible"
-            label=""
-            fullWidth
-            value={appointmentDate}
-            onChange={(e) => setAppointmentDate(e.target.value)}
-            type="date"
-            autoComplete='off'
-            InputProps={{
-              style: {
-                height: '70px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer
+              components={['DatePicker']}
+              minDate="1900-01-01"
+              maxDate="2100-01-01"
+            >
+              <DatePicker
+                label="Appointment Date"
+                onChange={(newValue) => handleDate(newValue)}
+                className="w-full"
+              />
+            </DemoContainer>
+          </LocalizationProvider>
           {errorDate !== '' ? <p className="text-red-500 pl-2">{errorDate}</p> : null}
         </div>
         <div
           className="py-2 flex flex-col md:flex-row md:items-center"
           style={step >= 4 ? { display: 'none' } : { display: 'block' }}
         >
-          <TextField
-            id="outlined-multiline-flexible"
-            label=""
-            fullWidth
-            autoComplete='off'
-            value={appointmentTime}
-            onChange={(e) => setAppointmentTime(e.target.value)}
-            type="datetime-local"
-            InputProps={{
-              style: {
-                height: '70px', // Set the height of the TextField
-                fontSize: '25px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '25px',
-              },
-            }}
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer
+              components={[
+                'TimePicker',
+              ]}
+            >
+              <TimePicker label="Appointment Time"
+                onChange={(newValue) => handleTime(newValue)}
+                className="w-full" />
+            </DemoContainer>
+          </LocalizationProvider>
           {errorTime !== '' ? <p className="text-red-500 pl-2">{errorTime}</p> : null}
         </div>
         <b className="bg-gray-100 rounded-3xl p-4 w-full">
@@ -188,4 +245,4 @@ const SendPhoneVerificationCode = () => {
   );
 };
 
-export default SendPhoneVerificationCode;
+export default AppointmentDate;

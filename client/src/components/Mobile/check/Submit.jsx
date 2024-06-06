@@ -2,6 +2,7 @@ import BotIcon from './BotIcon';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
+import { useNavigate } from 'react-router-dom';
 
 const Submit = () => {
 
@@ -13,9 +14,11 @@ const Submit = () => {
     appDescription
   } = useSelector((state) => state.checker);
 
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(addHistory(true))
+    navigate(-1)
   };
 
   const renderDescription = () => (

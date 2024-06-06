@@ -4,6 +4,7 @@ import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { appointment, usersUpdate } from '../../../api/index';
+import { useNavigate } from 'react-router-dom';
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
@@ -32,6 +33,8 @@ const Submit = () => {
     appointTime,
     timezone
   } = useSelector((state) => state.checker);
+
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +68,7 @@ const Submit = () => {
       appointment_date: appointDate,
       appointment_time: appointTime,
       appointment_type: "S",
-      appointment_status: "S",
+      appointment_status: "Created",
       appointment_notes: "S",
       appointment_reminder: true,
       appointment_reminder_time: appointTime,
@@ -78,6 +81,7 @@ const Submit = () => {
     if (appointRes.status == 201) {
       console.log('status ImageSend', appointRes);
       dispatch(addHistory(true));
+      navigate(-1)
     } else {
       console.log('Faild ImageSend');
     }

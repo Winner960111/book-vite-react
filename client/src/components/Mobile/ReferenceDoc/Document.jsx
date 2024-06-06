@@ -28,7 +28,7 @@ const InputRelation = () => {
     e.preventDefault();
 
     if (Relation.length === 0) {
-      setError('The last name field is required');
+      setError('The document type field is required');
     } else {
       dispatch(addHistory(true));
       dispatch(setRefRelation(Relation));

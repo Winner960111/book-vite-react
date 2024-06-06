@@ -10,7 +10,7 @@ import { classNames } from '../../../utils';
 const InputCity = () => {
 
   const dispatch = useDispatch();
-  const { step, history, refCity} = useSelector(
+  const { step, history, refCity } = useSelector(
     (state) => state.checker
   );
 
@@ -19,7 +19,7 @@ const InputCity = () => {
 
   useEffect(() => {
     setError(null);
-      setCity('');
+    setCity('');
   }, [step]);
 
   const handleChangeInput = (e) => {
@@ -39,7 +39,7 @@ const InputCity = () => {
     e.preventDefault();
 
     if (!City.trim()) {
-      setError('The first name field is required');
+      setError('The upload field is required');
     } else {
       dispatch(addHistory(true));
       dispatch(setRefCity(City));

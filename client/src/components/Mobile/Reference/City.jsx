@@ -31,9 +31,9 @@ const InputCity = () => {
     e.preventDefault();
 
     if (!City.trim()) {
-      setError('The first name field is required');
+      setError('The City field is required');
     } else if (!/^[A-Za-z]+$/.test(City)) {
-      setError('The first name contains only characters');
+      setError('The City contains only characters');
     } else {
       dispatch(addHistory(true));
       dispatch(setRefCity1(City));

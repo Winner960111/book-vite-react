@@ -31,9 +31,9 @@ const InputState = () => {
     e.preventDefault();
 
     if (!State.trim()) {
-      setError('The first name field is required');
+      setError('The State field is required');
     } else if (!/^[A-Za-z]+$/.test(State)) {
-      setError('The first name contains only characters');
+      setError('The State contains only characters');
     } else {
       dispatch(addHistory(true));
       dispatch(setRefState(State));

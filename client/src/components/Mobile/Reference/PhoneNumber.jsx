@@ -38,9 +38,9 @@ const InputPhoneNumber = () => {
     e.preventDefault();
 
     if (phoneNumber.length === 0) {
-      setError('You should input your social security number');
+      setError('You should input your phone number');
     } else if (!/^\d{3}-\d{3}-\d{4}$/.test(phoneNumber)) {
-      setError('Invalid social security number');
+      setError('Invalid phone number');
     } else {
       dispatch(addHistory(true));
       dispatch(setRefPhoneNumber1(phoneNumber));

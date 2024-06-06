@@ -7,8 +7,8 @@ import { browserName, osName } from 'react-device-detect';
 import Greeting from '../components/Mobile/ReferenceDoc/Greeting';
 import SendPhoneVerificationCode from '../components/common/SendPhoneVerificationCode';
 import CheckPhoneVerificationCode from '../components/Mobile/ReferenceDoc/CheckPhoneVerificationCode';
-import InputCity from '../components/Mobile/ReferenceDoc/InputCity';
-import InputRelation from '../components/Mobile/ReferenceDoc/InputRelation';
+import InputCity from '../components/Mobile/ReferenceDoc/Upload';
+import InputRelation from '../components/Mobile/ReferenceDoc/Document';
 import Submit from '../components/Mobile/ReferenceDoc/Submit';
 
 import {
@@ -38,8 +38,8 @@ const Prequalified = () => {
   const containerRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-   const { dealer_slug } = useParams();
-   const { customer_slug } = useParams();
+  const { dealer_slug } = useParams();
+  const { customer_slug } = useParams();
 
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
@@ -69,10 +69,10 @@ const Prequalified = () => {
     // You can access the DOM node directly with myDivRef.current
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
 
-       // when refresh app, set dealer_slug and dealer_info of store
-       const dealerInfoCall = dispatch(getDealerInfo(dealer_slug));
-       new Promise(dealerInfoCall);
-     }, [history, step, dealer_slug, dispatch]);
+    // when refresh app, set dealer_slug and dealer_info of store
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_slug));
+    new Promise(dealerInfoCall);
+  }, [history, step, dealer_slug, dispatch]);
 
   useEffect(() => {
     if (dealerId) {

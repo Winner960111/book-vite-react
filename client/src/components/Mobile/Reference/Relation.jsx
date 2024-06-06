@@ -12,9 +12,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
 const InputRelation = () => {
-  const { step, history, refRelation1} = useSelector(
-      (state) => state.checker
-    );
+  const { step, history, refRelation1 } = useSelector(
+    (state) => state.checker
+  );
   const dispatch = useDispatch();
 
   const [Relation, setRelation] = useState('');
@@ -33,9 +33,9 @@ const InputRelation = () => {
     e.preventDefault();
 
     if (Relation.length === 0) {
-      setError('The last name field is required');
+      setError('The Relationship field is required');
     } else if (!/^[A-Za-z]+$/.test(Relation)) {
-      setError('The last name contains only characters');
+      setError('The Relationship contains only characters');
     } else {
       dispatch(addHistory(true));
       dispatch(setRefRelation1(Relation));

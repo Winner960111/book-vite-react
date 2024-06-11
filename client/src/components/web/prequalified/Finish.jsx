@@ -12,7 +12,7 @@ const Finish = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <p className="w-2/6 text-4xl text-black my-3 mt-36 font-medium">
+      <p className="w-2/6 text-4xl text-black mt-5 p-2 font-medium">
         <b>Congratulation!</b>
       </p>
       <form

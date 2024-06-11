@@ -77,12 +77,12 @@ const PhoneVerification = () => {
   return (
     <>
       <div className="w-full flex flex-col items-center p-2">
-        <p className="w-3/5 text-4xl my-3 mt-5 font-medium">
+        <p className="w-3/6 text-4xl my-3 mt-5 font-medium">
           Verify your mobile number
         </p>
         <div
           className={
-            'w-3/5 text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
+            'w-3/6 text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
           }
         >
           <div className="py-2 flex flex-col items-center">
@@ -94,7 +94,7 @@ const PhoneVerification = () => {
               value={phoneNumber}
               onChange={handleChangeInput}
               fullWidth
-              autoComplete='off'
+              autoComplete="off"
               type="text"
               InputProps={{
                 style: {
@@ -116,17 +116,19 @@ const PhoneVerification = () => {
           </div>
           <p className=" bg-gray-50 rounded-3xl p-4">
             To ensure the security of our platform, we&apos;ll send you a
-            verification code via call or text. This step helps us confirm that
-            you&apos;re a real person.{' '}
+            verification code via call or text. This step helps us confirm
+            that you&apos;re a real person.{' '}
             <i>Don&apos;t include &apos;+&apos; or &lsquo;()&rsquo;</i>
           </p>
           <p className=" bg-gray-50 rounded-3xl p-4 mt-5">
-            By agreeing, you authorize us to send future messages regarding your
-            request, You&apos;re in control of your messaging. Reply
+            By agreeing, you authorize us to send future messages regarding
+            your request, You&apos;re in control of your messaging. Reply
             &lsquo;Stop&rsquo; to unsubscribe at any time. Please review our
-            privacy policy at {' '}
-            <a href="https://www.credit-apps.com/privacy/" target='__blank'>https://www.credit-apps.com/privacy/
-            </a>{' '}for more details.
+            privacy policy at{' '}
+            <a href="https://www.credit-apps.com/privacy/" target="__blank">
+              https://www.credit-apps.com/privacy/
+            </a>{' '}
+            for more details.
           </p>
           <div className="flex justify-between">
             <button
@@ -145,6 +147,7 @@ const PhoneVerification = () => {
               Call
             </button>
           </div>
+          {/* </div> */}
         </div>
       </div>
     </>

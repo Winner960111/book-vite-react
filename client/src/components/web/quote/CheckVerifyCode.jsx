@@ -75,13 +75,13 @@ const CheckVerifyCode = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <p className="w-2/6 text-4xl my-3 mt-10 font-medium">
+      <p className="w-2/3 text-4xl my-3 mt-10 font-medium">
         <b>Check access code</b>
       </p>
       <form
         onSubmit={handleSubmit}
         className={
-          ' w-2/6 text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
+          ' w-2/3 text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
         }
       >
         <div className="py-2 flex flex-col items-center">

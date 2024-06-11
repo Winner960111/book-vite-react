@@ -1,6 +1,7 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import ReactGA from 'react-ga4';
 
 // page component
 import Home from './pages/Home';
@@ -31,6 +32,18 @@ const App = () => {
   const initialize = useCallback(() => {
     dispatch(detectAgent());
   }, [dispatch]);
+
+  const [measurementID, setMeasurementID] = useState('G-SCM7YQH35H');
+
+  // Initialize Google Analytics with the current Measurement ID
+  useEffect(() => {
+    ReactGA.initialize(measurementID);
+  }, [measurementID]);
+
+  // Function to update the Measurement ID
+  // const updateMeasurementID = (newID) => {
+  //   setMeasurementID(newID);
+  // };
 
   useEffect(() => {
 
@@ -67,7 +80,7 @@ const App = () => {
         />
         <Route
           path="/info-checker/:dealer_id/full"
-          element={type == 'web' ? <WebFullApp /> : <Full/>}
+          element={type == 'web' ? <WebFullApp /> : <Full />}
         />
         <Route
           path="/info-checker/:dealer_id/appointment"

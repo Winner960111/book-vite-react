@@ -336,7 +336,7 @@ const SeventhPage = () => {
                 </p>
                 <form
                     className={classNames(
-                        'text-justify bg-white rounded-3xl p-8 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg font-sans'
+                        'text-justify bg-white rounded-3xl p-8 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-md font-sans'
                     )}
                 >
                     <p className="bg-gray-50 rounded-3xl p-4 mt-2">
@@ -430,7 +430,7 @@ const SeventhPage = () => {
                         </span>
                     </div>
                     <div className="flex flex-col md:flex-row">
-                        <div className="md:w-3/5 w-full h-[200px] mt-2">
+                        <div className="md:w-3/5 w-full h-[18vh] mt-2">
                             <canvas
                                 ref={canvasRef}
                                 onMouseDown={startDrawing}
@@ -439,7 +439,7 @@ const SeventhPage = () => {
                                 onMouseOut={finishDrawing}
                             />
                         </div>
-                        <div className="md:w-2/5 w-full h-[200px] flex flex-col mt-2 mx-1 justify-between">
+                        <div className="md:w-2/5 w-full h-[18vh] flex flex-col mt-2 mx-1 justify-between">
                             <p className="bg-gray-50 rounded-3xl p-4">
                                 Please sign on drawbox. it will act as your digital signature.
                             </p>

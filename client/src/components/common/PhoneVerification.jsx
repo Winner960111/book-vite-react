@@ -76,13 +76,13 @@ const PhoneVerification = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col items-center">
-        <p className="w-4/5 md:w-[600px] text-4xl my-3 font-medium">
+      <div className="w-full flex flex-col items-center p-2">
+        <p className="w-3/5 text-4xl my-3 mt-5 font-medium">
           Verify your mobile number
         </p>
         <div
           className={
-            'w-4/5 md:w-[600px] text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
+            'w-3/5 text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
           }
         >
           <div className="py-2 flex flex-col items-center">

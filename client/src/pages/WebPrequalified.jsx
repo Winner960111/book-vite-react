@@ -78,7 +78,7 @@ const WebPrequalified = () => {
     dispatch(clearHistory());
   };
   return (
-    <div className="bg-gray-50 w-screen h-screen relative">
+    <div className="flex flex-col justify-between bg-gray-50 w-screen h-screen relative">
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img
@@ -126,7 +126,7 @@ const WebPrequalified = () => {
       {step == 3 && <SecondPage />}
       {step == 4 && <ThirdPage />}
       {step == 5 && <Finish />}
-      <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
+      <div className="h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
         <img
           className="w-10 cursor-pointer mx-5"
           src={homeImg}

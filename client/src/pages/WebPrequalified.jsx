@@ -30,6 +30,7 @@ import {
 import { deviceInfo } from '../api/index';
 
 const WebPrequalified = () => {
+
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_id } = useParams();
@@ -77,9 +78,10 @@ const WebPrequalified = () => {
     navigate(-1);
     dispatch(clearHistory());
   };
+
   return (
-    <div className="flex flex-col justify-between bg-gray-50 w-screen h-screen">
-      <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center">
+    <div className="flex flex-col justify-between bg-gray-50 w-screen h-screen relative">
+      <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img
             // onClick={Refresh}
@@ -120,14 +122,12 @@ const WebPrequalified = () => {
           </div>
         </div>
       </div>
-      <div>
       {step == 0 && <PhoneVerification />}
       {step == 1 && <CheckVerifyCode />}
       {step == 2 && <FirstPage />}
       {step == 3 && <SecondPage />}
       {step == 4 && <ThirdPage />}
-        {step == 5 && <Finish />}
-        </div>
+      {step == 5 && <Finish />}
       <div className="h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
         <img
           className="w-10 cursor-pointer mx-5"

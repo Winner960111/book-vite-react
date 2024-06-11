@@ -67,7 +67,7 @@ const WebTrade = () => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
     dispatch(setDealerId(dealer_id));
-    setPercent(parseInt((step / 6) * 100));
+    setPercent(parseInt((step / 7) * 100));
   }, [history, step, dealer_id, dispatch]);
 
   const Refresh = () => {
@@ -127,7 +127,7 @@ const WebTrade = () => {
       {step == 0 && <PhoneVerification />}
       {step == 1 && <CheckVerifyCode />}
       {step == 2 && <Instant />}
-      {step == 3 && <VehicleType/>}
+      {step == 3 && <VehicleType />}
       {step == 4 && <FirstPage />}
       {step == 5 && <SecondPage />}
       {step == 6 && <ThirdPage />}

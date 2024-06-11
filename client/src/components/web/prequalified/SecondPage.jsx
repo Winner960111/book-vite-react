@@ -166,7 +166,7 @@ const SecondPage = () => {
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className="w-2/3 flex flex-col mt-28 mx-20">
+        <div className="w-2/3 flex flex-col mt-5 mx-20">
           <p className="w-3/4 text-4xl my-3 font-medium">
             Make sure this is a physical address and not a P.O Box
           </p>
@@ -214,6 +214,7 @@ const SecondPage = () => {
                   defaultValue="Normal"
                   label="Apt/Suite (Optional)"
                   variant="standard"
+                  autoComplete="off"
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -239,6 +240,7 @@ const SecondPage = () => {
                   fullWidth
                   type="text"
                   defaultValue="Normal"
+                  autoComplete="off"
                   label="City"
                   variant="standard"
                   InputProps={{
@@ -270,6 +272,7 @@ const SecondPage = () => {
                   fullWidth
                   type="text"
                   defaultValue="Normal"
+                  autoComplete="off"
                   label="State"
                   variant="standard"
                   InputProps={{
@@ -302,6 +305,7 @@ const SecondPage = () => {
                   type="text"
                   defaultValue="Normal"
                   label="Zip Code"
+                  autoComplete="off"
                   variant="standard"
                   InputProps={{
                     style: {

@@ -76,7 +76,7 @@ const CheckVerifyCode = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <p className="w-2/6 text-4xl my-3 mt-10 font-medium">
+      <p className="w-2/3 text-4xl my-3 mt-10 font-medium">
         <b>Check your verify code</b>
       </p>
       <form

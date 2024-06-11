@@ -37,7 +37,7 @@ const App = () => {
 
   // Initialize Google Analytics with the current Measurement ID
   useEffect(() => {
-    ReactGA.initialize('G-8GB94PK2VW');
+    ReactGA.initialize('G-SR0JELTE27');
   }, []);
 
   // Function to update the Measurement ID

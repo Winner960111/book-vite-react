@@ -63,7 +63,7 @@ export const referenceInfo = async (data, customer_id) => {
   }
 };
 
-export const identifyInfo = async (id) => 
+export const identifyInfo = async (id) =>
   new Promise((resolve, reject) => {
     const url = `https://www.dev.creditapps.com/api/verification/${id}/`;
     axios
@@ -162,7 +162,7 @@ export const fullcustomer = async (data) => {
   }
 };
 export const vehicleList = async (id) => {
-  const url = 'https://dev.creditapps.com/api/decode_dealer/';
+  const url = 'https://www.dev.creditapps.com/api/decode_dealer/';
   const data = {
     slug: id,
   };

@@ -29,11 +29,15 @@ const Vehicle = () => {
     deviceBrowser,
     type,
     checkerMobileNumber,
+    vehicleMake,
+    vehicleModel,
+    vehicleYear,
   } = useSelector((state) => state.checker);
+
   const dispatch = useDispatch();
-  const [year, setYear] = useState('');
-  const [make, setMake] = useState('');
-  const [model, setModel] = useState('');
+  const [year, setYear] = useState(vehicleYear);
+  const [make, setMake] = useState(vehicleMake);
+  const [model, setModel] = useState(vehicleModel);
 
   const handleYearChange = (e) => {
     if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {

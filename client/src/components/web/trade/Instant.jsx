@@ -12,12 +12,7 @@ import { instantInfo, usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material'
   ;
 const Instant = () => {
-  const [vinState, setVinState] = useState(true);
-  const [makeState, setMakeState] = useState(false);
-  const [vinValue, setVinValue] = useState('');
-  const [make, setMake] = useState('');
-  const [year, setYear] = useState('');
-  const [model, setModel] = useState('');
+
   const {
     dealerId,
     intentID,
@@ -32,7 +27,19 @@ const Instant = () => {
     deviceBrowser,
     checkerMobileNumber,
     type,
+    vehicleYear,
+    vehicleMake,
+    vehicleModel,
   } = useSelector((state) => state.checker);
+  const [vinState, setVinState] = useState(true);
+  const [makeState, setMakeState] = useState(false);
+  const [vinValue, setVinValue] = useState('');
+  const [year, setYear] = useState(vehicleYear);
+  const [make, setMake] = useState(vehicleMake);
+  const [model, setModel] = useState(vehicleModel);
+
+  console.log("this is=========>", vehicleMake, vehicleModel, vehicleYear)
+
   const dispatch = useDispatch();
 
   const [error, setError] = useState(null);

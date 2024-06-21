@@ -28,20 +28,21 @@ const Interest = () => {
     deviceBrowser,
     type,
     checkerMobileNumber,
+    vehicleYear,
+    vehicleMake,
+    vehicleModel,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [error, setError] = useState('');
-  const [year, setYear] = useState('');
-  const [make, setMake] = useState('');
-  const [model, setModel] = useState('');
+  const [year, setYear] = useState(vehicleYear);
+  const [make, setMake] = useState(vehicleMake);
+  const [model, setModel] = useState(vehicleModel);
+  console.log("this is ==========>", vehicleYear, vehicleMake, vehicleModel);
   const [pay, setPay] = useState('');
 
   useEffect(() => {
     setError('');
-    setYear('');
-    setMake('');
-    setModel('');
   }, []);
 
   const handleYear = (e) => {

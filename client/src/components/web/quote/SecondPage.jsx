@@ -23,15 +23,19 @@ const DealType = () => {
     deviceLon,
     deviceBrowser,
     checkerMobileNumber,
+    vehicleYear,
+    vehicleMake,
+    vehicleModel,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [dealClick, setDealClick] = useState('Finance');
   const [error, setError] = useState(null);
-  const [year, setYear] = useState('');
-  const [make, setMake] = useState('');
-  const [model, setModel] = useState('');
+  const [year, setYear] = useState(vehicleYear);
+  const [make, setMake] = useState(vehicleMake);
+  const [model, setModel] = useState(vehicleModel);
 
+  console.log("this is=========>", vehicleMake, vehicleModel, vehicleYear)
   useEffect(() => {
     setError(null);
     if (year.length >= 4)

@@ -29,12 +29,15 @@ const ThirdPage = () => {
     deviceLon,
     deviceBrowser,
     checkerMobileNumber,
+    vehicleYear,
+    vehicleMake,
+    vehicleModel,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [errorPay, setErrorPay] = useState('');
-  const [year, setYear] = useState('');
-  const [make, setMake] = useState('');
-  const [model, setModel] = useState('');
+  const [year, setYear] = useState(vehicleYear);
+  const [make, setMake] = useState(vehicleMake);
+  const [model, setModel] = useState(vehicleModel);
   const [pay, setPay] = useState('');
   const [errorYear, setErrorYear] = useState('');
   const [first, setFirst] = useState(null);
@@ -42,9 +45,6 @@ const ThirdPage = () => {
   useEffect(() => {
     setErrorPay('');
     setErrorYear('');
-    setYear('');
-    setMake('');
-    setModel('');
   }, [step]);
 
   const handleYear = (e) => {

@@ -13,15 +13,8 @@ import { TextField } from '@mui/material'
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
 
-
 const Instant = () => {
 
-  const [vinState, setVinState] = useState(true);
-  const [makeState, setMakeState] = useState(false);
-  const [vinValue, setVinValue] = useState('');
-  const [make, setMake] = useState('');
-  const [year, setYear] = useState(null);
-  const [model, setModel] = useState('');
   const {
     dealerId,
     intentID,
@@ -41,8 +34,20 @@ const Instant = () => {
     instantMake,
     instantModel,
     history,
+    vehicleYear,
+    vehicleMake,
+    vehicleModel,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
+
+  const [vinState, setVinState] = useState(true);
+  const [makeState, setMakeState] = useState(false);
+  const [vinValue, setVinValue] = useState('');
+  const [year, setYear] = useState(vehicleYear);
+  const [make, setMake] = useState(vehicleMake);
+  const [model, setModel] = useState(vehicleModel);
+
+  console.log("this is=========>", vehicleMake, vehicleModel, vehicleYear)
 
   const [error, setError] = useState(null);
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { clearHistory, getDealerInfo } from '../store/reducers/checker';
+import { clearHistory, getDealerInfo, setVehicleYear, setVehicleMake, setVehicleModel } from '../store/reducers/checker';
 import shield from '../assets/shield.jpg'
 
 const WebHome = () => {
@@ -9,6 +9,23 @@ const WebHome = () => {
   const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const year = urlParams.get('year');
+    const make = urlParams.get('make');
+    const model = urlParams.get('model');
+    if (year && make && model) {
+
+      dispatch(setVehicleYear(year))
+      dispatch(setVehicleMake(make))
+      dispatch(setVehicleModel(model))
+    }
+    console.log("this is in webHome=========>", year, make, model)
+
+  }, []);
+
 
   // getting dealer_name and avatar
   useEffect(() => {
@@ -105,7 +122,7 @@ const WebHome = () => {
             CALL BACK
           </button>
 
-          
+
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getDealerInfo, clearHistory } from '../store/reducers/checker';
+import { getDealerInfo, clearHistory, setVehicleYear, setVehicleMake, setVehicleModel } from '../store/reducers/checker';
 import shield from '../assets/shield.jpg';
 
 const Home = () => {
@@ -10,7 +10,23 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [obj, setObj] = useState(true)
-  
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const year = urlParams.get('year');
+    const make = urlParams.get('make');
+    const model = urlParams.get('model');
+    if (year && make && model) {
+
+      dispatch(setVehicleYear(year))
+      dispatch(setVehicleMake(make))
+      dispatch(setVehicleModel(model))
+    }
+    console.log("this is in webHome=========>", year, make, model)
+
+  }, []);
+
   const handleObj = () => {
     if (obj == true) {
       setObj(false)

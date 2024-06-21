@@ -2,8 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
+  vehicleYear: '',
+  vehicleMake: '',
+  vehicleModel: '',
   identifyId: '',
-  identifyStatus:'',
+  identifyStatus: '',
   refFirstName: '',
   refLastName: '',
   refPhoneNumber: '',
@@ -122,6 +125,15 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setVehicleYear: (state, action) => {
+      state.vehicleYear = action.payload;
+    },
+    setVehicleMake: (state, action) => {
+      state.vehicleMake = action.payload;
+    },
+    setVehicleModel: (state, action) => {
+      state.vehicleModel = action.payload;
+    },
     setIdentifyId: (state, action) => {
       state.identifyId = action.payload;
     },
@@ -666,6 +678,9 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setVehicleMake,
+  setVehicleModel,
+  setVehicleYear,
   setIdentifyId,
   setIdentifyStatus,
   setRefFirstName,

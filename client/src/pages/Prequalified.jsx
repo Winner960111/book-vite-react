@@ -104,7 +104,7 @@ const Prequalified = () => {
             onClick={handleRestart}
           />
         </div>
-        <div className="w-full md:w-[500px] text-lg font-serif pb-[15vh] pt-44 px-4">
+        <div className="w-full md:w-[500px] text-lg font-serif pb-[15vh] pt-44 px-4 bg-white">
           <Greeting />
           <SendPhoneVerificationCode />
           <CheckPhoneVerificationCode />

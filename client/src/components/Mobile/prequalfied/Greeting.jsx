@@ -10,7 +10,7 @@ const Greeting = () => {
   const renderDescription = () => (
     <div
       className={classNames(
-        'mt-2',
+        'mt-2 bg-white',
         step >= 1 ? 'text-slate-400' : 'text-slate-800'
       )}
     >

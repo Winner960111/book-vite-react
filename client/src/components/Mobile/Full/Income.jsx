@@ -48,7 +48,6 @@ const Confirm = () => {
     }
     setError('');
   };
-
   useEffect(() => {
     setError('');
     setAmountIncome('');

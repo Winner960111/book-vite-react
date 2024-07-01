@@ -2,7 +2,7 @@ import BotIcon from './BotIcon';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkVerification } from '../../../api/index';
-import { addHistory} from '../../../store/reducers/checker';
+import { addHistory } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
 import verify from '../../../assets/verify.png';
 import OtpInput from 'react-otp-input';
@@ -11,8 +11,8 @@ const CheckPhoneVerificationCode = () => {
   const [verifyCode, setVerifyCode] = useState('');
   const [temp, setTemp] = useState('');
   const { checkerMobileNumber, step, history } = useSelector(
-      (state) => state.checker
-    );
+    (state) => state.checker
+  );
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
@@ -62,25 +62,28 @@ const CheckPhoneVerificationCode = () => {
           <div className="flex justify-center">
             <img className="w-40" src={verify} alt="verify icon" />
           </div>
-          <OtpInput
-            value={verifyCode}
-            onChange={setVerifyCode}
-            numInputs={6}
-            renderSeparator={<span>&nbsp; - &nbsp;</span>}
-            renderInput={(props) => (
-              <input
-                {...props}
-                style={{
-                  border: '1px solid black',
-                  width: '40px',
-                  height: '55px',
-                  borderRadius: '10px',
-                  fontSize: '30px',
-                  textAlign: 'center',
-                }}
-              />
-            )}
-          />
+          <div className="flex justify-center">
+
+            <OtpInput
+              value={verifyCode}
+              onChange={setVerifyCode}
+              numInputs={6}
+              renderSeparator={<span>&nbsp; - &nbsp;</span>}
+              renderInput={(props) => (
+                <input
+                  {...props}
+                  style={{
+                    border: '1px solid black',
+                    width: '40px',
+                    height: '55px',
+                    borderRadius: '10px',
+                    fontSize: '30px',
+                    textAlign: 'center',
+                  }}
+                />
+              )}
+            />
+          </div>
           {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
         <p className="bg-gray-50 rounded-3xl p-4">

@@ -94,11 +94,11 @@ const Prequalified = () => {
 
   return (
     <div
-      className="relative w-full h-screen flex justify-center items-center overflow-y-scroll scroll-smooth"
+      className="relative w-full h-screen flex justify-center items-center overflow-y-scroll scroll-smooth bg-white"
       ref={containerRef}
     >
       <div className="h-full w-[95%] md:w-full flex flex-col items-center">
-        <div className="w-[95%] md:w-[500px] fixed rounded-lg flex justify-between items-center py-6 px-4 bg-white shadow-[10px_10px_20px_-5px_rgba(0,0,0,0.3)] z-10">
+        <div className="w-[95%] md:w-[500px] fixed rounded-lg flex justify-between items-center py-6 px-4 bg-white shadow-[10px_10px_20px_-5px_rgba(0,0,0,0.3)] z-20">
           <img
             className="w-4 md:w-6 cursor-pointer"
             src={backImg}
@@ -113,7 +113,7 @@ const Prequalified = () => {
             onClick={handleRestart}
           />
         </div>
-        <div className="w-full md:w-[500px] text-lg font-serif pb-[15vh] pt-44 px-4">
+        <div className="w-full md:w-[500px] text-lg font-serif pb-[15vh] pt-44 px-4 z-10">
           <Greeting />
           <SendPhoneVerificationCode />
           <CheckPhoneVerificationCode />

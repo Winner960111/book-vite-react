@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import apis from '../../utils/apis'
 
 const initialState = {
   vehicleYear: '',
@@ -806,8 +806,8 @@ export const getDealerInfo = (dealer_id) => (dispatch) => {
   };
   return async () => {
     try {
-      const response = await axios.post(
-        `https://www.dev.creditapps.com/api/decode_dealer/`,
+      const response = await apis.post(
+        "/decode_dealer/",
         data
       );
       dispatch(setDealerName(response.data.name));

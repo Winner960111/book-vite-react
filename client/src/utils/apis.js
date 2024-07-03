@@ -6,7 +6,7 @@ const apis = axios.create({
   headers: {
     'Content-Type': 'application/json',
     'X-Api-Key': 'tiJ0Wfsh.i8iP64GNla95d9nNsQIQodL15PdR0wpR',
-    'Access-Control-Allow-Methods': '*',
+    'Access-Control-Allow-Origin': '*',
   },
 });
 

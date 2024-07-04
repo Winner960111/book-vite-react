@@ -1,12 +1,12 @@
-import axios from 'axios';
 import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
+import apis from '../utils/apis'
 
 export const identification = async (data, id) => {
   console.log('this is submit====>', data);
-  const url = `https://www.dev.creditapps.com/api/verification/${id}/`;
+  const url = `verification/${id}/`;
   try {
-    const response = await axios.put(url, data, {
+    const response = await apis.put(url, data, {
       headers: {
         'content-type': 'application/json',
       },
@@ -19,9 +19,9 @@ export const identification = async (data, id) => {
 
 export const checkVerify = async (data) => {
   console.log('this is submit====>', data);
-  const url = 'https://www.dev.creditapps.com/api/verify_mobile/';
+  const url = 'verify_mobile/';
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'content-type': 'application/json',
       },
@@ -34,9 +34,9 @@ export const checkVerify = async (data) => {
 
 export const submitReference = async (data) => {
   console.log('this is submit====>', data);
-  const url = 'https://www.dev.creditapps.com/api/add_documents/';
+  const url = 'add_documents/';
   try {
-    const response = await axios.post(url, JSON.stringify(data), {
+    const response = await apis.post(url, JSON.stringify(data), {
       headers: {
         'content-type': 'application/json',
       },
@@ -50,9 +50,9 @@ export const submitReference = async (data) => {
 export const referenceInfo = async (data, customer_id) => {
   console.log('this is reference items ===>', data);
   console.log('this is customer_id items ===>', customer_id);
-  const url = `https://www.dev.creditapps.com/api/add_references/${customer_id}/`;
+  const url = `add_references/${customer_id}/`;
   try {
-    const response = await axios.put(url, data, {
+    const response = await apis.put(url, data, {
       headers: {
         'content-type': 'application/json',
       },
@@ -65,8 +65,8 @@ export const referenceInfo = async (data, customer_id) => {
 
 export const identifyInfo = async (id) =>
   new Promise((resolve, reject) => {
-    const url = `https://www.dev.creditapps.com/api/verification/${id}/`;
-    axios
+    const url = `verification/${id}/`;
+    apis
       .get(url, {
         headers: {
           'Content-Type': 'application/json',
@@ -87,8 +87,8 @@ export const customerInfo = async (dealer_id, customer_id) =>
       slug: customer_id,
       dealer_id: dealer_id,
     };
-    const url = 'https://www.dev.creditapps.com/api/decode_customer/';
-    axios
+    const url = 'decode_customer/';
+    apis
       .post(url, data, {
         headers: {
           'content-type': 'application/json',
@@ -106,7 +106,7 @@ export const checkapp = async (data) => {
   console.log('this is appointment items ===>', data);
   const url = 'https://dev.creditapps.com/api/app_status/';
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'content-type': 'application/json',
       },
@@ -121,7 +121,7 @@ export const appointment = async (data) => {
   console.log('this is appointment items ===>', data);
   const url = 'https://dev.creditapps.com/api/appointment/';
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'content-type': 'application/json',
       },
@@ -134,9 +134,9 @@ export const appointment = async (data) => {
 
 export const application = async (data) => {
   console.log('this is application items ===>', data);
-  const url = 'https://www.dev.creditapps.com/api/application/';
+  const url = 'application/';
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'content-type': 'application/json',
       },
@@ -149,9 +149,9 @@ export const application = async (data) => {
 
 export const fullcustomer = async (data) => {
   console.log('this is full app items ===>', data);
-  const url = 'https://www.dev.creditapps.com/api/customer/';
+  const url = 'customer/';
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'content-type': 'application/json',
       },
@@ -162,12 +162,12 @@ export const fullcustomer = async (data) => {
   }
 };
 export const vehicleList = async (id) => {
-  const url = 'https://www.dev.creditapps.com/api/decode_dealer/';
+  const url = 'decode_dealer/';
   const data = {
     slug: id,
   };
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'content-type': 'application/json',
       },
@@ -179,10 +179,10 @@ export const vehicleList = async (id) => {
 };
 
 export const usersUpdate = async (data, id) => {
-  const url = `https://www.dev.creditapps.com/api/intent/${id}/`;
+  const url = `intent/${id}/`;
   console.log('this is intent information==>', data);
   try {
-    const response = await axios.put(url, data, {
+    const response = await apis.put(url, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -193,10 +193,10 @@ export const usersUpdate = async (data, id) => {
   }
 };
 export const usersStatus = async (data) => {
-  const url = 'https://www.dev.creditapps.com/api/intent/';
+  const url = 'intent/';
   console.log('this is intent information==>', data);
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -236,7 +236,7 @@ export const detectAgent = () => async (dispatch) => {
 };
 
 export const checkPhoneNumber = async (phone_number, dealer_id) => {
-  const url = 'https://www.dev.creditapps.com/api/applicant_two_factor_code/';
+  const url = 'applicant_two_factor_code/';
 
   const data = {
     mobile: phone_number,
@@ -244,7 +244,7 @@ export const checkPhoneNumber = async (phone_number, dealer_id) => {
   };
 
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -258,7 +258,7 @@ export const checkPhoneNumber = async (phone_number, dealer_id) => {
 
 export const checkPhoneNumberCall = async (phone_number, dealer_id) => {
   const url =
-    'https://www.dev.creditapps.com/api/applicant_call_two_factor_code/';
+    'applicant_call_two_factor_code/';
 
   const data = {
     mobile: phone_number,
@@ -266,7 +266,7 @@ export const checkPhoneNumberCall = async (phone_number, dealer_id) => {
   };
 
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -283,7 +283,7 @@ export const checkVerification = async (
   verify_code
 ) => {
   const url =
-    'https://www.dev.creditapps.com/api/applicant_valida_two_factor_code/';
+    'applicant_valida_two_factor_code/';
 
   const data = {
     mobile: phone_number,
@@ -292,7 +292,7 @@ export const checkVerification = async (
   };
 
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -307,9 +307,9 @@ export const checkVerification = async (
 };
 
 export const signatureImg = async (data) => {
-  const url = 'https://www.dev.creditapps.com/api/prequal/';
+  const url = 'prequal/';
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -323,9 +323,9 @@ export const signatureImg = async (data) => {
 
 export const SubmitQuote = async (data) => {
   console.log('quote data is =>', data);
-  const url = 'https://www.dev.creditapps.com/api/leads/';
+  const url = 'leads/';
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -339,9 +339,9 @@ export const SubmitQuote = async (data) => {
 
 export const instantInfo = async (data) => {
   console.log(data);
-  const url = 'https://www.dev.creditapps.com/api/vehicle_decode/';
+  const url = 'vehicle_decode/';
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -355,9 +355,9 @@ export const instantInfo = async (data) => {
 
 export const SubmitTrade = async (data) => {
   console.log('quote data is =>', data);
-  const url = 'https://www.dev.creditapps.com/api/trade_in/';
+  const url = 'trade_in/';
   try {
-    const response = await axios.post(url, data, {
+    const response = await apis.post(url, data, {
       headers: {
         'Content-Type': 'application/json',
       },

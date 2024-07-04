@@ -807,7 +807,7 @@ export const getDealerInfo = (dealer_id) => (dispatch) => {
   return async () => {
     try {
       const response = await apis.post(
-        "/decode_dealer/",
+        "decode_dealer/",
         data
       );
       dispatch(setDealerName(response.data.name));

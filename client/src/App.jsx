@@ -26,6 +26,9 @@ import Reference from './pages/Reference'
 import WebReferenceDoc from './pages/WebReferenceDoc';
 import ReferenceDoc from './pages/ReferenceDoc';
 import WebIdentityVerify from './pages/WebIdentityVerify'
+import WebImages from "./pages/WebImages"
+import Images from "./pages/Images"
+
 const App = () => {
   const dispatch = useDispatch();
   const { type } = useSelector((state) => state.checker);
@@ -95,6 +98,10 @@ const App = () => {
           element={type == 'web' ? <WebReference /> : <Reference />}
         />
         <Route
+          path="/trade_in_images/:dealer_slug/:customer_slug"
+          element={type == 'web' ? <WebImages /> : <Images />}
+        />
+        <Route
           path="/documents/:dealer_slug/:customer_slug"
           element={type == 'web' ? <WebReferenceDoc /> : <ReferenceDoc />}
         />
@@ -102,6 +109,7 @@ const App = () => {
           path="/verification/:dealer_slug/:customer_slug"
           element={type == 'web' ? <WebIdentityVerify /> : null}
         />
+        
       </Routes>
     </>
   );

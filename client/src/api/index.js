@@ -47,6 +47,17 @@ export const submitReference = async (data) => {
   }
 };
 
+export const submitImages = async (data) => {
+  console.log('this is submit====>', data);
+  const url = 'add_trade_in_images/';
+  try {
+    const response = await apis.post(url, JSON.stringify(data));
+    return response;
+  } catch (e) {
+    return { status: 400 };
+  }
+};
+
 export const referenceInfo = async (data, customer_id) => {
   console.log('this is reference items ===>', data);
   console.log('this is customer_id items ===>', customer_id);

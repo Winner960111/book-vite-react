@@ -26,7 +26,7 @@ import Reference from './pages/Reference'
 import WebReferenceDoc from './pages/WebReferenceDoc';
 import ReferenceDoc from './pages/ReferenceDoc';
 import WebIdentityVerify from './pages/WebIdentityVerify'
-import WebImages from "./pages/WebImages"
+import WebImages from './pages/WebImages'
 import Images from "./pages/Images"
 
 const App = () => {
@@ -98,7 +98,7 @@ const App = () => {
           element={type == 'web' ? <WebReference /> : <Reference />}
         />
         <Route
-          path="/trade_in_images/:dealer_slug/:customer_slug"
+          path="/trade_in_images/:dealer_slug/:customer_slug/:trade_id"
           element={type == 'web' ? <WebImages /> : <Images />}
         />
         <Route

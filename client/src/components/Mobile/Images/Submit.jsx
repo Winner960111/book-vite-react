@@ -3,26 +3,18 @@ import BotIcon from './BotIcon';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { referenceInfo } from '../../../api/index';
+import { submitImages } from '../../../api/index';
+import { useParams } from 'react-router-dom';
 
 const Submit = () => {
+
   const [readStatePara1, setReadStatePara1] = useState(false);
+  const {trade_id} = useParams();
   const dispatch = useDispatch();
   const {
     step,
     history,
-    refFirstName,
-    refLastName,
-    refRelation,
-    refCity,
-    refState,
-    refPhoneNumber,
-    refFirstName1,
-    refLastName1,
-    refRelation1,
-    refCity1,
-    refState1,
-    refPhoneNumber1,
+    imageBase64,
     dealerId,
     customerId,
     dealerName,
@@ -30,38 +22,36 @@ const Submit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const data = {
-      dealer_id: dealerId,
-      reference1_first_name: refFirstName,
-      reference1_last_name: refLastName,
-      reference1_phone: refPhoneNumber,
-      reference1_city: refCity,
-      reference1_relationship: refRelation,
-      reference1_state: refState,
-      reference2_first_name: refFirstName1,
-      reference2_last_name: refLastName1,
-      reference2_phone: refPhoneNumber1,
-      reference2_city: refCity1,
-      reference2_relationship: refRelation1,
-      reference2_state: refState1,
-    };
-
-    const res = await referenceInfo(data, customerId)
-    console.log("this is res==>", res)
-    if (res.status == 200) {
-      dispatch(addHistory(true));
-    } else {
-      console.log("Failed")
+    let number=0;
+    for (let i = 0; i < imageBase64.length; i++){
+      const data = {
+        dealer_id: dealerId,
+        trade_in_id: trade_id,
+        customer_id: customerId,
+        path: imageBase64[i].base64,
+      };
+     const res = await submitImages(data);
+     if (res.status == 201) {
+       console.log('status ImageSend', res);
+       number += 1
+ 
+     } else {
+       console.log('Faild ImageSend');
+     }
     }
-  }
+    console.log("this is number ===>", number)
+    if (number == imageBase64.length) {
+       dispatch(addHistory(true));
+}
+  };
+
   const renderDescription = () => (
     <>
       <BotIcon />
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 16 ? 'text-slate-400' : 'text-slate-800'
+          step >= 5 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <p className="bg-gray-50 rounded-3xl p-4">
@@ -81,7 +71,7 @@ const Submit = () => {
             }
           >
             Please click{' '}
-            {step == 15 ? (
+            {step == 4 ? (
               <a
                 href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -94,7 +84,7 @@ const Submit = () => {
               'here'
             )}{' '}
             to read our Privacy Notice and click{' '}
-            {step == 15 ? (
+            {step == 4 ? (
               <a
                 href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -108,7 +98,7 @@ const Submit = () => {
             )}{' '}
             to read our full Privacy Policy. If you would like to opt-out of
             having your information shared at all, please do so now by clicking{' '}
-            {step == 15 ? (
+            {step == 4 ? (
               <a
                 href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
@@ -125,7 +115,7 @@ const Submit = () => {
           <span
             onClick={() => setReadStatePara1(!readStatePara1)}
             className={
-              step == 15
+              step == 5
                 ? 'text-blue-600 text-sm hover:underline cursor-pointer'
                 : null
             }
@@ -136,7 +126,7 @@ const Submit = () => {
         <button
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >= 16 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 5 ? { display: 'none' } : { display: 'block' }}
         >
           Submit
         </button>
@@ -157,10 +147,10 @@ const Submit = () => {
 
   return (
     <>
-      {step > 14 ? (
+      {step > 3 ? (
         <>
           {renderDescription()}
-          {history[15] == true ? renderReply() : null}
+          {history[5] == true ? renderReply() : null}
         </>
       ) : null}
     </>

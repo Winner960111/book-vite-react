@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import apis from '../../utils/apis'
 
 const initialState = {
+  imageBase64:[],
   vehicleYear: '',
   vehicleMake: '',
   vehicleModel: '',
@@ -125,6 +126,9 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setImageBase64: (state, action) => {
+      state.imageBase64 = action.payload
+    },
     setVehicleYear: (state, action) => {
       state.vehicleYear = action.payload;
     },
@@ -562,6 +566,7 @@ export const checkerSlice = createSlice({
 
     // Clear history
     clearHistory: (state) => {
+      state.imageBase64 = initialState.imageBase64;
       state.identifyId = initialState.identifyId;
       state.identifyStatus = initialState.identifyStatus;
       state.refFirstName = initialState.refFirstName;
@@ -678,6 +683,7 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setImageBase64,
   setVehicleMake,
   setVehicleModel,
   setVehicleYear,

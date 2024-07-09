@@ -4,21 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
 // checker step components
-import Greeting from '../components/Mobile/Reference/Greeting';
+import Greeting from '../components/Mobile/Images/Greeting';
 import SendPhoneVerificationCode from '../components/common/SendPhoneVerificationCode';
 import CheckPhoneVerificationCode from '../components/Mobile/Images/CheckPhoneVerificationCode';
-import InputFirstName from '../components/Mobile/Images/InputFirstName';
-import InputLastName from '../components/Mobile/Images/InputLastName';
-import InputState from '../components/Mobile/Images/InputState';
-import InputCity from '../components/Mobile/Images/InputCity';
-import InputRelation from '../components/Mobile/Images/InputRelation';
-import InputPhoneNumber from '../components/Mobile/Images/InputPhoneNumber';
-import FirstName from '../components/Mobile/Images/FirstName';
-import LastName from '../components/Mobile/Images/LastName';
-import State from '../components/Mobile/Images/State';
-import City from '../components/Mobile/Images/City';
-import Relation from '../components/Mobile/Images/Relation';
-import PhoneNumber from '../components/Mobile/Images/PhoneNumber';
+import InputCity from '../components/Mobile/Images/Upload';
 import Submit from '../components/Mobile/Images/Submit';
 
 import {
@@ -127,18 +116,7 @@ const Prequalified = () => {
           <Greeting />
           <SendPhoneVerificationCode />
           <CheckPhoneVerificationCode />
-          <InputFirstName />
-          <InputLastName />
-          <InputPhoneNumber />
-          <InputState />
           <InputCity />
-          <InputRelation />
-          <FirstName />
-          <LastName />
-          <PhoneNumber />
-          <State />
-          <City />
-          <Relation />
           <Submit />
         </div>
       </div>

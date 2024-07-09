@@ -10,7 +10,6 @@ import PhoneVerification from '../components/common/PhoneVerification';
 import CheckVerifyCode from '../components/web/Images/CheckVerifyCode';
 import FirstPage from '../components/web/Images/FirstPage';
 import SecondPage from '../components/web/Images/SecondPage';
-import ThirdPage from '../components/web/Images/ThirdPage';
 import Finish from '../components/web/Images/Finish';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
@@ -33,7 +32,7 @@ import {
 import { deviceInfo } from '../api/index';
 
 
-const WebReference = () => {
+const WebImages = () => {
   const { dealerLogo, step, history, dealerId } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_slug } = useParams();
@@ -102,7 +101,7 @@ const WebReference = () => {
           />
           <div className=" w-32 h-10">
             <Flat
-              progress={(step / 5) * 100}
+              progress={(step / 4) * 100}
               range={{ from: 0, to: 100 }}
               sign={{ value: '%', position: 'end' }}
               text={'Complete'}
@@ -137,8 +136,7 @@ const WebReference = () => {
       {step == 1 && <CheckVerifyCode />}
       {step == 2 && <FirstPage />}
       {step == 3 && <SecondPage />}
-      {step == 4 && <ThirdPage />}
-      {step == 5 && <Finish />}
+      {step == 4 && <Finish />}
       <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
         <img
           className="w-10 cursor-pointer mx-5"
@@ -156,4 +154,4 @@ const WebReference = () => {
     </div>
   );
 };
-export default WebReference;
+export default WebImages;

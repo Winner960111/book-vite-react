@@ -45,7 +45,7 @@ const CheckVerifyCode = () => {
   return (
     <div className="w-full flex flex-col items-center">
       <p className="w-3/6 text-4xl my-3 mt-10 font-medium">
-        Check your verify code
+        <b>Check your verify code</b>
       </p>
       <form
         onSubmit={handleSubmit}

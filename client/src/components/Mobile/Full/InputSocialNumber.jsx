@@ -120,8 +120,7 @@ const InputSocialNumber = () => {
           {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
         <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-          We will not hurt your credit report. This is not an application for
-          credit. Authorization is solely for prequalification only.
+          {"We collect your Social Security Number (SSN) to verify your identity and ensure the security and integrity of our services."}
         </p>
         <button
           type="submit"

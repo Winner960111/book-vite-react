@@ -394,9 +394,7 @@ const FirstPage = () => {
                   disableRestoreFocus
                 >
                   <Typography sx={{ p: 2 }} style={{width:'300px'}}>
-                    We will not hurt your credit report. This is not an
-                    application for credit. Authorization is solely for
-                    prequalification only.
+                    {"We collect your Social Security Number (SSN) to verify your identity and ensure the security and integrity of our services."}
                   </Typography>
                 </Popover>
                 {errorSocialNumber !== '' && (

@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getDealerInfo, clearHistory, setVehicleYear, setVehicleMake, setVehicleModel } from '../store/reducers/checker';
+import {
+  getDealerInfo,
+  clearHistory,
+  setVehicleYear,
+  setVehicleMake,
+  setVehicleModel,
+} from '../store/reducers/checker';
 import shield from '../assets/shield.jpg';
 
 const Home = () => {
@@ -9,7 +15,7 @@ const Home = () => {
   const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [obj, setObj] = useState(true)
+  const [obj, setObj] = useState(true);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -18,22 +24,20 @@ const Home = () => {
     const make = urlParams.get('make');
     const model = urlParams.get('model');
     if (year && make && model) {
-
-      dispatch(setVehicleYear(year))
-      dispatch(setVehicleMake(make))
-      dispatch(setVehicleModel(model))
+      dispatch(setVehicleYear(year));
+      dispatch(setVehicleMake(make));
+      dispatch(setVehicleModel(model));
     }
-    console.log("this is in webHome=========>", year, make, model)
-
+    console.log('this is in webHome=========>', year, make, model);
   }, []);
 
   const handleObj = () => {
     if (obj == true) {
-      setObj(false)
+      setObj(false);
     } else {
-      setObj(true)
+      setObj(true);
     }
-  }
+  };
   // getting dealer_name and avatar
   useEffect(() => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
@@ -63,7 +67,10 @@ const Home = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/full`);
   };
-
+  const changePageMessage = () => {
+    dispatch(clearHistory());
+    navigate(`/message_dealer/${dealer_id}`);
+  };
 
   return (
     <div className="w-screen h-screen flex flex-col items-center bg-gray-50">
@@ -117,13 +124,16 @@ const Home = () => {
             CHECK APPLICATION STATUS
           </button>
           <button
-            // onClick={changePagePrequalified}
+            onClick={changePageMessage}
             className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 active:bg-purple-800"
             style={obj ? { display: 'none' } : { display: 'block' }}
           >
-            CALL BACK
+            Message Dealer
           </button>
-          <p className="text-lg font-medium mt-2 text-[#854fff] active:text-purple-800" onClick={handleObj}>
+          <p
+            className="text-lg font-medium mt-2 text-[#854fff] active:text-purple-800"
+            onClick={handleObj}
+          >
             {obj ? 'More...' : 'Less...'}
           </p>
         </div>

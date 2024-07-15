@@ -1,8 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { clearHistory, getDealerInfo, setVehicleYear, setVehicleMake, setVehicleModel } from '../store/reducers/checker';
-import shield from '../assets/shield.jpg'
+import {
+  clearHistory,
+  getDealerInfo,
+  setVehicleYear,
+  setVehicleMake,
+  setVehicleModel,
+} from '../store/reducers/checker';
+import shield from '../assets/shield.jpg';
 
 const WebHome = () => {
   const { dealer_id } = useParams();
@@ -17,15 +23,12 @@ const WebHome = () => {
     const make = urlParams.get('make');
     const model = urlParams.get('model');
     if (year && make && model) {
-
-      dispatch(setVehicleYear(year))
-      dispatch(setVehicleMake(make))
-      dispatch(setVehicleModel(model))
+      dispatch(setVehicleYear(year));
+      dispatch(setVehicleMake(make));
+      dispatch(setVehicleModel(model));
     }
-    console.log("this is in webHome=========>", year, make, model)
-
+    console.log('this is in webHome=========>', year, make, model);
   }, []);
-
 
   // getting dealer_name and avatar
   useEffect(() => {
@@ -57,18 +60,18 @@ const WebHome = () => {
   };
   const changePageCheckApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/check`)
-  }
+    navigate(`/info-checker/${dealer_id}/check`);
+  };
+  const changePageMessage = () => {
+    dispatch(clearHistory());
+    navigate(`/message_dealer/${dealer_id}`);
+  };
 
   return (
     <div className="w-screen h-screen flex flex-col items-center bg-gray-50">
       <div className="flex w-full justify-center bg-white">
         <div className="flex w-3/4 justify-between py-5 px-20">
-          <img
-            className="w-40 h-16"
-            src={dealerLogo}
-            alt="avatar"
-          />
+          <img className="w-40 h-16" src={dealerLogo} alt="avatar" />
           <img className="w-35 h-20" src={shield} alt="avatar" />
         </div>
       </div>
@@ -116,13 +119,11 @@ const WebHome = () => {
             CHECK APPLICATION STATUS
           </button>
           <button
-            // onClick={changePageTradeInValue}
+            onClick={changePageMessage}
             className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
           >
-            CALL BACK
+            MESSAGE DEALER
           </button>
-
-
         </div>
       </div>
     </div>

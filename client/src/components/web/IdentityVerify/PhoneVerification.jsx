@@ -44,10 +44,10 @@ const PhoneVerification = () => {
       const data = {
         dealer_id: dealerId,
         customer_id: customerId,
-        mobile_phone: phoneNumber
+        mobile_phone: phoneNumber,
       };
       const res = await checkVerify(data);
-      console.log("this is res.stauts ===>", res.status)
+      console.log('this is res.stauts ===>', res.status);
       if (res.status === 201) {
         dispatch(setIdentifyId(res.data.id));
         dispatch(setIdentifyStatus(res.data.status));
@@ -79,19 +79,20 @@ const PhoneVerification = () => {
               autoFocus
               value={phoneNumber}
               onChange={handleChangeInput}
+              autoComplete="off"
               fullWidth
               type="text"
               InputProps={{
                 style: {
                   height: '70px', // Set the height of the TextField
                   fontSize: '25px',
-                  textAlign: 'center'
+                  textAlign: 'center',
                 },
               }}
               InputLabelProps={{
                 style: {
                   textAlign: 'center',
-                  fontSize: '25px'
+                  fontSize: '25px',
                 },
               }}
             />
@@ -100,7 +101,9 @@ const PhoneVerification = () => {
             ) : null}
           </div>
           <p className=" bg-gray-50 rounded-3xl p-4">
-            We will send a <strong>verification code</strong> to the phone number you provide.<br />
+            We will send a <strong>verification code</strong> to the phone
+            number you provide.
+            <br />
             <i>Don&apos;t include &apos;+&apos; or &lsquo;()&rsquo;</i>
             {/* by providing your mobile number you agree to receive recurring
             messages from <b>{dealerName}</b> to the provided mobile number and

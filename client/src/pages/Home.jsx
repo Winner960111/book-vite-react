@@ -11,18 +11,20 @@ import {
 import shield from '../assets/shield.jpg';
 
 const Home = () => {
-  const { dealer_id } = useParams();
+  // const { dealer_id } = useParams();
   const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [obj, setObj] = useState(true);
+  const { param } = useParams();
+  const data = JSON.parse(param);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
+    // const urlParams = new URLSearchParams(window.location.search);
 
-    const year = urlParams.get('year');
-    const make = urlParams.get('make');
-    const model = urlParams.get('model');
+    const year = data.year;
+    const make = data.make;
+    const model = data.model;
     if (year && make && model) {
       dispatch(setVehicleYear(year));
       dispatch(setVehicleMake(make));
@@ -40,36 +42,36 @@ const Home = () => {
   };
   // getting dealer_name and avatar
   useEffect(() => {
-    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
+    const dealerInfoCall = dispatch(getDealerInfo(data.slug));
     new Promise(dealerInfoCall);
-  }, [dealer_id, dispatch]);
+  }, [data, dispatch]);
 
   const changePageQuote = () => {
-    navigate(`/info-checker/${dealer_id}/quote`);
+    navigate(`/info-checker/${data.slug}/quote`);
   };
 
   const changePagePrequalified = () => {
-    navigate(`/info-checker/${dealer_id}/prequalified`);
+    navigate(`/info-checker/${data.slug}/prequalified`);
   };
   const changePageAppointment = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/appointment`);
+    navigate(`/info-checker/${data.slug}/appointment`);
   };
   const changePageTradeIn = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/trade`);
+    navigate(`/info-checker/${data.slug}/trade`);
   };
   const changePageCheckApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/check`);
+    navigate(`/info-checker/${data.slug}/check`);
   };
   const changePageFull = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/full`);
+    navigate(`/info-checker/${data.slug}/full`);
   };
   const changePageMessage = () => {
     dispatch(clearHistory());
-    navigate(`/message_dealer/${dealer_id}`);
+    navigate(`/message_dealer/${data.slug}`);
   };
 
   return (

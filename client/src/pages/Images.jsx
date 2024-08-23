@@ -38,6 +38,7 @@ const Prequalified = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dealer_slug } = useParams();
+  const parsedData=JSON.parse(dealer_slug)
   const { customer_slug } = useParams();
 
   useEffect(() => {
@@ -69,7 +70,7 @@ const Prequalified = () => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
 
     // when refresh app, set dealer_slug and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(dealer_slug));
+    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
   }, [history, step, dealer_slug, dispatch]);
 

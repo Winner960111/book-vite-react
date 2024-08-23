@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
 import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
-import {customerInfo} from '../api/index'
+import { customerInfo } from '../api/index';
 // checker step components
 import PhoneVerification from '../components/common/PhoneVerification';
 import CheckVerifyCode from '../components/web/Reference/CheckVerifyCode';
@@ -32,11 +32,13 @@ import {
 
 import { deviceInfo } from '../api/index';
 
-
 const WebReference = () => {
-  const { dealerLogo, step, history, dealerId } = useSelector((state) => state.checker);
+  const { dealerLogo, step, history, dealerId } = useSelector(
+    (state) => state.checker
+  );
   const dispatch = useDispatch();
   const { dealer_slug } = useParams();
+  const parsedData = JSON.parse(dealer_slug);
   const { customer_slug } = useParams();
   const navigate = useNavigate();
 
@@ -66,18 +68,18 @@ const WebReference = () => {
 
   useEffect(() => {
     // when refresh app, set dealer_slug and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(dealer_slug));
+    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
   }, [history, step, dealer_slug, dispatch]);
 
   useEffect(() => {
     if (dealerId) {
       customerInfo(dealerId, customer_slug).then((res) => {
-        dispatch(setCustomerId(res.data.id))
+        dispatch(setCustomerId(res.data.id));
         dispatch(setCustomerName(res.data.get_full_name));
       });
     }
-  },[dealerId])
+  }, [dealerId]);
 
   const Refresh = () => {
     dispatch(clearHistory());

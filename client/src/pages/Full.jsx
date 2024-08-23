@@ -60,6 +60,7 @@ const Full = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dealer_id } = useParams();
+  const parsedData = JSON.parse(dealer_id);
   const [delta, setDelta] = useState(0);
   console.log('this is delta===>', delta);
 
@@ -100,9 +101,9 @@ const Full = () => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
 
     // when refresh app, set dealer_id and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
+    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
-    dispatch(setDealerId(dealer_id));
+    dispatch(setDealerId(parsedData.slug));
     console.log('this is step===>', step);
   }, [history, step, dealer_id, dispatch]);
 

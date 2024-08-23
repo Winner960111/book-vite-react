@@ -34,6 +34,7 @@ const WebAppointment = () => {
     const { dealerLogo, step, history } = useSelector((state) => state.checker);
     const dispatch = useDispatch();
     const { dealer_id } = useParams();
+    const parsedData=JSON.parse(dealer_id)
     const navigate = useNavigate();
     const [percent, setPercent] = useState(null);
     useEffect(() => {
@@ -63,9 +64,9 @@ const WebAppointment = () => {
 
     useEffect(() => {
         // when refresh app, set dealer_id and dealer_info of store
-        const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
+        const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
         new Promise(dealerInfoCall);
-        dispatch(setDealerId(dealer_id));
+        dispatch(setDealerId(parsedData.slug));
         setPercent(parseInt((step / 7) * 100));
     }, [history, step, dealer_id, dispatch]);
 

@@ -33,6 +33,7 @@ const WebMessage = () => {
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_id } = useParams();
+  const parsedData = JSON.parse(dealer_id);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,9 +61,9 @@ const WebMessage = () => {
   }, []);
   useEffect(() => {
     // when refresh app, set dealer_id and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
+    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
-    dispatch(setDealerId(dealer_id));
+    dispatch(setDealerId(parsedData.slug));
   }, [history, step, dealer_id, dispatch]);
 
   const Refresh = () => {

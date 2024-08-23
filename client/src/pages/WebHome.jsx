@@ -9,10 +9,14 @@ import {
   setVehicleModel,
 } from '../store/reducers/checker';
 import shield from '../assets/shield.jpg';
+import { parseJSON } from 'date-fns';
 
 const WebHome = () => {
   const { dealer_id } = useParams();
-  const { dealerName, dealerLogo } = useSelector((state) => state.checker);
+  const parsedData = JSON.parse(dealer_id);
+  console.log('=======================>', data);
+  const { dealerLogo } = useSelector((state) => state.checker);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,7 +36,7 @@ const WebHome = () => {
 
   // getting dealer_name and avatar
   useEffect(() => {
-    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
+    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
   }, [dealer_id, dispatch]);
 
@@ -77,8 +81,7 @@ const WebHome = () => {
       </div>
       <div className="w-3/4 flex flex-col text-center items-center mt-28">
         <p className="text-4xl font-bold">
-          🌟 Welcome to {dealerName}! Let&apos;s Tailor Your Experience
-          Together🤖
+          🌟 Welcome to Let&apos;s Tailor Your Experience Together🤖
         </p>
         <div className="flex flex-col mt-10 w-[50%] justify-around md:flex-wrap">
           <button

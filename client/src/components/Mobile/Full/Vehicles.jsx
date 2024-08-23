@@ -41,7 +41,7 @@ const Vehicle = () => {
 
   const vehicleListGet = async () => {
     const vehicleLists = await vehicleList(dealer_id);
-    setVehicles(vehicleLists.data.sold_by_dealer);
+    setVehicles(vehicleLists.data?.sold_by_dealer);
   };
   useEffect(() => {
     setError('');

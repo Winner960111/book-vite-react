@@ -36,6 +36,7 @@ const Message = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dealer_id } = useParams();
+  const parsedData = JSON.parse(dealer_id);
 
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
@@ -65,9 +66,9 @@ const Message = () => {
     // You can access the DOM node directly with myDivRef.current
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
     // when refresh app, set dealer_id and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
+    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
-    dispatch(setDealerId(dealer_id));
+    dispatch(setDealerId(parsedData.slug));
   }, [history, step, dealer_id, dispatch]);
 
   const handleRestart = () => {

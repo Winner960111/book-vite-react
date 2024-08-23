@@ -19,13 +19,14 @@ const WebHome = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const { param } = useParams();
+  const data = JSON.parse(param);
+  console.log('this is parameter 🥇🥇🥇===>', param);
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    const year = urlParams.get('year');
-    const make = urlParams.get('make');
-    const model = urlParams.get('model');
+    // const urlParams = new URLSearchParams(window.location.search);
+    const year = data.year;
+    const make = data.make;
+    const model = data.model;
     if (year && make && model) {
       dispatch(setVehicleYear(year));
       dispatch(setVehicleMake(make));
@@ -34,41 +35,41 @@ const WebHome = () => {
     console.log('this is in webHome=========>', year, make, model);
   }, []);
 
-  // getting dealer_name and avatar
+  //getting dealer_name and avatar
   useEffect(() => {
     const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
-  }, [dealer_id, dispatch]);
+  }, [data, dispatch]);
 
   const changePageQuote = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/quote`);
+    navigate(`/info-checker/${data.slug}/quote`);
   };
 
   const changePagePrequalified = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/prequalified`);
+    navigate(`/info-checker/${data.slug}/prequalified`);
   };
 
   const changePageTradeInValue = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/trade`);
+    navigate(`/info-checker/${data.slug}/trade`);
   };
   const changePageFullApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/full`);
+    navigate(`/info-checker/${data.slug}/full`);
   };
   const changePageAppointment = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/appointment`);
+    navigate(`/info-checker/${data.slug}/appointment`);
   };
   const changePageCheckApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/check`);
+    navigate(`/info-checker/${data.slug}/check`);
   };
   const changePageMessage = () => {
     dispatch(clearHistory());
-    navigate(`/message_dealer/${dealer_id}`);
+    navigate(`/message_dealer/${data.slug}`);
   };
 
   return (

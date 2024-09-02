@@ -69,7 +69,7 @@ const WebTrade = () => {
     'here===>', parsedData?.slug;
     const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
-    dispatch(setDealerId(parsedData.slug));
+    dispatch(setDealerId(parsedData.id));
     setPercent(parseInt((step / 7) * 100));
   }, [history, step, dealer_id, dispatch]);
 

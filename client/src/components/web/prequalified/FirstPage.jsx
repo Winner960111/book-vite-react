@@ -84,12 +84,12 @@ const FirstPage = () => {
       inputValue.substring(3, 5) +
       (inputValue.length > 5 ? '-' : '') +
       inputValue.substring(5, 9);
-    dispatch(setCheckerSocialNumber(formattedInputValue));
+      dispatch(setCheckerSocialNumber(formattedInputValue));
     // setSocialNumber(formattedInputValue);
   };
   const handleBirthday = (value) => {
     setErrorBirthday('');
-
+    console.log('value==>', value);
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
@@ -97,10 +97,10 @@ const FirstPage = () => {
     if (Number(year) < 1900 || Number(year) > 2100) {
       setErrorBirthday('*Invalid Date');
     }
-    dispatch(setCheckerBirthday(year + '-' + String(month) + '-' + date));
-    // setBirthday(year + '-' + String(month) + '-' + date);
+    
+    setBirthday(year + '-' + String(month) + '-' + date);
   };
-  birthday;
+  console.log(birthday);
   // useEffect(() => {
   //   setErrorFirstName('');
   //   setErrorMiddleName('');
@@ -171,7 +171,7 @@ const FirstPage = () => {
   //       page: 'Short',
   //       last_question: '1',
   //     };
-  // const res = await usersUpdate(data, intentID);
+  //     const res = await usersUpdate(data, intentID);
   //     dispatch(addHistory(true));
   //     dispatch(setCheckerFirstName(firstName));
   //     dispatch(setCheckerMiddleName(middleName));

@@ -17,15 +17,15 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [obj, setObj] = useState(true);
-  // const { param } = useParams();
-  // const data = JSON.parse(param);
+  const { param } = useParams();
+  const data = JSON.parse(param);
 
   useEffect(() => {
     // const urlParams = new URLSearchParams(window.location.search);
 
-    const year = parsedData.year;
-    const make = parsedData.make;
-    const model = parsedData.model;
+    const year = data.year;
+    const make = data.make;
+    const model = data.model;
     if (year && make && model) {
       dispatch(setVehicleYear(year));
       dispatch(setVehicleMake(make));
@@ -45,34 +45,34 @@ const Home = () => {
   useEffect(() => {
     const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
-  }, [dealer_id, dispatch]);
+  }, [data, dispatch]);
 
   const changePageQuote = () => {
-    navigate(`/info-checker/${dealer_id}/quote`);
+    navigate(`/info-checker/${data.slug}/quote`);
   };
 
   const changePagePrequalified = () => {
-    navigate(`/info-checker/${dealer_id}/prequalified`);
+    navigate(`/info-checker/${data.slug}/prequalified`);
   };
   const changePageAppointment = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/appointment`);
+    navigate(`/info-checker/${data.slug}/appointment`);
   };
   const changePageTradeIn = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/trade`);
+    navigate(`/info-checker/${data.slug}/trade`);
   };
   const changePageCheckApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/check`);
+    navigate(`/info-checker/${data.slug}/check`);
   };
   const changePageFull = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/full`);
+    navigate(`/info-checker/${data.slug}/full`);
   };
   const changePageMessage = () => {
     dispatch(clearHistory());
-    navigate(`/message_dealer/${dealer_id}`);
+    navigate(`/message_dealer/${data.slug}`);
   };
 
   return (

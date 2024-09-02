@@ -31,5 +31,5 @@ if (process.env.NODE_ENV === 'production') {
 const PORT = process.env.PORT || 443;
 
 const server = app.listen(PORT, async () => {
-  console.log(`Server started on ${ip.address()}: ${PORT}`);
+  `Server started on ${ip.address()}: ${PORT}`;
 });

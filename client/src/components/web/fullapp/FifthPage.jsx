@@ -16,7 +16,7 @@ import {
   setProgress,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
-import { GiPositionMarker } from "react-icons/gi";
+import { GiPositionMarker } from 'react-icons/gi';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
@@ -42,17 +42,17 @@ const FifthPage = () => {
   const [zipcode, setZipcode] = useState('');
   const [apt, setApt] = useState('');
   const [errors, setErrors] = useState({});
-  const [focus, setFocus] = useState('')
-  const [errorJobKind, setErrorJobKind] = useState('')
+  const [focus, setFocus] = useState('');
+  const [errorJobKind, setErrorJobKind] = useState('');
   const [pay, setPay] = useState('');
   const [date, setDate] = useState('');
   const [errorPay, setErrorPay] = useState('');
   const [errorDate, setErrorDate] = useState('');
   const [focusPay, setFocusPay] = useState('');
-  const [occupation, setOccupation] = useState('')
-  const [Ename, setEname] = useState('')
-  const [Enumber, setEnumber] = useState('')
-  const [jobKind, setJobKind] = useState('')
+  const [occupation, setOccupation] = useState('');
+  const [Ename, setEname] = useState('');
+  const [Enumber, setEnumber] = useState('');
+  const [jobKind, setJobKind] = useState('');
   const {
     step,
     intentID,
@@ -85,7 +85,7 @@ const FifthPage = () => {
 
   const handleDate = (value) => {
     setErrorDate('');
-    console.log('value==>', value);
+    'value==>', value;
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
@@ -98,14 +98,14 @@ const FifthPage = () => {
 
   const handlePay = (e) => {
     if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
-      setPay(e.target.value)
+      setPay(e.target.value);
     }
     setErrorPay('');
-  }
+  };
 
   useEffect(() => {
-    setErrors({})
-  }, [zipcode, locality, state])
+    setErrors({});
+  }, [zipcode, locality, state]);
   const handleEnumber = (e) => {
     const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
     const formattedInputValue =
@@ -173,9 +173,9 @@ const FifthPage = () => {
   };
 
   const handleJobKind = (e) => {
-    setErrorJobKind('')
-    setJobKind(e.target.value)
-  }
+    setErrorJobKind('');
+    setJobKind(e.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -183,7 +183,7 @@ const FifthPage = () => {
     let pass = 0;
     setErrors('');
     let newErrors = {};
-    console.log(locality);
+    locality;
 
     if (!locality.trim()) {
       newErrors.locality = '*Required';
@@ -197,26 +197,30 @@ const FifthPage = () => {
       newErrors.zipcode = '*Invalid format';
     }
     if (!address) {
-      newErrors.address = "*Required"
+      newErrors.address = '*Required';
     }
     if (!date) {
-      setErrorDate('*Required')
-    } else { pass += 1 }
+      setErrorDate('*Required');
+    } else {
+      pass += 1;
+    }
 
     if (!Enumber) {
-      newErrors.Enumber = '*Required'
-    } else { pass += 1 }
+      newErrors.Enumber = '*Required';
+    } else {
+      pass += 1;
+    }
     if (!Ename.trim()) {
-      newErrors.Ename = '*Required'
+      newErrors.Ename = '*Required';
     } else if (!/^[A-Za-z]+$/.test(Ename)) {
-      newErrors.Ename = '*contains only characters'
+      newErrors.Ename = '*contains only characters';
     } else {
       pass += 1;
     }
     if (!occupation.trim()) {
-      newErrors.occupation = '*Required'
+      newErrors.occupation = '*Required';
     } else if (!/^[A-Za-z]+$/.test(occupation)) {
-      newErrors.occupation = '*contains only characters'
+      newErrors.occupation = '*contains only characters';
     } else {
       pass += 1;
     }
@@ -230,12 +234,10 @@ const FifthPage = () => {
     setErrors(newErrors);
 
     if (!jobKind) {
-      setErrorJobKind('*required')
+      setErrorJobKind('*required');
     } else {
       pass += 1;
     }
-
-
 
     if (Object.keys(newErrors).length === 0 && pass == 6) {
       const data = {
@@ -257,20 +259,20 @@ const FifthPage = () => {
         last_question: '5',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
-      dispatch(setJobAddress(address))
+      dispatch(setJobAddress(address));
       dispatch(setProgress());
       dispatch(setJobApt(apt));
       dispatch(setJobCity(locality));
       dispatch(setJobState(state));
       dispatch(setJobZipcode(zipcode));
       dispatch(setJobSalary(pay));
-      dispatch(setJobOccupation(occupation))
-      dispatch(setEmployerName(Ename))
-      dispatch(setEmployerPhoneNumber(Enumber))
-      dispatch(setJobstatus(jobKind))
-      dispatch(setJobYear(date))
+      dispatch(setJobOccupation(occupation));
+      dispatch(setEmployerName(Ename));
+      dispatch(setEmployerPhoneNumber(Enumber));
+      dispatch(setJobstatus(jobKind));
+      dispatch(setJobYear(date));
     }
   };
   return (
@@ -292,7 +294,7 @@ const FifthPage = () => {
                   defaultValue="Normal"
                   label="Occupation"
                   autoFocus
-                  autoComplete='off'
+                  autoComplete="off"
                   variant="standard"
                   InputProps={{
                     style: {
@@ -319,7 +321,7 @@ const FifthPage = () => {
                   fullWidth
                   defaultValue="Normal"
                   label="Employeer's name"
-                  autoComplete='off'
+                  autoComplete="off"
                   variant="standard"
                   InputProps={{
                     style: {
@@ -345,7 +347,7 @@ const FifthPage = () => {
                   fullWidth
                   defaultValue="Normal"
                   label="Employeer's phone number"
-                  autoComplete='off'
+                  autoComplete="off"
                   variant="standard"
                   InputProps={{
                     style: {
@@ -433,7 +435,7 @@ const FifthPage = () => {
                     defaultValue="Normal"
                     label="Apt/Suite (Optional)"
                     variant="standard"
-                    autoComplete='off'
+                    autoComplete="off"
                     InputProps={{
                       style: {
                         height: '50px', // Set the height of the TextField
@@ -458,7 +460,7 @@ const FifthPage = () => {
                     type="text"
                     defaultValue="Normal"
                     label="City"
-                    autoComplete='off'
+                    autoComplete="off"
                     variant="standard"
                     InputProps={{
                       style: {
@@ -487,7 +489,7 @@ const FifthPage = () => {
                     type="text"
                     defaultValue="Normal"
                     label="State"
-                    autoComplete='off'
+                    autoComplete="off"
                     variant="standard"
                     InputProps={{
                       style: {
@@ -515,7 +517,7 @@ const FifthPage = () => {
                     fullWidth
                     type="text"
                     defaultValue="Normal"
-                    autoComplete='off'
+                    autoComplete="off"
                     label="Zip Code"
                     variant="standard"
                     InputProps={{
@@ -548,12 +550,12 @@ const FifthPage = () => {
                   variant="standard"
                   defaultValue="Normal"
                   margin="dense"
-                  autoComplete='off'
+                  autoComplete="off"
                   label="Salary"
                   fullWidth
                   value={pay}
                   onChange={(e) => {
-                    handlePay(e)
+                    handlePay(e);
                   }}
                   InputProps={{
                     style: {

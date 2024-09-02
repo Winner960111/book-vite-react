@@ -14,14 +14,14 @@ import { parseJSON } from 'date-fns';
 const WebHome = () => {
   const { dealer_id } = useParams();
   const parsedData = JSON.parse(dealer_id);
-  // console.log('=======================>', data);
+  // ('=======================>', data);
   const { dealerLogo } = useSelector((state) => state.checker);
-
+  'This is avatar =====>', dealerLogo;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const { param } = useParams();
   // const data = JSON.parse(param);
-  console.log('this is parameter 🥇🥇🥇===>', parsedData);
+  'this is parameter 🥇🥇🥇===>', parsedData;
   useEffect(() => {
     // const urlParams = new URLSearchParams(window.location.search);
     const year = parsedData.year;
@@ -32,7 +32,7 @@ const WebHome = () => {
       dispatch(setVehicleMake(make));
       dispatch(setVehicleModel(model));
     }
-    console.log('this is in webHome=========>', year, make, model);
+    'this is in webHome=========>', year, make, model;
   }, []);
 
   //getting dealer_name and avatar

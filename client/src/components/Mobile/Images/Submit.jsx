@@ -7,42 +7,34 @@ import { submitImages } from '../../../api/index';
 import { useParams } from 'react-router-dom';
 
 const Submit = () => {
-
   const [readStatePara1, setReadStatePara1] = useState(false);
-  const {trade_id} = useParams();
+  const { trade_id } = useParams();
   const dispatch = useDispatch();
-  const {
-    step,
-    history,
-    imageBase64,
-    dealerId,
-    customerId,
-    dealerName,
-  } = useSelector((state) => state.checker);
+  const { step, history, imageBase64, dealerId, customerId, dealerName } =
+    useSelector((state) => state.checker);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let number=0;
-    for (let i = 0; i < imageBase64.length; i++){
+    let number = 0;
+    for (let i = 0; i < imageBase64.length; i++) {
       const data = {
         dealer_id: dealerId,
         trade_in_id: trade_id,
         customer_id: customerId,
         path: imageBase64[i].base64,
       };
-     const res = await submitImages(data);
-     if (res.status == 201) {
-       console.log('status ImageSend', res);
-       number += 1
- 
-     } else {
-       console.log('Faild ImageSend');
-     }
+      const res = await submitImages(data);
+      if (res.status == 201) {
+        'status ImageSend', res;
+        number += 1;
+      } else {
+        ('Faild ImageSend');
+      }
     }
-    console.log("this is number ===>", number)
+    'this is number ===>', number;
     if (number == imageBase64.length) {
-       dispatch(addHistory(true));
-}
+      dispatch(addHistory(true));
+    }
   };
 
   const renderDescription = () => (

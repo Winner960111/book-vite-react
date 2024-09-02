@@ -19,7 +19,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { TextField } from '@mui/material';
 
 const Job2 = () => {
-
   const [address, setAddress] = useState('');
   const [locality, setLocality] = useState('');
   const [state, setState] = useState('');
@@ -59,8 +58,8 @@ const Job2 = () => {
     });
   }, []);
   useEffect(() => {
-    setError('')
-  }, [state, zipcode, locality, address])
+    setError('');
+  }, [state, zipcode, locality, address]);
   useEffect(() => {
     if (addressRef.current) {
       const loadGoogleMapsScript = (callback) => {
@@ -86,10 +85,9 @@ const Job2 = () => {
     }
   }, [initializeAutocomplete, step]);
 
-
   useEffect(() => {
-    console.log("this is current addressref===>", addressRef.current)
-  }, [addressRef])
+    'this is current addressref===>', addressRef.current;
+  }, [addressRef]);
 
   const parseAddressComponents = (place) => {
     for (const component of place.address_components) {
@@ -110,25 +108,25 @@ const Job2 = () => {
   };
 
   const handleSubmit = async (e) => {
-    let pass = 0
+    let pass = 0;
     e.preventDefault();
 
     if (!locality.trim()) {
       setError('City field is required');
     } else {
-      pass += 1
+      pass += 1;
     }
     if (!state.trim()) {
       setError('State field is required');
     } else {
-      pass += 1
+      pass += 1;
     }
     if (!zipcode.trim()) {
       setError('ZipCode field is required');
     } else if (!/^[0-9]+$/.test(zipcode)) {
-      setError('*Invalid ZipCode format')
+      setError('*Invalid ZipCode format');
     } else {
-      pass += 1
+      pass += 1;
     }
     if (pass == 3) {
       const data = {
@@ -150,14 +148,13 @@ const Job2 = () => {
         last_question: '18',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setJobAddress(address));
       dispatch(setJobApt(apt));
       dispatch(setJobCity(locality));
       dispatch(setJobState(state));
       dispatch(setJobZipcode(zipcode));
-
     }
   };
 

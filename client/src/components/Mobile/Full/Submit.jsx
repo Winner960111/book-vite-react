@@ -92,7 +92,7 @@ const Submit = () => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleResize = () => {
     // Rerun your code to set canvas size based on the new dimensions
     prepareCanvas();
@@ -104,7 +104,6 @@ const Submit = () => {
   // Initialize the canvas context
   const prepareCanvas = useCallback(() => {
     if (canvasRef.current) {
-
       const canvas = canvasRef.current;
       // Get the dimensions of the parent element
       const { width, height } = canvas.parentElement.getBoundingClientRect();
@@ -211,7 +210,7 @@ const Submit = () => {
       last_question: '19',
     };
     const intent_res = await usersUpdate(intent_data, intentID);
-    console.log('this is update results ====>', intent_res);
+    'this is update results ====>', intent_res;
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');
     const image = new Image();
@@ -324,7 +323,7 @@ const Submit = () => {
 
     const res = await fullcustomer(data);
     if (res.status == 201) {
-      console.log('status CustomerItems_Send', res);
+      'status CustomerItems_Send', res;
       const appData = {
         dealer_id: dealerId,
         customer_id: res.data.id,
@@ -341,14 +340,14 @@ const Submit = () => {
       };
       const appRes = await application(appData);
       if (appRes.status == 201) {
-        console.log('status ApplicationItems_Send', res);
+        'status ApplicationItems_Send', res;
         dispatch(addHistory(true));
-        navigate(-1)
+        navigate(-1);
       } else {
-        console.log('Faild ApplicationItmes_send');
+        ('Faild ApplicationItmes_send');
       }
     } else {
-      console.log('Faild CustomerItems_Send');
+      ('Faild CustomerItems_Send');
     }
   };
 

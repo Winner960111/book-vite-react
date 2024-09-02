@@ -46,7 +46,7 @@ const ThirdPage = () => {
       last_question: '3',
     };
     const res = await usersUpdate(data, intentID);
-    console.log('this is update results ====>', res);
+    'this is update results ====>', res;
     dispatch(addHistory(true));
   };
 

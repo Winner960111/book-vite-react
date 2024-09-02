@@ -86,12 +86,12 @@ const Confirm = () => {
         last_question: '18',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setIncomeAmount(amountIncome));
       dispatch(setSourceIncome(howIncome));
     }
-  }
+  };
   const renderDescription = () => (
     <>
       <BotIcon />
@@ -113,7 +113,7 @@ const Confirm = () => {
             onChange={handleAmountIncome}
             fullWidth
             label="Amount of Income"
-            autoComplete='off'
+            autoComplete="off"
             variant="standard"
             InputProps={{
               style: {
@@ -132,7 +132,7 @@ const Confirm = () => {
             onChange={handleHowIncome}
             fullWidth
             label="Source of Income"
-            autoComplete='off'
+            autoComplete="off"
             variant="standard"
             InputProps={{
               style: {

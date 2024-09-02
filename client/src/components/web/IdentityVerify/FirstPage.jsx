@@ -11,7 +11,7 @@ const FirstPage = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState({});
   useEffect(() => {
-    console.log('useEffect===>');
+    ('useEffect===>');
     identifyInfo(identifyId).then((res) => {
       setData(res);
     });
@@ -39,11 +39,7 @@ const FirstPage = () => {
                 </div>
                 <div>
                   {data.equals_names == true ? (
-                    <img
-                      src={confirm}
-                      alt="ico"
-                      className="w-[45px] mx-3"
-                    />
+                    <img src={confirm} alt="ico" className="w-[45px] mx-3" />
                   ) : (
                     <img src={fail} alt="ico" className="w-[60px] mx-1" />
                   )}
@@ -58,11 +54,7 @@ const FirstPage = () => {
                 </div>
                 <div>
                   {data.equals_phone == true ? (
-                    <img
-                      src={confirm}
-                      alt="ico"
-                      className="w-[45px] mx-3"
-                    />
+                    <img src={confirm} alt="ico" className="w-[45px] mx-3" />
                   ) : (
                     <img src={fail} alt="ico" className="w-[60px] mx-1" />
                   )}
@@ -77,11 +69,7 @@ const FirstPage = () => {
                 </div>
                 <div>
                   {data.equals_addresses == true ? (
-                    <img
-                      src={confirm}
-                      alt="ico"
-                      className="w-[45px] mx-3"
-                    />
+                    <img src={confirm} alt="ico" className="w-[45px] mx-3" />
                   ) : (
                     <img src={fail} alt="ico" className="w-[60px] mx-1" />
                   )}
@@ -96,11 +84,7 @@ const FirstPage = () => {
                 </div>
                 <div>
                   {data.equals_dob == true ? (
-                    <img
-                      src={confirm}
-                      alt="ico"
-                      className="w-[45px] mx-3"
-                    />
+                    <img src={confirm} alt="ico" className="w-[45px] mx-3" />
                   ) : (
                     <img src={fail} alt="ico" className="w-[60px] mx-1" />
                   )}
@@ -115,11 +99,7 @@ const FirstPage = () => {
                 </div>
                 <div>
                   {data.equals_ssn == true ? (
-                    <img
-                      src={confirm}
-                      alt="ico"
-                      className="w-[45px] mx-3"
-                    />
+                    <img src={confirm} alt="ico" className="w-[45px] mx-3" />
                   ) : (
                     <img src={fail} alt="ico" className="w-[60px] mx-1" />
                   )}

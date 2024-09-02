@@ -73,13 +73,13 @@ const VehicleType = () => {
         last_question: '3',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setProgress());
     }
   };
 
-  console.log('this is vehicles===>', vehicles);
+  'this is vehicles===>', vehicles;
   return (
     <div className="flex flex-col bg-gray-50 w-full justify-center items-center min-w-[600px]">
       <p className="w-2/3 text-4xl mt-20 font-medium">

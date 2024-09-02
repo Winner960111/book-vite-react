@@ -48,7 +48,7 @@ const OldAddressMore = () => {
   }, []);
 
   const handleYear = (e) => {
-    setError('')
+    setError('');
     if (
       (/^[0-9]+$/.test(e.target.value) && String(e.target.value).length <= 2) ||
       !e.target.value.trim()
@@ -58,7 +58,7 @@ const OldAddressMore = () => {
   };
 
   const handleMonth = (e) => {
-    setError('')
+    setError('');
     if (
       (/^[0-9]+$/.test(e.target.value) && String(e.target.value).length <= 2) ||
       !e.target.value.trim()
@@ -106,7 +106,7 @@ const OldAddressMore = () => {
         last_question: '15',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setPreviousResidentalMonths(residentalMonth));
       dispatch(setPreviousResidentalYears(residentalYear));
@@ -153,7 +153,7 @@ const OldAddressMore = () => {
             variant="standard"
             defaultValue="Normal"
             margin="dense"
-            autoComplete='off'
+            autoComplete="off"
             label="Year"
             value={residentalYear}
             style={{ margin: '0 10px 0 10px', width: '95%' }}
@@ -174,7 +174,7 @@ const OldAddressMore = () => {
             variant="standard"
             defaultValue="Normal"
             margin="dense"
-            autoComplete='off'
+            autoComplete="off"
             label="Month"
             value={residentalMonth}
             style={{ margin: '0 10px 0 10px', width: '95%' }}

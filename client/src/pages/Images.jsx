@@ -38,17 +38,17 @@ const Prequalified = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dealer_slug } = useParams();
-  const parsedData=JSON.parse(dealer_slug)
+  const parsedData = JSON.parse(dealer_slug);
   const { customer_slug } = useParams();
 
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
       .then(async (data) => {
-        console.log('this is IP address===>', data.ip);
+        'this is IP address===>', data.ip;
         dispatch(setDeviceIP(data.ip));
         deviceInfo(data.ip).then((deviceData) => {
-          console.log('this is device=======>', deviceData);
+          'this is device=======>', deviceData;
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
           dispatch(setDeviceState(deviceData.region));
@@ -62,7 +62,7 @@ const Prequalified = () => {
         dispatch(setDeviceBrowser(browserName));
         dispatch(setDeviceOS(osName));
       })
-      .catch((error) => console.log(error));
+      .catch((error) => error);
   }, []);
 
   useEffect(() => {

@@ -31,7 +31,7 @@ const Home = () => {
       dispatch(setVehicleMake(make));
       dispatch(setVehicleModel(model));
     }
-    console.log('this is in webHome=========>', year, make, model);
+    'this is in webHome=========>', year, make, model;
   }, []);
 
   const handleObj = () => {

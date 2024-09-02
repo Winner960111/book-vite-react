@@ -5,13 +5,8 @@ import { addHistory } from '../../../store/reducers/checker';
 import { submitReference } from '../../../api/index';
 
 const SecondPage = () => {
-  const {
-    dealerName,
-    dealerId,
-    customerId,
-    refRelation,
-    refCity,
-  } = useSelector((state) => state.checker);
+  const { dealerName, dealerId, customerId, refRelation, refCity } =
+    useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [readStatePara1, setReadStatePara1] = useState(false);
 
@@ -26,11 +21,10 @@ const SecondPage = () => {
 
     const res = await submitReference(data);
     if (res.status == 201) {
-      console.log('status ImageSend', res);
+      'status ImageSend', res;
       dispatch(addHistory(true));
-
     } else {
-      console.log('Faild ImageSend');
+      ('Faild ImageSend');
     }
   };
 

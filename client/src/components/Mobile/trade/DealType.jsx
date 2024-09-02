@@ -6,7 +6,9 @@ import { addHistory, setDealType } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 
 const DealType = () => {
-  const { step, intentID,
+  const {
+    step,
+    intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -18,7 +20,8 @@ const DealType = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerMobileNumber, } = useSelector((state) => state.checker);
+    checkerMobileNumber,
+  } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [dealClick, setDealClick] = useState('Finance');
@@ -49,7 +52,7 @@ const DealType = () => {
         last_question: '8',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setDealType(dealClick));
     } else {

@@ -54,7 +54,7 @@ const Message = () => {
       last_question: '4',
     };
     const res = await usersUpdate(data, intentID);
-    console.log('this is update results ====>', res);
+    'this is update results ====>', res;
     if (res.status === 200) {
       const newData = {
         dealer_id: dealerId,
@@ -73,7 +73,7 @@ const Message = () => {
       if (newres.status === 201) {
         dispatch(addHistory(true));
       } else {
-        console.log('this is res ===>', newres.status);
+        'this is res ===>', newres.status;
       }
     }
   };

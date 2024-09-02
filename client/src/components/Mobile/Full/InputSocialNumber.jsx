@@ -9,7 +9,11 @@ import { classNames } from '../../../utils';
 import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
 const InputSocialNumber = () => {
-  const { step, history, checkerSocialNumber, intentID,
+  const {
+    step,
+    history,
+    checkerSocialNumber,
+    intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -21,9 +25,8 @@ const InputSocialNumber = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerMobileNumber, } = useSelector(
-      (state) => state.checker
-    );
+    checkerMobileNumber,
+  } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [socialNumber, setSocialNumber] = useState('');
@@ -76,7 +79,7 @@ const InputSocialNumber = () => {
         last_question: '5',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setCheckerSocialNumber(socialNumber));
       setSocialNumber('');
@@ -102,7 +105,7 @@ const InputSocialNumber = () => {
             label="Social security number"
             fullWidth
             value={socialNumber}
-            autoComplete='off'
+            autoComplete="off"
             onChange={handleChangeInputSocialNumber}
             type="text"
             InputProps={{
@@ -120,7 +123,9 @@ const InputSocialNumber = () => {
           {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
         <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-          {"We collect your Social Security Number (SSN) to verify your identity and ensure the security and integrity of our services."}
+          {
+            'We collect your Social Security Number (SSN) to verify your identity and ensure the security and integrity of our services.'
+          }
         </p>
         <button
           type="submit"

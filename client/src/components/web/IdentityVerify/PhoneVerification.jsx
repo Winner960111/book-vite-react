@@ -47,7 +47,7 @@ const PhoneVerification = () => {
         mobile_phone: phoneNumber,
       };
       const res = await checkVerify(data);
-      console.log('this is res.stauts ===>', res.status);
+      'this is res.stauts ===>', res.status;
       if (res.status === 201) {
         dispatch(setIdentifyId(res.data.id));
         dispatch(setIdentifyStatus(res.data.status));

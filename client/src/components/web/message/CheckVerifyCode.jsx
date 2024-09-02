@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkVerification, usersStatus } from '../../../api/index';
 import { addHistory, setIntentID } from '../../../store/reducers/checker';
 import OtpInput from 'react-otp-input';
-import verify from '../../../assets/verify.png'
+import verify from '../../../assets/verify.png';
 
 const CheckVerifyCode = () => {
   const [verifyCode, setVerifyCode] = useState('');
@@ -65,7 +65,7 @@ const CheckVerifyCode = () => {
         };
         const intentRes = await usersStatus(data);
         dispatch(setIntentID(intentRes.data.id));
-        console.log('this is intent ID===>', intentRes.data.id);
+        'this is intent ID===>', intentRes.data.id;
         dispatch(addHistory(true));
       } else {
         setError('Invalid verification code. Please try again.');

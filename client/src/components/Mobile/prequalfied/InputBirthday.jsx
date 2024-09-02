@@ -13,7 +13,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const InputBirthday = () => {
-  const { step, history, checkerBirthday, intentID,
+  const {
+    step,
+    history,
+    checkerBirthday,
+    intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -25,9 +29,8 @@ const InputBirthday = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerMobileNumber, } = useSelector(
-      (state) => state.checker
-    );
+    checkerMobileNumber,
+  } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [birthday, setBirthday] = useState('');
@@ -39,7 +42,7 @@ const InputBirthday = () => {
 
   const handleBirthday = (value) => {
     setError('');
-    console.log('value==>', value);
+    'value==>', value;
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
@@ -75,7 +78,7 @@ const InputBirthday = () => {
         last_question: '6',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setCheckerBirthday(birthday));
       setBirthday('');

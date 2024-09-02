@@ -100,7 +100,7 @@ const OldJob1 = () => {
         last_question: '17',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setPrevjobOccupation(occupation));
       dispatch(setPrevEmployerName(Ename));
@@ -113,12 +113,12 @@ const OldJob1 = () => {
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >=  24 ? 'text-slate-400' : 'text-slate-800'
+          step >= 24 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div
           className="my-2 flex flex-col items-center"
-          style={step >=  24 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 24 ? { display: 'none' } : { display: 'block' }}
         >
           <div className="w-[95%] mx-2 mt-2">
             <TextField
@@ -201,7 +201,7 @@ const OldJob1 = () => {
           type="button"
           onClick={handleSubmit}
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >=  24 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 24 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>

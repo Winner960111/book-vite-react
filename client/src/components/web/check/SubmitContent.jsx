@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import { addHistory, setAppDescription, setAppStatus } from '../../../store/reducers/checker';
+import {
+  addHistory,
+  setAppDescription,
+  setAppStatus,
+} from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { TextField } from '@mui/material';
-import { checkapp } from '../../../api/index'
+import { checkapp } from '../../../api/index';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 
 const SubmitContent = () => {
-  const {
-    step,
-    checkerMobileNumber,
-    dealerId,
-
-  } = useSelector((state) => state.checker);
+  const { step, checkerMobileNumber, dealerId } = useSelector(
+    (state) => state.checker
+  );
   const dispatch = useDispatch();
   const [errorLastName, setErrorLastName] = useState('');
   const [errorSocialNumber, setErrorSocialNumber] = useState('');
@@ -29,8 +30,7 @@ const SubmitContent = () => {
   const handleSocialNumber = (e) => {
     setErrorSocialNumber('');
     const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
-    const formattedInputValue =
-      inputValue.substring(0, 4)
+    const formattedInputValue = inputValue.substring(0, 4);
     setSocialNumber(formattedInputValue);
   };
 
@@ -40,7 +40,6 @@ const SubmitContent = () => {
   }, [step]);
 
   const handlesubmit = async () => {
-
     if (!lastName) {
       setErrorLastName('*field is required');
     } else if (!/^[A-Za-z]+$/.test(lastName)) {
@@ -50,16 +49,16 @@ const SubmitContent = () => {
         dealer_id: dealerId,
         last_name: lastName,
         ssn: socialNumber,
-        mobile_phone: checkerMobileNumber
-      }
-      const res = await checkapp(data)
+        mobile_phone: checkerMobileNumber,
+      };
+      const res = await checkapp(data);
       if (res.status == 201) {
-        console.log(res.data)
-        dispatch(setAppStatus(res.data.status))
-        dispatch(setAppDescription(res.data.describe))
-        dispatch(addHistory(true))
+        res.data;
+        dispatch(setAppStatus(res.data.status));
+        dispatch(setAppDescription(res.data.describe));
+        dispatch(addHistory(true));
       } else {
-        console.log("failed API calling.")
+        ('failed API calling.');
       }
     }
   };
@@ -73,12 +72,13 @@ const SubmitContent = () => {
           </p>
           <div className="w-2/3 text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
             <div className="w-full p-5 flex flex-col md:flex-row items-start">
-
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
                   aria-owns={focusLastName ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
-                  onMouseEnter={(event) => setFocusLastName(event.currentTarget)}
+                  onMouseEnter={(event) =>
+                    setFocusLastName(event.currentTarget)
+                  }
                   onMouseLeave={() => setFocusLastName(null)}
                   onMouseDown={() => setFocusLastName(null)}
                   value={lastName}
@@ -87,7 +87,7 @@ const SubmitContent = () => {
                   type="text"
                   defaultValue="Normal"
                   label="Last name"
-                  autoComplete='off'
+                  autoComplete="off"
                   variant="standard"
                   InputProps={{
                     style: {
@@ -97,7 +97,7 @@ const SubmitContent = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
@@ -129,9 +129,13 @@ const SubmitContent = () => {
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={focusSocialNumber ? 'mouse-over-popover' : undefined}
+                  aria-owns={
+                    focusSocialNumber ? 'mouse-over-popover' : undefined
+                  }
                   aria-haspopup="true"
-                  onMouseEnter={(event) => setFocusSocialNumber(event.currentTarget)}
+                  onMouseEnter={(event) =>
+                    setFocusSocialNumber(event.currentTarget)
+                  }
                   onMouseLeave={() => setFocusSocialNumber(null)}
                   onMouseDown={() => setFocusSocialNumber(null)}
                   value={socialNumber}
@@ -139,7 +143,7 @@ const SubmitContent = () => {
                   fullWidth
                   type="text"
                   defaultValue="Normal"
-                  autoComplete='off'
+                  autoComplete="off"
                   label="Social security number"
                   variant="standard"
                   InputProps={{
@@ -150,7 +154,7 @@ const SubmitContent = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px'
+                      fontSize: '25px',
                     },
                   }}
                 />
@@ -173,7 +177,8 @@ const SubmitContent = () => {
                   disableRestoreFocus
                 >
                   <Typography sx={{ p: 2, width: '300px' }}>
-                    *Input only last 4 digit<br />
+                    *Input only last 4 digit
+                    <br />
                     We will not hurt your credit report. This is not an
                     application for credit. Authorization is solely for
                     prequalification only.

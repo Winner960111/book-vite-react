@@ -25,7 +25,7 @@ import {
   setDeviceLon,
   setDeviceOS,
   setDeviceState,
-  setTimezone
+  setTimezone,
 } from '../store/reducers/checker';
 import refreshImg from '../assets/refresh.png';
 import backImg from '../assets/back.png';
@@ -37,22 +37,22 @@ const Quote = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dealer_id } = useParams();
-  const parsedData=JSON.parse(dealer_id);
+  const parsedData = JSON.parse(dealer_id);
 
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
       .then(async (data) => {
-        console.log('this is IP address===>', data.ip);
+        'this is IP address===>', data.ip;
         dispatch(setDeviceIP(data.ip));
         deviceInfo(data.ip).then((deviceData) => {
-          console.log('this is device=======>', deviceData);
+          'this is device=======>', deviceData;
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
           dispatch(setDeviceState(deviceData.region));
           dispatch(setDeviceLat(deviceData.ll[0]));
           dispatch(setDeviceLon(deviceData.ll[1]));
-          dispatch(setTimezone(deviceData.timezone))
+          dispatch(setTimezone(deviceData.timezone));
         });
         const currentTime = moment
           .tz(data.timezone)
@@ -61,7 +61,7 @@ const Quote = () => {
         dispatch(setDeviceBrowser(browserName));
         dispatch(setDeviceOS(osName));
       })
-      .catch((error) => console.log(error));
+      .catch((error) => error);
   }, []);
 
   useEffect(() => {

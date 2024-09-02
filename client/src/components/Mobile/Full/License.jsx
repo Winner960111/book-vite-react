@@ -37,7 +37,7 @@ const License = () => {
   const [driverNumber, setdriverNumber] = useState('');
   const [driverDate, setdriverDate] = useState('');
   const [driverState, setdriverState] = useState('');
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
 
   const handleDriverNumber = (e) => {
     if (/^[0-9a-zA-Z-]+$/.test(e.target.value) || !e.target.value.trim()) {
@@ -48,7 +48,7 @@ const License = () => {
 
   const handleDriverDate = (value) => {
     setError('');
-    console.log('value==>', value);
+    'value==>', value;
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
@@ -67,7 +67,6 @@ const License = () => {
   useEffect(() => {
     setError(null);
   }, [step]);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,7 +109,7 @@ const License = () => {
         last_question: '7',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(setDriverNumber(driverNumber));
       dispatch(setDriverDate(driverDate));
       dispatch(setDriverState(driverState));
@@ -150,7 +149,7 @@ const License = () => {
             disabled={step >= 11 ? true : false}
           />
           <TextField
-            style={{ marginBottom: "10px" }}
+            style={{ marginBottom: '10px' }}
             value={driverState}
             onChange={handleDriverState}
             fullWidth
@@ -171,10 +170,7 @@ const License = () => {
             disabled={step >= 11 ? true : false}
           />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer
-              components={['DatePicker']}
-              minDate="2000-01-01"
-            >
+            <DemoContainer components={['DatePicker']} minDate="2000-01-01">
               <DatePicker
                 label="driver expieration date"
                 onChange={(newValue) => handleDriverDate(newValue)}
@@ -205,12 +201,6 @@ const License = () => {
     </>
   );
 
-  return (
-    <>
-      {step > 9 ? (
-        renderDescription()
-      ) : null}
-    </>
-  );
+  return <>{step > 9 ? renderDescription() : null}</>;
 };
 export default License;

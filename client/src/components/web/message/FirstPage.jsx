@@ -102,7 +102,7 @@ const FirstPage = () => {
         last_question: '1',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setCheckerFirstName(firstName));
       dispatch(setCheckerLastName(lastName));
@@ -123,7 +123,9 @@ const FirstPage = () => {
                 <TextField
                   aria-owns={focusFirstName ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
-                  onMouseEnter={(event) => setFocusFirstName(event.currentTarget)}
+                  onMouseEnter={(event) =>
+                    setFocusFirstName(event.currentTarget)
+                  }
                   onMouseLeave={() => setFocusFirstName(null)}
                   onMouseDown={() => setFocusFirstName(null)}
                   value={firstName}
@@ -176,7 +178,9 @@ const FirstPage = () => {
                 <TextField
                   aria-owns={focusLastName ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
-                  onMouseEnter={(event) => setFocusLastName(event.currentTarget)}
+                  onMouseEnter={(event) =>
+                    setFocusLastName(event.currentTarget)
+                  }
                   onMouseLeave={() => setFocusLastName(null)}
                   onMouseDown={() => setFocusLastName(null)}
                   value={lastName}
@@ -228,7 +232,9 @@ const FirstPage = () => {
                 <TextField
                   aria-owns={focus ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
-                  onMouseEnter={(event) => setFocusEmailAddress(event.currentTarget)}
+                  onMouseEnter={(event) =>
+                    setFocusEmailAddress(event.currentTarget)
+                  }
                   onMouseLeave={() => setFocusEmailAddress(null)}
                   onMouseDown={() => setFocusEmailAddress(null)}
                   value={emailAddress}

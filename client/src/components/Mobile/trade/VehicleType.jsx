@@ -2,10 +2,7 @@ import { useState, useEffect } from 'react';
 import BotIcon from './BotIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import {
-  addHistory,
-  setVehicleType,
-} from '../../../store/reducers/checker';
+import { addHistory, setVehicleType } from '../../../store/reducers/checker';
 import { usersUpdate, vehicleList } from '../../../api/index';
 import { useParams } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
@@ -14,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const VehicleType = () => {
-  const { dealer_id } = useParams()
+  const { dealer_id } = useParams();
   const {
     step,
     type,
@@ -34,28 +31,27 @@ const VehicleType = () => {
     history,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
-  const [vehicles, setVehicles] = useState([])
-  const [select, setSelect] = useState('')
+  const [vehicles, setVehicles] = useState([]);
+  const [select, setSelect] = useState('');
   const [error, setError] = useState('');
 
   const vehicleListGet = async () => {
-    const vehicleLists = await vehicleList(dealer_id)
-    setVehicles(vehicleLists.data?.sold_by_dealer)
-  }
+    const vehicleLists = await vehicleList(dealer_id);
+    setVehicles(vehicleLists.data?.sold_by_dealer);
+  };
   useEffect(() => {
     setError('');
     setSelect('');
   }, [step]);
 
   useEffect(() => {
-    vehicleListGet()
-  }, [])
+    vehicleListGet();
+  }, []);
   const handleSubmit = async () => {
     if (!select) {
-      setError('*Required')
-    }
-    else {
-      dispatch(setVehicleType(select))
+      setError('*Required');
+    } else {
+      dispatch(setVehicleType(select));
       const data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,
@@ -75,10 +71,10 @@ const VehicleType = () => {
         last_question: '2',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
     }
-  }
+  };
   const renderDescription = () => (
     <>
       <BotIcon />
@@ -93,7 +89,12 @@ const VehicleType = () => {
           style={step >= 5 ? { display: 'none' } : { display: 'block' }}
         >
           <FormControl variant="filled" sx={{ minWidth: 120, width: '100%' }}>
-            <InputLabel id="demo-simple-select-standard-label" style={{ fontSize: '15px' }}>Type</InputLabel>
+            <InputLabel
+              id="demo-simple-select-standard-label"
+              style={{ fontSize: '15px' }}
+            >
+              Type
+            </InputLabel>
             <Select
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
@@ -101,7 +102,9 @@ const VehicleType = () => {
               onChange={(e) => setSelect(e.target.value)}
             >
               {vehicles.map((item, index) => (
-                <MenuItem key={index} value={item.name}>{item.name}</MenuItem>
+                <MenuItem key={index} value={item.name}>
+                  {item.name}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>

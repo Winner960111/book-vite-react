@@ -19,7 +19,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { TextField } from '@mui/material';
 
 const NewInterest = () => {
-
   const [address, setAddress] = useState('');
   const [locality, setLocality] = useState('');
   const [state, setState] = useState('');
@@ -93,10 +92,9 @@ const NewInterest = () => {
     }
   }, [initializeAutocomplete, step]);
 
-
   useEffect(() => {
     setError('');
-  }, [zipcode, address, locality, state])
+  }, [zipcode, address, locality, state]);
 
   const parseAddressComponents = (place) => {
     for (const component of place.address_components) {
@@ -117,26 +115,26 @@ const NewInterest = () => {
   };
 
   const handleSubmit = async (e) => {
-    let pass = 0
+    let pass = 0;
     e.preventDefault();
     setError('');
 
     if (!locality.trim()) {
       setError('City field is required');
     } else {
-      pass += 1
+      pass += 1;
     }
     if (!state.trim()) {
       setError('State field is required');
     } else {
-      pass += 1
+      pass += 1;
     }
     if (!zipcode.trim()) {
       setError('ZipCode field is required');
     } else if (!/^[0-9]+$/.test(zipcode)) {
-      setError('*Invalid ZipCode format')
+      setError('*Invalid ZipCode format');
     } else {
-      pass += 1
+      pass += 1;
     }
     if (pass == 3) {
       const data = {
@@ -158,7 +156,7 @@ const NewInterest = () => {
         last_question: '11',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setCheckerAddress(address));
       dispatch(setCheckerApt(apt));

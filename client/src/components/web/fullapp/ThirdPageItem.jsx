@@ -33,6 +33,7 @@ const ThirdPage = () => {
     vehicleMake,
     vehicleModel,
   } = useSelector((state) => state.checker);
+  '💎💎💎🧨🧨🧨💎💎💎🧨🧨🧨', intentID;
   const dispatch = useDispatch();
   const [errorPay, setErrorPay] = useState('');
   const [year, setYear] = useState(vehicleYear);
@@ -48,7 +49,7 @@ const ThirdPage = () => {
   }, [step]);
 
   const handleYear = (e) => {
-    setErrorYear('')
+    setErrorYear('');
     if (
       (/^[0-9]+$/.test(e.target.value) && String(e.target.value).length <= 4) ||
       !e.target.value.trim()
@@ -62,7 +63,6 @@ const ThirdPage = () => {
     if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
       setPay(e.target.value);
     }
-
   };
   const handleSubmit = async () => {
     let pass = 0;
@@ -75,7 +75,7 @@ const ThirdPage = () => {
       pass += 1;
     }
     if (!year.trim()) {
-      setErrorYear('*Required')
+      setErrorYear('*Required');
     } else if (year > 2100 || year < 1900) {
       setErrorYear('*Invalid Date');
     } else {
@@ -105,7 +105,7 @@ const ThirdPage = () => {
         last_question: '3',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setProgress());
     }

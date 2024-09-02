@@ -5,7 +5,6 @@ import { SubmitTrade, usersUpdate } from '../../../api/index';
 import { useNavigate } from 'react-router-dom';
 
 const ThirdPage = () => {
-
   const {
     dealerName,
     dealerId,
@@ -35,13 +34,13 @@ const ThirdPage = () => {
     deviceBrowser,
     type,
   } = useSelector((state) => state.checker);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const Tobegin = () => {
-    console.log("I'm here")
+    ("I'm here");
     navigate(-1);
     dispatch(clearHistory());
-  }
+  };
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,7 +65,7 @@ const ThirdPage = () => {
       email: checkerEmail,
     };
     const res = await SubmitTrade(data);
-    console.log('status ImageSend', res);
+    'status ImageSend', res;
     if (res.status == 201) {
       const new_data = {
         dealer_id: dealerId,
@@ -87,10 +86,10 @@ const ThirdPage = () => {
         last_question: '5',
       };
       const passRes = await usersUpdate(new_data, intentID);
-      console.log('this is update results ====>', passRes);
+      'this is update results ====>', passRes;
       dispatch(addHistory(true));
     } else {
-      console.log('Faild ImageSend');
+      ('Faild ImageSend');
     }
   };
 

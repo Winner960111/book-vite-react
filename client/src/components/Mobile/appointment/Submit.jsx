@@ -31,10 +31,10 @@ const Submit = () => {
     type,
     appointDate,
     appointTime,
-    timezone
+    timezone,
   } = useSelector((state) => state.checker);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,7 +57,7 @@ const Submit = () => {
       last_question: '5',
     };
     const intent_res = await usersUpdate(intent_data, intentID);
-    console.log('this is update results ====>', intent_res);
+    'this is update results ====>', intent_res;
 
     const appointData = {
       dealer_id: dealerId,
@@ -67,23 +67,22 @@ const Submit = () => {
       mobile_phone: checkerMobileNumber,
       appointment_date: appointDate,
       appointment_time: appointTime,
-      appointment_type: "S",
-      appointment_status: "Created",
-      appointment_notes: "S",
+      appointment_type: 'S',
+      appointment_status: 'Created',
+      appointment_notes: 'S',
       appointment_reminder: true,
       appointment_reminder_time: appointTime,
-      appointment_reminder_type: "S",
-      time_zone: timezone
-
-    }
-    const appointRes = await appointment(appointData)
+      appointment_reminder_type: 'S',
+      time_zone: timezone,
+    };
+    const appointRes = await appointment(appointData);
 
     if (appointRes.status == 201) {
-      console.log('status ImageSend', appointRes);
+      'status ImageSend', appointRes;
       dispatch(addHistory(true));
-      navigate(-1)
+      navigate(-1);
     } else {
-      console.log('Faild ImageSend');
+      ('Faild ImageSend');
     }
   };
 

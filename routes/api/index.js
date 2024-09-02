@@ -11,10 +11,10 @@ router.get('/detect-agent', async (req, res) => {
 
     // Check if the User-Agent indicates a mobile device
     if (/Mobi/i.test(userAgent)) {
-      console.log('API called from a mobile device.');
+      ('API called from a mobile device.');
       return res.json('mobile');
     } else {
-      console.log('API called from a desktop device.');
+      ('API called from a desktop device.');
       return res.json('web');
     }
   } catch (error) {
@@ -31,11 +31,11 @@ router.post('/deviceInfo', async (req, res) => {
     }
 
     const geo = await geoip.lookup(ip);
-    console.log('geo ==>', geo);
+    'geo ==>', geo;
 
     // If geo information is found, send it back in the response
     if (geo) {
-      return res.json({geo:geo}); // Send the geo object as JSON
+      return res.json({ geo: geo }); // Send the geo object as JSON
     } else {
       return res.status(404).send('Geographical information not found.');
     }

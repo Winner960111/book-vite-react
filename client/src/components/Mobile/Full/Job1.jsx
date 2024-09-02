@@ -100,7 +100,7 @@ const Job1 = () => {
         last_question: '17',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setJobOccupation(occupation));
       dispatch(setEmployerName(Ename));

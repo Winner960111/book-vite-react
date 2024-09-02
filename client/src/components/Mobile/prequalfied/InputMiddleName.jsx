@@ -11,7 +11,12 @@ import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
 
 const InputMiddleName = () => {
-  const { step, history, checkerMiddleName, checkerIsSkipMiddleName, intentID,
+  const {
+    step,
+    history,
+    checkerMiddleName,
+    checkerIsSkipMiddleName,
+    intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -23,8 +28,8 @@ const InputMiddleName = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerMobileNumber, } =
-    useSelector((state) => state.checker);
+    checkerMobileNumber,
+  } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [middleName, setMiddleName] = useState('');
@@ -66,7 +71,7 @@ const InputMiddleName = () => {
         last_question: '2',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setCheckerMiddleName(middleName));
       setMiddleName('');
@@ -99,7 +104,7 @@ const InputMiddleName = () => {
             value={middleName}
             onChange={handleChangeInput}
             type="text"
-            autoComplete='off'
+            autoComplete="off"
             InputProps={{
               style: {
                 height: '70px', // Set the height of the TextField

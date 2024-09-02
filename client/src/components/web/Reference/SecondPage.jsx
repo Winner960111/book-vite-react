@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { TextField } from '@mui/material';
-import { referenceInfo } from '../../../api/index'
+import { referenceInfo } from '../../../api/index';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -32,18 +32,17 @@ const SecondPage = () => {
   const [focusFirstName, setFocusFirstName] = useState('');
   const [focusLastName, setFocusLastName] = useState('');
   const [focusPhoneNumber, setFocusPhoneNumber] = useState('');
-  const [relation, setRelation] = useState('Spouse')
-  const [errorRelation, setErrorRelation] = useState('')
-  const [focusCity, setFocusCity] = useState('')
-  const [city, setCity] = useState('')
-  const [errorCity, setErrorCity] = useState('')
-  const [focusState, setFocusState] = useState('')
-  const [state, setState] = useState('')
-  const [errorState, setErrorState] = useState('')
+  const [relation, setRelation] = useState('Spouse');
+  const [errorRelation, setErrorRelation] = useState('');
+  const [focusCity, setFocusCity] = useState('');
+  const [city, setCity] = useState('');
+  const [errorCity, setErrorCity] = useState('');
+  const [focusState, setFocusState] = useState('');
+  const [state, setState] = useState('');
+  const [errorState, setErrorState] = useState('');
 
   const handleState = (e) => {
     if (/^[a-zA-Z]+$/.test(e.target.value) || !e.target.value.trim()) {
-
       setState(e.target.value);
     }
 
@@ -51,7 +50,6 @@ const SecondPage = () => {
   };
   const handleCity = (e) => {
     if (/^[a-zA-Z]+$/.test(e.target.value) || !e.target.value.trim()) {
-
       setCity(e.target.value);
     }
     setErrorCity('');
@@ -130,7 +128,6 @@ const SecondPage = () => {
     }
     if (pass == 6) {
       const data = {
-
         dealer_id: dealerId,
         reference1_first_name: refFirstName,
         reference1_last_name: refLastName,
@@ -143,17 +140,14 @@ const SecondPage = () => {
         reference2_phone: phoneNumber,
         reference2_city: city,
         reference2_relationship: relation,
-        reference2_state: state
+        reference2_state: state,
       };
 
-      const res = await referenceInfo(data, customerId)
-      console.log("this is res==>", res)
+      const res = await referenceInfo(data, customerId)('this is res==>', res);
       if (res.status == 200) {
-
         dispatch(addHistory(true));
-
       } else {
-        console.log("Failed")
+        ('Failed');
       }
     }
   };
@@ -171,14 +165,16 @@ const SecondPage = () => {
                 <TextField
                   aria-owns={focusFirstName ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
-                  onMouseEnter={(event) => setFocusFirstName(event.currentTarget)}
+                  onMouseEnter={(event) =>
+                    setFocusFirstName(event.currentTarget)
+                  }
                   onMouseLeave={() => setFocusFirstName(null)}
                   onMouseDown={() => setFocusFirstName(null)}
                   value={firstName}
                   onChange={handleFirstName}
                   fullWidth
                   autoFocus
-                  autoComplete='off'
+                  autoComplete="off"
                   label="First name"
                   variant="standard"
                   InputProps={{
@@ -223,14 +219,16 @@ const SecondPage = () => {
                 <TextField
                   aria-owns={focusLastName ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
-                  onMouseEnter={(event) => setFocusLastName(event.currentTarget)}
+                  onMouseEnter={(event) =>
+                    setFocusLastName(event.currentTarget)
+                  }
                   onMouseLeave={() => setFocusLastName(null)}
                   onMouseDown={() => setFocusLastName(null)}
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
                   label="Last name"
-                  autoComplete='off'
+                  autoComplete="off"
                   variant="standard"
                   InputProps={{
                     style: {
@@ -269,13 +267,16 @@ const SecondPage = () => {
                 {errorLastName !== '' && (
                   <p className="text-red-500 pl-2">{errorLastName}</p>
                 )}
-
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={focusPhoneNumber ? 'mouse-over-popover' : undefined}
+                  aria-owns={
+                    focusPhoneNumber ? 'mouse-over-popover' : undefined
+                  }
                   aria-haspopup="true"
-                  onMouseEnter={(event) => setFocusPhoneNumber(event.currentTarget)}
+                  onMouseEnter={(event) =>
+                    setFocusPhoneNumber(event.currentTarget)
+                  }
                   onMouseLeave={() => setFocusPhoneNumber(null)}
                   onMouseDown={() => setFocusPhoneNumber(null)}
                   value={phoneNumber}
@@ -283,7 +284,7 @@ const SecondPage = () => {
                   fullWidth
                   label="Phone Number"
                   variant="standard"
-                  autoComplete='off'
+                  autoComplete="off"
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -321,7 +322,6 @@ const SecondPage = () => {
                 {errorPhoneNumber !== '' && (
                   <p className="text-red-500 pl-2">{errorPhoneNumber}</p>
                 )}
-
               </div>
             </div>
             <div className="w-full p-5 flex justify-between flex-col md:flex-row">
@@ -362,7 +362,7 @@ const SecondPage = () => {
                   fullWidth
                   label="City"
                   variant="standard"
-                  autoComplete='off'
+                  autoComplete="off"
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -400,7 +400,6 @@ const SecondPage = () => {
                 {errorCity !== '' && (
                   <p className="text-red-500 pl-2">{errorCity}</p>
                 )}
-
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
@@ -414,7 +413,7 @@ const SecondPage = () => {
                   fullWidth
                   label="State"
                   variant="standard"
-                  autoComplete='off'
+                  autoComplete="off"
                   InputProps={{
                     style: {
                       height: '50px', // Set the height of the TextField
@@ -452,7 +451,6 @@ const SecondPage = () => {
                 {errorState !== '' && (
                   <p className="text-red-500 pl-2">{errorState}</p>
                 )}
-
               </div>
             </div>
             <div className="w-full p-5 flex justify-end">

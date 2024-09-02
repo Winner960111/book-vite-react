@@ -47,14 +47,13 @@ const Submit = () => {
       reference2_state: refState1,
     };
 
-    const res = await referenceInfo(data, customerId)
-    console.log("this is res==>", res)
+    const res = await referenceInfo(data, customerId)('this is res==>', res);
     if (res.status == 200) {
       dispatch(addHistory(true));
     } else {
-      console.log("Failed")
+      ('Failed');
     }
-  }
+  };
   const renderDescription = () => (
     <>
       <BotIcon />

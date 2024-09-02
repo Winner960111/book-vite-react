@@ -101,7 +101,7 @@ const FirstPage = () => {
   };
   const handleBirthday = (value) => {
     setErrorBirthday('');
-    console.log('value==>', value);
+    'value==>', value;
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
@@ -144,7 +144,7 @@ const FirstPage = () => {
       last_question: '1',
     };
     const res = await usersUpdate(data, intentID);
-    console.log('this is update results ====>', res);
+    'this is update results ====>', res;
     dispatch(addHistory(true));
     dispatch(setProgress());
     dispatch(setCheckerFirstName(firstName));
@@ -239,7 +239,7 @@ const FirstPage = () => {
                   value={firstName}
                   onChange={handleFirstName}
                   fullWidth
-                  autoComplete = 'off'
+                  autoComplete="off"
                   autoFocus
                   label="First name"
                   variant="standard"
@@ -291,7 +291,7 @@ const FirstPage = () => {
                   value={middleName}
                   onChange={handleMiddleName}
                   fullWidth
-                  autoComplete = 'off'
+                  autoComplete="off"
                   label="Middle Initial(optional)"
                   variant="standard"
                   InputProps={{
@@ -343,7 +343,7 @@ const FirstPage = () => {
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
-                  autoComplete = 'off'
+                  autoComplete="off"
                   label="Last name"
                   variant="standard"
                   InputProps={{
@@ -425,7 +425,7 @@ const FirstPage = () => {
                   value={socialNumber}
                   onChange={handleSocialNumber}
                   fullWidth
-                  autoComplete = 'off'
+                  autoComplete="off"
                   label="Social security number"
                   variant="standard"
                   InputProps={{
@@ -459,7 +459,9 @@ const FirstPage = () => {
                   disableRestoreFocus
                 >
                   <Typography sx={{ p: 2 }} style={{ width: '300px' }}>
-                    {"We collect your Social Security Number (SSN) to verify your identity and ensure the security and integrity of our services."}
+                    {
+                      'We collect your Social Security Number (SSN) to verify your identity and ensure the security and integrity of our services.'
+                    }
                   </Typography>
                 </Popover>
                 {errorSocialNumber !== '' && (
@@ -476,7 +478,7 @@ const FirstPage = () => {
                   value={emailAddress}
                   onChange={handleEmailAddress}
                   fullWidth
-                  autoComplete = 'off'
+                  autoComplete="off"
                   label="Email address"
                   variant="standard"
                   InputProps={{

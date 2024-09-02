@@ -76,7 +76,7 @@ const Vehicle = () => {
         last_question: '5',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setQuoteInterest(interest));
       setYear('');
@@ -110,7 +110,7 @@ const Vehicle = () => {
             fullWidth
             value={year}
             onChange={handleYearChange}
-            autoComplete='off'
+            autoComplete="off"
             type="text"
             InputProps={{
               style: {
@@ -131,7 +131,7 @@ const Vehicle = () => {
             fullWidth
             value={make}
             onChange={handleMake}
-            autoComplete='off'
+            autoComplete="off"
             type="text"
             InputProps={{
               style: {
@@ -152,7 +152,7 @@ const Vehicle = () => {
             margin="dense"
             value={model}
             onChange={handleModel}
-            autoComplete='off'
+            autoComplete="off"
             type="text"
             InputProps={{
               style: {

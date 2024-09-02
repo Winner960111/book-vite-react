@@ -12,10 +12,14 @@ import { TextField } from '@mui/material';
 import { checkapp } from '../../../api/index';
 
 const InputSocialNumber = () => {
-
-  const { step, history, checkerMobileNumber, checkerSocialNumber, dealerId, checkerLastName } = useSelector(
-    (state) => state.checker
-  );
+  const {
+    step,
+    history,
+    checkerMobileNumber,
+    checkerSocialNumber,
+    dealerId,
+    checkerLastName,
+  } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [socialNumber, setSocialNumber] = useState('');
@@ -28,8 +32,7 @@ const InputSocialNumber = () => {
   const handleChangeInputSocialNumber = (e) => {
     setError(null);
     const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
-    const formattedInputValue =
-      inputValue.substring(0, 4)
+    const formattedInputValue = inputValue.substring(0, 4);
     setSocialNumber(formattedInputValue);
   };
 
@@ -47,14 +50,14 @@ const InputSocialNumber = () => {
       };
       const res = await checkapp(data);
       if (res.status == 201) {
-        console.log(res.data);
+        res.data;
         dispatch(setAppStatus(res.data.status));
         dispatch(setAppDescription(res.data.describe));
         dispatch(addHistory(true));
-        dispatch(setCheckerSocialNumber(socialNumber))
+        dispatch(setCheckerSocialNumber(socialNumber));
         setSocialNumber('');
       } else {
-        console.log('failed API calling.');
+        ('failed API calling.');
       }
     }
   };
@@ -79,7 +82,7 @@ const InputSocialNumber = () => {
             fullWidth
             value={socialNumber}
             onChange={handleChangeInputSocialNumber}
-            autoComplete='off'
+            autoComplete="off"
             type="text"
             InputProps={{
               style: {

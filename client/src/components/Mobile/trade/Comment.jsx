@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import BotIcon from './BotIcon';
-import {
-  addHistory,
-setCommentValue,
-} from '../../../store/reducers/checker';
+import { addHistory, setCommentValue } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { usersUpdate } from '../../../api/index';
 
 const Inputcomment = () => {
   const dispatch = useDispatch();
-  const { step, history, commentValue, intentID,
+  const {
+    step,
+    history,
+    commentValue,
+    intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -22,16 +23,15 @@ const Inputcomment = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerMobileNumber, } = useSelector(
-      (state) => state.checker
-    );
+    checkerMobileNumber,
+  } = useSelector((state) => state.checker);
 
   const [comment, setComment] = useState('');
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setError(null);
-    setComment('')
+    setComment('');
   }, [step]);
 
   const handleChangeInput = (e) => {
@@ -44,7 +44,7 @@ const Inputcomment = () => {
 
     if (!comment.trim()) {
       setError('*Required');
-    }else {
+    } else {
       const data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,
@@ -64,7 +64,7 @@ const Inputcomment = () => {
         last_question: '10',
       };
       const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      'this is update results ====>', res;
       dispatch(addHistory(true));
       dispatch(setCommentValue(comment));
     }
@@ -96,9 +96,7 @@ const Inputcomment = () => {
             <p className="text-red-500 pl-6 p-2 -mt-5">{error}</p>
           ) : null}
         </div>
-        <p className="bg-gray-50 rounded-3xl p-4">
-          Please input the comments
-        </p>
+        <p className="bg-gray-50 rounded-3xl p-4">Please input the comments</p>
         <button
           type="submit"
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"

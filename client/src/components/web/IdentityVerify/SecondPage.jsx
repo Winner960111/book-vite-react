@@ -6,29 +6,29 @@ import Questionaire from '../../web/IdentityVerify/Questionaire';
 import { identifyInfo, identification } from '../../../api/index';
 
 const SecondPage = () => {
-  const {
-    identifyId,
-    dealerId,
-    customerId
-  } = useSelector((state) => state.checker);
+  const { identifyId, dealerId, customerId } = useSelector(
+    (state) => state.checker
+  );
   const dispatch = useDispatch();
   const [answer, setAnswer] = useState({});
-  const [answers, setAnswers] = useState([])
-  const [question, setQuestion] = useState([])
+  const [answers, setAnswers] = useState([]);
+  const [question, setQuestion] = useState([]);
   const [temp_data, setTemp] = useState([]);
 
   useEffect(() => {
-    console.log('useEffect===>');
+    ('useEffect===>');
     identifyInfo(identifyId).then((res) => {
       setQuestion(res.questions);
-      setTemp(res)
+      setTemp(res);
     });
   }, []);
-console.log("thisisi data question ===>", question)
-console.log('thisisi data temp data ===>', temp_data);
- 
+  ('thisisi data question ===>', question)(
+    'thisisi data temp data ===>',
+    temp_data
+  );
+
   useEffect(() => {
-    let double = -1
+    let double = -1;
     if (answer.ans) {
       if (answers.length) {
         for (var i = 0; i <= answers.length - 1; i++) {
@@ -38,8 +38,8 @@ console.log('thisisi data temp data ===>', temp_data);
           }
         }
         if (double != -1) {
-          console.log("I'm here")
-          answers[double].answer = answer.ans
+          ("I'm here");
+          answers[double].answer = answer.ans;
         } else {
           const newobject = {
             answer: answer.ans,
@@ -50,16 +50,12 @@ console.log('thisisi data temp data ===>', temp_data);
       } else {
         const newobject = {
           answer: answer.ans,
-          questionID: answer.index
+          questionID: answer.index,
         };
         setAnswers([...answers, newobject]);
       }
-      
-      
     }
-
-  }, [answer])
-    console.log('this is answers==>', answers);
+  }, [answer])('this is answers==>', answers);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,15 +68,16 @@ console.log('thisisi data temp data ===>', temp_data);
       completed: temp_data.completed,
     };
 
-    const res = await identification(data, identifyId)
-    console.log("this is status",res.status)
+    const res = await identification(data, identifyId)(
+      'this is status',
+      res.status
+    );
     if (res.status == 200) {
-      console.log("Success")
-    dispatch(addHistory(true));
+      ('Success');
+      dispatch(addHistory(true));
     } else {
-      console.log("failed")
+      ('failed');
     }
-
   };
 
   return (
@@ -102,7 +99,6 @@ console.log('thisisi data temp data ===>', temp_data);
                 answer={(ans) => setAnswer({ ans, index })}
               />
             ))}
-            
           </div>
           <div className="w-full mt-5 flex justify-end">
             <button

@@ -52,10 +52,10 @@ const App = () => {
 
   useEffect(() => {
     if (window !== window.parent) {
-      console.log('embedded in iframe or object');
+      ('embedded in iframe or object');
       dispatch(setRenderType('iframe'));
     } else {
-      console.log('not embedded or cross-origin');
+      ('not embedded or cross-origin');
       initialize();
     }
   }, [dispatch, initialize]);

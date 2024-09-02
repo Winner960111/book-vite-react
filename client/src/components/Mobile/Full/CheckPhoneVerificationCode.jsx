@@ -10,7 +10,11 @@ import OtpInput from 'react-otp-input';
 const CheckPhoneVerificationCode = () => {
   const [verifyCode, setVerifyCode] = useState('');
   const [temp, setTemp] = useState('');
-  const { checkerMobileNumber, step, history, dealerId,
+  const {
+    checkerMobileNumber,
+    step,
+    history,
+    dealerId,
     deviceIP,
     deviceOS,
     deviceCity,
@@ -20,9 +24,8 @@ const CheckPhoneVerificationCode = () => {
     deviceLat,
     deviceLon,
     deviceBrowser,
-    type, } = useSelector(
-      (state) => state.checker
-    );
+    type,
+  } = useSelector((state) => state.checker);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
@@ -66,7 +69,7 @@ const CheckPhoneVerificationCode = () => {
         };
         const intentRes = await usersStatus(data);
         dispatch(setIntentID(intentRes.data.id));
-        console.log('this is intent ID===>', intentRes.data.id);
+        'this is intent ID===>', intentRes.data.id;
         dispatch(addHistory(true));
         setTemp(verifyCode);
         setVerifyCode('');
@@ -98,7 +101,7 @@ const CheckPhoneVerificationCode = () => {
               value={verifyCode}
               onChange={setVerifyCode}
               numInputs={6}
-              renderSeparator={<span className='mt-4'>&nbsp; - &nbsp;</span>}
+              renderSeparator={<span className="mt-4">&nbsp; - &nbsp;</span>}
               renderInput={(props) => (
                 <input
                   {...props}

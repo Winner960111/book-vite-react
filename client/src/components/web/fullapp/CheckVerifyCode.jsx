@@ -66,7 +66,7 @@ const CheckVerifyCode = () => {
         };
         const intentRes = await usersStatus(data);
         dispatch(setIntentID(intentRes.data.id));
-        console.log('this is intent ID===>', intentRes.data.id);
+        'this is intent ID===>', intentRes.data.id;
         dispatch(addHistory(true));
       } else {
         setError('Invalid verification code. Please try again.');

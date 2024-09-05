@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -9,6 +9,7 @@ import {
   setCheckerEmail,
   setCheckerMobileNumber,
   setCheckerSocialNumber,
+  setSubmit,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
@@ -39,7 +40,9 @@ const FirstPage = () => {
     checkerEmail,
     type,
     checkerMobileNumber,
+    submit,
   } = useSelector((state) => state.checker);
+  const [isSubmit, setIsSubmit] = useState(false);
   const dispatch = useDispatch();
   const [errorFirstName, setErrorFirstName] = useState('');
   const [errorMiddleName, setErrorMiddleName] = useState('');
@@ -132,7 +135,62 @@ const FirstPage = () => {
   //   setErrorBirthday('');
   //   setErrorSocialNumber('');
   // }, [step]);
+  useEffect(() => {
+    // if (submit !== undefined) {
+    //   console.log('+++++ ', submit);
 
+    //   setIsSubmit(submit);
+    // }
+    if (submit) {
+      let pass = 0;
+      if (!firstName) {
+        setErrorFirstName('*Field is required');
+      } else if (!/^[A-Za-z]+$/.test(firstName)) {
+        setErrorFirstName('*Contains only characters');
+      } else {
+        pass += 1;
+      }
+      if (!/^[A-Za-z]+$/.test(middleName) && middleName) {
+        setErrorMiddleName('*Contains only character');
+      } else {
+        pass += 1;
+      }
+      if (!lastName) {
+        setErrorLastName('*Field is required');
+      } else if (!/^[A-Za-z]+$/.test(lastName)) {
+        setErrorLastName('*Contains only characters');
+      } else {
+        pass += 1;
+      }
+      if (!birthday) {
+        setErrorBirthday('*Input your correct birthday');
+      } else {
+        pass += 1;
+      }
+      if (!socialNumber) {
+        setErrorSocialNumber('*Input your social security number');
+      } else if (!/^\d{3}-\d{2}-\d{4}$/.test(socialNumber)) {
+        setErrorSocialNumber('*Invalid social security number');
+      } else {
+        pass += 1;
+      }
+      if (!emailAddress) {
+        setErrorEmailAddress('*Input your email');
+      } else if (
+        !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailAddress)
+      ) {
+        setErrorEmailAddress('*Invalid email type');
+      } else {
+        pass += 1;
+      }
+      if (!errorPhoneNumber) {
+        setErrorPhoneNumber('*Input your phone number');
+      }
+      dispatch(setSubmit(false));
+    }
+  }, [submit]);
+
+  console.log('setErrorFirstName🏅🏅🏅===>', errorFirstName);
   // const handlesubmit = async () => {
   //   let pass = 0;
   //   if (!firstName) {
@@ -213,7 +271,7 @@ const FirstPage = () => {
         </p>
 
         <div className="w-full flex max-md:flex-col">
-          <div className="flex flex-col  w-full my-3 md:mx-5">
+          <div className="flex flex-col text-left w-full my-3 md:mx-5">
             <TextField
               aria-owns={first ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -223,7 +281,6 @@ const FirstPage = () => {
               value={firstName}
               onChange={handleFirstName}
               fullWidth
-              type="text"
               autoComplete="off"
               defaultValue="Normal"
               label="First name"
@@ -266,7 +323,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorFirstName}</p>
             )}
           </div>
-          <div className="flex flex-col w-full my-3 md:mx-5">
+          <div className="flex flex-col text-left w-full my-3 md:mx-5">
             <TextField
               aria-owns={middle ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -320,7 +377,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorMiddleName}</p>
             )}
           </div>
-          <div className="flex flex-col w-full my-3 md:mx-5">
+          <div className="flex flex-col text-left w-full my-3 md:mx-5">
             <TextField
               aria-owns={last ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -375,7 +432,7 @@ const FirstPage = () => {
           </div>
         </div>
         <div className="w-full flex justify-between flex-col md:flex-row">
-          <div className="flex flex-col w-full my-3 md:mx-5">
+          <div className="flex flex-col text-left w-full my-3 md:mx-5">
             <TextField
               aria-owns={emailHover ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -429,7 +486,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorEmailAddress}</p>
             )}
           </div>
-          <div className="flex flex-col w-full my-3 md:mx-5">
+          <div className="flex flex-col text-left w-full my-3 md:mx-5">
             <TextField
               aria-owns={phone ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -479,13 +536,13 @@ const FirstPage = () => {
                 messages from <b>{dealerName}</b> to the provided phone number.
               </Typography>
             </Popover>
-            {errorEmailAddress !== '' && (
-              <p className="text-red-500 pl-2">{errorEmailAddress}</p>
+            {errorPhoneNumber !== '' && (
+              <p className="text-red-500 pl-2">{errorPhoneNumber}</p>
             )}
           </div>
         </div>
         <div className="w-full flex justify-between flex-col md:flex-row">
-          <div className="flex flex-col w-full my-3 md:mx-5">
+          <div className="flex flex-col text-left w-full my-3 md:mx-5">
             <TextField
               aria-owns={social ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -540,8 +597,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorSocialNumber}</p>
             )}
           </div>
-
-          <div className="flex flex-col w-full my-3 md:mx-5">
+          <div className="flex flex-col w-full text-left my-3 md:mx-5">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer
                 components={['DatePicker']}

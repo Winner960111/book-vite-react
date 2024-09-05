@@ -4,7 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { classNames } from '../../../utils';
 import { signatureImg } from '../../../api/index';
 import './Canvas.css';
-import { addHistory, clearHistory } from '../../../store/reducers/checker';
+import {
+  addHistory,
+  clearHistory,
+  setSubmit,
+} from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 
 const ThirdPage = () => {
@@ -109,7 +113,7 @@ const ThirdPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    dispatch(setSubmit(true));
     // const intent_data = {
     //   dealer_id: dealerId,
     //   device_ip_address: deviceIP,

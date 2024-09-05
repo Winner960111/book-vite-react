@@ -38,7 +38,6 @@ const App = () => {
     dispatch(detectAgent());
   }, [dispatch]);
 
-  
   // const [measurementID, setMeasurementID] = useState('G-QR4D12VGLR');
 
   // // Initialize Google Analytics with the current Measurement ID

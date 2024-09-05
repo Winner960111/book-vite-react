@@ -60,8 +60,6 @@ const App = () => {
     }
   }, [dispatch, initialize]);
 
-  // if (!type) return null;
-
   return (
     <>
       {<Loading loading={type === '' ? true : false} />}

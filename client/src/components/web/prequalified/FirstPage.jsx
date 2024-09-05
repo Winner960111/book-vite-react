@@ -136,11 +136,6 @@ const FirstPage = () => {
   //   setErrorSocialNumber('');
   // }, [step]);
   useEffect(() => {
-    // if (submit !== undefined) {
-    //   console.log('+++++ ', submit);
-
-    //   setIsSubmit(submit);
-    // }
     if (submit) {
       let pass = 0;
       if (!firstName) {
@@ -183,7 +178,7 @@ const FirstPage = () => {
       } else {
         pass += 1;
       }
-      if (!errorPhoneNumber) {
+      if (!phoneNumber) {
         setErrorPhoneNumber('*Input your phone number');
       }
       dispatch(setSubmit(false));

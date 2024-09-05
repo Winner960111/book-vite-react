@@ -7,6 +7,7 @@ import {
   setCheckerLocality,
   setCheckerState,
   setCheckerZipcode,
+  setSubmit,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import { GiPositionMarker } from 'react-icons/gi';
@@ -26,6 +27,7 @@ const SecondPage = () => {
   const [errors, setErrors] = useState({});
 
   const {
+    submit,
     step,
     intentID,
     dealerId,
@@ -49,8 +51,24 @@ const SecondPage = () => {
   const addressRef = useRef(null);
 
   useEffect(() => {
-    setErrors({});
-  }, [step]);
+    if (submit) {
+      setErrors('');
+      let newErrors = {};
+      console.log(locality);
+      if (!locality.trim()) {
+        newErrors.locality = '*City field is required';
+      }
+      if (!state.trim()) {
+        newErrors.state = '*State field is required';
+      }
+      if (!zipcode.trim()) {
+        newErrors.zipcode = '*ZipCode field is required';
+      } else if (!/^[0-9]+$/.test(zipcode)) {
+        newErrors.zipcode = '*ZipCode foramt is wrong';
+      }
+      setErrors(newErrors);
+    }
+  }, [submit]);
 
   const initializeAutocomplete = useCallback(() => {
     const input = document.getElementById('autocomplete');
@@ -155,6 +173,7 @@ const SecondPage = () => {
   //   } else if (!/^[0-9]+$/.test(zipcode)) {
   //     newErrors.zipcode = '*ZipCode foramt is wrong';
   //   }
+  // }
 
   //   setErrors(newErrors);
 

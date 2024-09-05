@@ -46,6 +46,7 @@ const ThirdPage = () => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
+  const [errorImage, setErrorImage] = useState(false);
   const navigate = useNavigate();
 
   const handleResize = () => {
@@ -114,32 +115,11 @@ const ThirdPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(setSubmit(true));
-    // const intent_data = {
-    //   dealer_id: dealerId,
-    //   device_ip_address: deviceIP,
-    //   device_operating_system: deviceOS,
-    //   device_browser: deviceBrowser,
-    //   device_type: type,
-    //   device_state: deviceState,
-    //   device_city: deviceCity,
-    //   device_country: deviceCountry,
-    //   device_date_time: deviceDate,
-    //   device_lat: deviceLat,
-    //   device_lon: deviceLon,
-    //   status: 'Completed',
-    //   lang: 'EN',
-    //   phone: checkerMobileNumber,
-    //   page: 'Short',
-    //   last_question: '3',
-    // };
-    // const intent_res = await usersUpdate(intent_data, intentID);
-    // console.log('this is update results ====>', intent_res);
-    // dispatch(addHistory(true));
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');
     const image = new Image();
     image.src = imageDataURL;
-
+    console.log('This is 0errorImage', image.src);
     let fullName;
     if (checkerMiddleName !== '') {
       fullName =
@@ -169,12 +149,13 @@ const ThirdPage = () => {
     };
     console.log('🏅🏅🏅🏅🏅🏅🏅', data);
 
-    // const res = await signatureImg(data);
-    // if (res.status == 201) {
-    //   console.log('status ImageSend', res);
-    // } else {
-    //   console.log('Faild ImageSend');
-    // }
+    const res = await signatureImg(data);
+    if (res.status == 201) {
+      console.log('status ImageSend', res);
+      navigate(-1);
+    } else {
+      console.log('Faild ImageSend');
+    }
   };
   const Tobegin = () => {
     console.log("I'm here");
@@ -279,8 +260,11 @@ const ThirdPage = () => {
             {/* {readStatePara2 == false ? 'More' : 'Less'} */}
           </span>
         </div>
+        <p className="rounded-3xl p-4 text-center">
+          Please sign on drawbox. it will act as your digital signature.
+        </p>
 
-        <div className="w-full h-[18vh] flex justify-center mt-12">
+        <div className="w-full h-[18vh] flex justify-center mt-3">
           <div className="w-3/4 flex ">
             <canvas
               ref={canvasRef}
@@ -291,9 +275,7 @@ const ThirdPage = () => {
             />
           </div>
         </div>
-        <p className="rounded-3xl p-4 text-center">
-          Please sign on drawbox. it will act as your digital signature.
-        </p>
+
         <div className="text-center py-16">
           <button
             type="button"

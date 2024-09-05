@@ -7,6 +7,7 @@ import {
   setCheckerLastName,
   setCheckerBirthday,
   setCheckerEmail,
+  setCheckerMobileNumber,
   setCheckerSocialNumber,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
@@ -33,6 +34,9 @@ const FirstPage = () => {
     deviceLat,
     deviceLon,
     deviceBrowser,
+    checkerFirstName,
+    checkerLastName,
+    checkerEmail,
     type,
     checkerMobileNumber,
   } = useSelector((state) => state.checker);
@@ -41,6 +45,7 @@ const FirstPage = () => {
   const [errorMiddleName, setErrorMiddleName] = useState('');
   const [errorLastName, setErrorLastName] = useState('');
   const [errorEmailAddress, setErrorEmailAddress] = useState('');
+  const [errorPhoneNumber, setErrorPhoneNumber] = useState('');
   const [errorBirthday, setErrorBirthday] = useState('');
   const [errorSocialNumber, setErrorSocialNumber] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -49,31 +54,48 @@ const FirstPage = () => {
   const [socialNumber, setSocialNumber] = useState('');
   const [birthday, setBirthday] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [emailHover, setHoverEmail] = useState(null);
   const [first, setFirst] = useState(null);
   const [middle, setMiddle] = useState(null);
   const [last, setLast] = useState(null);
   const [social, setSocial] = useState(null);
+  const [phone, setPhone] = useState(null);
 
   const handleFirstName = (e) => {
+    setFirstName(e.target.value);
     dispatch(setCheckerFirstName(e.target.value));
-    // setFirstName(e.target.value);
     setErrorFirstName('');
+    console.log('Firstname====>', checkerFirstName);
   };
   const handleMiddleName = (e) => {
     dispatch(setCheckerMiddleName(e.target.value));
-    // setMiddleName(e.target.value);
+    setMiddleName(e.target.value);
     setErrorMiddleName('');
   };
   const handleLastName = (e) => {
     dispatch(setCheckerLastName(e.target.value));
-    // setLastName(e.target.value);
+    setLastName(e.target.value);
     setErrorLastName('');
+    console.log('Lastname===>', checkerLastName);
   };
   const handleEmailAddress = (e) => {
     dispatch(setCheckerEmail(e.target.value));
-    // setEmailAddress(e.target.value);
+    setEmailAddress(e.target.value);
+    console.log('✔🧨✔🧨', checkerEmail);
     setErrorEmailAddress('');
+  };
+  const handlePhoneNumber = (e) => {
+    const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    const formattedInputValue =
+      inputValue.substring(0, 3) +
+      (inputValue.length > 3 ? '-' : '') +
+      inputValue.substring(3, 6) +
+      (inputValue.length > 6 ? '-' : '') +
+      inputValue.substring(6, 10);
+    setPhoneNumber(formattedInputValue);
+    dispatch(setCheckerMobileNumber(phoneNumber));
+    setErrorPhoneNumber(null);
   };
   const handleSocialNumber = (e) => {
     setErrorSocialNumber('');
@@ -84,8 +106,8 @@ const FirstPage = () => {
       inputValue.substring(3, 5) +
       (inputValue.length > 5 ? '-' : '') +
       inputValue.substring(5, 9);
-      dispatch(setCheckerSocialNumber(formattedInputValue));
-    // setSocialNumber(formattedInputValue);
+    dispatch(setCheckerSocialNumber(formattedInputValue));
+    setSocialNumber(formattedInputValue);
   };
   const handleBirthday = (value) => {
     setErrorBirthday('');
@@ -97,10 +119,11 @@ const FirstPage = () => {
     if (Number(year) < 1900 || Number(year) > 2100) {
       setErrorBirthday('*Invalid Date');
     }
-    
+
     setBirthday(year + '-' + String(month) + '-' + date);
+    dispatch(setCheckerBirthday(year + '-' + String(month) + '-' + date));
   };
-  console.log(birthday);
+  // console.log(birthday);
   // useEffect(() => {
   //   setErrorFirstName('');
   //   setErrorMiddleName('');
@@ -243,7 +266,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorFirstName}</p>
             )}
           </div>
-          {/* <div className="flex flex-col w-full my-3 md:mx-5">
+          <div className="flex flex-col w-full my-3 md:mx-5">
             <TextField
               aria-owns={middle ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -296,7 +319,7 @@ const FirstPage = () => {
             {errorMiddleName !== '' && (
               <p className="text-red-500 pl-2">{errorMiddleName}</p>
             )}
-          </div> */}
+          </div>
           <div className="flex flex-col w-full my-3 md:mx-5">
             <TextField
               aria-owns={last ? 'mouse-over-popover' : undefined}
@@ -400,6 +423,60 @@ const FirstPage = () => {
               <Typography sx={{ p: 2 }} style={{ width: '30vw' }}>
                 By providing your email you agree to receive notification
                 messages from <b>{dealerName}</b> to the provided email address.
+              </Typography>
+            </Popover>
+            {errorEmailAddress !== '' && (
+              <p className="text-red-500 pl-2">{errorEmailAddress}</p>
+            )}
+          </div>
+          <div className="flex flex-col w-full my-3 md:mx-5">
+            <TextField
+              aria-owns={phone ? 'mouse-over-popover' : undefined}
+              aria-haspopup="true"
+              onMouseEnter={(event) => setPhone(event.currentTarget)}
+              onMouseLeave={() => setPhone(null)}
+              onMouseDown={() => setPhone(null)}
+              value={phoneNumber}
+              onChange={handlePhoneNumber}
+              type="text"
+              fullWidth
+              autoComplete="off"
+              defaultValue="Normal"
+              label="Phone number"
+              variant="standard"
+              InputProps={{
+                style: {
+                  height: '50px', // Set the height of the TextField
+                  fontSize: '25px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '25px',
+                },
+              }}
+            />
+            <Popover
+              id="mouse-over-popover"
+              sx={{
+                pointerEvents: 'none',
+              }}
+              open={Boolean(phone)}
+              anchorEl={phone}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              onClose={() => setPhone(null)}
+              disableRestoreFocus
+            >
+              <Typography sx={{ p: 2 }} style={{ width: '30vw' }}>
+                By providing your phone nuber you agree to receive notification
+                messages from <b>{dealerName}</b> to the provided phone number.
               </Typography>
             </Popover>
             {errorEmailAddress !== '' && (

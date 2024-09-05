@@ -36,7 +36,6 @@ const ThirdPage = () => {
     intentID,
     type,
   } = useSelector((state) => state.checker);
-  console.log('✈✈✈✈✈✈', intentID);
   const dispatch = useDispatch();
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
@@ -151,7 +150,7 @@ const ThirdPage = () => {
       middle_name: checkerMiddleName,
       last_name: checkerLastName,
       email: checkerEmail,
-      mobile_phone: checkerMobileNumber,
+      mobile_phone: 123456789,
       ssn: checkerSocialNumber,
       dob: checkerBirthday,
       primary_address: checkerAddress,
@@ -162,14 +161,16 @@ const ThirdPage = () => {
       signature_name: fullName,
       signature_img: image.src,
       custom_id: '',
+      usr_id: '',
     };
+    console.log('🏅🏅🏅🏅🏅🏅🏅', data);
 
-    const res = await signatureImg(data);
-    if (res.status == 201) {
-      console.log('status ImageSend', res);
-    } else {
-      console.log('Faild ImageSend');
-    }
+    // const res = await signatureImg(data);
+    // if (res.status == 201) {
+    //   console.log('status ImageSend', res);
+    // } else {
+    //   console.log('Faild ImageSend');
+    // }
   };
   const Tobegin = () => {
     console.log("I'm here");

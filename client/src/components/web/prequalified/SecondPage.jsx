@@ -40,6 +40,10 @@ const SecondPage = () => {
     deviceBrowser,
     type,
     checkerMobileNumber,
+    checkerApt,
+    checkerLocality,
+    checkerState,
+    checkerZipcode,
   } = useSelector((state) => state.checker);
 
   const addressRef = useRef(null);
@@ -56,6 +60,7 @@ const SecondPage = () => {
       const place = newAutocomplete.getPlace();
       if (place.formatted_address !== undefined) {
         setAddress(place.formatted_address);
+        dispatch(setCheckerAddress(place.formatted_address));
         parseAddressComponents(place);
       }
     });
@@ -84,7 +89,7 @@ const SecondPage = () => {
 
       loadGoogleMapsScript(initializeAutocomplete);
     }
-  }, [initializeAutocomplete, step]);
+  }, [initializeAutocomplete]);
 
   const parseAddressComponents = (place) => {
     for (const component of place.address_components) {
@@ -92,19 +97,42 @@ const SecondPage = () => {
 
       switch (componentType) {
         case 'locality':
-          dispatch(setCheckerLocality(component.long_name));
           setLocality(component.long_name);
+          dispatch(setCheckerLocality(component.long_name));
           break;
         case 'administrative_area_level_1':
+          dispatch(setCheckerState(component.short_name));
           setState(component.short_name);
           break;
         case 'postal_code':
+          dispatch(setCheckerZipcode(component.long_name));
           setZipcode(component.long_name);
           break;
       }
     }
   };
-
+  console.log('This is checkerLocality=====>', checkerLocality);
+  const handleApt = (e) => {
+    setApt(e.target.value);
+    dispatch(setCheckerApt(e.target.value));
+    console.log('✈✈', checkerApt);
+  };
+  const handleLocality = (e) => {
+    setLocality(e.target.value);
+    dispatch(setCheckerLocality(e.target.value));
+    setErrors((prev) => ({ ...prev, locality: '' }));
+  };
+  const handleState = (e) => {
+    dispatch(setCheckerState(e.target.value));
+    setState(e.target.value);
+    setErrors((prev) => ({ ...prev, state: '' }));
+  };
+  const handleZipCode = (e) => {
+    dispatch(setCheckerZipcode(e.target.value));
+    setZipcode(e.target.value);
+    setErrors((prev) => ({ ...prev, zipcode: '' }));
+  };
+  console.log('This is checkerLocality=====>', checkerZipcode);
   // useEffect(() => {
   //   setErrors('');
   // }, [zipcode, locality, state]);
@@ -165,11 +193,6 @@ const SecondPage = () => {
   //   }
   // };
 
-  useEffect(() => {
-    dispatch(setCheckerApt(apt));
-  }, [apt]);
-  const checkerApt = useSelector((state) => state.checker);
-  console.log("ttttttttttttttttttttttttttttt", checkerApt);
   return (
     <>
       {/* <div className="flex bg-gray-50 w-full justify-center items-center">
@@ -211,7 +234,7 @@ const SecondPage = () => {
         <div className="w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
           <TextField
             value={apt}
-            onChange={(e) => setApt(e.target.value)}
+            onChange={handleApt}
             fullWidth
             type="text"
             defaultValue="Normal"
@@ -234,10 +257,7 @@ const SecondPage = () => {
         <div className="w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5 flex flex-col">
           <TextField
             value={locality}
-            onChange={(e) => {
-              setLocality(e.target.value);
-              setErrors((prev) => ({ ...prev, locality: '' }));
-            }}
+            onChange={handleLocality}
             fullWidth
             type="text"
             defaultValue="Normal"
@@ -268,10 +288,7 @@ const SecondPage = () => {
         <div className="w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
           <TextField
             value={state}
-            onChange={(e) => {
-              setState(e.target.value);
-              setErrors((prev) => ({ ...prev, state: '' }));
-            }}
+            onChange={handleState}
             fullWidth
             type="text"
             defaultValue="Normal"
@@ -300,10 +317,7 @@ const SecondPage = () => {
         <div className="w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
           <TextField
             value={zipcode}
-            onChange={(e) => {
-              setZipcode(e.target.value);
-              setErrors((prev) => ({ ...prev, zipcode: '' }));
-            }}
+            onChange={handleZipCode}
             fullWidth
             type="text"
             defaultValue="Normal"

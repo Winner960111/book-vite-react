@@ -19,16 +19,15 @@ const WebHome = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   // const { param } = useParams();
   // const data = JSON.parse(param);
   console.log('this is parameter 🥇🥇🥇===>', parsedData);
   useEffect(() => {
     // const urlParams = new URLSearchParams(window.location.search);
-    const year = data.year;
-    const make = data.make;
-    const model = data.model;
+    const year = parsedData.year;
+    const make = parsedData.make;
+    const model = parsedData.model;
     if (year && make && model) {
       dispatch(setVehicleYear(year));
       dispatch(setVehicleMake(make));
@@ -45,33 +44,33 @@ const WebHome = () => {
 
   const changePageQuote = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${data.slug}/quote`);
+    navigate(`/info-checker/${parsedData.slug}/quote`);
   };
 
   const changePagePrequalified = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${data.slug}/prequalified`);
+    navigate(`/info-checker/${parsedData.slug}/prequalified`);
   };
 
   const changePageTradeInValue = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${data.slug}/trade`);
+    navigate(`/info-checker/${parsedData.slug}/trade`);
   };
   const changePageFullApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${data.slug}/full`);
+    navigate(`/info-checker/${parsedData.slug}/full`);
   };
   const changePageAppointment = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${data.slug}/appointment`);
+    navigate(`/info-checker/${parsedData.slug}/appointment`);
   };
   const changePageCheckApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${data.slug}/check`);
+    navigate(`/info-checker/${parsedData.slug}/check`);
   };
   const changePageMessage = () => {
     dispatch(clearHistory());
-    navigate(`/message_dealer/${data.slug}`);
+    navigate(`/message_dealer/${parsedData.slug}`);
   };
 
   return (

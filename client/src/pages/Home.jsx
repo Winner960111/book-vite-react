@@ -131,7 +131,7 @@ const Home = () => {
             className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 active:bg-purple-800"
             style={obj ? { display: 'none' } : { display: 'block' }}
           >
-            MESSAGE DEALER
+            Message Dealer
           </button>
           <p
             className="text-lg font-medium mt-2 text-[#854fff] active:text-purple-800"

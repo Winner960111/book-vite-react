@@ -90,7 +90,7 @@ const WebTrade = () => {
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img
             onClick={Refresh}
-            className="w-40 h-16 cursor-pointer"
+            className="w-1/4 h-16 cursor-pointer"
             src={dealerLogo}
             alt="avatar"
           />

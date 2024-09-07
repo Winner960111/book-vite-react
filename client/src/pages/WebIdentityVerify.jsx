@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
 import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
-import { customerInfo } from '../api/index';
+import { customerInfo } from '../api/index'
 // checker step components
 import PhoneVerification from '../components/web/IdentityVerify/PhoneVerification';
 import FirstPage from '../components/web/IdentityVerify/FirstPage';
@@ -30,10 +30,9 @@ import {
 
 import { deviceInfo } from '../api/index';
 
+
 const WebIdentityVerify = () => {
-  const { dealerLogo, step, history, dealerId } = useSelector(
-    (state) => state.checker
-  );
+  const { dealerLogo, step, history, dealerId } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_slug } = useParams();
   const parsedData = JSON.parse(dealer_slug);
@@ -72,17 +71,17 @@ const WebIdentityVerify = () => {
   }, [history, step, dealer_slug, dispatch]);
 
   useEffect(() => {
-    console.log('this is location++==>', location);
-  }, [location]);
+    console.log("this is location++==>", location)
+  }, [location])
 
   useEffect(() => {
     if (dealerId) {
       customerInfo(dealerId, customer_slug).then((res) => {
-        dispatch(setCustomerId(res.data.id));
+        dispatch(setCustomerId(res.data.id))
         dispatch(setCustomerName(res.data.get_full_name));
       });
     }
-  }, [dealerId]);
+  }, [dealerId])
 
   const Refresh = () => {
     dispatch(clearHistory());

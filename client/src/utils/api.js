@@ -8,7 +8,6 @@ const api = axios.create({
       : `${window.location.origin}/api`,
   headers: {
     'Content-Type': 'application/json',
-    "X-Api-Key": 'tiJ0Wfsh.i8iP64GNla95d9nNsQIQodL15PdR0wpR',
   },
 });
 

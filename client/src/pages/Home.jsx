@@ -6,7 +6,6 @@ import shield from '../assets/shield.jpg';
 
 const Home = () => {
   const { dealer_id } = useParams();
-  const parsedData = JSON.parse(dealer_id);
   const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,7 +38,7 @@ const Home = () => {
   }
   // getting dealer_name and avatar
   useEffect(() => {
-    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
   }, [data, dispatch]);
 

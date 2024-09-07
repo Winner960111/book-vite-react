@@ -37,7 +37,6 @@ const Quote = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dealer_id } = useParams();
-  const parsedData=JSON.parse(dealer_id);
 
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
@@ -69,9 +68,9 @@ const Quote = () => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
 
     // when refresh app, set dealer_id and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
-    dispatch(setDealerId(parsedData.slug));
+    dispatch(setDealerId(dealer_id));
   }, [history, step, dealer_id, dispatch]);
 
   const handleRestart = () => {

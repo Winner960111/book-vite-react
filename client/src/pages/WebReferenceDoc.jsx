@@ -36,7 +36,6 @@ const WebReferenceDoc = () => {
   const { dealerLogo, step, history, dealerId } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_slug } = useParams();
-    const parsedData = JSON.parse(dealer_slug);
   const { customer_slug } = useParams();
   const navigate = useNavigate();
 
@@ -66,7 +65,7 @@ const WebReferenceDoc = () => {
 
   useEffect(() => {
     // when refresh app, set dealer_slug and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_slug));
     new Promise(dealerInfoCall);
   }, [history, step, dealer_slug, dispatch]);
 

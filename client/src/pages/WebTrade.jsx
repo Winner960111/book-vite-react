@@ -35,8 +35,6 @@ const WebTrade = () => {
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_id } = useParams();
-  const parsedData = JSON.parse(dealer_id);
-  console.log('this is 🎈🎈🎈==>', parsedData);
   const navigate = useNavigate();
   const [percent, setPercent] = useState(null);
 
@@ -66,10 +64,9 @@ const WebTrade = () => {
 
   useEffect(() => {
     // when refresh app, set dealer_id and dealer_info of store
-    console.log('here===>', parsedData?.slug);
-    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
-    dispatch(setDealerId(parsedData.id));
+    dispatch(setDealerId(dealer_id));
     setPercent(parseInt((step / 7) * 100));
   }, [history, step, dealer_id, dispatch]);
 

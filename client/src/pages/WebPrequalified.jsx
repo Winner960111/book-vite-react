@@ -89,6 +89,7 @@ const WebPrequalified = () => {
             src={dealerLogo}
             alt="avatar"
           />
+          
           {/* <div className=" w-32 h-10">
             <Flat
               progress={(step / 5) * 100}

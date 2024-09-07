@@ -15,7 +15,11 @@ const WebHome = () => {
   const { dealer_id } = useParams();
   const parsedData = JSON.parse(dealer_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
   // ('=======================>', data);
+=======
+  console.log('=======================>', data);
+>>>>>>> parent of ea2748f (new parameter)
 =======
   console.log('=======================>', data);
 >>>>>>> parent of ea2748f (new parameter)
@@ -24,9 +28,15 @@ const WebHome = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 <<<<<<< HEAD
+<<<<<<< HEAD
   // const { param } = useParams();
   // const data = JSON.parse(param);
   'this is parameter 🥇🥇🥇===>', parsedData;
+=======
+  const { param } = useParams();
+  const data = JSON.parse(param);
+  console.log('this is parameter 🥇🥇🥇===>', param);
+>>>>>>> parent of ea2748f (new parameter)
 =======
   const { param } = useParams();
   const data = JSON.parse(param);

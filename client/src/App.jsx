@@ -65,7 +65,7 @@ const App = () => {
       {<Loading loading={type === '' ? true : false} />}
       <Routes>
         <Route
-          path="/info-checker/:dealer_id"
+          path="/info-checker/:param"
           element={type == 'web' ? <WebHome /> : <Home />}
         />
         <Route

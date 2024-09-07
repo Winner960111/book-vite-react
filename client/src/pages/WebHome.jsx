@@ -9,64 +9,77 @@ import {
   setVehicleModel,
 } from '../store/reducers/checker';
 import shield from '../assets/shield.jpg';
+import { parseJSON } from 'date-fns';
 
 const WebHome = () => {
   const { dealer_id } = useParams();
-  const parsedData=JSON.parse(dealer_id)
-  const { dealerName, dealerLogo } = useSelector((state) => state.checker);
+  const parsedData = JSON.parse(dealer_id);
+<<<<<<< HEAD
+  // ('=======================>', data);
+=======
+  console.log('=======================>', data);
+>>>>>>> parent of ea2748f (new parameter)
+  const { dealerLogo } = useSelector((state) => state.checker);
+  'This is avatar =====>', dealerLogo;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+<<<<<<< HEAD
   // const { param } = useParams();
   // const data = JSON.parse(param);
-  console.log('this is parameter 🥇🥇🥇===>', parsedData);
+  'this is parameter 🥇🥇🥇===>', parsedData;
+=======
+  const { param } = useParams();
+  const data = JSON.parse(param);
+  console.log('this is parameter 🥇🥇🥇===>', param);
+>>>>>>> parent of ea2748f (new parameter)
   useEffect(() => {
     // const urlParams = new URLSearchParams(window.location.search);
-    const year = parsedData.year;
-    const make = parsedData.make;
-    const model = parsedData.model;
+    const year = data.year;
+    const make = data.make;
+    const model = data.model;
     if (year && make && model) {
       dispatch(setVehicleYear(year));
       dispatch(setVehicleMake(make));
       dispatch(setVehicleModel(model));
     }
-    console.log('this is in webHome=========>', year, make, model);
+    'this is in webHome=========>', year, make, model;
   }, []);
 
   //getting dealer_name and avatar
   useEffect(() => {
-    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
+    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
-  }, [dealer_id, dispatch]);
+  }, [data, dispatch]);
 
   const changePageQuote = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/quote`);
+    navigate(`/info-checker/${data.slug}/quote`);
   };
 
   const changePagePrequalified = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/prequalified`);
+    navigate(`/info-checker/${data.slug}/prequalified`);
   };
 
   const changePageTradeInValue = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/trade`);
+    navigate(`/info-checker/${data.slug}/trade`);
   };
   const changePageFullApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/full`);
+    navigate(`/info-checker/${data.slug}/full`);
   };
   const changePageAppointment = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/appointment`);
+    navigate(`/info-checker/${data.slug}/appointment`);
   };
   const changePageCheckApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/check`);
+    navigate(`/info-checker/${data.slug}/check`);
   };
   const changePageMessage = () => {
     dispatch(clearHistory());
-    navigate(`/message_dealer/${dealer_id}`);
+    navigate(`/message_dealer/${data.slug}`);
   };
 
   return (
@@ -79,8 +92,7 @@ const WebHome = () => {
       </div>
       <div className="w-3/4 flex flex-col text-center items-center mt-28">
         <p className="text-4xl font-bold">
-          🌟 Welcome to {dealerName}! Let&apos;s Tailor Your Experience
-          Together🤖
+          🌟 Welcome to Let&apos;s Tailor Your Experience Together🤖
         </p>
         <div className="flex flex-col mt-10 w-[50%] justify-around md:flex-wrap">
           <button

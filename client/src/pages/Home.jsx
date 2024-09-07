@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-  getDealerInfo,
-  clearHistory,
-  setVehicleYear,
-  setVehicleMake,
-  setVehicleModel,
-} from '../store/reducers/checker';
+import { getDealerInfo, clearHistory, setVehicleYear, setVehicleMake, setVehicleModel } from '../store/reducers/checker';
 import shield from '../assets/shield.jpg';
 
 const Home = () => {
@@ -27,20 +21,22 @@ const Home = () => {
     const make = data.make;
     const model = data.model;
     if (year && make && model) {
-      dispatch(setVehicleYear(year));
-      dispatch(setVehicleMake(make));
-      dispatch(setVehicleModel(model));
+
+      dispatch(setVehicleYear(year))
+      dispatch(setVehicleMake(make))
+      dispatch(setVehicleModel(model))
     }
-    console.log('this is in webHome=========>', year, make, model);
+    console.log("this is in webHome=========>", year, make, model)
+
   }, []);
 
   const handleObj = () => {
     if (obj == true) {
-      setObj(false);
+      setObj(false)
     } else {
-      setObj(true);
+      setObj(true)
     }
-  };
+  }
   // getting dealer_name and avatar
   useEffect(() => {
     const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
@@ -127,16 +123,13 @@ const Home = () => {
             CHECK APPLICATION STATUS
           </button>
           <button
-            onClick={changePageMessage}
+            // onClick={changePagePrequalified}
             className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 active:bg-purple-800"
             style={obj ? { display: 'none' } : { display: 'block' }}
           >
-            Message Dealer
+            CALL BACK
           </button>
-          <p
-            className="text-lg font-medium mt-2 text-[#854fff] active:text-purple-800"
-            onClick={handleObj}
-          >
+          <p className="text-lg font-medium mt-2 text-[#854fff] active:text-purple-800" onClick={handleObj}>
             {obj ? 'More...' : 'Less...'}
           </p>
         </div>

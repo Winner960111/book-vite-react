@@ -2,21 +2,6 @@ import api from '../utils/api';
 import { setRenderType } from '../store/reducers/checker';
 import apis from '../utils/apis'
 
-export const sendMessage = async (data) => {
-  console.log('this is submit====>', data);
-  const url = "https://www.dev.creditapps.com/api/leads/";
-  try {
-    const response = await apis.post(url, data, {
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
-    return response;
-  } catch (e) {
-    return { status: 400 };
-  }
-};
-
 export const identification = async (data, id) => {
   console.log('this is submit====>', data);
   const url = `verification/${id}/`;

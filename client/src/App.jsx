@@ -18,18 +18,16 @@ import { detectAgent } from './api';
 import { setRenderType } from './store/reducers/checker';
 import Loading from './components/common/Loading';
 import WebFullApp from './pages/WebFullApp';
-import WebAppointment from './pages/WebAppointment';
-import WebCheckApp from './pages/WebCheckApp';
+import WebAppointment from "./pages/WebAppointment"
+import WebCheckApp from "./pages/WebCheckApp"
 import CheckApp from './pages/CheckApp';
 import WebReference from './pages/WebReference';
-import Reference from './pages/Reference';
+import Reference from './pages/Reference'
 import WebReferenceDoc from './pages/WebReferenceDoc';
 import ReferenceDoc from './pages/ReferenceDoc';
-import WebIdentityVerify from './pages/WebIdentityVerify';
-import WebImages from './pages/WebImages';
-import WebMessage from './pages/WebMessage';
-import Message from './pages/Message';
-import Images from './pages/Images';
+import WebIdentityVerify from './pages/WebIdentityVerify'
+import WebImages from './pages/WebImages'
+import Images from "./pages/Images"
 
 const App = () => {
   const dispatch = useDispatch();
@@ -51,6 +49,7 @@ const App = () => {
   // };
 
   useEffect(() => {
+
     if (window !== window.parent) {
       console.log('embedded in iframe or object');
       dispatch(setRenderType('iframe'));
@@ -108,10 +107,7 @@ const App = () => {
           path="/verification/:dealer_slug/:customer_slug"
           element={type == 'web' ? <WebIdentityVerify /> : null}
         />
-        <Route
-          path="/message_dealer/:dealer_id/"
-          element={type == 'web' ? <WebMessage /> : <Message />}
-        />
+        
       </Routes>
     </>
   );

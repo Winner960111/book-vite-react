@@ -28,15 +28,14 @@ const ThirdPage = () => {
     deviceBrowser,
     type,
   } = useSelector((state) => state.checker);
-  '💎💎💎🧨🧨🧨💎💎💎🧨🧨🧨', intentID;
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const Tobegin = () => {
-    ("I'm here");
+    console.log("I'm here")
     navigate(-1);
     dispatch(clearHistory());
-  };
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +59,7 @@ const ThirdPage = () => {
       last_question: '3',
     };
     const res = await usersUpdate(data, intentID);
-    'this is update results ====>', res;
+    console.log('this is update results ====>', res);
     dispatch(addHistory(true));
 
     const sub_data = {
@@ -77,9 +76,9 @@ const ThirdPage = () => {
 
     const sub_res = await SubmitQuote(sub_data);
     if (sub_res.status == 201) {
-      'status ImageSend', sub_res;
+      console.log('status ImageSend', sub_res);
     } else {
-      ('Faild ImageSend');
+      console.log('Faild ImageSend');
     }
   };
 

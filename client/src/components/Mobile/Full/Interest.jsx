@@ -38,7 +38,7 @@ const Interest = () => {
   const [year, setYear] = useState(vehicleYear);
   const [make, setMake] = useState(vehicleMake);
   const [model, setModel] = useState(vehicleModel);
-  'this is ==========>', vehicleYear, vehicleMake, vehicleModel;
+  console.log("this is ==========>", vehicleYear, vehicleMake, vehicleModel);
   const [pay, setPay] = useState('');
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const Interest = () => {
   }, []);
 
   const handleYear = (e) => {
-    setError('');
+    setError('')
     if (
       (/^[0-9]+$/.test(e.target.value) && String(e.target.value).length <= 4) ||
       !e.target.value.trim()
@@ -72,7 +72,7 @@ const Interest = () => {
       pass += 1;
     }
     if (!year.trim()) {
-      setError('*Required Year');
+      setError('*Required Year')
     } else if (year > 2100 || year < 1900) {
       setError('*Invalid Year');
     } else {
@@ -102,7 +102,7 @@ const Interest = () => {
         last_question: '10',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
     }
   };

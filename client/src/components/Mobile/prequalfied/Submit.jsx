@@ -4,7 +4,7 @@ import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { signatureImg, usersUpdate } from '../../../api/index';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom"
 import './Canvas.css';
 
 const Submit = () => {
@@ -39,7 +39,7 @@ const Submit = () => {
     type,
   } = useSelector((state) => state.checker);
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -48,7 +48,7 @@ const Submit = () => {
 
   const handleResize = () => {
     // Rerun your code to set canvas size based on the new dimensions
-    ('web and mobile situation is exchanged.');
+    console.log('web and mobile situation is exchanged.');
     prepareCanvas();
   };
 
@@ -58,6 +58,7 @@ const Submit = () => {
   // Initialize the canvas context
   const prepareCanvas = useCallback(() => {
     if (canvasRef.current) {
+
       const canvas = canvasRef.current;
       // Get the dimensions of the parent element
       const { width, height } = canvas.parentElement.getBoundingClientRect();
@@ -144,8 +145,8 @@ const Submit = () => {
   };
 
   const returnBack = () => {
-    navigate(-1);
-  };
+    navigate(-1)
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const intent_data = {
@@ -167,7 +168,7 @@ const Submit = () => {
       last_question: '8',
     };
     const intent_res = await usersUpdate(intent_data, intentID);
-    'this is update results ====>', intent_res;
+    console.log('this is update results ====>', intent_res);
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');
     const image = new Image();
@@ -202,11 +203,11 @@ const Submit = () => {
 
     const res = await signatureImg(data);
     if (res.status == 201) {
-      'status ImageSend', res;
+      console.log('status ImageSend', res);
       dispatch(addHistory(true));
-      returnBack();
+      returnBack()
     } else {
-      ('Faild ImageSend');
+      console.log('Faild ImageSend');
     }
   };
 

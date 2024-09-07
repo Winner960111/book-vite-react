@@ -36,7 +36,7 @@ const DealType = () => {
   const [model, setModel] = useState('');
   const [owner, setOwner] = useState('');
   const [comment, setComment] = useState('');
-  const [focus, setFocus] = useState(Boolean);
+  const [focus, setFocus] = useState(Boolean)
   useEffect(() => {
     setError(null);
     setOwner('');
@@ -75,7 +75,7 @@ const DealType = () => {
         last_question: '4',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setDealType(dealClick));
       dispatch(setQuoteInterest(interest));

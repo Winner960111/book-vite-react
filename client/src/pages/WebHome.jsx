@@ -14,34 +14,16 @@ import { parseJSON } from 'date-fns';
 const WebHome = () => {
   const { dealer_id } = useParams();
   const parsedData = JSON.parse(dealer_id);
-<<<<<<< HEAD
-<<<<<<< HEAD
-  // ('=======================>', data);
-=======
-  console.log('=======================>', data);
->>>>>>> parent of ea2748f (new parameter)
-=======
-  console.log('=======================>', data);
->>>>>>> parent of ea2748f (new parameter)
+  // console.log('=======================>', data);
   const { dealerLogo } = useSelector((state) => state.checker);
-  'This is avatar =====>', dealerLogo;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 <<<<<<< HEAD
 <<<<<<< HEAD
   // const { param } = useParams();
   // const data = JSON.parse(param);
-  'this is parameter 🥇🥇🥇===>', parsedData;
-=======
-  const { param } = useParams();
-  const data = JSON.parse(param);
-  console.log('this is parameter 🥇🥇🥇===>', param);
->>>>>>> parent of ea2748f (new parameter)
-=======
-  const { param } = useParams();
-  const data = JSON.parse(param);
-  console.log('this is parameter 🥇🥇🥇===>', param);
->>>>>>> parent of ea2748f (new parameter)
+  console.log('this is parameter 🥇🥇🥇===>', parsedData);
   useEffect(() => {
     // const urlParams = new URLSearchParams(window.location.search);
     const year = data.year;
@@ -52,7 +34,7 @@ const WebHome = () => {
       dispatch(setVehicleMake(make));
       dispatch(setVehicleModel(model));
     }
-    'this is in webHome=========>', year, make, model;
+    console.log('this is in webHome=========>', year, make, model);
   }, []);
 
   //getting dealer_name and avatar

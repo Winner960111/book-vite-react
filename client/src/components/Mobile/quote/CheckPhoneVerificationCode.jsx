@@ -69,7 +69,7 @@ const CheckPhoneVerificationCode = () => {
         };
         const intentRes = await usersStatus(data);
         dispatch(setIntentID(intentRes.data.id));
-        'this is intent ID===>', intentRes.data.id;
+        console.log('this is intent ID===>', intentRes.data.id);
         dispatch(addHistory(true));
         setTemp(verifyCode);
         setVerifyCode('');
@@ -93,10 +93,11 @@ const CheckPhoneVerificationCode = () => {
           className="w-full flex flex-col justify-center items-center py-2"
           style={step >= 3 ? { display: 'none' } : { display: 'block' }}
         >
-          <div className="flex justify-center">
+          <div className='flex justify-center'>
             <img className="w-40" src={verify} alt="verify icon" />
           </div>
           <div className="flex justify-center">
+
             <OtpInput
               value={verifyCode}
               onChange={setVerifyCode}

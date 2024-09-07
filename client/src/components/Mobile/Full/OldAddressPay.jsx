@@ -39,10 +39,10 @@ const NewInterestMore = () => {
 
   const handlePay = (e) => {
     if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
-      setPay(e.target.value);
+      setPay(e.target.value)
     }
-    setError('');
-  };
+    setError('')
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,7 +67,7 @@ const NewInterestMore = () => {
         last_question: '16',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setPreviousMonthlyPay(pay));
     }

@@ -50,21 +50,21 @@ const SecondPage = () => {
   const [driverDate, setdriverDates] = useState('');
   const [driverState, setdriverStates] = useState('');
   const [eDate, seteDate] = useState('');
-  const [payType, setPayType] = useState('');
-  const [isuer, setIsuer] = useState('');
-  const [errorIsuer, setErrorIsuer] = useState('');
-  const [errorPayType, setErrorPayType] = useState('');
+  const [payType, setPayType] = useState('')
+  const [isuer, setIsuer] = useState('')
+  const [errorIsuer, setErrorIsuer] = useState('')
+  const [errorPayType, setErrorPayType] = useState('')
   const [license, setlicense] = useState(null);
   const [state, setstate] = useState(null);
   const handleDriverNumber = (e) => {
     if (/^[0-9a-zA-Z-]+$/.test(e.target.value) || !e.target.value.trim()) {
       setdriverNumbers(e.target.value);
-      setErrordriverNumber('');
+    setErrordriverNumber('');
     }
   };
   const handleDriverDate = (value) => {
     setErrordriverDate('');
-    'value==>', value;
+    console.log('value==>', value);
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
@@ -81,7 +81,7 @@ const SecondPage = () => {
 
   const handleEDate = (value) => {
     setErroreDate('');
-    'value==>', value;
+    console.log('value==>', value);
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
@@ -92,13 +92,13 @@ const SecondPage = () => {
     seteDate(year + '-' + String(month) + '-' + date);
   };
   const handlePayType = (e) => {
-    setPayType(e.target.value);
-    setErrorPayType('');
-  };
+    setPayType(e.target.value)
+    setErrorPayType('')
+  }
   const handleIsuer = (e) => {
-    setIsuer(e.target.value);
-    setErrorIsuer('');
-  };
+    setIsuer(e.target.value)
+    setErrorIsuer('')
+  }
   useEffect(() => {
     setErrordriverNumber('');
     setErrordriverDate('');
@@ -137,14 +137,14 @@ const SecondPage = () => {
       pass += 1;
     }
     if (!payType) {
-      setErrorPayType('*Select option');
+      setErrorPayType('*Select option')
     } else {
       pass += 1;
     }
     if (payType != 'other' && !isuer) {
-      setErrorIsuer('*select option');
+      setErrorIsuer('*select option')
     } else {
-      pass += 1;
+      pass += 1
     }
     if (pass == 6) {
       const data = {
@@ -166,7 +166,7 @@ const SecondPage = () => {
         last_question: '2',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setProgress());
       dispatch(setDriverNumber(driverNumber));
@@ -174,9 +174,10 @@ const SecondPage = () => {
       dispatch(setDriverState(driverState));
       dispatch(setIDate(eDate));
       dispatch(setIIsuer(isuer));
-      dispatch(setIType(payType));
+      dispatch(setIType(payType))
     }
-  };
+
+  }
   return (
     <>
       <div className="flex bg-gray-50 w-full justify-center items-center">
@@ -266,7 +267,7 @@ const SecondPage = () => {
                   onChange={handleDriverState}
                   fullWidth
                   label="State"
-                  autoComplete="off"
+                  autoComplete='off'
                   variant="standard"
                   InputProps={{
                     style: {
@@ -305,6 +306,7 @@ const SecondPage = () => {
                 {errordriverState !== '' && (
                   <p className="text-red-500 pl-2">{errordriverState}</p>
                 )}
+                
               </div>
             </div>
             <div className="w-full flex p-5 justify-between flex-col md:flex-row">

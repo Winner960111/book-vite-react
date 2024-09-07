@@ -4,7 +4,7 @@ import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { SubmitQuote, usersUpdate } from '../../../api/index';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
@@ -36,8 +36,8 @@ const Submit = () => {
   } = useSelector((state) => state.checker);
   const navigate = useNavigate();
   const returnBack = () => {
-    navigate(-1);
-  };
+    navigate(-1)
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const intent_data = {
@@ -59,7 +59,7 @@ const Submit = () => {
       last_question: '6',
     };
     const intent_res = await usersUpdate(intent_data, intentID);
-    'this is update results ====>', intent_res;
+    console.log('this is update results ====>', intent_res);
 
     const data = {
       dealer_id: dealerId,
@@ -75,11 +75,11 @@ const Submit = () => {
 
     const res = await SubmitQuote(data);
     if (res.status == 201) {
-      'status ImageSend', res;
+      console.log('status ImageSend', res);
       dispatch(addHistory(true));
-      returnBack();
+      returnBack()
     } else {
-      ('Faild ImageSend');
+      console.log('Faild ImageSend');
     }
   };
 
@@ -93,11 +93,11 @@ const Submit = () => {
         )}
       >
         <p className="bg-gray-50 rounded-3xl p-4">
-          - Please take a moment to review the information below.
-          <br />- We are committed to protecting your privacy. The information
-          that you provided is only shared with the dealership to assess your
-          credit history and not otherwise sold, marketed, or distributed in any
-          way by {dealerName}.<br />
+          - Please take a moment to review the information below.<br />
+          - We are committed to protecting your privacy. The information that you
+          provided is only shared with the dealership to assess your credit
+          history and not otherwise sold, marketed, or distributed in any way by{' '}
+          {dealerName}.<br />
         </p>
         <div className="bg-gray-50 rounded-3xl p-4 mt-2">
           <p

@@ -53,15 +53,16 @@ import backImg from '../assets/back.png';
 import { deviceInfo } from '../api/index';
 
 const Full = () => {
-  const { dealerLogo, step, history, residentalYears, jobYear, confirm } =
-    useSelector((state) => state.checker);
+  const { dealerLogo, step, history, residentalYears, jobYear, confirm } = useSelector(
+    (state) => state.checker
+  );
   const containerRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dealer_id } = useParams();
   const parsedData = JSON.parse(dealer_id);
   const [delta, setDelta] = useState(0);
-  'this is delta===>', delta;
+  console.log('this is delta===>', delta);
 
   useEffect(() => {
     if (jobYear) {
@@ -75,10 +76,10 @@ const Full = () => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
       .then(async (data) => {
-        'this is IP address===>', data.ip;
+        console.log('this is IP address===>', data.ip);
         dispatch(setDeviceIP(data.ip));
         deviceInfo(data.ip).then((deviceData) => {
-          'this is device=======>', deviceData;
+          console.log('this is device=======>', deviceData);
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
           dispatch(setDeviceState(deviceData.region));
@@ -92,7 +93,7 @@ const Full = () => {
         dispatch(setDeviceBrowser(browserName));
         dispatch(setDeviceOS(osName));
       })
-      .catch((error) => error);
+      .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
@@ -100,10 +101,10 @@ const Full = () => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
 
     // when refresh app, set dealer_id and dealer_info of store
-    const dealerInfoCall = dispatch(parsedData.slug);
+    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
     dispatch(setDealerId(parsedData.slug));
-    'this is step===>', step;
+    console.log('this is step===>', step);
   }, [history, step, dealer_id, dispatch]);
 
   const handleRestart = () => {
@@ -116,7 +117,7 @@ const Full = () => {
   };
   const plusStep = () => {
     dispatch(addHistory(true));
-    'this is current step===>', step;
+    console.log('this is current step===>', step);
   };
   return (
     <div

@@ -43,10 +43,10 @@ const Quote = () => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
       .then(async (data) => {
-        'this is IP address===>', data.ip;
+        console.log('this is IP address===>', data.ip);
         dispatch(setDeviceIP(data.ip));
         deviceInfo(data.ip).then((deviceData) => {
-          'this is device=======>', deviceData;
+          console.log('this is device=======>', deviceData);
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
           dispatch(setDeviceState(deviceData.region));
@@ -60,7 +60,7 @@ const Quote = () => {
         dispatch(setDeviceBrowser(browserName));
         dispatch(setDeviceOS(osName));
       })
-      .catch((error) => error);
+      .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {

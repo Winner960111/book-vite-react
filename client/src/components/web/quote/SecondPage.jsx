@@ -35,23 +35,20 @@ const DealType = () => {
   const [make, setMake] = useState(vehicleMake);
   const [model, setModel] = useState(vehicleModel);
 
-  'this is=========>', vehicleMake, vehicleModel, vehicleYear;
+  console.log("this is=========>", vehicleMake, vehicleModel, vehicleYear)
   useEffect(() => {
     setError(null);
     if (year.length >= 4)
       if (parseInt(year) < 1900 || parseInt(year) > 2100) {
-        setError('*Invalid Year info');
+        setError('*Invalid Year info')
       }
   }, [step, year, make, model]);
 
   const handleYear = (e) => {
-    if (
-      (/^[0-9]+$/.test(e.target.value) && e.target.value.length <= 4) ||
-      !e.target.value.trim()
-    ) {
-      setYear(e.target.value);
+    if (/^[0-9]+$/.test(e.target.value) && e.target.value.length <= 4 || !e.target.value.trim()) {
+      setYear(e.target.value)
     }
-  };
+  }
 
   const handleSubmit = async () => {
     if (year && make && model && dealClick) {
@@ -79,7 +76,7 @@ const DealType = () => {
           last_question: '2',
         };
         const res = await usersUpdate(data, intentID);
-        'this is update results ====>', res;
+        console.log('this is update results ====>', res);
         dispatch(addHistory(true));
         dispatch(setDealType(dealClick));
         dispatch(setQuoteInterest(interest));
@@ -103,7 +100,7 @@ const DealType = () => {
               label="Year"
               fullWidth
               autoFocus
-              autoComplete="off"
+              autoComplete='off'
               value={year}
               onChange={(e) => handleYear(e)}
               type="text"
@@ -124,7 +121,7 @@ const DealType = () => {
               margin="dense"
               label="Make"
               fullWidth
-              autoComplete="off"
+              autoComplete='off'
               value={make}
               onChange={(e) => setMake(e.target.value)}
               type="text"
@@ -145,7 +142,7 @@ const DealType = () => {
               fullWidth
               id="margin-dense"
               margin="dense"
-              autoComplete="off"
+              autoComplete='off'
               value={model}
               onChange={(e) => setModel(e.target.value)}
               type="text"
@@ -220,6 +217,7 @@ const DealType = () => {
             <p className=" px-6">
               <p>What option are you considering for your purchase?</p>
             </p>
+
           </div>
           <button
             type="button"

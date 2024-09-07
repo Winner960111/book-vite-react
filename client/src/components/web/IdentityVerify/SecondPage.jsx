@@ -6,29 +6,29 @@ import Questionaire from '../../web/IdentityVerify/Questionaire';
 import { identifyInfo, identification } from '../../../api/index';
 
 const SecondPage = () => {
-  const { identifyId, dealerId, customerId } = useSelector(
-    (state) => state.checker
-  );
+  const {
+    identifyId,
+    dealerId,
+    customerId
+  } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [answer, setAnswer] = useState({});
-  const [answers, setAnswers] = useState([]);
-  const [question, setQuestion] = useState([]);
+  const [answers, setAnswers] = useState([])
+  const [question, setQuestion] = useState([])
   const [temp_data, setTemp] = useState([]);
 
   useEffect(() => {
-    ('useEffect===>');
+    console.log('useEffect===>');
     identifyInfo(identifyId).then((res) => {
       setQuestion(res.questions);
-      setTemp(res);
+      setTemp(res)
     });
   }, []);
-  ('thisisi data question ===>', question)(
-    'thisisi data temp data ===>',
-    temp_data
-  );
-
+console.log("thisisi data question ===>", question)
+console.log('thisisi data temp data ===>', temp_data);
+ 
   useEffect(() => {
-    let double = -1;
+    let double = -1
     if (answer.ans) {
       if (answers.length) {
         for (var i = 0; i <= answers.length - 1; i++) {
@@ -38,8 +38,8 @@ const SecondPage = () => {
           }
         }
         if (double != -1) {
-          ("I'm here");
-          answers[double].answer = answer.ans;
+          console.log("I'm here")
+          answers[double].answer = answer.ans
         } else {
           const newobject = {
             answer: answer.ans,
@@ -50,12 +50,16 @@ const SecondPage = () => {
       } else {
         const newobject = {
           answer: answer.ans,
-          questionID: answer.index,
+          questionID: answer.index
         };
         setAnswers([...answers, newobject]);
       }
+      
+      
     }
-  }, [answer])('this is answers==>', answers);
+
+  }, [answer])
+    console.log('this is answers==>', answers);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,16 +72,15 @@ const SecondPage = () => {
       completed: temp_data.completed,
     };
 
-    const res = await identification(data, identifyId)(
-      'this is status',
-      res.status
-    );
+    const res = await identification(data, identifyId)
+    console.log("this is status",res.status)
     if (res.status == 200) {
-      ('Success');
-      dispatch(addHistory(true));
+      console.log("Success")
+    dispatch(addHistory(true));
     } else {
-      ('failed');
+      console.log("failed")
     }
+
   };
 
   return (
@@ -99,6 +102,7 @@ const SecondPage = () => {
                 answer={(ans) => setAnswer({ ans, index })}
               />
             ))}
+            
           </div>
           <div className="w-full mt-5 flex justify-end">
             <button

@@ -7,7 +7,7 @@ import { browserName, osName } from 'react-device-detect';
 import Greeting from '../components/Mobile/trade/Greeting';
 import SendPhoneVerificationCode from '../components/common/SendPhoneVerificationCode';
 import CheckPhoneVerificationCode from '../components/Mobile/trade/CheckPhoneVerificationCode';
-import Instant from '../components/Mobile/trade/Instant';
+import Instant from "../components/Mobile/trade/Instant"
 import InputFirstName from '../components/Mobile/trade/InputFirstName';
 import InputLastName from '../components/Mobile/trade/InputLastName';
 import InputEmail from '../components/Mobile/trade/InputEmail';
@@ -38,9 +38,7 @@ import backImg from '../assets/back.png';
 import { deviceInfo } from '../api/index';
 
 const Quote = () => {
-  const { dealerLogo, step, history, timezone } = useSelector(
-    (state) => state.checker
-  );
+  const { dealerLogo, step, history, timezone } = useSelector((state) => state.checker);
   const containerRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -51,16 +49,17 @@ const Quote = () => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
       .then(async (data) => {
-        'this is IP address===>', data.ip;
+        console.log('this is IP address===>', data.ip);
         dispatch(setDeviceIP(data.ip));
         deviceInfo(data.ip).then((deviceData) => {
-          'this is device=======>', deviceData;
+          console.log('this is device=======>', deviceData);
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
           dispatch(setDeviceState(deviceData.region));
           dispatch(setDeviceLat(deviceData.ll[0]));
           dispatch(setDeviceLon(deviceData.ll[1]));
           dispatch(setTimezone(timezone));
+
         });
         const currentTime = moment
           .tz(data.timezone)
@@ -69,7 +68,7 @@ const Quote = () => {
         dispatch(setDeviceBrowser(browserName));
         dispatch(setDeviceOS(osName));
       })
-      .catch((error) => error);
+      .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {

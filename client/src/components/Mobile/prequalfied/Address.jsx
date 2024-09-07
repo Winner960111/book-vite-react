@@ -116,7 +116,7 @@ const Address = () => {
 
     setErrors('');
     let newErrors = {};
-    locality;
+    console.log(locality);
 
     if (!locality.trim()) {
       newErrors.locality = 'City field is required';
@@ -127,7 +127,7 @@ const Address = () => {
     if (!zipcode.trim()) {
       newErrors.zipcode = 'ZipCode field is required';
     } else if (!/^[0-9]+$/.test(zipcode)) {
-      newErrors.zipcode = '*Invalid ZipCode format';
+      newErrors.zipcode = '*Invalid ZipCode format'
     }
 
     setErrors(newErrors);
@@ -152,7 +152,7 @@ const Address = () => {
         last_question: '7',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerAddress(address));
       dispatch(setCheckerApt(apt));
@@ -181,13 +181,7 @@ const Address = () => {
           style={step >= 10 ? { display: 'none' } : { display: 'block' }}
         >
           <Paper
-            sx={{
-              p: '2px 4px',
-              display: 'flex',
-              alignItems: 'center',
-              width: '100%',
-              height: '70px',
-            }}
+            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', height: '70px' }}
           >
             <PersonPinCircleIcon />
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />

@@ -47,7 +47,7 @@ const OldInterest = () => {
 
   useEffect(() => {
     setError('');
-  }, [zipcode, address, locality, state]);
+  }, [zipcode, address, locality, state])
 
   useEffect(() => {
     setError('');
@@ -55,7 +55,7 @@ const OldInterest = () => {
     setApt('');
     setLocality('');
     setState('');
-    setZipcode('');
+    setZipcode('')
   }, []);
 
   const initializeAutocomplete = useCallback(() => {
@@ -96,7 +96,7 @@ const OldInterest = () => {
     }
   }, [initializeAutocomplete, step]);
   useEffect(() => {
-    'this is current addressref===>', addressRef.current;
+    console.log('this is current addressref===>', addressRef.current);
   }, [addressRef]);
 
   const parseAddressComponents = (place) => {
@@ -118,26 +118,26 @@ const OldInterest = () => {
   };
 
   const handleSubmit = async (e) => {
-    let pass = 0;
+    let pass = 0
     e.preventDefault();
     setError('');
 
     if (!locality.trim()) {
       setError('City field is required');
     } else {
-      pass += 1;
+      pass += 1
     }
     if (!state.trim()) {
       setError('State field is required');
     } else {
-      pass += 1;
+      pass += 1
     }
     if (!zipcode.trim()) {
       setError('ZipCode field is required');
     } else if (!/^[0-9]+$/.test(zipcode)) {
-      setError('*Invalid ZipCode format');
+      setError('*Invalid ZipCode format')
     } else {
-      pass += 1;
+      pass += 1
     }
 
     if (pass == 3) {
@@ -160,7 +160,7 @@ const OldInterest = () => {
         last_question: '14',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setPreviousCheckerAddress(address));
       dispatch(setPreviousCheckerApt(apt));

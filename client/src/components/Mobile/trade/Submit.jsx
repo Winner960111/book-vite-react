@@ -38,9 +38,9 @@ const Submit = () => {
     vehicleType,
     mileageHour,
     originalOwner,
-    commentValue,
+    commentValue
   } = useSelector((state) => state.checker);
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
@@ -64,7 +64,7 @@ const Submit = () => {
     };
     const res = await SubmitTrade(data);
     if (res.status == 201) {
-      'status ImageSend', res;
+      console.log('status ImageSend', res);
       const new_data = {
         dealer_id: dealerId,
         device_ip_address: deviceIP,
@@ -84,11 +84,11 @@ const Submit = () => {
         last_question: '11',
       };
       const newRes = await usersUpdate(new_data, intentID);
-      'this is update results ====>', newRes;
+      console.log('this is update results ====>', newRes);
       dispatch(addHistory(true));
-      navigate(-1);
+      navigate(-1)
     } else {
-      ('Faild ImageSend');
+      console.log('Faild ImageSend');
     }
   };
 

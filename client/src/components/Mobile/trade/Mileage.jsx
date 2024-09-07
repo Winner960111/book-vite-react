@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
-import { addHistory, setMileageHour } from '../../../store/reducers/checker';
+import {
+  addHistory,
+  setMileageHour,
+
+} from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
 import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
 
 const Mileage = () => {
-  const {
-    step,
-    history,
-    intentID,
+  const { step, history, intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -22,21 +23,22 @@ const Mileage = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerMobileNumber,
-  } = useSelector((state) => state.checker);
+    checkerMobileNumber, } = useSelector(
+      (state) => state.checker
+    );
   const dispatch = useDispatch();
 
   const [year, setYear] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState('')
   const handleYearChange = (e) => {
     setYear(e.target.value);
-    setError('');
+    setError("")
   };
 
   useEffect(() => {
-    setError('');
-    setYear('');
-  }, []);
+    setError('')
+    setYear('')
+  }, [])
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -59,16 +61,16 @@ const Mileage = () => {
       last_question: '7',
     };
     const res = await usersUpdate(data, intentID);
-    'this is update results ====>', res;
+    console.log('this is update results ====>', res);
     if (!year) {
-      setError('Required');
+      setError("Required")
     } else if (!/^[0-9]+$/.test(year)) {
-      setError('*only number');
+      setError("*only number")
     } else {
       dispatch(addHistory(true));
-      dispatch(setMileageHour(year));
+      dispatch(setMileageHour(year))
     }
-  };
+  }
 
   const renderDescription = () => (
     <>
@@ -91,7 +93,7 @@ const Mileage = () => {
             fullWidth
             value={year}
             onChange={handleYearChange}
-            autoComplete="off"
+            autoComplete='off'
             type="text"
             InputProps={{
               style: {
@@ -109,7 +111,9 @@ const Mileage = () => {
         {error !== '' ? (
           <p className="text-red-500 pl-2 text-sm">{error}</p>
         ) : null}
-        <p className="bg-gray-50 rounded-3xl p-4">How much mileage hour?</p>
+        <p className="bg-gray-50 rounded-3xl p-4">
+          How much mileage hour?
+        </p>
 
         <button
           type="submit"

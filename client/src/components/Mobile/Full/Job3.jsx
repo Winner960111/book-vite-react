@@ -55,12 +55,12 @@ const Job3 = () => {
   }, []);
 
   useEffect(() => {
-    'this is job kind===>', jobKind;
-  }, [jobKind]);
+    console.log("this is job kind===>", jobKind)
+  }, [jobKind])
 
   const handleEDate = (value) => {
     setError('');
-    'value==>', value;
+    console.log('value==>', value);
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
@@ -73,10 +73,10 @@ const Job3 = () => {
 
   const handlePay = (e) => {
     if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
-      setPay(e.target.value);
+      setPay(e.target.value)
     }
-    setError('');
-  };
+    setError('')
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -112,7 +112,7 @@ const Job3 = () => {
         last_question: '17',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setJobstatus(jobKind));
       dispatch(setJobYear(date));
@@ -179,7 +179,10 @@ const Job3 = () => {
               </Select>
             </FormControl>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DatePicker']} minDate="2000-01-01">
+              <DemoContainer
+                components={['DatePicker']}
+                minDate="2000-01-01"
+              >
                 <DatePicker
                   label="Start Date"
                   onChange={(newValue) => handleEDate(newValue)}

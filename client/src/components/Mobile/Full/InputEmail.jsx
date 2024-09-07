@@ -7,12 +7,7 @@ import { TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
 const InputEmail = () => {
-  const {
-    step,
-    history,
-    dealerName,
-    checkerEmail,
-    intentID,
+  const { step, history, dealerName, checkerEmail, intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -24,8 +19,9 @@ const InputEmail = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerMobileNumber,
-  } = useSelector((state) => state.checker);
+    checkerMobileNumber, } = useSelector(
+      (state) => state.checker
+    );
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
@@ -67,7 +63,7 @@ const InputEmail = () => {
         last_question: '4',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerEmail(email));
       setEmail('');
@@ -93,7 +89,7 @@ const InputEmail = () => {
             label="Email address"
             fullWidth
             value={email.toLowerCase()}
-            autoComplete="off"
+            autoComplete='off'
             onChange={handleChangeInputEmail}
             type="text"
             InputProps={{

@@ -40,10 +40,10 @@ const WebPrequalified = () => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
       .then(async (data) => {
-
+        console.log('this is IP address===>', data.ip);
         dispatch(setDeviceIP(data.ip));
         deviceInfo(data.ip).then((deviceData) => {
-
+          console.log('this is device=======>', deviceData);
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
           dispatch(setDeviceState(deviceData.region));
@@ -57,7 +57,7 @@ const WebPrequalified = () => {
         dispatch(setDeviceBrowser(browserName));
         dispatch(setDeviceOS(osName));
       })
-      .catch((error) => error);
+      .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const WebPrequalified = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center bg-gray-50 w-screen h-screen relative">
+    <div className="flex flex-col justify-between bg-gray-50 w-screen h-screen relative">
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img
@@ -89,8 +89,7 @@ const WebPrequalified = () => {
             src={dealerLogo}
             alt="avatar"
           />
-          
-          {/* <div className=" w-32 h-10">
+          <div className=" w-32 h-10">
             <Flat
               progress={(step / 5) * 100}
               range={{ from: 0, to: 100 }}
@@ -120,20 +119,15 @@ const WebPrequalified = () => {
                 intersectionEnabled: true,
               }}
             />
-          </div> */}
+          </div>
         </div>
       </div>
-      {/* <div className="flex bg-gray-50 w-full justify-center items-center"> */}
-
-      <div className="w-1/2 text-justify bg-white rounded-3xl p-24 m-14 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
-        {/* {step == 0 && <PhoneVerification />} */}
-        {/* {step == 1 && <CheckVerifyCode />} */}
-        {<FirstPage />}
-        {<SecondPage />}
-        {<ThirdPage />}
-        {/* {step == 1 && <Finish />} */}
-      </div>
-      {/* </div> */}
+      {step == 0 && <PhoneVerification />}
+      {step == 1 && <CheckVerifyCode />}
+      {step == 2 && <FirstPage />}
+      {step == 3 && <SecondPage />}
+      {step == 4 && <ThirdPage />}
+      {step == 5 && <Finish />}
       <div className="h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
         <img
           className="w-10 cursor-pointer mx-5"

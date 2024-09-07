@@ -85,11 +85,11 @@ const Vehicle = () => {
         last_question: '9',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
     }
   };
-  'vehicles===>', vehicles;
+  console.log("vehicles===>", vehicles)
   const renderDescription = () => (
     <>
       <BotIcon />
@@ -143,7 +143,7 @@ const Vehicle = () => {
               value={condition}
               onChange={(e) => {
                 setCondition(e.target.value);
-                setError('');
+                setError('')
               }}
               disabled={step >= 13 ? true : false}
             >

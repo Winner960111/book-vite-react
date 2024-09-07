@@ -812,19 +812,19 @@ export const {
 
 // fetch dealer name and dealer logo
 export const getDealerInfo = (dealer_id) => (dispatch) => {
-  ' this is data✨✨✨ ===>', dealer_id;
+  console.log(' this is data✨✨✨ ===>', dealer_id);
   const data = {
     slug: dealer_id,
   };
   return async () => {
     try {
       const response = await apis.post('decode_dealer/', data);
-      '💎💎💎💎💎💎🧤🧤🧤🧤🧤', response.data;
+      console.log('💎💎💎💎💎💎🧤🧤🧤🧤🧤', response.data);
       dispatch(setDealerName(response.data.name));
       dispatch(setDealerLogo(response.data.get_logo_url));
       dispatch(setDealerId(response.data.id.toString()));
     } catch (error) {
-      error;
+      console.log(error);
     }
   };
 };

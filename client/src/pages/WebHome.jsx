@@ -12,71 +12,63 @@ import shield from '../assets/shield.jpg';
 
 const WebHome = () => {
   const { dealer_id } = useParams();
+  console.log('This is dealer_id', dealer_id);
+  const parsedData = JSON.parse(dealer_id);
   const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const { param } = useParams();
-  // const data = JSON.parse(param);
-  console.log('this is parameter 🥇🥇🥇===>', parsedData);
   useEffect(() => {
     // const urlParams = new URLSearchParams(window.location.search);
     const year = parsedData.year;
     const make = parsedData.make;
     const model = parsedData.model;
     if (year && make && model) {
-
-      dispatch(setVehicleYear(year))
-      dispatch(setVehicleMake(make))
-      dispatch(setVehicleModel(model))
+      dispatch(setVehicleYear(year));
+      dispatch(setVehicleMake(make));
+      dispatch(setVehicleModel(model));
     }
-    console.log("this is in webHome=========>", year, make, model)
-
+    console.log('this is in webHome=========>', year, make, model);
   }, []);
-
 
   // getting dealer_name and avatar
   useEffect(() => {
-    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
+    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
-  }, [data, dispatch]);
+  }, [dealer_id, dispatch]);
 
   const changePageQuote = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${parsedData.slug}/quote`);
+    navigate(`/info-checker/${dealer_id}/quote`);
   };
 
   const changePagePrequalified = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${parsedData.slug}/prequalified`);
+    navigate(`/info-checker/${dealer_id}/prequalified`);
   };
 
   const changePageTradeInValue = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${parsedData.slug}/trade`);
+    navigate(`/info-checker/${dealer_id}/trade`);
   };
   const changePageFullApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${parsedData.slug}/full`);
+    navigate(`/info-checker/${dealer_id}/full`);
   };
   const changePageAppointment = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${parsedData.slug}/appointment`);
+    navigate(`/info-checker/${dealer_id}/appointment`);
   };
   const changePageCheckApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/check`)
-  }
+    navigate(`/info-checker/${dealer_id}/check`);
+  };
 
   return (
     <div className="w-screen h-screen flex flex-col items-center bg-gray-50">
       <div className="flex w-full justify-center bg-white">
         <div className="flex w-3/4 justify-between py-5 px-20">
-          <img
-            className="w-40 h-16"
-            src={dealerLogo}
-            alt="avatar"
-          />
+          <img className="w-40 h-16" src={dealerLogo} alt="avatar" />
           <img className="w-35 h-20" src={shield} alt="avatar" />
         </div>
       </div>
@@ -129,8 +121,6 @@ const WebHome = () => {
           >
             CALL BACK
           </button>
-
-
         </div>
       </div>
     </div>

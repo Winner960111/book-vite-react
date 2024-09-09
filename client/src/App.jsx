@@ -61,6 +61,7 @@ const App = () => {
     }
   }, [dispatch, initialize]);
 
+  console.log("this is type===>" , type)
   return (
     <>
       {<Loading loading={type === '' ? true : false} />}

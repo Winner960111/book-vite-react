@@ -7,6 +7,7 @@ const geoip = require('geoip-lite');
 // @access  Public
 router.get('/detect-agent', async (req, res) => {
   try {
+    console.log("this is backend👌👌👌")
     const userAgent = req.headers['user-agent'];
 
     // Check if the User-Agent indicates a mobile device

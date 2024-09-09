@@ -251,7 +251,6 @@ export const deviceInfo = async (ip) =>
   });
 
 export const detectAgent = () => async (dispatch) => {
-  console.log('Call Detect Agent');
   await api
     .get('/detect-agent')
     .then((res) => {

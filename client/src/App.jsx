@@ -13,6 +13,7 @@ import TradeIn from './pages/TradeIn';
 import Full from './pages/Full';
 import Appointment from './pages/Appointment';
 import WebPrequalified from './pages/WebPrequalified';
+import WebPrequalifiedLanding from './pages/WebPrequalifiedLanding';
 import WebTrade from './pages/WebTrade';
 import { detectAgent } from './api';
 import { setRenderType } from './store/reducers/checker';
@@ -69,6 +70,12 @@ const App = () => {
         <Route
           path={`/info-checker/:dealer_id/prequalified`}
           element={type == 'web' ? <WebPrequalified /> : <Prequalified />}
+        />
+        <Route
+          path={`/info-checker/:dealer_id/prequalified-landing`}
+          element={
+            type == 'web' ? <WebPrequalifiedLanding /> : <Prequalified />
+          }
         />
         <Route
           path="/info-checker/:dealer_id/quote"

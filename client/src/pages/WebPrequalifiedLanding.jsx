@@ -6,8 +6,8 @@ import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
 // checker step components
 import FirstPage_landing from '../components/web/prequalified/FirstPage_landing';
-import SecondPage_landing from '../components/web/prequalified/FirstPage_landing';
-import ThirdPage_landing from '../components/web/prequalified/FirstPage_landing';
+import SecondPage_landing from '../components/web/prequalified/SecondPage_landing';
+import ThirdPage_landing from '../components/web/prequalified/ThirdPage_landing';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
 import {

@@ -48,7 +48,7 @@ const NewInterestMore = () => {
   }, []);
 
   const handleYear = (e) => {
-    setError('');
+    setError('')
     if (
       (/^[0-9]+$/.test(e.target.value) && String(e.target.value).length <= 2) ||
       !e.target.value.trim()
@@ -58,7 +58,7 @@ const NewInterestMore = () => {
   };
 
   const handleMonth = (e) => {
-    setError('');
+    setError('')
     if (
       (/^[0-9]+$/.test(e.target.value) && String(e.target.value).length <= 2) ||
       !e.target.value.trim()
@@ -77,7 +77,7 @@ const NewInterestMore = () => {
       pass += 1;
     }
     if (!residentalYear.trim()) {
-      setError('*Year is required');
+      setError('*Year is required')
     } else if (residentalYear > 100 || residentalYear < 1) {
       setError('*Invalid Year');
     } else {
@@ -110,7 +110,7 @@ const NewInterestMore = () => {
         last_question: '12',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setResidentalMonths(residentalMonth));
       dispatch(setResidentalYears(residentalYear));
@@ -158,7 +158,7 @@ const NewInterestMore = () => {
             defaultValue="Normal"
             margin="dense"
             label="Year"
-            autoComplete="off"
+            autoComplete='off'
             value={residentalYear}
             style={{ margin: '0 10px 0 10px', width: '95%' }}
             onChange={(e) => {
@@ -182,7 +182,7 @@ const NewInterestMore = () => {
             defaultValue="Normal"
             margin="dense"
             label="Month"
-            autoComplete="off"
+            autoComplete='off'
             value={residentalMonth}
             style={{ margin: '0 10px 0 10px', width: '95%' }}
             onChange={(e) => {

@@ -12,25 +12,24 @@ import shield from '../assets/shield.jpg';
 
 const Home = () => {
   const { dealer_id } = useParams();
-  console.log("Hey this is dealer_id", dealer_id);
-  const parsedData = JSON.parse(dealer_id);
   const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [obj, setObj] = useState(true);
+  const data = JSON.parse(dealer_id);
 
   useEffect(() => {
     // const urlParams = new URLSearchParams(window.location.search);
 
-    const year = parsedData.year;
-    const make = parsedData.make;
-    const model = parsedData.model;
+    const year = data.year;
+    const make = data.make;
+    const model = data.model;
     if (year && make && model) {
       dispatch(setVehicleYear(year));
       dispatch(setVehicleMake(make));
       dispatch(setVehicleModel(model));
     }
-    'this is in webHome=========>', year, make, model;
+    console.log('this is in webHome=========>', year, make, model);
   }, []);
 
   const handleObj = () => {
@@ -42,36 +41,36 @@ const Home = () => {
   };
   // getting dealer_name and avatar
   useEffect(() => {
-    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
-  }, [parsedData, dispatch]);
+  }, [data, dispatch]);
 
   const changePageQuote = () => {
-    navigate(`/info-checker/${parsedData.slug}/quote`);
+    navigate(`/info-checker/${data.slug}/quote`);
   };
 
   const changePagePrequalified = () => {
-    navigate(`/info-checker/${parsedData.slug}/prequalified`);
+    navigate(`/info-checker/${data.slug}/prequalified`);
   };
   const changePageAppointment = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${parsedData.slug}/appointment`);
+    navigate(`/info-checker/${data.slug}/appointment`);
   };
   const changePageTradeIn = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${parsedData.slug}/trade`);
+    navigate(`/info-checker/${data.slug}/trade`);
   };
   const changePageCheckApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${parsedData.slug}/check`);
+    navigate(`/info-checker/${data.slug}/check`);
   };
   const changePageFull = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${parsedData.slug}/full`);
+    navigate(`/info-checker/${data.slug}/full`);
   };
   const changePageMessage = () => {
     dispatch(clearHistory());
-    navigate(`/message_dealer/${parsedData.slug}`);
+    navigate(`/message_dealer/${data.slug}`);
   };
 
   return (
@@ -126,11 +125,11 @@ const Home = () => {
             CHECK APPLICATION STATUS
           </button>
           <button
-            onClick={changePageMessage}
+            // onClick={changePagePrequalified}
             className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 active:bg-purple-800"
             style={obj ? { display: 'none' } : { display: 'block' }}
           >
-            MESSAGE DEALER
+            CALL BACK
           </button>
           <p
             className="text-lg font-medium mt-2 text-[#854fff] active:text-purple-800"

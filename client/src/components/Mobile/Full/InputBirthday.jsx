@@ -13,11 +13,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const InputBirthday = () => {
-  const {
-    step,
-    history,
-    checkerBirthday,
-    intentID,
+  const { step, history, checkerBirthday, intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -29,8 +25,9 @@ const InputBirthday = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerMobileNumber,
-  } = useSelector((state) => state.checker);
+    checkerMobileNumber, } = useSelector(
+      (state) => state.checker
+    );
   const dispatch = useDispatch();
 
   const [birthday, setBirthday] = useState('');
@@ -42,7 +39,7 @@ const InputBirthday = () => {
 
   const handleBirthday = (value) => {
     setError('');
-    'value==>', value;
+    console.log('value==>', value);
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
@@ -52,6 +49,7 @@ const InputBirthday = () => {
     }
     setBirthday(year + '-' + String(month) + '-' + date);
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -78,7 +76,7 @@ const InputBirthday = () => {
         last_question: '6',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerBirthday(birthday));
       setBirthday('');
@@ -114,7 +112,9 @@ const InputBirthday = () => {
           </LocalizationProvider>
           {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
+        <p
+          className="bg-gray-50 rounded-3xl p-4 mt-2"
+        >
           Please input your date of birth.
         </p>
         <button

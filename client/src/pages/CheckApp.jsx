@@ -34,16 +34,15 @@ const CheckApp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dealer_id } = useParams();
-  const parsedData = JSON.parse(dealer_id);
 
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
       .then(async (data) => {
-        'this is IP address===>', data.ip;
+        console.log('this is IP address===>', data.ip);
         dispatch(setDeviceIP(data.ip));
         deviceInfo(data.ip).then((deviceData) => {
-          'this is device=======>', deviceData;
+          console.log('this is device=======>', deviceData);
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
           dispatch(setDeviceState(deviceData.region));
@@ -57,7 +56,7 @@ const CheckApp = () => {
         dispatch(setDeviceBrowser(browserName));
         dispatch(setDeviceOS(osName));
       })
-      .catch((error) => error);
+      .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
@@ -65,9 +64,9 @@ const CheckApp = () => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
 
     // when refresh app, set dealer_id and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
-    dispatch(setDealerId(parsedData.slug));
+    dispatch(setDealerId(dealer_id));
   }, [history, step, dealer_id, dispatch]);
 
   const handleRestart = () => {

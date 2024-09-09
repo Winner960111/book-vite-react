@@ -44,7 +44,7 @@ const Paymethod = () => {
 
   const handleEDate = (value) => {
     setError('');
-    'value==>', value;
+    console.log('value==>', value);
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
@@ -110,7 +110,7 @@ const Paymethod = () => {
         last_question: '8',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(setIDate(eDate));
       dispatch(setIIsuer(isuer));
       dispatch(setIType(payType));
@@ -178,7 +178,10 @@ const Paymethod = () => {
           </FormControl>
           <div className="flex flex-col w-[95%] my-3">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DatePicker']} minDate="2000-01-01">
+              <DemoContainer
+                components={['DatePicker']}
+                minDate="2000-01-01"
+              >
                 <DatePicker
                   label="Expiration Date"
                   onChange={(newValue) => handleEDate(newValue)}

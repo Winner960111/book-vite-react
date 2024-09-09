@@ -98,8 +98,8 @@ const FourthPageItem = () => {
   }, []);
 
   useEffect(() => {
-    setErrorResidental('');
-  }, [residental]);
+    setErrorResidental('')
+  }, [residental])
 
   useEffect(() => {
     if (addressRef.current) {
@@ -150,7 +150,7 @@ const FourthPageItem = () => {
     if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
       setResidentalYear(e.target.value);
     }
-  };
+  }
   const handlePay = (e) => {
     setErrorPay('');
     if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
@@ -171,7 +171,7 @@ const FourthPageItem = () => {
     let pass = 0;
     setErrors('');
     let newErrors = {};
-    locality;
+    console.log(locality);
 
     if (!locality.trim()) {
       newErrors.locality = '*City field is required';
@@ -182,7 +182,7 @@ const FourthPageItem = () => {
     if (!zipcode.trim()) {
       newErrors.zipcode = '*ZipCode field is required';
     } else if (!/^[0-9]+$/.test(zipcode)) {
-      newErrors.zipcode = '*Invalid format';
+      newErrors.zipcode = '*Invalid format'
     }
     if (!pay) {
       setErrorPay('*Required');
@@ -229,7 +229,7 @@ const FourthPageItem = () => {
         last_question: '4',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setPreviousCheckerAddress(address));
       dispatch(setPreviousCheckerApt(apt));

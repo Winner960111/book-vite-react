@@ -39,17 +39,16 @@ const Prequalified = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dealer_slug } = useParams();
-  const parsedData = JSON.parse(dealer_slug);
   const { customer_slug } = useParams();
 
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
       .then(async (data) => {
-        'this is IP address===>', data.ip;
+        console.log('this is IP address===>', data.ip);
         dispatch(setDeviceIP(data.ip));
         deviceInfo(data.ip).then((deviceData) => {
-          'this is device=======>', deviceData;
+          console.log('this is device=======>', deviceData);
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
           dispatch(setDeviceState(deviceData.region));
@@ -63,7 +62,7 @@ const Prequalified = () => {
         dispatch(setDeviceBrowser(browserName));
         dispatch(setDeviceOS(osName));
       })
-      .catch((error) => error);
+      .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
@@ -71,7 +70,7 @@ const Prequalified = () => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
 
     // when refresh app, set dealer_slug and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_slug));
     new Promise(dealerInfoCall);
   }, [history, step, dealer_slug, dispatch]);
 

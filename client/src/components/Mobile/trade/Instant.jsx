@@ -9,11 +9,12 @@ import {
   setVehicleType,
 } from '../../../store/reducers/checker';
 import { instantInfo, usersUpdate } from '../../../api/index';
-import { TextField } from '@mui/material';
+import { TextField } from '@mui/material'
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
 
 const Instant = () => {
+
   const {
     dealerId,
     intentID,
@@ -46,7 +47,7 @@ const Instant = () => {
   const [make, setMake] = useState(vehicleMake);
   const [model, setModel] = useState(vehicleModel);
 
-  'this is=========>', vehicleMake, vehicleModel, vehicleYear;
+  console.log("this is=========>", vehicleMake, vehicleModel, vehicleYear)
 
   const [error, setError] = useState(null);
 
@@ -66,7 +67,7 @@ const Instant = () => {
           vin: vinValue,
         };
         const res = await instantInfo(data);
-        'response is =>', res;
+        console.log('response is =>', res);
         if (res.status === 201) {
           dispatch(setInstantMake(res.data.make));
           dispatch(setInstantModel(res.data.model));
@@ -100,7 +101,7 @@ const Instant = () => {
           last_question: '1',
         };
         const res = await usersUpdate(data, intentID);
-        'this is update results ====>', res;
+        console.log('this is update results ====>', res);
         dispatch(addHistory(true));
       } else {
         setError('Please fill in the input field');
@@ -113,8 +114,8 @@ const Instant = () => {
         setYear(e.target.value);
       }
     }
-    setError('');
-  };
+    setError('')
+  }
 
   const handleInputVin = (e) => {
     setVinValue(e.target.value);
@@ -206,7 +207,7 @@ const Instant = () => {
                     handleInputVin(e);
                   }}
                   fullWidth
-                  autoComplete="off"
+                  autoComplete='off'
                   type="text"
                   InputProps={{
                     style: {
@@ -240,9 +241,7 @@ const Instant = () => {
           )}
           {makeState && (
             <>
-              <div
-                style={step >= 4 ? { display: 'none' } : { display: 'block' }}
-              >
+              <div style={step >= 4 ? { display: 'none' } : { display: 'block' }}>
                 <TextField
                   id="margin-dense"
                   margin="dense"
@@ -252,7 +251,7 @@ const Instant = () => {
                   onChange={(e) => {
                     handleInputYear(e);
                   }}
-                  autoComplete="off"
+                  autoComplete='off'
                   type="text"
                   InputProps={{
                     style: {
@@ -270,7 +269,7 @@ const Instant = () => {
                   id="margin-dense"
                   margin="dense"
                   label="Make"
-                  autoComplete="off"
+                  autoComplete='off'
                   fullWidth
                   value={make}
                   onChange={(e) => {
@@ -293,7 +292,7 @@ const Instant = () => {
                   label="Model"
                   fullWidth
                   id="margin-dense"
-                  autoComplete="off"
+                  autoComplete='off'
                   margin="dense"
                   value={model}
                   onChange={(e) => {
@@ -336,10 +335,8 @@ const Instant = () => {
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
       <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
-        Year: {instantYear}
-        <br />
-        Make: {instantMake}
-        <br />
+        Year: {instantYear}<br />
+        Make: {instantMake}<br />
         Model: {instantModel}
       </div>
     </div>

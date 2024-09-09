@@ -2,16 +2,11 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
-import {
-  addHistory,
-  setVehicleCondition,
-} from '../../../store/reducers/checker';
+import { addHistory, setVehicleCondition } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 
 const DealType = () => {
-  const {
-    step,
-    intentID,
+  const { step, intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -23,8 +18,7 @@ const DealType = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerMobileNumber,
-  } = useSelector((state) => state.checker);
+    checkerMobileNumber, } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [dealClick, setDealClick] = useState('');
@@ -56,7 +50,7 @@ const DealType = () => {
         last_question: '6',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setVehicleCondition(dealClick));
     } else {

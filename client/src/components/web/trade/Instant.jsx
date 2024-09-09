@@ -9,8 +9,10 @@ import {
   setVehicleType,
 } from '../../../store/reducers/checker';
 import { instantInfo, usersUpdate } from '../../../api/index';
-import { TextField } from '@mui/material';
+import { TextField } from '@mui/material'
+  ;
 const Instant = () => {
+
   const {
     dealerId,
     intentID,
@@ -36,7 +38,7 @@ const Instant = () => {
   const [make, setMake] = useState(vehicleMake);
   const [model, setModel] = useState(vehicleModel);
 
-  'this is=========>', vehicleMake, vehicleModel, vehicleYear;
+  console.log("this is=========>", vehicleMake, vehicleModel, vehicleYear)
 
   const dispatch = useDispatch();
 
@@ -54,7 +56,7 @@ const Instant = () => {
           vin: vinValue,
         };
         const res = await instantInfo(data);
-        'response is =>', res;
+        console.log('response is =>', res);
         if (res.status === 201) {
           dispatch(setInstantMake(res.data.make));
           dispatch(setInstantModel(res.data.model));
@@ -66,8 +68,9 @@ const Instant = () => {
       }
     } else if (makeState) {
       if (make && year && model) {
+
         if (!error) {
-          'this is yDate===>', year, make, model;
+          console.log("this is yDate===>", year, make, model)
           dispatch(setInstantMake(make));
           dispatch(setInstantModel(model));
           dispatch(setInstantYear(year));
@@ -90,7 +93,7 @@ const Instant = () => {
             last_question: '2',
           };
           const res = await usersUpdate(data, intentID);
-          'this is update results ====>', res;
+          console.log('this is update results ====>', res);
           dispatch(addHistory(true));
         }
       } else {
@@ -114,13 +117,10 @@ const Instant = () => {
   };
 
   const handleInputYear = (e) => {
-    if (
-      (/^[0-9]+$/.test(e.target.value) && e.target.value.length <= 4) ||
-      !e.target.value.trim()
-    ) {
-      setYear(e.target.value);
+    if (/^[0-9]+$/.test(e.target.value) && e.target.value.length <= 4 || !e.target.value.trim()) {
+      setYear(e.target.value)
     }
-    setError('');
+    setError('')
   };
   const handleInputMake = (e) => {
     setMake(e.target.value);
@@ -133,14 +133,14 @@ const Instant = () => {
   };
 
   useEffect(() => {
-    setError('');
+    setError('')
     if (year.length >= 4) {
       if (parseInt(year) < 1900 || parseInt(year) > 2100) {
-        ('this is invalid');
-        setError('*Invalid Year info');
+        console.log("this is invalid")
+        setError('*Invalid Year info')
       }
     }
-  }, [year, make, model]);
+  }, [year, make, model])
   return (
     <>
       <div className="w-full flex flex-col items-center">
@@ -200,13 +200,13 @@ const Instant = () => {
                     style: {
                       height: '70px', // Set the height of the TextField
                       fontSize: '25px',
-                      textAlign: 'center',
+                      textAlign: 'center'
                     },
                   }}
                   InputLabelProps={{
                     style: {
                       textAlign: 'center',
-                      fontSize: '25px',
+                      fontSize: '25px'
                     },
                   }}
                 />

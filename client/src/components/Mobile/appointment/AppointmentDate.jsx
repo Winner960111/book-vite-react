@@ -15,14 +15,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 const AppointmentDate = () => {
-  const {
-    history,
-    step,
-    appointDate,
-    appointTime,
-    dealerId,
-    deviceIP,
-    deviceOS,
+
+  const { history, step, appointDate, appointTime, dealerId, deviceIP, deviceOS,
     deviceCity,
     deviceCountry,
     deviceState,
@@ -31,9 +25,8 @@ const AppointmentDate = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerMobileNumber,
-    intentID,
-  } = useSelector((state) => state.checker);
+    checkerMobileNumber, intentID } =
+    useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [appointmentDate, setAppointmentDate] = useState('');
@@ -48,78 +41,81 @@ const AppointmentDate = () => {
     setAppointmentTime(null);
   }, [step]);
 
+
   const handleDate = (value) => {
-    const currentDate = new Date();
-    let currentYear = currentDate.getFullYear();
-    let currentDay = currentDate.getDate();
-    let currentMonth = currentDate.getMonth();
-    let wrong = false;
+    const currentDate = new Date()
+    let currentYear = currentDate.getFullYear()
+    let currentDay = currentDate.getDate()
+    let currentMonth = currentDate.getMonth()
+    let wrong = false
     setErrorDate('');
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
     date = value.$D;
 
-    // ("this is current====>", currentYear, currentDay, currentMonth)
-    // ("this is selected====>", year, date, month)
+    // console.log("this is current====>", currentYear, currentDay, currentMonth)
+    // console.log("this is selected====>", year, date, month)
     if (Number(year) < Number(currentYear)) {
-      wrong = true;
-      setErrorDate('*Invalid Date')('Year is wrong');
-    } else if (
-      Number(year) == Number(currentYear) &&
-      Number(month - 1) < Number(currentMonth)
-    ) {
-      wrong = true('Month is wrong');
-    } else if (
-      Number(year) == Number(currentYear) &&
-      Number(month - 1) == Number(currentMonth) &&
-      Number(date) < Number(currentDay)
-    ) {
-      wrong = true('Day is wrong');
+      wrong = true
+      setErrorDate('*Invalid Date')
+      console.log("Year is wrong")
+    } else if (Number(year) == Number(currentYear) && Number(month - 1) < Number(currentMonth)) {
+      wrong = true
+      console.log("Month is wrong")
+
+    } else if (Number(year) == Number(currentYear) && Number(month - 1) == Number(currentMonth) && Number(date) < Number(currentDay)) {
+      wrong = true
+      console.log("Day is wrong")
     }
     if (wrong == false) {
+
       setAppointmentDate(year + '-' + String(month) + '-' + date);
-      ('Correct==========');
+      console.log("Correct==========")
     } else {
-      setErrorDate('*Invalid Date');
+      setErrorDate('*Invalid Date')
     }
-  };
+  }
 
   const handleTime = (value) => {
     if (!appointmentDate) {
-      setErrorTime('*Input Date first');
+      setErrorTime('*Input Date first')
     } else {
-      setErrorTime('');
-      let hour = value.$H;
-      let min = value.$m('this is timepicker===>', hour, min);
+
+      setErrorTime('')
+      let hour = value.$H
+      let min = value.$m
+      console.log("this is timepicker===>", hour, min)
       if (Number(hour) < 9 || Number(hour) > 18) {
-        setErrorTime('*invalid Time');
+        setErrorTime('*invalid Time')
       } else {
-        setAppointmentTime(appointmentDate + 'T' + hour + ':' + min);
+
+        setAppointmentTime(appointmentDate + 'T' + hour + ':' + min)
       }
     }
-  };
+  }
 
   useEffect(() => {
-    'this is appointment==>', appointmentDate, appointmentTime;
-  }, [appointmentDate, appointmentTime]);
+    console.log("this is appointment==>", appointmentDate, appointmentTime)
+
+  }, [appointmentDate, appointmentTime])
 
   const handleSubmit = async (e) => {
-    let pass = 0;
+    let pass = 0
     e.preventDefault();
 
     if (!appointmentDate) {
-      setErrorDate('*Required');
+      setErrorDate('*Required')
     } else {
-      pass += 1;
+      pass += 1
     }
     if (!appointmentTime) {
-      setErrorTime('*Required');
+      setErrorTime('*Required')
     } else {
-      pass += 1;
+      pass += 1
     }
 
-    'this is date and time====>', appointmentDate, appointmentTime;
+    console.log("this is date and time====>", appointmentDate, appointmentTime)
     if (pass == 2) {
       const data = {
         dealer_id: dealerId,
@@ -140,12 +136,12 @@ const AppointmentDate = () => {
         last_question: '1',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
-      dispatch(setAppointDate(appointmentDate));
-      dispatch(setAppointTime(appointmentTime));
+      dispatch(setAppointDate(appointmentDate))
+      dispatch(setAppointTime(appointmentTime))
     }
-  };
+  }
 
   const renderDescription = () => (
     <>
@@ -184,32 +180,30 @@ const AppointmentDate = () => {
               />
             </DemoContainer>
           </LocalizationProvider>
-          {errorDate !== '' ? (
-            <p className="text-red-500 pl-2">{errorDate}</p>
-          ) : null}
+          {errorDate !== '' ? <p className="text-red-500 pl-2">{errorDate}</p> : null}
         </div>
         <div
           className="py-2 flex flex-col md:flex-row md:items-center"
           style={step >= 4 ? { display: 'none' } : { display: 'block' }}
         >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['TimePicker']}>
-              <TimePicker
-                label="Appointment Time"
+            <DemoContainer
+              components={[
+                'TimePicker',
+              ]}
+            >
+              <TimePicker label="Appointment Time"
                 onChange={(newValue) => handleTime(newValue)}
-                className="w-full"
-              />
+                className="w-full" />
             </DemoContainer>
           </LocalizationProvider>
-          {errorTime !== '' ? (
-            <p className="text-red-500 pl-2">{errorTime}</p>
-          ) : null}
+          {errorTime !== '' ? <p className="text-red-500 pl-2">{errorTime}</p> : null}
         </div>
         <b className="bg-gray-100 rounded-3xl p-4 w-full">
           When would you like to appointment?
         </b>
         <button
-          type="submit"
+          type='submit'
           className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
           style={step >= 4 ? { display: 'none' } : { display: 'block' }}
         >
@@ -222,8 +216,7 @@ const AppointmentDate = () => {
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
       <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
-        {appointDate}
-        <br />
+        {appointDate}<br />
         {appointTime}
       </div>
     </div>

@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import apis from '../../utils/apis';
 
 const initialState = {
-  submit:false,
   imageBase64: [],
   vehicleYear: '',
   vehicleMake: '',
@@ -127,7 +126,7 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
-    setSubmit:(state, action) =>{
+    setSubmit: (state, action) => {
       state.submit = action.payload;
     },
     setImageBase64: (state, action) => {
@@ -812,19 +811,18 @@ export const {
 
 // fetch dealer name and dealer logo
 export const getDealerInfo = (dealer_id) => (dispatch) => {
-  ' this is data✨✨✨ ===>', dealer_id;
+  console.log('this is slug====>', dealer_id);
   const data = {
     slug: dealer_id,
   };
   return async () => {
     try {
       const response = await apis.post('decode_dealer/', data);
-      '💎💎💎💎💎💎🧤🧤🧤🧤🧤', response.data;
       dispatch(setDealerName(response.data.name));
       dispatch(setDealerLogo(response.data.get_logo_url));
       dispatch(setDealerId(response.data.id.toString()));
     } catch (error) {
-      error;
+      console.log(error);
     }
   };
 };

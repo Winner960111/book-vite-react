@@ -10,11 +10,7 @@ import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
 
 const InputLastName = () => {
-  const {
-    step,
-    history,
-    checkerLastName,
-    intentID,
+  const { step, history, checkerLastName, intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -26,8 +22,9 @@ const InputLastName = () => {
     deviceLon,
     deviceBrowser,
     type,
-    checkerMobileNumber,
-  } = useSelector((state) => state.checker);
+    checkerMobileNumber, } = useSelector(
+      (state) => state.checker
+    );
   const dispatch = useDispatch();
 
   const [lastName, setLastName] = useState('');
@@ -69,7 +66,7 @@ const InputLastName = () => {
         last_question: '2',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerLastName(lastName));
       setLastName('');
@@ -94,7 +91,7 @@ const InputLastName = () => {
             id="outlined-multiline-flexible"
             label="Last name"
             fullWidth
-            autoComplete="off"
+            autoComplete='off'
             value={lastName}
             onChange={handleChangeInput}
             type="text"

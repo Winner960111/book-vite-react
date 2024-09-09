@@ -19,6 +19,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { TextField } from '@mui/material';
 
 const OldJob2 = () => {
+
   const [address, setAddress] = useState('');
   const [locality, setLocality] = useState('');
   const [state, setState] = useState('');
@@ -83,9 +84,10 @@ const OldJob2 = () => {
     }
   }, [initializeAutocomplete, step]);
 
+
   useEffect(() => {
-    'this is current addressref===>', addressRef.current;
-  }, [addressRef]);
+    console.log("this is current addressref===>", addressRef.current)
+  }, [addressRef])
 
   const parseAddressComponents = (place) => {
     for (const component of place.address_components) {
@@ -106,28 +108,28 @@ const OldJob2 = () => {
   };
 
   useEffect(() => {
-    setError('');
-  }, [locality, zipcode, address, state]);
+    setError('')
+  }, [locality, zipcode, address, state])
   const handleSubmit = async (e) => {
-    let pass = 0;
+    let pass = 0
     e.preventDefault();
 
     if (!locality.trim()) {
       setError('City field is required');
     } else {
-      pass += 1;
+      pass += 1
     }
     if (!state.trim()) {
       setError('State field is required');
     } else {
-      pass += 1;
+      pass += 1
     }
     if (!zipcode.trim()) {
       setError('ZipCode field is required');
     } else if (!/^[0-9]+$/.test(zipcode)) {
-      setError('*Invalid ZipCode format');
+      setError('*Invalid ZipCode format')
     } else {
-      pass += 1;
+      pass += 1
     }
     if (pass == 3) {
       const data = {
@@ -149,13 +151,14 @@ const OldJob2 = () => {
         last_question: '18',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setJobAddress(address));
       dispatch(setJobApt(apt));
       dispatch(setJobCity(locality));
       dispatch(setJobState(state));
       dispatch(setJobZipcode(zipcode));
+
     }
   };
 

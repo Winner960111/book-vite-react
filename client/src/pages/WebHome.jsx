@@ -12,13 +12,12 @@ import shield from '../assets/shield.jpg';
 
 const WebHome = () => {
   const { dealer_id } = useParams();
-  const parsedData=JSON.parse(dealer_id)
+  console.log('This is dealer_id', dealer_id);
+  const parsedData = JSON.parse(dealer_id);
   const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const { param } = useParams();
-  // const data = JSON.parse(param);
-  console.log('this is parameter 🥇🥇🥇===>', parsedData);
+
   useEffect(() => {
     // const urlParams = new URLSearchParams(window.location.search);
     const year = parsedData.year;
@@ -32,9 +31,9 @@ const WebHome = () => {
     console.log('this is in webHome=========>', year, make, model);
   }, []);
 
-  //getting dealer_name and avatar
+  // getting dealer_name and avatar
   useEffect(() => {
-    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
+    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
     new Promise(dealerInfoCall);
   }, [dealer_id, dispatch]);
 
@@ -63,10 +62,6 @@ const WebHome = () => {
   const changePageCheckApp = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/check`);
-  };
-  const changePageMessage = () => {
-    dispatch(clearHistory());
-    navigate(`/message_dealer/${dealer_id}`);
   };
 
   return (
@@ -121,10 +116,10 @@ const WebHome = () => {
             CHECK APPLICATION STATUS
           </button>
           <button
-            onClick={changePageMessage}
+            // onClick={changePageTradeInValue}
             className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
           >
-            MESSAGE DEALER
+            CALL BACK
           </button>
         </div>
       </div>

@@ -13,6 +13,7 @@ import TradeIn from './pages/TradeIn';
 import Full from './pages/Full';
 import Appointment from './pages/Appointment';
 import WebPrequalified from './pages/WebPrequalified';
+import WebPrequalifiedLanding from './pages/WebPrequalifiedLanding';
 import WebTrade from './pages/WebTrade';
 import { detectAgent } from './api';
 import { setRenderType } from './store/reducers/checker';
@@ -27,8 +28,6 @@ import WebReferenceDoc from './pages/WebReferenceDoc';
 import ReferenceDoc from './pages/ReferenceDoc';
 import WebIdentityVerify from './pages/WebIdentityVerify';
 import WebImages from './pages/WebImages';
-import WebMessage from './pages/WebMessage';
-import Message from './pages/Message';
 import Images from './pages/Images';
 
 const App = () => {
@@ -38,13 +37,12 @@ const App = () => {
     dispatch(detectAgent());
   }, [dispatch]);
 
-  
-  // const [measurementID, setMeasurementID] = useState('G-QR4D12VGLR');
+  const [measurementID, setMeasurementID] = useState('G-QR4D12VGLR');
 
-  // // Initialize Google Analytics with the current Measurement ID
-  // useEffect(() => {
-  //   ReactGA.initialize(measurementID);
-  // }, []);
+  // Initialize Google Analytics with the current Measurement ID
+  useEffect(() => {
+    ReactGA.initialize(measurementID);
+  }, []);
 
   // Function to update the Measurement ID
   // const updateMeasurementID = (newID) => {
@@ -53,10 +51,10 @@ const App = () => {
 
   useEffect(() => {
     if (window !== window.parent) {
-      ('embedded in iframe or object');
+      console.log('embedded in iframe or object');
       dispatch(setRenderType('iframe'));
     } else {
-      ('not embedded or cross-origin');
+      console.log('not embedded or cross-origin');
       initialize();
     }
   }, [dispatch, initialize]);
@@ -73,6 +71,10 @@ const App = () => {
         <Route
           path={`/info-checker/:dealer_id/prequalified`}
           element={type == 'web' ? <WebPrequalified /> : <Prequalified />}
+        />
+        <Route
+          path={`/info-checker/:dealer_id/prequalified-landing`}
+          element={type == 'web' ? <WebPrequalified-landing /> : <Prequalified-landing />}
         />
         <Route
           path="/info-checker/:dealer_id/quote"
@@ -109,10 +111,6 @@ const App = () => {
         <Route
           path="/verification/:dealer_slug/:customer_slug"
           element={type == 'web' ? <WebIdentityVerify /> : null}
-        />
-        <Route
-          path="/message_dealer/:dealer_id/"
-          element={type == 'web' ? <WebMessage /> : <Message />}
         />
       </Routes>
     </>

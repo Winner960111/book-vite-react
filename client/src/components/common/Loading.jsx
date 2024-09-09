@@ -2,7 +2,7 @@ import { Oval } from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 
 const Loading = ({ loading }) => {
-  ('Loading...');
+  console.log('Loading...');
   return (
     loading && (
       <div className="flex left-0 top-0 w-full h-full bg-gray-300 opacity-95 justify-center items-center absolute z-50">

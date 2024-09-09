@@ -28,13 +28,13 @@ const Submit = () => {
     };
 
     const res = await submitReference(data);
-    'this is res==>', res;
+    console.log("this is res==>", res)
     if (res.status == 201) {
       dispatch(addHistory(true));
     } else {
-      ('Failed');
+      console.log("Failed")
     }
-  };
+  }
   const renderDescription = () => (
     <>
       <BotIcon />

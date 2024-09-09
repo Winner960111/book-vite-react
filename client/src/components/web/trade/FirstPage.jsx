@@ -55,10 +55,11 @@ const FirstPage = () => {
   };
 
   const handleMileage = (e) => {
+
     if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
-      setMileage(e.target.value);
+      setMileage(e.target.value)
     }
-  };
+  }
 
   const handleEmailAddress = (e) => {
     setEmailAddress(e.target.value);
@@ -120,7 +121,7 @@ const FirstPage = () => {
         last_question: '1',
       };
       const res = await usersUpdate(data, intentID);
-      'this is update results ====>', res;
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerFirstName(firstName));
       dispatch(setCheckerLastName(lastName));
@@ -143,16 +144,14 @@ const FirstPage = () => {
                 <TextField
                   aria-owns={focus ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
-                  onMouseEnter={(event) =>
-                    setFocusFirstName(event.currentTarget)
-                  }
+                  onMouseEnter={(event) => setFocusFirstName(event.currentTarget)}
                   onMouseLeave={() => setFocusFirstName(null)}
                   onMouseDown={() => setFocusFirstName(null)}
                   value={firstName}
                   onChange={handleFirstName}
                   fullWidth
                   autoFocus
-                  autoComplete="off"
+                  autoComplete='off'
                   type="text"
                   defaultValue="Normal"
                   label="First name"
@@ -165,7 +164,7 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px',
+                      fontSize: '25px'
                     },
                   }}
                 />
@@ -199,15 +198,13 @@ const FirstPage = () => {
                 <TextField
                   aria-owns={focus ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
-                  onMouseEnter={(event) =>
-                    setFocusLastName(event.currentTarget)
-                  }
+                  onMouseEnter={(event) => setFocusLastName(event.currentTarget)}
                   onMouseLeave={() => setFocusLastName(null)}
                   onMouseDown={() => setFocusLastName(null)}
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
-                  autoComplete="off"
+                  autoComplete='off'
                   type="text"
                   defaultValue="Normal"
                   label="Last name"
@@ -220,7 +217,7 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px',
+                      fontSize: '25px'
                     },
                   }}
                 />
@@ -252,19 +249,15 @@ const FirstPage = () => {
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={
-                    focusEmailAddress ? 'mouse-over-popover' : undefined
-                  }
+                  aria-owns={focusEmailAddress ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
-                  onMouseEnter={(event) =>
-                    setFocusEmailAddress(event.currentTarget)
-                  }
+                  onMouseEnter={(event) => setFocusEmailAddress(event.currentTarget)}
                   onMouseLeave={() => setFocusEmailAddress(null)}
                   onMouseDown={() => setFocusEmailAddress(null)}
                   value={emailAddress}
                   onChange={handleEmailAddress}
                   fullWidth
-                  autoComplete="off"
+                  autoComplete='off'
                   type="text"
                   defaultValue="Normal"
                   label="Email address"
@@ -277,7 +270,7 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px',
+                      fontSize: '25px'
                     },
                   }}
                 />
@@ -313,6 +306,7 @@ const FirstPage = () => {
             <div className="w-full p-5 flex justify-between flex-col md:flex-row -my-8">
               <div className="flex flex-col w-full md:w-[66%] md:px-5">
                 <div className="flex flex-col justify-between bg-gray-50 rounded-3xl px-4">
+
                   <p className="px-6 py-2">
                     <p>Please select vehicle condition</p>
                   </p>
@@ -378,7 +372,7 @@ const FirstPage = () => {
                   fullWidth
                   type="text"
                   defaultValue="Normal"
-                  autoComplete="off"
+                  autoComplete='off'
                   label="Mileage"
                   variant="standard"
                   InputProps={{
@@ -389,7 +383,7 @@ const FirstPage = () => {
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px',
+                      fontSize: '25px'
                     },
                   }}
                 />

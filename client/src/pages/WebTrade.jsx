@@ -35,8 +35,6 @@ const WebTrade = () => {
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_id } = useParams();
-  const parsedData = JSON.parse(dealer_id);
-  'this is 🎈🎈🎈==>', parsedData;
   const navigate = useNavigate();
   const [percent, setPercent] = useState(null);
 
@@ -44,10 +42,10 @@ const WebTrade = () => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
       .then(async (data) => {
-        'this is IP address===>', data.ip;
+        console.log('this is IP address===>', data.ip);
         dispatch(setDeviceIP(data.ip));
         deviceInfo(data.ip).then((deviceData) => {
-          'this is device=======>', deviceData;
+          console.log('this is device=======>', deviceData);
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
           dispatch(setDeviceState(deviceData.region));
@@ -61,15 +59,14 @@ const WebTrade = () => {
         dispatch(setDeviceBrowser(browserName));
         dispatch(setDeviceOS(osName));
       })
-      .catch((error) => error);
+      .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
     // when refresh app, set dealer_id and dealer_info of store
-    'here===>', parsedData?.slug;
-    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
-    dispatch(setDealerId(parsedData.id));
+    dispatch(setDealerId(dealer_id));
     setPercent(parseInt((step / 7) * 100));
   }, [history, step, dealer_id, dispatch]);
 
@@ -90,7 +87,7 @@ const WebTrade = () => {
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img
             onClick={Refresh}
-            className="w-40 h-16 cursor-pointer"
+            className="w-1/4 h-16 cursor-pointer"
             src={dealerLogo}
             alt="avatar"
           />

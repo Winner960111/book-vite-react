@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Flat } from '@alptugidin/react-circular-progress-bar';
 import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
-import { customerInfo } from '../api/index';
+import {customerInfo} from '../api/index'
 // checker step components
 import PhoneVerification from '../components/common/PhoneVerification';
 import CheckVerifyCode from '../components/web/ReferenceDoc/CheckVerifyCode';
@@ -31,13 +31,11 @@ import {
 
 import { deviceInfo } from '../api/index';
 
+
 const WebReferenceDoc = () => {
-  const { dealerLogo, step, history, dealerId } = useSelector(
-    (state) => state.checker
-  );
+  const { dealerLogo, step, history, dealerId } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_slug } = useParams();
-  const parsedData = JSON.parse(dealer_slug);
   const { customer_slug } = useParams();
   const navigate = useNavigate();
 
@@ -45,10 +43,10 @@ const WebReferenceDoc = () => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
       .then(async (data) => {
-        'this is IP address===>', data.ip;
+        console.log('this is IP address===>', data.ip);
         dispatch(setDeviceIP(data.ip));
         deviceInfo(data.ip).then((deviceData) => {
-          'this is device=======>', deviceData;
+          console.log('this is device=======>', deviceData);
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
           dispatch(setDeviceState(deviceData.region));
@@ -62,23 +60,23 @@ const WebReferenceDoc = () => {
         dispatch(setDeviceBrowser(browserName));
         dispatch(setDeviceOS(osName));
       })
-      .catch((error) => error);
+      .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
     // when refresh app, set dealer_slug and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_slug));
     new Promise(dealerInfoCall);
   }, [history, step, dealer_slug, dispatch]);
 
   useEffect(() => {
     if (dealerId) {
       customerInfo(dealerId, customer_slug).then((res) => {
-        dispatch(setCustomerId(res.data.id));
+        dispatch(setCustomerId(res.data.id))
         dispatch(setCustomerName(res.data.get_full_name));
       });
     }
-  }, [dealerId]);
+  },[dealerId])
 
   const Refresh = () => {
     dispatch(clearHistory());

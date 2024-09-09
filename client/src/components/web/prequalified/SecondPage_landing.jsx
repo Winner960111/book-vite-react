@@ -1,15 +1,13 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  addHistory,
   setCheckerAddress,
   setCheckerApt,
   setCheckerLocality,
   setCheckerState,
   setCheckerZipcode,
-  setSubmit,
 } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import { GiPositionMarker } from 'react-icons/gi';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -173,8 +171,8 @@ const SecondPage = () => {
             value={apt}
             onChange={handleApt}
             fullWidth
-            type="text"
-            defaultValue="Normal"
+            // type="text"
+            // defaultValue="Normal"
             label="Apt/Suite (Optional)"
             variant="standard"
             autoComplete="off"
@@ -196,8 +194,8 @@ const SecondPage = () => {
             value={locality}
             onChange={handleLocality}
             fullWidth
-            type="text"
-            defaultValue="Normal"
+            // type="text"
+            // defaultValue="Normal"
             autoComplete="off"
             label="City"
             variant="standard"
@@ -227,8 +225,8 @@ const SecondPage = () => {
             value={state}
             onChange={handleState}
             fullWidth
-            type="text"
-            defaultValue="Normal"
+            // type="text"
+            // defaultValue="Normal"
             autoComplete="off"
             label="State"
             variant="standard"
@@ -256,8 +254,8 @@ const SecondPage = () => {
             value={zipcode}
             onChange={handleZipCode}
             fullWidth
-            type="text"
-            defaultValue="Normal"
+            // type="text"
+            // defaultValue="Normal"
             label="Zip Code"
             autoComplete="off"
             variant="standard"

@@ -12,7 +12,6 @@ import shield from '../assets/shield.jpg';
 
 const WebHome = () => {
   const { dealer_id } = useParams();
-  console.log('This is dealer_id', dealer_id);
   const parsedData = JSON.parse(dealer_id);
   const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();

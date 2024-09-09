@@ -229,12 +229,12 @@ const ThirdPage = () => {
             className={'text-blue-600 text-sm hover:underline cursor-pointer'}
           ></span>
         </div>
-        <p className=" text-lg mt-3 text-center text-[#854fff]">
+        <p className=" text-[20px] mt-6 text-center text-[#854fff]">
           Please sign on drawbox. it will act as your digital signature.
         </p>
 
-        <div className="w-full h-[18vh] flex justify-center mt-3">
-          <div className="w-3/4 flex ">
+        <div className="w-full mt-2 h-[18vh] flex justify-center ">
+          <div className="w-full flex ">
             <canvas
               ref={canvasRef}
               onMouseDown={startDrawing}
@@ -245,11 +245,11 @@ const ThirdPage = () => {
           </div>
         </div>
 
-        <div className="text-center py-16">
+        <div className="text-center pt-4">
           <button
             type="button"
             onClick={handleSubmit}
-            className="bg-[#854fff] w-1/2 h-20 p-2 rounded-lg text-white text-3xl hover:bg-purple-800"
+            className="bg-[#854fff] w-full p-2 rounded-lg text-white text-3xl hover:bg-purple-800"
           >
             Submit
           </button>

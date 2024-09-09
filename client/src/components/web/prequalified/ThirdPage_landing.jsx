@@ -144,19 +144,19 @@ const ThirdPage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col p-5 mx-20 text-center">
+    <div className="w-full flex flex-col p-5 text-center">
       <form
         className={classNames(
-          'text-justify bg-white rounded-3xl p-8 mt-2 text-2xl font-sans '
+          'text-justify bg-white rounded-3xl  mt-1 text-[14px] leading-5 font-sans '
         )}
       >
-        <p className="p-4 mt-2">
+        <p className="mt-2">
           We are committed to protecting your privacy. The information that you
           provided is only shared with the dealership to assess your credit
           history and not otherwise sold, marketed, or distributed in any way by{' '}
           {dealerName}.
         </p>
-        <div className=" rounded-3xl p-4 mt-2">
+        <div className=" rounded-3xl mt-2">
           <p>
             Please click{' '}
             <a
@@ -190,7 +190,7 @@ const ThirdPage = () => {
             {/* {readStatePara1 == false ? 'More' : 'Less'} */}
           </span>
         </div>
-        <div className="rounded-3xl p-4 mt-2">
+        <div className="rounded-3xl mt-2">
           <p
           // className={
           //   readStatePara2 == false
@@ -229,7 +229,7 @@ const ThirdPage = () => {
             className={'text-blue-600 text-sm hover:underline cursor-pointer'}
           ></span>
         </div>
-        <p className="rounded-3xl p-4 text-center">
+        <p className=" text-lg mt-3 text-center text-[#854fff]">
           Please sign on drawbox. it will act as your digital signature.
         </p>
 

@@ -73,9 +73,7 @@ const App = () => {
         />
         <Route
           path={`/info-checker/:dealer_id/prequalified-landing`}
-          element={
-            type == 'web' ? <WebPrequalifiedLanding /> : <Prequalified />
-          }
+          element={type == 'web' ? <WebPrequalified-landing /> : <Prequalified-landing />}
         />
         <Route
           path="/info-checker/:dealer_id/quote"

@@ -1,7 +1,8 @@
+import ReCAPTCHA from "react-google-recaptcha";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { Flat } from '@alptugidin/react-circular-progress-bar';
+import { useEffect, useState } from 'react';
+// import { Flat } from '@alptugidin/react-circular-progress-bar';
 import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
 // checker step components
@@ -32,7 +33,18 @@ const WebPrequalified = () => {
   const { dealer_id } = useParams();
   const parsedData = JSON.parse(dealer_id);
   const navigate = useNavigate();
+  const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
 
+  const Site_key = import.meta.env.VITE_APP_SITE_KEY;
+  const handleCaptchaChange = (value) => {
+    console.log("🏅🏅🏅===>",value)
+  if (value) {
+    setIsCaptchaVerified(true);
+  } else {
+    setIsCaptchaVerified(false);
+  }
+  };
+  
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
@@ -72,6 +84,11 @@ const WebPrequalified = () => {
 
   return (
     <div className="flex flex-col justify-between items-center bg-gray-50 w-screen h-screen relative">
+      {!isCaptchaVerified && <ReCAPTCHA
+        sitekey={Site_key}
+        onChange={handleCaptchaChange}
+      />}
+      {isCaptchaVerified && <>
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img
@@ -99,7 +116,7 @@ const WebPrequalified = () => {
           alt="refresh icon"
           onClick={handleRestart}
         />
-      </div>
+      </div></>}
     </div>
   );
 };

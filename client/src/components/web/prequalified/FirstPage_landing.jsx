@@ -164,13 +164,13 @@ const FirstPage = () => {
   console.log('setErrorFirstName🏅🏅🏅===>', errorFirstName);
   return (
     <>
-      <div className="text-center w-full">
-        <p className="text-4xl my-3 font-medium">
+      <div className="text-center w-full flex flex-col gap-y-2">
+        <p className="text-4xl text-pink-700  font-montserrat mb-12 ">
           We need your some information
         </p>
 
-        <div className="w-full flex max-md:flex-col">
-          <div className="flex flex-col text-left w-full my-3 md:mx-5">
+        <div className="w-full flex  max-md:flex-col">
+          <div className="flex flex-col text-left w-full  md:mx-5">
             <TextField
               aria-owns={first ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -222,7 +222,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorFirstName}</p>
             )}
           </div>
-          <div className="flex flex-col text-left w-full my-3 md:mx-5">
+          <div className="flex flex-col text-left w-full  md:mx-5">
             <TextField
               aria-owns={middle ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -276,7 +276,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorMiddleName}</p>
             )}
           </div>
-          <div className="flex flex-col text-left w-full my-3 md:mx-5">
+          <div className="flex flex-col text-left w-full  md:mx-5">
             <TextField
               aria-owns={last ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -331,7 +331,7 @@ const FirstPage = () => {
           </div>
         </div>
         <div className="w-full flex justify-between flex-col md:flex-row">
-          <div className="flex flex-col text-left w-full my-3 md:mx-5">
+          <div className="flex flex-col text-left w-full  md:mx-5">
             <TextField
               aria-owns={emailHover ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -385,7 +385,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorEmailAddress}</p>
             )}
           </div>
-          <div className="flex flex-col text-left w-full my-3 md:mx-5">
+          <div className="flex flex-col text-left w-full  md:mx-5">
             <TextField
               aria-owns={phone ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -441,7 +441,7 @@ const FirstPage = () => {
           </div>
         </div>
         <div className="w-full flex justify-between flex-col md:flex-row">
-          <div className="flex flex-col text-left w-full my-3 md:mx-5">
+          <div className="flex flex-col text-left w-full  md:mx-5">
             <TextField
               aria-owns={social ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -496,7 +496,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorSocialNumber}</p>
             )}
           </div>
-          <div className="flex flex-col w-full text-left my-3 md:mx-5">
+          <div className="flex flex-col w-full text-left  md:mx-5">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer
                 components={['DatePicker']}

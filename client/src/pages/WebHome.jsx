@@ -22,6 +22,7 @@ const WebHome = () => {
     const year = parsedData.year;
     const make = parsedData.make;
     const model = parsedData.model;
+    
     if (year && make && model) {
       dispatch(setVehicleYear(year));
       dispatch(setVehicleMake(make));

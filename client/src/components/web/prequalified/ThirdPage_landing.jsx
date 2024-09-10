@@ -144,19 +144,19 @@ const ThirdPage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col p-5 mx-20 text-center">
+    <div className="w-full flex flex-col p-5 text-center">
       <form
         className={classNames(
-          'text-justify bg-white rounded-3xl p-8 mt-2 text-2xl font-sans '
+          'text-justify bg-white rounded-3xl  mt-1 text-[14px] leading-5 font-sans '
         )}
       >
-        <p className="p-4 mt-2">
+        <p className="mt-2">
           We are committed to protecting your privacy. The information that you
           provided is only shared with the dealership to assess your credit
           history and not otherwise sold, marketed, or distributed in any way by{' '}
           {dealerName}.
         </p>
-        <div className=" rounded-3xl p-4 mt-2">
+        <div className=" rounded-3xl mt-2">
           <p>
             Please click{' '}
             <a
@@ -190,7 +190,7 @@ const ThirdPage = () => {
             {/* {readStatePara1 == false ? 'More' : 'Less'} */}
           </span>
         </div>
-        <div className="rounded-3xl p-4 mt-2">
+        <div className="rounded-3xl mt-2">
           <p
           // className={
           //   readStatePara2 == false
@@ -229,12 +229,12 @@ const ThirdPage = () => {
             className={'text-blue-600 text-sm hover:underline cursor-pointer'}
           ></span>
         </div>
-        <p className="rounded-3xl p-4 text-center">
+        <p className=" text-[20px] mt-6 text-center text-[#854fff]">
           Please sign on drawbox. it will act as your digital signature.
         </p>
 
-        <div className="w-full h-[18vh] flex justify-center mt-3">
-          <div className="w-3/4 flex ">
+        <div className="w-full mt-2 h-[18vh] flex justify-center ">
+          <div className="w-full flex ">
             <canvas
               ref={canvasRef}
               onMouseDown={startDrawing}
@@ -245,11 +245,11 @@ const ThirdPage = () => {
           </div>
         </div>
 
-        <div className="text-center py-16">
+        <div className="text-center pt-4">
           <button
             type="button"
             onClick={handleSubmit}
-            className="bg-[#854fff] w-1/2 h-20 p-2 rounded-lg text-white text-3xl hover:bg-purple-800"
+            className="bg-[#854fff] w-full p-2 rounded-lg text-white text-3xl hover:bg-purple-800"
           >
             Submit
           </button>

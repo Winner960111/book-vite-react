@@ -178,13 +178,13 @@ const SecondPage = () => {
             autoComplete="off"
             InputProps={{
               style: {
-                height: '50px', // Set the height of the TextField
-                fontSize: '25px',
+                height: '40px', // Set the height of the TextField
+                fontSize: '20px',
               },
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                fontSize: '20px',
               },
             }}
           />
@@ -201,13 +201,13 @@ const SecondPage = () => {
             variant="standard"
             InputProps={{
               style: {
-                height: '50px', // Set the height of the TextField
-                fontSize: '25px',
+                height: '40px', // Set the height of the TextField
+                fontSize: '20px',
               },
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                fontSize: '20px',
               },
             }}
           />
@@ -232,13 +232,13 @@ const SecondPage = () => {
             variant="standard"
             InputProps={{
               style: {
-                height: '50px', // Set the height of the TextField
-                fontSize: '25px',
+                height: '40px', // Set the height of the TextField
+                fontSize: '20px',
               },
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                fontSize: '20px',
               },
             }}
           />
@@ -261,13 +261,13 @@ const SecondPage = () => {
             variant="standard"
             InputProps={{
               style: {
-                height: '50px', // Set the height of the TextField
-                fontSize: '25px',
+                height: '40px', // Set the height of the TextField
+                fontSize: '20px',
               },
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                fontSize: '20px',
               },
             }}
           />

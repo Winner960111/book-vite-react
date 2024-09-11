@@ -33,7 +33,6 @@ const WebPrequalified = () => {
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_id } = useParams();
-  const data = JSON.parse(dealer_id);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,7 +61,7 @@ const WebPrequalified = () => {
 
   useEffect(() => {
     // when refresh app, set dealer_id and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(data.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
     dispatch(setDealerId(dealer_id));
   }, [history, step, dealer_id, dispatch]);

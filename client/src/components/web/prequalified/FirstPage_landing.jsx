@@ -164,10 +164,8 @@ const FirstPage = () => {
   console.log('setErrorFirstName🏅🏅🏅===>', errorFirstName);
   return (
     <>
-      <div className="text-center w-full flex flex-col gap-y-2">
-        <p className="text-4xl text-pink-700  font-montserrat mb-12 ">
-          We need your some information
-        </p>
+      
+      <div className="text-center py-4 border border-gray-300 rounded-xl w-full flex flex-col">
 
         <div className="w-full flex  max-md:flex-col">
           <div className="flex flex-col text-left w-full  md:mx-5">
@@ -186,13 +184,13 @@ const FirstPage = () => {
               variant="standard"
               InputProps={{
                 style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
+                  // height: '40px', // Set the height of the TextField
+                  fontSize: '20px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  fontSize: '20px',
                 },
               }}
             />
@@ -239,13 +237,13 @@ const FirstPage = () => {
               variant="standard"
               InputProps={{
                 style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
+                  // height: '40px', // Set the height of the TextField
+                  fontSize: '20px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  fontSize: '20px',
                 },
               }}
             />
@@ -293,13 +291,13 @@ const FirstPage = () => {
               variant="standard"
               InputProps={{
                 style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
+                  // height: '40px', // Set the height of the TextField
+                  fontSize: '20px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  fontSize: '20px',
                 },
               }}
             />
@@ -348,13 +346,13 @@ const FirstPage = () => {
               variant="standard"
               InputProps={{
                 style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
+                  // height: '40px', // Set the height of the TextField
+                  fontSize: '20px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  fontSize: '20px',
                 },
               }}
             />
@@ -402,13 +400,13 @@ const FirstPage = () => {
               variant="standard"
               InputProps={{
                 style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
+                  // height: '40px', // Set the height of the TextField
+                  fontSize: '20px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  fontSize: '20px',
                 },
               }}
             />
@@ -458,13 +456,13 @@ const FirstPage = () => {
               variant="standard"
               InputProps={{
                 style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
+                  // height: '40px', // Set the height of the TextField
+                  fontSize: '20px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  fontSize: '20px',
                 },
               }}
             />
@@ -506,7 +504,7 @@ const FirstPage = () => {
                 <DatePicker
                   label="Birthday"
                   onChange={(newValue) => handleBirthday(newValue)}
-                  className="w-full"
+                  className="w-full h-full "
                 />
               </DemoContainer>
             </LocalizationProvider>

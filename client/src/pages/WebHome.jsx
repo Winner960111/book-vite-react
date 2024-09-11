@@ -12,16 +12,15 @@ import shield from '../assets/shield.jpg';
 
 const WebHome = () => {
   const { dealer_id } = useParams();
-  const parsedData = JSON.parse(dealer_id);
   const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // const urlParams = new URLSearchParams(window.location.search);
-    const year = parsedData.year;
-    const make = parsedData.make;
-    const model = parsedData.model;
+    const urlParams = new URLSearchParams(window.location.search);
+    const year = urlParams.year;
+    const make = urlParams.make;
+    const model = urlParams.model;
     
     if (year && make && model) {
       dispatch(setVehicleYear(year));
@@ -33,7 +32,7 @@ const WebHome = () => {
 
   // getting dealer_name and avatar
   useEffect(() => {
-    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
   }, [dealer_id, dispatch]);
 

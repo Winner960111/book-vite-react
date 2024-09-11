@@ -136,20 +136,20 @@ const SecondPage = () => {
   console.log('This is checkerLocality=====>', checkerZipcode);
  
   return (
-    <>
-     <div className=" w-full h-20 rounded-md text-center p-4 text-2xl my-3">
+    <><div className='w-full flex flex-col py-4 my-2 border border-gray-300 rounded-xl'>
+       <div className=" w-full  rounded-md text-center px-4 text-2xl ">
         <Paper
           sx={{
             p: '2px 4px',
             display: 'flex',
             alignItems: 'center',
             width: '100%',
-            height: '70px',
+            height: '50px',
           }}
         >
-          <GiPositionMarker className="text-4xl mx-2" />
+          <GiPositionMarker className="text-2xl mx-2" />
           <InputBase
-            sx={{ ml: 1, flex: 1, fontSize: '25px' }}
+            sx={{ ml: 1, flex: 1, fontSize: '20px' }}
             placeholder="Search Google Maps"
             inputProps={{ 'aria-label': 'search google maps' }}
             autoFocus
@@ -157,7 +157,7 @@ const SecondPage = () => {
             id="autocomplete"
             ref={addressRef}
           />
-          <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+          <IconButton type="button" sx={{ p: '14px' }} aria-label="search">
             <SearchIcon />
           </IconButton>
         </Paper>
@@ -165,8 +165,8 @@ const SecondPage = () => {
           <p className="text-red-500 pl-2">{errors.address}</p>
         ) : null}
       </div>
-      <div className="w-full flex flex-col md:flex-row">
-        <div className="w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
+      <div className="w-full flex flex-col md:flex-row ">
+        <div className="w-full rounded-md text-center text-2xl  md:mx-5">
           <TextField
             value={apt}
             onChange={handleApt}
@@ -178,18 +178,18 @@ const SecondPage = () => {
             autoComplete="off"
             InputProps={{
               style: {
-                height: '50px', // Set the height of the TextField
-                fontSize: '25px',
+                // height: '40px', // Set the height of the TextField
+                fontSize: '20px',
               },
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                fontSize: '20px',
               },
             }}
           />
         </div>
-        <div className="w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5 flex flex-col">
+        <div className="w-full rounded-md text-center text-2xl md:mx-5 flex flex-col">
           <TextField
             value={locality}
             onChange={handleLocality}
@@ -201,13 +201,13 @@ const SecondPage = () => {
             variant="standard"
             InputProps={{
               style: {
-                height: '50px', // Set the height of the TextField
-                fontSize: '25px',
+                // height: '40px', // Set the height of the TextField
+                fontSize: '20px',
               },
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                fontSize: '20px',
               },
             }}
           />
@@ -220,7 +220,7 @@ const SecondPage = () => {
       </div>
 
       <div className="w-full flex justify-between flex-col md:flex-row">
-        <div className="w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
+        <div className="w-full rounded-md text-center text-2xl md:mx-5">
           <TextField
             value={state}
             onChange={handleState}
@@ -232,13 +232,13 @@ const SecondPage = () => {
             variant="standard"
             InputProps={{
               style: {
-                height: '50px', // Set the height of the TextField
-                fontSize: '25px',
+                // height: '40px', // Set the height of the TextField
+                fontSize: '20px',
               },
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                fontSize: '20px',
               },
             }}
           />
@@ -249,7 +249,7 @@ const SecondPage = () => {
           ) : null}
         </div>
 
-        <div className="w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
+        <div className="w-full  rounded-md text-center text-2xl md:mx-5">
           <TextField
             value={zipcode}
             onChange={handleZipCode}
@@ -261,13 +261,13 @@ const SecondPage = () => {
             variant="standard"
             InputProps={{
               style: {
-                height: '50px', // Set the height of the TextField
-                fontSize: '25px',
+                // height: '40px', // Set the height of the TextField
+                fontSize: '20px',
               },
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                fontSize: '20px',
               },
             }}
           />
@@ -278,6 +278,8 @@ const SecondPage = () => {
           ) : null}
         </div>
       </div>
+    </div>
+    
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { classNames } from '../../../utils';
@@ -28,6 +29,18 @@ const ThirdPage = () => {
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const navigate = useNavigate();
+  const [viewCaptch, setViewCaptcha] = useState(false);
+  const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
+
+  const Site_key = import.meta.env.VITE_APP_SITE_KEY;
+  const handleCaptchaChange = (value) => {
+    console.log('🏅🏅🏅===>', value);
+    if (value) {
+      setIsCaptchaVerified(true);
+    } else {
+      setIsCaptchaVerified(false);
+    }
+  };
 
   const handleResize = () => {
     // Rerun your code to set canvas size based on the new dimensions
@@ -94,47 +107,50 @@ const ThirdPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(setSubmit(true));
-    const canvas = canvasRef.current;
-    const imageDataURL = canvas.toDataURL('image/png');
-    const image = new Image();
-    image.src = imageDataURL;
-    console.log('This is 0errorImage', image.src);
-    let fullName;
-    if (checkerMiddleName !== '') {
-      fullName =
-        checkerFirstName + ' ' + checkerMiddleName + ' ' + checkerLastName;
-    } else {
-      fullName = checkerFirstName + ' ' + checkerLastName;
-    }
+    setViewCaptcha(true);
+    if (isCaptchaVerified) {
+      dispatch(setSubmit(true));
+      const canvas = canvasRef.current;
+      const imageDataURL = canvas.toDataURL('image/png');
+      const image = new Image();
+      image.src = imageDataURL;
+      console.log('This is 0errorImage', image.src);
+      let fullName;
+      if (checkerMiddleName !== '') {
+        fullName =
+          checkerFirstName + ' ' + checkerMiddleName + ' ' + checkerLastName;
+      } else {
+        fullName = checkerFirstName + ' ' + checkerLastName;
+      }
 
-    const data = {
-      dealer_id: dealerId,
-      first_name: checkerFirstName,
-      middle_name: checkerMiddleName,
-      last_name: checkerLastName,
-      email: checkerEmail,
-      mobile_phone: 123456789,
-      ssn: checkerSocialNumber,
-      dob: checkerBirthday,
-      primary_address: checkerAddress,
-      primary_address2: checkerApt,
-      primary_city: checkerLocality,
-      primary_state: checkerState,
-      primary_zip_code: checkerZipcode,
-      signature_name: fullName,
-      signature_img: image.src,
-      custom_id: '',
-      usr_id: '',
-    };
-    console.log('🏅🏅🏅🏅🏅🏅🏅', data);
+      const data = {
+        dealer_id: dealerId,
+        first_name: checkerFirstName,
+        middle_name: checkerMiddleName,
+        last_name: checkerLastName,
+        email: checkerEmail,
+        mobile_phone: checkerMobileNumber,
+        ssn: checkerSocialNumber,
+        dob: checkerBirthday,
+        primary_address: checkerAddress,
+        primary_address2: checkerApt,
+        primary_city: checkerLocality,
+        primary_state: checkerState,
+        primary_zip_code: checkerZipcode,
+        signature_name: fullName,
+        signature_img: image.src,
+        custom_id: '',
+        usr_id: '',
+      };
+      console.log('🏅🏅🏅🏅🏅🏅🏅', data);
 
-    const res = await signatureImg(data);
-    if (res.status == 201) {
-      console.log('status ImageSend', res);
-      navigate(-1);
-    } else {
-      console.log('Faild ImageSend');
+      const res = await signatureImg(data);
+      if (res.status == 201) {
+        console.log('status ImageSend', res);
+        navigate(-1);
+      } else {
+        console.log('Faild ImageSend');
+      }
     }
   };
   const Tobegin = () => {
@@ -144,13 +160,14 @@ const ThirdPage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col p-5 text-center">
+    <div className="w-full flex flex-col  py-2 px-6 text-center">
       <form
         className={classNames(
           'text-justify bg-white rounded-3xl  mt-1 text-[14px] leading-5 font-sans '
         )}
-      >
-        <p className="mt-2">
+      ><div className=''>
+
+        <p className="mt-1">
           We are committed to protecting your privacy. The information that you
           provided is only shared with the dealership to assess your credit
           history and not otherwise sold, marketed, or distributed in any way by{' '}
@@ -229,10 +246,11 @@ const ThirdPage = () => {
             className={'text-blue-600 text-sm hover:underline cursor-pointer'}
           ></span>
         </div>
+
+      </div>
         <p className=" text-[20px] mt-6 text-center text-[#854fff]">
           Please sign on drawbox. it will act as your digital signature.
         </p>
-
         <div className="w-full mt-2 h-[18vh] flex justify-center ">
           <div className="w-full flex ">
             <canvas
@@ -245,7 +263,7 @@ const ThirdPage = () => {
           </div>
         </div>
 
-        <div className="text-center pt-4">
+        <div className="text-center pt-4 flex flex-col items-center">
           <button
             type="button"
             onClick={handleSubmit}
@@ -253,6 +271,11 @@ const ThirdPage = () => {
           >
             Submit
           </button>
+          <div className="mt-2">
+            {viewCaptch && (
+              <ReCAPTCHA sitekey={Site_key} onChange={handleCaptchaChange} />
+            )}
+          </div>
         </div>
       </form>
     </div>

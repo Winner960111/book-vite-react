@@ -31,7 +31,7 @@ const WebPrequalified = () => {
   const dispatch = useDispatch();
   const { dealer_id } = useParams();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
@@ -73,11 +73,7 @@ const WebPrequalified = () => {
     <div className="flex flex-col justify-between items-center bg-gray-50 w-screen h-screen relative">
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
-          <img
-            className="w-40 h-16"
-            src={dealerLogo}
-            alt="avatar"
-          />
+          <img className="w-40 h-16" src={dealerLogo} alt="avatar" />
         </div>
       </div>
       <div className="md:min-w-[800px] md:w-1/2 text-justify bg-white rounded-3xl p-12 md:p-24 m-14 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">

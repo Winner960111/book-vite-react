@@ -16,14 +16,13 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [obj, setObj] = useState(true);
-  const data = JSON.parse(dealer_id);
 
   useEffect(() => {
-    // const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
 
-    const year = data.year;
-    const make = data.make;
-    const model = data.model;
+    const year = urlParams.year;
+    const make = urlParams.make;
+    const model = urlParams.model;
     if (year && make && model) {
       dispatch(setVehicleYear(year));
       dispatch(setVehicleMake(make));
@@ -43,34 +42,34 @@ const Home = () => {
   useEffect(() => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
-  }, [data, dispatch]);
+  }, [dealer_id, dispatch]);
 
   const changePageQuote = () => {
-    navigate(`/info-checker/${data.slug}/quote`);
+    navigate(`/info-checker/${dealer_id}/quote`);
   };
 
   const changePagePrequalified = () => {
-    navigate(`/info-checker/${data.slug}/prequalified`);
+    navigate(`/info-checker/${dealer_id}/prequalified`);
   };
   const changePageAppointment = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${data.slug}/appointment`);
+    navigate(`/info-checker/${dealer_id}/appointment`);
   };
   const changePageTradeIn = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${data.slug}/trade`);
+    navigate(`/info-checker/${dealer_id}/trade`);
   };
   const changePageCheckApp = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${data.slug}/check`);
+    navigate(`/info-checker/${dealer_id}/check`);
   };
   const changePageFull = () => {
     dispatch(clearHistory());
-    navigate(`/info-checker/${data.slug}/full`);
+    navigate(`/info-checker/${dealer_id}/full`);
   };
   const changePageMessage = () => {
     dispatch(clearHistory());
-    navigate(`/message_dealer/${data.slug}`);
+    navigate(`/message_dealer/${dealer_id}`);
   };
 
   return (

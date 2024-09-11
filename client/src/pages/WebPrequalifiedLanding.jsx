@@ -1,4 +1,3 @@
-import ReCAPTCHA from "react-google-recaptcha";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -31,20 +30,8 @@ const WebPrequalified = () => {
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const { dealer_id } = useParams();
-  const parsedData = JSON.parse(dealer_id);
   const navigate = useNavigate();
-  const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
 
-  const Site_key = import.meta.env.VITE_APP_SITE_KEY;
-  const handleCaptchaChange = (value) => {
-    console.log("🏅🏅🏅===>",value)
-  if (value) {
-    setIsCaptchaVerified(true);
-  } else {
-    setIsCaptchaVerified(false);
-  }
-  };
-  
   useEffect(() => {
     fetch('https://api.ipify.org?format=json')
       .then((response) => response.json())
@@ -69,9 +56,9 @@ const WebPrequalified = () => {
 
   useEffect(() => {
     // when refresh app, set dealer_id and dealer_info of store
-    const dealerInfoCall = dispatch(getDealerInfo(parsedData.slug));
+    const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
-    dispatch(setDealerId(parsedData.slug));
+    dispatch(setDealerId(dealer_id));
   }, [history, step, dealer_id, dispatch]);
   const handleRestart = () => {
     dispatch(clearHistory());
@@ -84,21 +71,15 @@ const WebPrequalified = () => {
 
   return (
     <div className="flex flex-col justify-between items-center bg-gray-50 w-screen h-screen relative">
-      {!isCaptchaVerified && <ReCAPTCHA
-        sitekey={Site_key}
-        onChange={handleCaptchaChange}
-      />}
-      {isCaptchaVerified && <>
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
-          <img
-            className="w-40 h-16"
-            src={dealerLogo}
-            alt="avatar"
-          />
+          <img className="w-40 h-16" src={dealerLogo} alt="avatar" />
         </div>
       </div>
-      <div className="w-1/2 text-justify bg-white rounded-3xl p-24 m-14 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
+      <div>  <p className="text-4xl text-gray-500 my-8 ">
+         <b> We need your some information</b>
+        </p></div>
+      <div className="md:min-w-[800px] md:w-1/2 my-2 text-justify bg-white rounded-3xl p-8 md:p-12 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
         {<FirstPage_landing />}
         {<SecondPage_landing />}
         {<ThirdPage_landing />}
@@ -116,7 +97,7 @@ const WebPrequalified = () => {
           alt="refresh icon"
           onClick={handleRestart}
         />
-      </div></>}
+      </div>
     </div>
   );
 };

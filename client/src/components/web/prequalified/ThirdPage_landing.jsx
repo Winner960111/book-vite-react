@@ -160,13 +160,13 @@ const ThirdPage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col p-5 text-center">
+    <div className="w-full flex flex-col  py-4 my-2 border border-gray-300 rounded-xl px-10 text-center">
       <form
         className={classNames(
           'text-justify bg-white rounded-3xl  mt-1 text-[14px] leading-5 font-sans '
         )}
       >
-        <p className="mt-2">
+        <p className="mt-1">
           We are committed to protecting your privacy. The information that you
           provided is only shared with the dealership to assess your credit
           history and not otherwise sold, marketed, or distributed in any way by{' '}

@@ -165,7 +165,7 @@ const ThirdPage = () => {
         className={classNames(
           'text-justify bg-white rounded-3xl  mt-1 text-[14px] leading-5 font-sans '
         )}
-      ><div className='h-24 overflow-y-auto'>
+      ><div className=''>
 
         <p className="mt-1">
           We are committed to protecting your privacy. The information that you

@@ -164,9 +164,7 @@ const FirstPage = () => {
   console.log('setErrorFirstName🏅🏅🏅===>', errorFirstName);
   return (
     <>
-        <p className="text-4xl font-montserrat mb-12 ">
-          We need your some information
-        </p>
+      
       <div className="text-center py-4 border border-gray-300 rounded-xl w-full flex flex-col">
 
         <div className="w-full flex  max-md:flex-col">

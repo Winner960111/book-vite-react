@@ -80,7 +80,10 @@ const WebPrequalified = () => {
           />
         </div>
       </div>
-      <div className="md:min-w-[800px] md:w-1/2 text-justify bg-white rounded-3xl p-8 md:p-12 m-14 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
+      <div>  <p className="text-4xl text-gray-500 my-8 ">
+         <b> We need your some information</b>
+        </p></div>
+      <div className="md:min-w-[800px] md:w-1/2 my-2 text-justify bg-white rounded-3xl p-8 md:p-12 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
         {<FirstPage_landing />}
         {<SecondPage_landing />}
         {<ThirdPage_landing />}

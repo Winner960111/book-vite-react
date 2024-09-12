@@ -164,7 +164,12 @@ const FirstPage = () => {
   console.log('setErrorFirstName🏅🏅🏅===>', errorFirstName);
   return (
     <>
-      
+    {/* <div className='flex  justify-start items-start '> */}
+
+        <p className="text-2xl text-left text-gray-500 my-2 ">
+         <b> Personal Information</b>
+       </p>
+    {/* </div> */}
       <div className="text-center py-4 border border-gray-300 rounded-xl w-full flex flex-col">
 
         <div className="w-full flex  max-md:flex-col">

@@ -158,7 +158,7 @@ const SecondPage = () => {
       <p className="text-2xl  ml-2 text-gray-500 mt-2 ">
          <b> Residential Information</b>
       </p>
-    <div className='w-full flex flex-col py-4  border border-gray-300 rounded-xl'>
+    <div className='w-full flex flex-col py-4 gap-2 border border-gray-300 rounded-xl'>
        <div className=" w-full  rounded-md text-center px-4 text-2xl ">
         <Paper
           sx={{

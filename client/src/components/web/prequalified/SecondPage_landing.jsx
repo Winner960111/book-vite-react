@@ -109,7 +109,7 @@ const SecondPage = () => {
           setLocality(component.long_name);
           dispatch(setCheckerLocality(component.long_name));
           break;
-        case 'street':
+        case 'route':
           setStreet(component.long_name);
           dispatch(setCheckerStreet(component.long_name));
           break;
@@ -124,7 +124,7 @@ const SecondPage = () => {
       }
     }
   };
-  console.log('This is address🏡', checkerAddress);
+  console.log('This is address🏡', checkerStreet);
   const handleApt = (e) => {
     setApt(e.target.value);
     dispatch(setCheckerApt(e.target.value));

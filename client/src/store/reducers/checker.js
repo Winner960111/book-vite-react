@@ -88,6 +88,7 @@ const initialState = {
   checkerSocialNumber: '',
   checkerBirthday: '',
   checkerAddress: '',
+  checkerStreet: '',
   checkerApt: '',
   checkerLocality: '',
   checkerState: '',
@@ -525,6 +526,10 @@ export const checkerSlice = createSlice({
     setCheckerAddress: (state, action) => {
       state.checkerAddress = action.payload;
     },
+    // Set street
+    setCheckerStreet: (state, action) => {
+      state.checkerStreet= action.payload;
+    },
 
     // Set apt
     setCheckerApt: (state, action) => {
@@ -645,6 +650,7 @@ export const checkerSlice = createSlice({
       state.checkerEmail = initialState.checkerEmail;
       state.checkerBirthday = initialState.checkerBirthday;
       state.checkerAddress = initialState.checkerAddress;
+      state.checkerStreet= initialState.checkerStreet;
       state.checkerApt = initialState.checkerApt;
       state.checkerLocality = initialState.checkerLocality;
       state.checkerState = initialState.checkerState;
@@ -780,6 +786,7 @@ export const {
   setCheckerSocialNumber,
   setCheckerBirthday,
   setCheckerAddress,
+  setCheckerStreet,
   setCheckerApt,
   setCheckerLocality,
   setCheckerState,

@@ -16,6 +16,7 @@ import {
   setDealerId,
   setDeviceBrowser,
   setDeviceCity,
+  // setDeviceStreet,
   setDeviceCountry,
   setDeviceDate,
   setDeviceIP,
@@ -40,6 +41,7 @@ const WebPrequalified = () => {
         deviceInfo(data.ip).then((deviceData) => {
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
+          // dispatch(setDeviceStreet(deviceData.street));
           dispatch(setDeviceState(deviceData.region));
           dispatch(setDeviceLat(deviceData.ll[0]));
           dispatch(setDeviceLon(deviceData.ll[1]));

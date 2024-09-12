@@ -31,6 +31,12 @@ const ThirdPage = () => {
   const navigate = useNavigate();
   const [viewCaptch, setViewCaptcha] = useState(false);
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
+  const [checked1, setChecked1] = useState(false);
+  const handleClick_Check1 = () => setChecked1(!checked1);
+  const [checked2, setChecked2] = useState(false);
+  const handleClick_Check2 = () => setChecked2(!checked2);
+  const [checked3, setChecked3] = useState(false);
+  const handleClick_Check3 = () => setChecked3(!checked3);
 
   const Site_key = import.meta.env.VITE_APP_SITE_KEY;
   const handleCaptchaChange = (value) => {
@@ -104,10 +110,14 @@ const ThirdPage = () => {
     contextRef.current.closePath();
     setIsDrawing(false);
   };
+ if(checked1 && checked2 && checked3){console.log('🎈true'); }
+ else {console.log("❗false");}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setViewCaptcha(true);
+   
+
     if (isCaptchaVerified) {
       dispatch(setSubmit(true));
       const canvas = canvasRef.current;
@@ -160,94 +170,106 @@ const ThirdPage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col  py-2 px-6 text-center">
+    <div className="w-full flex flex-col  py-2 px-5 text-center">
       <form
         className={classNames(
           'text-justify bg-white rounded-3xl  mt-1 text-[14px] leading-5 font-sans '
         )}
-      ><div className=''>
-
-        <p className="mt-1">
-          We are committed to protecting your privacy. The information that you
-          provided is only shared with the dealership to assess your credit
-          history and not otherwise sold, marketed, or distributed in any way by{' '}
-          {dealerName}.
-        </p>
-        <div className=" rounded-3xl mt-2">
-          <p>
-            Please click{' '}
-            <a
-              href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
-              style={{ color: 'blue' }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              here
-            </a>{' '}
-            to read our Privacy Notice and click{' '}
-            <a
-              href="https://www.credit-apps.com/privacy/"
-              style={{ color: 'blue' }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              here
-            </a>{' '}
-            to read our full Privacy Policy. If you would like to opt-out of
-            having your information shared at all, please do so now by clicking{' '}
-            <span onClick={Tobegin} className="cursor-pointer text-blue-600">
-              here
-            </span>{' '}
-            and exiting the application.
+      >
+        <div className="">
+          <p className="mt-1">
+            <input
+              onClick={handleClick_Check1}
+              checked={checked1}
+              type="checkbox"
+              className=""
+            />{' '}
+            We are committed to protecting your privacy. The information that
+            you provided is only shared with the dealership to assess your
+            credit history and not otherwise sold, marketed, or distributed in
+            any way by {dealerName}.
           </p>
-          <span
-            // onClick={() => setReadStatePara1(!readStatePara1)}
-            className={'text-blue-600 text-md hover:underline cursor-pointer'}
-          >
-            {/* {readStatePara1 == false ? 'More' : 'Less'} */}
-          </span>
-        </div>
-        <div className="rounded-3xl mt-2">
-          <p
-          // className={
-          //   readStatePara2 == false
-          //     ? 'w-full whitespace-nowrap text-ellipsis overflow-hidden'
-          //     : null
-          // }
-          >
-            By typing my name and clicking submit, I authorize {dealerName} to
-            investigate my credit history solely to determine the best available
-            offers to fund my loan, I also acknowledge that I have read,
-            understand, and agree to be bound by our End User{' '}
-            <a
-              href="https://www.credit-apps.com/terms/"
-              style={{ color: 'blue' }}
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className=" rounded-3xl mt-2">
+            <p>
+            <input
+            onClick={handleClick_Check2}
+            checked={checked2}
+            type="checkbox"
+            className=""
+          />{' '}
+              Please click{' '}
+              <a
+                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                style={{ color: 'blue' }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                here
+              </a>{' '}
+              to read our Privacy Notice and click{' '}
+              <a
+                href="https://www.credit-apps.com/privacy/"
+                style={{ color: 'blue' }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                here
+              </a>{' '}
+              to read our full Privacy Policy. If you would like to opt-out of
+              having your information shared at all, please do so now by
+              clicking{' '}
+              <span onClick={Tobegin} className="cursor-pointer text-blue-600">
+                here
+              </span>{' '}
+              and exiting the application.
+            </p>
+            <span
+              // onClick={() => setReadStatePara1(!readStatePara1)}
+              className={'text-blue-600 text-md hover:underline cursor-pointer'}
             >
-              Terms of use
-            </a>{' '}
-            and our{' '}
-            <a
-              href="https://www.credit-apps.com/privacy/"
-              style={{ color: 'blue' }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {' '}
-              Privacy Policy
-            </a>{' '}
-            and agree to have the information that I provided shared with
-            lenders in accordance therewith. I also understand that if a
-            prequalified offer is found by any of our lenders, they will perform
-            a hard inquiry which can impact my credit history.
-          </p>
-          <span
-            className={'text-blue-600 text-sm hover:underline cursor-pointer'}
-          ></span>
+              {/* {readStatePara1 == false ? 'More' : 'Less'} */}
+            </span>
+          </div>
+          <div className="rounded-3xl mt-2">
+            <p>
+              <input
+                onClick={handleClick_Check3}
+                checked={checked3}
+                type="checkbox"
+                className=""
+              />{' '}
+              By typing my name and clicking submit, I authorize {dealerName} to
+              investigate my credit history solely to determine the best
+              available offers to fund my loan, I also acknowledge that I have
+              read, understand, and agree to be bound by our End User{' '}
+              <a
+                href="https://www.credit-apps.com/terms/"
+                style={{ color: 'blue' }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Terms of use
+              </a>{' '}
+              and our{' '}
+              <a
+                href="https://www.credit-apps.com/privacy/"
+                style={{ color: 'blue' }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {' '}
+                Privacy Policy
+              </a>{' '}
+              and agree to have the information that I provided shared with
+              lenders in accordance therewith. I also understand that if a
+              prequalified offer is found by any of our lenders, they will
+              perform a hard inquiry which can impact my credit history.
+            </p>
+            <span
+              className={'text-blue-600 text-sm hover:underline cursor-pointer'}
+            ></span>
+          </div>
         </div>
-
-      </div>
         <p className=" text-[20px] mt-6 text-center text-[#854fff]">
           Please sign on drawbox. it will act as your digital signature.
         </p>

@@ -6,6 +6,7 @@ import {
   setCheckerLocality,
   setCheckerState,
   setCheckerZipcode,
+  setCheckerStreet,
 } from '../../../store/reducers/checker';
 // import { usersUpdate } from '../../../api/index';
 import { GiPositionMarker } from 'react-icons/gi';
@@ -18,6 +19,7 @@ const SecondPage = () => {
   const dispatch = useDispatch();
 
   const [address, setAddress] = useState('');
+  const [street, setStreet] = useState('');
   const [locality, setLocality] = useState('');
   const [state, setState] = useState('');
   const [zipcode, setZipcode] = useState('');
@@ -29,6 +31,8 @@ const SecondPage = () => {
     checkerApt,
     checkerLocality,
     checkerZipcode,
+    checkerAddress,
+    checkerStreet,
   } = useSelector((state) => state.checker);
 
   const addressRef = useRef(null);
@@ -40,6 +44,10 @@ const SecondPage = () => {
       console.log(locality);
       if (!locality.trim()) {
         newErrors.locality = '*City field is required';
+      }
+     
+      if (!street.trim()) {
+        newErrors.street = '*street field is required';
       }
       if (!state.trim()) {
         newErrors.state = '*State field is required';
@@ -101,6 +109,10 @@ const SecondPage = () => {
           setLocality(component.long_name);
           dispatch(setCheckerLocality(component.long_name));
           break;
+        case 'street':
+          setStreet(component.long_name);
+          dispatch(setCheckerStreet(component.long_name));
+          break;
         case 'administrative_area_level_1':
           dispatch(setCheckerState(component.short_name));
           setState(component.short_name);
@@ -112,11 +124,16 @@ const SecondPage = () => {
       }
     }
   };
-  console.log('This is checkerLocality=====>', checkerLocality);
+  console.log('This is address🏡', checkerAddress);
   const handleApt = (e) => {
     setApt(e.target.value);
     dispatch(setCheckerApt(e.target.value));
     console.log('✈✈', checkerApt);
+  };
+  const handleStreet = (e) => {
+    setStreet(e.target.value);
+    dispatch(setCheckerStreet(e.target.value));
+    setErrors((prev) => ({ ...prev, street: '' }));
   };
   const handleLocality = (e) => {
     setLocality(e.target.value);
@@ -170,6 +187,36 @@ const SecondPage = () => {
           <p className="text-red-500 pl-2">{errors.address}</p>
         ) : null}
       </div>
+      <div className="w-full flex justify-between flex-col md:flex-row">
+      <div className="w-full rounded-md text-center text-2xl md:mx-5 flex flex-col">
+          <TextField
+            value={street}
+            onChange={handleStreet}
+            fullWidth
+            // type="text"
+            // defaultValue="Normal"
+            autoComplete="off"
+            label="Street"
+            variant="standard"
+            InputProps={{
+              style: {
+                // height: '40px', // Set the height of the TextField
+                fontSize: '20px',
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                fontSize: '20px',
+              },
+            }}
+          />
+          {errors.locality ? (
+            <p className="text-red-500 text-[16px] flex justify-start">
+              {errors.locality}
+            </p>
+          ) : null}
+        </div>
+      </div>
       <div className="w-full flex flex-col md:flex-row ">
         <div className="w-full rounded-md text-center text-2xl  md:mx-5">
           <TextField
@@ -222,9 +269,6 @@ const SecondPage = () => {
             </p>
           ) : null}
         </div>
-      </div>
-
-      <div className="w-full flex justify-between flex-col md:flex-row">
         <div className="w-full rounded-md text-center text-2xl md:mx-5">
           <TextField
             value={state}
@@ -253,7 +297,6 @@ const SecondPage = () => {
             </p>
           ) : null}
         </div>
-
         <div className="w-full  rounded-md text-center text-2xl md:mx-5">
           <TextField
             value={zipcode}
@@ -283,6 +326,8 @@ const SecondPage = () => {
           ) : null}
         </div>
       </div>
+
+              
     </div>
     
     </>

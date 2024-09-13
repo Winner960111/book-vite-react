@@ -187,36 +187,7 @@ const SecondPage = () => {
           <p className="text-red-500 pl-2">{errors.address}</p>
         ) : null}
       </div>
-      <div className="w-full flex justify-between flex-col md:flex-row">
-      <div className="w-full rounded-md text-center text-2xl md:mx-5 flex flex-col">
-          <TextField
-            value={street}
-            onChange={handleStreet}
-            fullWidth
-            // type="text"
-            // defaultValue="Normal"
-            autoComplete="off"
-            label="Street"
-            variant="standard"
-            InputProps={{
-              style: {
-                // height: '40px', // Set the height of the TextField
-                fontSize: '20px',
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: '20px',
-              },
-            }}
-          />
-          {errors.locality ? (
-            <p className="text-red-500 text-[16px] flex justify-start">
-              {errors.locality}
-            </p>
-          ) : null}
-        </div>
-      </div>
+   
       <div className="w-full flex flex-col md:flex-row ">
         <div className="w-full rounded-md text-center text-2xl  md:mx-5">
           <TextField

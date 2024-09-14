@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { classNames } from '../../../utils';
 import { signatureImg } from '../../../api/index';
 import './Canvas.css';
-import { clearHistory, setSubmit } from '../../../store/reducers/checker';
+import { clearHistory } from '../../../store/reducers/checker';
 const ThirdPage = () => {
   const {
     step,
@@ -110,16 +110,13 @@ const ThirdPage = () => {
     contextRef.current.closePath();
     setIsDrawing(false);
   };
- if(checked1 && checked2 && checked3){console.log('🎈true'); }
- else {console.log("❗false");}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setViewCaptcha(true);
-   
 
     if (isCaptchaVerified) {
-      dispatch(setSubmit(true));
+      // dispatch(setSubmit(true));
       const canvas = canvasRef.current;
       const imageDataURL = canvas.toDataURL('image/png');
       const image = new Image();
@@ -133,33 +130,50 @@ const ThirdPage = () => {
         fullName = checkerFirstName + ' ' + checkerLastName;
       }
 
-      const data = {
-        dealer_id: dealerId,
-        first_name: checkerFirstName,
-        middle_name: checkerMiddleName,
-        last_name: checkerLastName,
-        email: checkerEmail,
-        mobile_phone: checkerMobileNumber,
-        ssn: checkerSocialNumber,
-        dob: checkerBirthday,
-        primary_address: checkerAddress,
-        primary_address2: checkerApt,
-        primary_city: checkerLocality,
-        primary_state: checkerState,
-        primary_zip_code: checkerZipcode,
-        signature_name: fullName,
-        signature_img: image.src,
-        custom_id: '',
-        usr_id: '',
-      };
-      console.log('🏅🏅🏅🏅🏅🏅🏅', data);
+      if (
+        dealerId &&
+        checkerFirstName &&
+        checkerLastName &&
+        checkerEmail &&
+        checkerMobileNumber &&
+        checkerSocialNumber &&
+        checkerBirthday &&
+        checkerAddress &&
+        checkerLocality &&
+        checkerState &&
+        checkerZipcode &&
+        checked1 &&
+        checked2 &&
+        checked3
+      ) {
+        const data = {
+          dealer_id: dealerId,
+          first_name: checkerFirstName,
+          middle_name: checkerMiddleName,
+          last_name: checkerLastName,
+          email: checkerEmail,
+          mobile_phone: checkerMobileNumber,
+          ssn: checkerSocialNumber,
+          dob: checkerBirthday,
+          primary_address: checkerAddress,
+          primary_address2: checkerApt,
+          primary_city: checkerLocality,
+          primary_state: checkerState,
+          primary_zip_code: checkerZipcode,
+          signature_name: fullName,
+          signature_img: image.src,
+          custom_id: '',
+          usr_id: '',
+        };
+        console.log('🏅🏅🏅🏅🏅🏅🏅', data);
 
-      const res = await signatureImg(data);
-      if (res.status == 201) {
-        console.log('status ImageSend', res);
-        navigate(-1);
-      } else {
-        console.log('Faild ImageSend');
+        const res = await signatureImg(data);
+        if (res.status == 201) {
+          console.log('status ImageSend', res);
+          navigate(-1);
+        } else {
+          console.log('Faild ImageSend');
+        }
       }
     }
   };
@@ -170,33 +184,38 @@ const ThirdPage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col  py-2 px-5 text-center">
+    <div className="w-full flex flex-col  py-2 text-center">
       <form
         className={classNames(
           'text-justify bg-white rounded-3xl  mt-1 text-[14px] leading-5 font-sans '
         )}
       >
+        <p className="text-2xl ml-2 text-gray-500 mt-2 ">
+          <b> IMPORTANT INFORMATION</b>
+        </p>
         <div className="">
-          <p className="mt-1">
+          <p className="mt-1 bg-gray-200 rounded-lg p-2">
             <input
-              onClick={handleClick_Check1}
+              // onClick={handleClick_Check1}
+              onChange={handleClick_Check1}
               checked={checked1}
               type="checkbox"
-              className=""
+              className="cursor-pointer"
             />{' '}
             We are committed to protecting your privacy. The information that
             you provided is only shared with the dealership to assess your
             credit history and not otherwise sold, marketed, or distributed in
             any way by {dealerName}.
           </p>
-          <div className=" rounded-3xl mt-2">
+          <div className="mt-2 bg-gray-200 rounded-lg p-2">
             <p>
-            <input
-            onClick={handleClick_Check2}
-            checked={checked2}
-            type="checkbox"
-            className=""
-          />{' '}
+              <input
+                // onClick={handleClick_Check2}
+                onChange={handleClick_Check2}
+                checked={checked2}
+                type="checkbox"
+                className="cursor-pointer"
+              />{' '}
               Please click{' '}
               <a
                 href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
@@ -230,13 +249,14 @@ const ThirdPage = () => {
               {/* {readStatePara1 == false ? 'More' : 'Less'} */}
             </span>
           </div>
-          <div className="rounded-3xl mt-2">
+          <div className="bg-gray-200 rounded-lg p-2 mt-2">
             <p>
               <input
-                onClick={handleClick_Check3}
+                // onClick={handleClick_Check3}
                 checked={checked3}
+                onChange={handleClick_Check3}
                 type="checkbox"
-                className=""
+                className="cursor-pointer"
               />{' '}
               By typing my name and clicking submit, I authorize {dealerName} to
               investigate my credit history solely to determine the best

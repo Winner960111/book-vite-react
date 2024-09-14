@@ -16,6 +16,7 @@ import {
   setDealerId,
   setDeviceBrowser,
   setDeviceCity,
+  // setDeviceStreet,
   setDeviceCountry,
   setDeviceDate,
   setDeviceIP,
@@ -40,6 +41,7 @@ const WebPrequalified = () => {
         deviceInfo(data.ip).then((deviceData) => {
           dispatch(setDeviceCountry(deviceData.country));
           dispatch(setDeviceCity(deviceData.city));
+          // dispatch(setDeviceStreet(deviceData.street));
           dispatch(setDeviceState(deviceData.region));
           dispatch(setDeviceLat(deviceData.ll[0]));
           dispatch(setDeviceLon(deviceData.ll[1]));
@@ -76,10 +78,8 @@ const WebPrequalified = () => {
           <img className="w-40 h-16" src={dealerLogo} alt="avatar" />
         </div>
       </div>
-      <div>  <p className="text-4xl text-gray-500 my-8 ">
-         <b> We need your some information</b>
-        </p></div>
-      <div className="md:min-w-[800px] md:w-1/2 my-2 text-justify bg-white rounded-3xl p-8 md:p-12 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
+      
+      <div className="md:min-w-[800px] md:w-1/2 my-2 text-justify bg-white rounded-3xl p-8 md:p-12 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col ">
         {<FirstPage_landing />}
         {<SecondPage_landing />}
         {<ThirdPage_landing />}

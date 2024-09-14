@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { addHistory } from '../../../store/reducers/checker';
+import { useState, useEffect } from 'react';
+// import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setCheckerFirstName,
@@ -9,14 +9,9 @@ import {
   setCheckerEmail,
   setCheckerMobileNumber,
   setCheckerSocialNumber,
-  setSubmit,
 } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 
@@ -26,21 +21,13 @@ const FirstPage = () => {
     checkerFirstName,
     checkerLastName,
     checkerEmail,
-    submit,
+    // submit,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
-  const [errorFirstName, setErrorFirstName] = useState('');
-  const [errorMiddleName, setErrorMiddleName] = useState('');
-  const [errorLastName, setErrorLastName] = useState('');
-  const [errorEmailAddress, setErrorEmailAddress] = useState('');
-  const [errorPhoneNumber, setErrorPhoneNumber] = useState('');
-  const [errorBirthday, setErrorBirthday] = useState('');
-  const [errorSocialNumber, setErrorSocialNumber] = useState('');
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
   const [lastName, setLastName] = useState('');
   const [socialNumber, setSocialNumber] = useState('');
-  const [birthday, setBirthday] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [emailHover, setHoverEmail] = useState(null);
@@ -49,29 +36,44 @@ const FirstPage = () => {
   const [last, setLast] = useState(null);
   const [social, setSocial] = useState(null);
   const [phone, setPhone] = useState(null);
+  const [month, setMonth] = useState('');
+  const [day, setDay] = useState('');
+  const [year, setYear] = useState('');
+
+  const handleMonthChange = (e) => setMonth(e.target.value);
+  const handleDayChange = (e) => setDay(e.target.value);
+  const handleYearChange = (e) => setYear(e.target.value);
+  const years = Array.from(
+    { length: 100 },
+    (_, i) => new Date().getFullYear() - i
+  );
+
+  useEffect(() => {
+    dispatch(setCheckerBirthday(year + '-' + month + '-' + day));
+  }, [year, day, month]);
 
   const handleFirstName = (e) => {
-    setFirstName(e.target.value);
-    dispatch(setCheckerFirstName(e.target.value));
-    setErrorFirstName('');
+    setFirstName(e.target.value.replace(/[^A-Za-z]/g, ''));
+    dispatch(setCheckerFirstName(e.target.value.replace(/[^A-Za-z]/g, '')));
+    // setErrorFirstName('');
     console.log('Firstname====>', checkerFirstName);
   };
   const handleMiddleName = (e) => {
-    dispatch(setCheckerMiddleName(e.target.value));
-    setMiddleName(e.target.value);
-    setErrorMiddleName('');
+    dispatch(setCheckerMiddleName(e.target.value.replace(/[^A-Za-z]/g, '')));
+    setMiddleName(e.target.value.replace(/[^A-Za-z]/g, ''));
+    // setErrorMiddleName('');
   };
   const handleLastName = (e) => {
-    dispatch(setCheckerLastName(e.target.value));
-    setLastName(e.target.value);
-    setErrorLastName('');
+    dispatch(setCheckerLastName(e.target.value.replace(/[^A-Za-z]/g, '')));
+    setLastName(e.target.value.replace(/[^A-Za-z]/g, ''));
+    // setErrorLastName('');
     console.log('Lastname===>', checkerLastName);
   };
   const handleEmailAddress = (e) => {
     dispatch(setCheckerEmail(e.target.value));
     setEmailAddress(e.target.value);
     console.log('✔🧨✔🧨', checkerEmail);
-    setErrorEmailAddress('');
+    // setErrorEmailAddress('');
   };
   const handlePhoneNumber = (e) => {
     const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
@@ -83,10 +85,10 @@ const FirstPage = () => {
       inputValue.substring(6, 10);
     setPhoneNumber(formattedInputValue);
     dispatch(setCheckerMobileNumber(phoneNumber));
-    setErrorPhoneNumber(null);
+    // setErrorPhoneNumber(null);
   };
   const handleSocialNumber = (e) => {
-    setErrorSocialNumber('');
+    // setErrorSocialNumber('');
     const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
     const formattedInputValue =
       inputValue.substring(0, 3) +
@@ -97,76 +99,64 @@ const FirstPage = () => {
     dispatch(setCheckerSocialNumber(formattedInputValue));
     setSocialNumber(formattedInputValue);
   };
-  const handleBirthday = (value) => {
-    setErrorBirthday('');
-    console.log('value==>', value);
-    let year, month, date;
-    year = value.$y;
-    month = parseInt(value.$M) + 1;
-    date = value.$D;
-    if (Number(year) < 1900 || Number(year) > 2100) {
-      setErrorBirthday('*Invalid Date');
-    }
 
-    setBirthday(year + '-' + String(month) + '-' + date);
-    dispatch(setCheckerBirthday(year + '-' + String(month) + '-' + date));
-  };
-  useEffect(() => {
-    if (submit) {
-      let pass = 0;
-      if (!firstName) {
-        setErrorFirstName('*Field is required');
-      } else if (!/^[A-Za-z]+$/.test(firstName)) {
-        setErrorFirstName('*Contains only characters');
-      } else {
-        pass += 1;
-      }
-      if (!/^[A-Za-z]+$/.test(middleName) && middleName) {
-        setErrorMiddleName('*Contains only character');
-      } else {
-        pass += 1;
-      }
-      if (!lastName) {
-        setErrorLastName('*Field is required');
-      } else if (!/^[A-Za-z]+$/.test(lastName)) {
-        setErrorLastName('*Contains only characters');
-      } else {
-        pass += 1;
-      }
-      if (!birthday) {
-        setErrorBirthday('*Input your correct birthday');
-      } else {
-        pass += 1;
-      }
-      if (!socialNumber) {
-        setErrorSocialNumber('*Input your social security number');
-      } else if (!/^\d{3}-\d{2}-\d{4}$/.test(socialNumber)) {
-        setErrorSocialNumber('*Invalid social security number');
-      } else {
-        pass += 1;
-      }
-      if (!emailAddress) {
-        setErrorEmailAddress('*Input your email');
-      } else if (
-        !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailAddress)
-      ) {
-        setErrorEmailAddress('*Invalid email type');
-      } else {
-        pass += 1;
-      }
-      if (!phoneNumber) {
-        setErrorPhoneNumber('*Input your phone number');
-      }
-      dispatch(setSubmit(false));
-    }
-  }, [submit]);
+  // useEffect(() => {
+  //   if (submit) {
+  //     let pass = 0;
+  //     if (!firstName) {
+  //       setErrorFirstName('*Field is required');
+  //     } else if (!/^[A-Za-z]+$/.test(firstName)) {
+  //       setErrorFirstName('*Contains only characters');
+  //     } else {
+  //       pass += 1;
+  //     }
+  //     if (!/^[A-Za-z]+$/.test(middleName) && middleName) {
+  //       setErrorMiddleName('*Contains only character');
+  //     } else {
+  //       pass += 1;
+  //     }
+  //     if (!lastName) {
+  //       setErrorLastName('*Field is required');
+  //     } else if (!/^[A-Za-z]+$/.test(lastName)) {
+  //       setErrorLastName('*Contains only characters');
+  //     } else {
+  //       pass += 1;
+  //     }
+  //     if (!birthday) {
+  //       setErrorBirthday('*Input your correct birthday');
+  //     } else {
+  //       pass += 1;
+  //     }
+  //     if (!socialNumber) {
+  //       setErrorSocialNumber('*Input your social security number');
+  //     } else if (!/^\d{3}-\d{2}-\d{4}$/.test(socialNumber)) {
+  //       setErrorSocialNumber('*Invalid social security number');
+  //     } else {
+  //       pass += 1;
+  //     }
+  //     if (!emailAddress) {
+  //       setErrorEmailAddress('*Input your email');
+  //     } else if (
+  //       !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailAddress)
+  //     ) {
+  //       setErrorEmailAddress('*Invalid email type');
+  //     } else {
+  //       pass += 1;
+  //     }
+  //     if (!phoneNumber) {
+  //       setErrorPhoneNumber('*Input your phone number');
+  //     }
+  //     dispatch(setSubmit(false));
+  //   }
+  // }, [submit]);
 
-  console.log('setErrorFirstName🏅🏅🏅===>', errorFirstName);
+  // console.log('setErrorFirstName🏅🏅🏅===>', errorFirstName);
   return (
     <>
-      
-      <div className="text-center py-4 border border-gray-300 rounded-xl w-full flex flex-col">
-
+      <p className="text-2xl  text-gray-500 mt-2 ml-2">
+        <b> Personal Information</b>
+      </p>
+      <div className="text-center pb-2 gap-2 border border-gray-300 rounded-xl w-full flex flex-col">
         <div className="w-full flex  max-md:flex-col">
           <div className="flex flex-col text-left w-full  md:mx-5">
             <TextField
@@ -178,8 +168,9 @@ const FirstPage = () => {
               value={firstName}
               onChange={handleFirstName}
               fullWidth
+              required
               autoComplete="off"
-            //   defaultValue="Normal"
+              //   defaultValue="Normal"
               label="First name"
               variant="standard"
               InputProps={{
@@ -216,9 +207,9 @@ const FirstPage = () => {
                 Please enter your first name.
               </Typography>
             </Popover>
-            {errorFirstName !== '' && (
+            {/* {errorFirstName !== '' && (
               <p className="text-red-500 pl-2">{errorFirstName}</p>
-            )}
+            )} */}
           </div>
           <div className="flex flex-col text-left w-full  md:mx-5">
             <TextField
@@ -232,7 +223,7 @@ const FirstPage = () => {
               fullWidth
               type="text"
               autoComplete="off"
-            //   defaultValue="Normal"
+              //   defaultValue="Normal"
               label="Middle Initial(optional)"
               variant="standard"
               InputProps={{
@@ -270,9 +261,9 @@ const FirstPage = () => {
                 enter here.
               </Typography>
             </Popover>
-            {errorMiddleName !== '' && (
+            {/* {errorMiddleName !== '' && (
               <p className="text-red-500 pl-2">{errorMiddleName}</p>
-            )}
+            )} */}
           </div>
           <div className="flex flex-col text-left w-full  md:mx-5">
             <TextField
@@ -284,9 +275,10 @@ const FirstPage = () => {
               value={lastName}
               onChange={handleLastName}
               fullWidth
+              required
               type="text"
               autoComplete="off"
-            //   defaultValue="Normal"
+              //   defaultValue="Normal"
               label="Last name"
               variant="standard"
               InputProps={{
@@ -323,9 +315,9 @@ const FirstPage = () => {
                 Please enter your last name.
               </Typography>
             </Popover>
-            {errorLastName !== '' && (
+            {/* {errorLastName !== '' && (
               <p className="text-red-500 pl-2">{errorLastName}</p>
-            )}
+            )} */}
           </div>
         </div>
         <div className="w-full flex justify-between flex-col md:flex-row">
@@ -340,8 +332,9 @@ const FirstPage = () => {
               onChange={handleEmailAddress}
               type="text"
               fullWidth
+              required
               autoComplete="off"
-            //   defaultValue="Normal"
+              //   defaultValue="Normal"
               label="Email address"
               variant="standard"
               InputProps={{
@@ -379,9 +372,9 @@ const FirstPage = () => {
                 messages from <b>{dealerName}</b> to the provided email address.
               </Typography>
             </Popover>
-            {errorEmailAddress !== '' && (
+            {/* {errorEmailAddress !== '' && (
               <p className="text-red-500 pl-2">{errorEmailAddress}</p>
-            )}
+            )} */}
           </div>
           <div className="flex flex-col text-left w-full  md:mx-5">
             <TextField
@@ -394,8 +387,9 @@ const FirstPage = () => {
               onChange={handlePhoneNumber}
               type="text"
               fullWidth
+              required
               autoComplete="off"
-            //   defaultValue="Normal"
+              //   defaultValue="Normal"
               label="Phone number"
               variant="standard"
               InputProps={{
@@ -433,13 +427,13 @@ const FirstPage = () => {
                 messages from <b>{dealerName}</b> to the provided phone number.
               </Typography>
             </Popover>
-            {errorPhoneNumber !== '' && (
+            {/* {errorPhoneNumber !== '' && (
               <p className="text-red-500 pl-2">{errorPhoneNumber}</p>
-            )}
+            )} */}
           </div>
         </div>
-        <div className="w-full flex justify-between flex-col md:flex-row">
-          <div className="flex flex-col text-left w-full  md:mx-5">
+        <div className="w-full flex justify-between items-center flex-col md:flex-row">
+          <div className="flex flex-col text-left w-[30%]  md:mx-5">
             <TextField
               aria-owns={social ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -449,9 +443,10 @@ const FirstPage = () => {
               value={socialNumber}
               onChange={handleSocialNumber}
               fullWidth
+              required
               type="text"
               autoComplete="off"
-            //   defaultValue="Normal"
+              //   defaultValue="Normal"
               label="Social security number"
               variant="standard"
               InputProps={{
@@ -490,27 +485,62 @@ const FirstPage = () => {
                 }
               </Typography>
             </Popover>
-            {errorSocialNumber !== '' && (
+            {/* {errorSocialNumber !== '' && (
               <p className="text-red-500 pl-2">{errorSocialNumber}</p>
-            )}
+            )} */}
           </div>
-          <div className="flex flex-col w-full text-left  md:mx-5">
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer
-                components={['DatePicker']}
-                minDate="1900-01-01"
-                maxDate="2100-01-01"
+          <div className="flex w-[70%] text-left  md:mx-5 items-center justify-between">
+            <p className="">Date Of Birth*</p>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <select
+                value={month}
+                onChange={handleMonthChange}
+                className="border-gray-300 border-2 rounded-md py-1 px-5"
+                required
               >
-                <DatePicker
-                  label="Birthday"
-                  onChange={(newValue) => handleBirthday(newValue)}
-                  className="w-full h-full "
-                />
-              </DemoContainer>
-            </LocalizationProvider>
-            {errorBirthday !== '' && (
+                <option value="" disabled>
+                  MM
+                </option>
+                {Array.from({ length: 12 }, (_, i) => (
+                  <option key={i} value={i + 1}>
+                    {String(i + 1).padStart(2, '0')}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={day}
+                onChange={handleDayChange}
+                className="border-gray-300 border-2 rounded-md py-1 px-5"
+                required
+              >
+                <option value="" disabled>
+                  DD
+                </option>
+                {Array.from({ length: 31 }, (_, i) => (
+                  <option key={i} value={i + 1}>
+                    {String(i + 1).padStart(2, '0')}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={year}
+                onChange={handleYearChange}
+                className="border-gray-300 border-2 rounded-md py-1 px-5"
+                required
+              >
+                <option value="" disabled>
+                  YYYY
+                </option>
+                {years.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {/* {errorBirthday !== '' && (
               <p className="text-red-500 pl-2">{errorBirthday}</p>
-            )}
+            )} */}
           </div>
         </div>
       </div>

@@ -88,6 +88,7 @@ const initialState = {
   checkerSocialNumber: '',
   checkerBirthday: '',
   checkerAddress: '',
+  checkerStreet: '',
   checkerApt: '',
   checkerLocality: '',
   checkerState: '',
@@ -114,6 +115,7 @@ const initialState = {
   deviceOS: '',
   deviceState: '',
   deviceCity: '',
+  deviceStreet: '',
   deviceCountry: '',
   deviceDate: '',
   deviceLat: '',
@@ -367,6 +369,9 @@ export const checkerSlice = createSlice({
     setDeviceCountry: (state, action) => {
       state.deviceCountry = action.payload;
     },
+    setDeviceStreet: (state, action) => {
+      state.deviceStreet = action.payload;
+    },
     setDeviceDate: (state, action) => {
       state.deviceDate = action.payload;
     },
@@ -525,6 +530,10 @@ export const checkerSlice = createSlice({
     setCheckerAddress: (state, action) => {
       state.checkerAddress = action.payload;
     },
+    // Set street
+    setCheckerStreet: (state, action) => {
+      state.checkerStreet= action.payload;
+    },
 
     // Set apt
     setCheckerApt: (state, action) => {
@@ -645,6 +654,7 @@ export const checkerSlice = createSlice({
       state.checkerEmail = initialState.checkerEmail;
       state.checkerBirthday = initialState.checkerBirthday;
       state.checkerAddress = initialState.checkerAddress;
+      state.checkerStreet= initialState.checkerStreet;
       state.checkerApt = initialState.checkerApt;
       state.checkerLocality = initialState.checkerLocality;
       state.checkerState = initialState.checkerState;
@@ -664,6 +674,7 @@ export const checkerSlice = createSlice({
       state.commentValue = initialState.commentValue;
       state.deviceCity = initialState.deviceCity;
       state.deviceCountry = initialState.deviceCountry;
+      state.deviceStreet = initialState.deviceStreet;
       state.deviceDate = initialState.deviceDate;
       state.deviceIP = initialState.deviceIP;
       state.deviceLat = initialState.deviceLat;
@@ -780,6 +791,7 @@ export const {
   setCheckerSocialNumber,
   setCheckerBirthday,
   setCheckerAddress,
+  setCheckerStreet,
   setCheckerApt,
   setCheckerLocality,
   setCheckerState,
@@ -800,6 +812,7 @@ export const {
   setDeviceBrowser,
   setDeviceCity,
   setDeviceCountry,
+  setDeviceStreet,
   setDeviceDate,
   setDeviceIP,
   setDeviceLat,

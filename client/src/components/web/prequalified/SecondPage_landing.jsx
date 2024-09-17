@@ -44,7 +44,8 @@ const SecondPage = () => {
       console.log('👋👋👋--->', place.formatted_address);
       if (place.formatted_address !== undefined) {
         // setStreet(place.formatted_address);
-        // dispatch(setCheckerAddress(place.formatted_address));
+        const tmp = place.formatted_address.split(',')[0];
+        dispatch(setCheckerAddress(tmp));
         document.getElementById('autocomplete').value = '';
         // setStreet(place.formatted_address);
         parseAddressComponents(place);
@@ -86,9 +87,9 @@ const SecondPage = () => {
           // setLocality(component.long_name);
           dispatch(setCheckerLocality(component.long_name));
           break;
-        case 'route':
-          dispatch(setCheckerAddress(component.long_name));
-          break;
+        // case 'route':
+        //   dispatch(setCheckerAddress(component.long_name));
+        //   break;
         case 'administrative_area_level_1':
           dispatch(setCheckerState(component.short_name));
           setState(component.short_name);
@@ -100,7 +101,6 @@ const SecondPage = () => {
       }
     }
   };
-  console.log('This is address🏡', checkerStreet);
   const handleApt = (e) => {
     setApt(e.target.value);
     dispatch(setCheckerApt(e.target.value));
@@ -127,6 +127,7 @@ const SecondPage = () => {
     // setErrors((prev) => ({ ...prev, zipcode: '' }));
   };
   console.log('This is checkerLocality=====>', checkerZipcode);
+  console.log('This is address🏡---->', checkerAddress);
 
   return (
     <>

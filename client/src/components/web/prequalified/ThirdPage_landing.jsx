@@ -193,7 +193,7 @@ const ThirdPage = () => {
         <p className="text-2xl ml-2 text-gray-500 mt-2 ">
           <b> IMPORTANT INFORMATION</b>
         </p>
-        <div className="">
+        <div className=" leading-8">
           <p className="mt-1 bg-gray-200 rounded-lg p-2">
             <input
               // onClick={handleClick_Check1}
@@ -202,10 +202,13 @@ const ThirdPage = () => {
               type="checkbox"
               className="cursor-pointer"
             />{' '}
-            We are committed to protecting your privacy. The information that
-            you provided is only shared with the dealership to assess your
-            credit history and not otherwise sold, marketed, or distributed in
-            any way by {dealerName}.
+            I understand that I am providing written instructions to{' '}
+            <b>{dealerName}</b> under the Fair Credit Reporting Act. This
+            authorization allows <b>{dealerName}</b> to access my personal
+            credit profile and any additional documentation I provide. I
+            authorize <b>{dealerName}</b> to use this information solely for the
+            purpose of prequalifying my request for financing with any of{' '}
+            <b>{dealerName}</b>&apos;s available lenders.
           </p>
           <div className="mt-2 bg-gray-200 rounded-lg p-2">
             <p>
@@ -215,40 +218,49 @@ const ThirdPage = () => {
                 checked={checked2}
                 type="checkbox"
                 className="cursor-pointer"
-              />{' '}
-              Please click{' '}
-              <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                here
-              </a>{' '}
-              to read our Privacy Notice and click{' '}
-              <a
-                href="https://www.credit-apps.com/privacy/"
-                style={{ color: 'blue' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                here
-              </a>{' '}
-              to read our full Privacy Policy. If you would like to opt-out of
-              having your information shared at all, please do so now by
-              clicking{' '}
-              <span onClick={Tobegin} className="cursor-pointer text-blue-600">
-                here
-              </span>{' '}
-              and exiting the application.
+              />
+              Please note, this is not an automated system. One of our
+              representatives will personally review your information to ensure
+              the best results. Due to this carefull review, there may be a
+              delay in providing you with pre-qualification offers. However, we
+              will contact you by the next business day.
             </p>
-            <span
-              // onClick={() => setReadStatePara1(!readStatePara1)}
-              className={'text-blue-600 text-md hover:underline cursor-pointer'}
-            >
-              {/* {readStatePara1 == false ? 'More' : 'Less'} */}
-            </span>
           </div>
+          <p>
+            Please read our{' '}
+            <a
+              href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+              style={{ color: 'blue' }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Private Notice
+            </a>{' '}
+            ,{' '}
+            <a
+              href="https://www.credit-apps.com/privacy/"
+              style={{ color: 'blue' }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Private Policy
+            </a>{' '}
+            , and{' '}
+            <a
+              href="https://www.credit-apps.com/terms/"
+              style={{ color: 'blue' }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              End User Terms of Use
+            </a>{' '}
+            by clicking the links provided. If you would like to opt-out of
+            having your information shared at all, please do so now by clicking
+            <span onClick={Tobegin} className="cursor-pointer text-blue-600">
+              here
+            </span>{' '}
+            and exiting the application.
+          </p>
           <div className="bg-gray-200 rounded-lg p-2 mt-2">
             <p>
               <input
@@ -258,19 +270,17 @@ const ThirdPage = () => {
                 type="checkbox"
                 className="cursor-pointer"
               />{' '}
-              By typing my name and clicking submit, I authorize {dealerName} to
-              investigate my credit history solely to determine the best
-              available offers to fund my loan, I also acknowledge that I have
-              read, understand, and agree to be bound by our End User{' '}
+              I acknowledge that I have read, understand, and agree to be bound
+              by the{' '}
               <a
                 href="https://www.credit-apps.com/terms/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Terms of use
+                End User Terms of Use
               </a>{' '}
-              and our{' '}
+              and{' '}
               <a
                 href="https://www.credit-apps.com/privacy/"
                 style={{ color: 'blue' }}
@@ -280,14 +290,14 @@ const ThirdPage = () => {
                 {' '}
                 Privacy Policy
               </a>{' '}
-              and agree to have the information that I provided shared with
-              lenders in accordance therewith. I also understand that if a
-              prequalified offer is found by any of our lenders, they will
-              perform a hard inquiry which can impact my credit history.
+              . I consent to having the information I provided to {
+                dealerName
+              }{' '}
+              shared with lenders accordingly. Additionally, I understand that
+              if I receive a prequalified offer from any of {dealerName}&apos;s
+              lenders, they will perform a hard inquiry, which may impact my
+              credit history.
             </p>
-            <span
-              className={'text-blue-600 text-sm hover:underline cursor-pointer'}
-            ></span>
           </div>
         </div>
         <p className=" text-[20px] mt-6 text-center text-[#854fff]">

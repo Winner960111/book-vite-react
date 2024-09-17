@@ -35,30 +35,6 @@ const SecondPage = () => {
 
   const addressRef = useRef(null);
 
-  // useEffect(() => {
-  //   if (submit) {
-  //     setErrors('');
-  //     let newErrors = {};
-  //     console.log(locality);
-  //     if (!locality.trim()) {
-  //       newErrors.locality = '*City field is required';
-  //     }
-
-  //     if (!street.trim()) {
-  //       newErrors.street = '*street field is required';
-  //     }
-  //     if (!state.trim()) {
-  //       newErrors.state = '*State field is required';
-  //     }
-  //     if (!zipcode.trim()) {
-  //       newErrors.zipcode = '*ZipCode field is required';
-  //     } else if (!/^[0-9]+$/.test(zipcode)) {
-  //       newErrors.zipcode = '*ZipCode foramt is wrong';
-  //     }
-  //     setErrors(newErrors);
-  //   }
-  // }, [submit]);
-
   const initializeAutocomplete = useCallback(() => {
     const input = document.getElementById('autocomplete');
     const newAutocomplete = new window.google.maps.places.Autocomplete(input);
@@ -68,7 +44,9 @@ const SecondPage = () => {
       console.log('👋👋👋--->', place.formatted_address);
       if (place.formatted_address !== undefined) {
         // setStreet(place.formatted_address);
-        dispatch(setCheckerAddress(place.formatted_address));
+        // dispatch(setCheckerAddress(place.formatted_address));
+        document.getElementById('autocomplete').value = '';
+        // setStreet(place.formatted_address);
         parseAddressComponents(place);
       }
     });
@@ -107,6 +85,9 @@ const SecondPage = () => {
         case 'locality':
           // setLocality(component.long_name);
           dispatch(setCheckerLocality(component.long_name));
+          break;
+        case 'route':
+          dispatch(setCheckerAddress(component.long_name));
           break;
         case 'administrative_area_level_1':
           dispatch(setCheckerState(component.short_name));
@@ -168,7 +149,6 @@ const SecondPage = () => {
               sx={{ ml: 1, flex: 1, fontSize: '20px' }}
               placeholder="Search Google Maps"
               inputProps={{ 'aria-label': 'search google maps' }}
-              autoFocus
               required
               autoComplete="off"
               id="autocomplete"
@@ -178,9 +158,6 @@ const SecondPage = () => {
               <SearchIcon />
             </IconButton>
           </Paper>
-          {/* {errors.address ? (
-            <p className="text-red-500 pl-2">{errors.address}</p>
-          ) : null} */}
         </div>
         <div className="w-full rounded-md text-center text-2xl md:px-5 flex flex-col">
           <TextField
@@ -214,8 +191,6 @@ const SecondPage = () => {
               value={apt}
               onChange={handleApt}
               fullWidth
-              // type="text"
-              // defaultValue="Normal"
               label="Apt/Suite (Optional)"
               variant="standard"
               autoComplete="off"
@@ -237,8 +212,6 @@ const SecondPage = () => {
               value={checkerLocality}
               onChange={handleLocality}
               fullWidth
-              // type="text"
-              // defaultValue="Normal"
               autoComplete="off"
               label="City"
               required
@@ -255,19 +228,12 @@ const SecondPage = () => {
                 },
               }}
             />
-            {/* {errors.locality ? (
-              <p className="text-red-500 text-[16px] flex justify-start">
-                {errors.locality}
-              </p>
-            ) : null} */}
           </div>
           <div className="w-full rounded-md text-center text-2xl md:mx-5">
             <TextField
               value={state}
               onChange={handleState}
               fullWidth
-              // type="text"
-              // defaultValue="Normal"
               autoComplete="off"
               label="State"
               required
@@ -295,8 +261,6 @@ const SecondPage = () => {
               value={zipcode}
               onChange={handleZipCode}
               fullWidth
-              // type="text"
-              // defaultValue="Normal"
               label="Zip Code"
               autoComplete="off"
               variant="standard"

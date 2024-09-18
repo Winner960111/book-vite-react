@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react';
 import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
 // checker step components
-import FirstPage_landing from '../components/web/prequalified/FirstPage_landing';
-import SecondPage_landing from '../components/web/prequalified/SecondPage_landing';
-import ThirdPage_landing from '../components/web/prequalified/ThirdPage_landing';
+import FirstPage_landing from '../components/web/prequlified-landing/FirstPage_landing';
+import SecondPage_landing from '../components/web/prequlified-landing/SecondPage_landing';
+import ThirdPage_landing from '../components/web/prequlified-landing/ThirdPage_landing';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
 import {
@@ -72,13 +72,13 @@ const WebPrequalified = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center bg-gray-50 w-screen h-screen relative">
+    <div className="flex flex-col justify-between items-center bg-gray-50 w-[100%] relative">
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">
         <div className="w-2/3 my-5 flex justify-between items-center">
           <img className="w-40 h-16" src={dealerLogo} alt="avatar" />
         </div>
       </div>
-      
+
       <div className="md:min-w-[800px] md:w-1/2 my-2 text-justify bg-white rounded-3xl p-8 md:p-12 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col ">
         {<FirstPage_landing />}
         {<SecondPage_landing />}

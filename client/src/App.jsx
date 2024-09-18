@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactGA from 'react-ga4';
+// import ReactGA from 'react-ga4';
 
 // page component
 import Home from './pages/Home';
@@ -29,6 +29,7 @@ import ReferenceDoc from './pages/ReferenceDoc';
 import WebIdentityVerify from './pages/WebIdentityVerify';
 import WebImages from './pages/WebImages';
 import Images from './pages/Images';
+import WebFullAppLanding from './pages/WebFullappLanding';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ const App = () => {
     }
   }, [dispatch, initialize]);
 
-  console.log("this is type===>" , type)
+  console.log('this is type===>', type);
   return (
     <>
       {<Loading loading={type === '' ? true : false} />}
@@ -87,6 +88,10 @@ const App = () => {
         <Route
           path="/info-checker/:dealer_id/full"
           element={type == 'web' ? <WebFullApp /> : <Full />}
+        />
+        <Route
+          path="/info-checker/:dealer_id/full-landing"
+          element={type == 'web' ? <WebFullAppLanding /> : <null />}
         />
         <Route
           path="/info-checker/:dealer_id/appointment"

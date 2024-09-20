@@ -225,9 +225,9 @@ const FirstPage = () => {
       <p className="text-2xl  text-gray-500 mt-2 ml-2">
         <b> Personal Information</b>
       </p>
-      <div className="text-center pb-2 gap-2 border border-gray-300 rounded-xl w-full flex flex-col">
-        <div className="w-full px-5 flex justify-between flex-col md:flex-row">
-          <div className="flex flex-col w-full my-3 md:mx-5">
+      <div className="text-center gap-2 border py-2 border-gray-300 rounded-xl w-full flex flex-col">
+        <div className="w-full flex justify-between   flex-col md:flex-row">
+          <div className="flex flex-col w-full  md:mx-5">
             <TextField
               aria-owns={first ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -279,7 +279,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorFirstName}</p>
             )}
           </div>
-          <div className="flex flex-col w-full my-3 md:mx-5">
+          <div className="flex flex-col w-full  md:mx-5">
             <TextField
               aria-owns={middle ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -331,7 +331,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorMiddleName}</p>
             )}
           </div>
-          <div className="flex flex-col w-full my-3 md:mx-5">
+          <div className="flex flex-col w-full  md:mx-5">
             <TextField
               aria-owns={last ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -383,8 +383,8 @@ const FirstPage = () => {
             )}
           </div>
         </div>
-        <div className="w-full flex p-5 justify-between flex-col md:flex-row">
-          <div className="flex flex-col w-full my-3 md:mx-5">
+        <div className="w-full flex justify-between flex-col md:flex-row">
+          <div className="flex flex-col w-full  md:mx-5">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer
                 components={['DatePicker']}
@@ -403,7 +403,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorBirthday}</p>
             )}
           </div>
-          <div className="flex flex-col w-full my-3 md:mx-5">
+          <div className="flex flex-col w-full  md:mx-5">
             <TextField
               aria-owns={social ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -456,7 +456,7 @@ const FirstPage = () => {
               <p className="text-red-500 pl-2">{errorSocialNumber}</p>
             )}
           </div>
-          <div className="flex flex-col w-full my-3 md:mx-5">
+          <div className="flex flex-col w-full  md:mx-5">
             <TextField
               aria-owns={emailHover ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -509,9 +509,9 @@ const FirstPage = () => {
             )}
           </div>
         </div>
-        <div className="w-full p-5 flex justify-between">
-          <div className="flex-col flex">
-            <div className="flex">
+        <div className="w-full  flex justify-between">
+          <div className="flex-col flex w-full">
+            <div className="flex flex-row justify-between">
               <div className="px-5">
                 <FormControl>
                   <FormLabel id="demo-row-radio-buttons-group-label">

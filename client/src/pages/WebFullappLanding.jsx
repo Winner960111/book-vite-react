@@ -120,14 +120,13 @@ const WebFullApp = () => {
       <div className="md:min-w-[800px] md:w-1/2 my-2 text-justify bg-white rounded-3xl p-8 md:p-12 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col ">
         <FirstPage />
         <SecondPage />
-        {step == 4 && <ThirdPage />}
-        {step == 5 && <ThirdPageItem />}
-        {step == 6 && <FourthPage />}
-        {step == 7 && (
-          <>
-            {parseInt(residentalYears) >= 2 ? plusStep() : <FourthPageItem />}
-          </>
-        )}
+        { <ThirdPage />}
+        {<ThirdPageItem />}
+        { <FourthPage />}
+         
+            {/* {parseInt(residentalYears) >= 2 ? plusStep() : <FourthPageItem />} */}
+        
+        
         {step == 8 && <FifthPage />}
         {step == 9 && <>{delta >= 2 ? plusStep() : <FifthPageItem />}</>}
         {step == 10 && <Confirm />}

@@ -180,14 +180,15 @@ const SecondPage = () => {
   }
   return (
     <>
-      <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className=" w-2/3 flex flex-col mt-20 mx-20 z-0">
-          <p className="w-full text-4xl my-3 font-medium">
-            We need driver licese and other information.
+    
+        <p className="text-2xl  text-gray-500 mt-2 ml-2">
+            <b>We need driver licese and other information.
+
+            </b>
           </p>
-          <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
-            <div className="w-full p-5 flex justify-between flex-col md:flex-row">
-              <div className="flex flex-col w-full md:w-[50%] my-3 md:mx-5">
+          <div className="text-center gap-2 py-3 border border-gray-300 rounded-xl w-full flex flex-col">
+        <div className="w-full flex justify-between  gap-2 flex-col md:flex-row">
+              <div className="flex flex-col w-full md:w-[50%]  md:mx-5">
                 <TextField
                   aria-owns={license ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
@@ -203,13 +204,13 @@ const SecondPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
+                     // height: '40px', // Set the height of the TextField
+                      fontSize: '20px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px',
+                      fontSize: '20px',
                     },
                   }}
                 />
@@ -239,7 +240,7 @@ const SecondPage = () => {
                   <p className="text-red-500 pl-2">{errordriverNumber}</p>
                 )}
               </div>
-              <div className="flex flex-col w-full md:w-[30%] my-3 md:mx-5">
+              <div className="flex flex-col w-full md:w-[30%]  md:mx-5">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer
                     components={['DatePicker']}
@@ -248,7 +249,7 @@ const SecondPage = () => {
                     <DatePicker
                       label="driver expieration date"
                       onChange={(newValue) => handleDriverDate(newValue)}
-                      className="w-full"
+                      className="w-full "
                     />
                   </DemoContainer>
                 </LocalizationProvider>
@@ -256,7 +257,7 @@ const SecondPage = () => {
                   <p className="text-red-500 pl-2">{errordriverDate}</p>
                 )}
               </div>
-              <div className="flex flex-col w-full md:w-[20%] my-3 md:mx-5">
+              <div className="flex flex-col w-full md:w-[20%]  md:mx-5">
                 <TextField
                   aria-owns={state ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
@@ -271,13 +272,13 @@ const SecondPage = () => {
                   variant="standard"
                   InputProps={{
                     style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
+                      //height: '50px', // Set the height of the TextField
+                      fontSize: '20px',
                     },
                   }}
                   InputLabelProps={{
                     style: {
-                      fontSize: '25px',
+                      fontSize: '20px',
                     },
                   }}
                 />
@@ -309,12 +310,12 @@ const SecondPage = () => {
                 
               </div>
             </div>
-            <div className="w-full flex p-5 justify-between flex-col md:flex-row">
-              <div className="flex flex-col w-full my-3 md:mx-5">
+            <div className="w-full flex p-2 justify-between flex-col md:flex-row">
+              <div className="flex flex-col w-full  md:mx-2">
                 <FormControl variant="filled" sx={{ m: 1, minwidth: 120 }}>
                   <InputLabel
                     id="demo-simple-select-standard-label"
-                    style={{ fontSize: '15px' }}
+                    style={{ fontSize: '20px' }}
                   >
                     Type
                   </InputLabel>
@@ -332,11 +333,11 @@ const SecondPage = () => {
                   <p className="text-red-500 pl-2">{errorPayType}</p>
                 )}
               </div>
-              <div className="flex flex-col w-full my-3 md:mx-5">
+              <div className="flex flex-col w-full  md:mx-5">
                 <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel
                     id="demo-simple-select-standard-label"
-                    style={{ fontSize: '15px' }}
+                    style={{ fontSize: '20px' }}
                   >
                     isuer
                   </InputLabel>
@@ -359,7 +360,7 @@ const SecondPage = () => {
                   <p className="text-red-500 pl-2">{errorIsuer}</p>
                 )}
               </div>
-              <div className="flex flex-col w-full my-3 md:mx-5">
+              <div className="flex flex-col w-full  md:mx-4">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer
                     components={['DatePicker']}
@@ -377,18 +378,17 @@ const SecondPage = () => {
                 )}
               </div>
             </div>
-            <div className="w-full p-5 flex justify-end">
+            <div className="w-full pb-2 pr-4 flex justify-end">
               <button
                 type="button"
                 onClick={handlesubmit}
-                className="bg-[#854fff] w-[30%] h-16 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="bg-[#854fff] w-[30%]  p-2 rounded-lg text-white text-3xl  hover:bg-purple-800"
               >
                 CONTINUE
               </button>
             </div>
           </div>
-        </div>
-      </div>
+       
     </>
   );
 };

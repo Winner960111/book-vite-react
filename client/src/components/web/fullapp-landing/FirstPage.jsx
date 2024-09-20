@@ -222,397 +222,377 @@ const FirstPage = () => {
   };
   return (
     <>
-      <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className=" w-2/3 flex flex-col mt-20 mx-20">
-          <p className="w-2/3 text-4xl my-3 font-medium">
-            We need to your personal information
-          </p>
-          <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
-            <div className="w-full p-5 flex justify-between flex-col md:flex-row">
-              <div className="flex flex-col w-full my-3 md:mx-5">
-                <TextField
-                  aria-owns={first ? 'mouse-over-popover' : undefined}
-                  aria-haspopup="true"
-                  onMouseEnter={(event) => setFirst(event.currentTarget)}
-                  onMouseLeave={() => setFirst(null)}
-                  onMouseDown={() => setFirst(null)}
-                  value={firstName}
-                  onChange={handleFirstName}
-                  fullWidth
-                  autoComplete = 'off'
-                  autoFocus
-                  label="First name"
-                  variant="standard"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
-                <Popover
-                  id="mouse-over-popover"
-                  sx={{
-                    pointerEvents: 'none',
-                  }}
-                  open={Boolean(first)}
-                  anchorEl={first}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  onClose={() => setFirst(null)}
-                  disableRestoreFocus
-                >
-                  <Typography sx={{ p: 2 }}>
-                    Please enter your first name.
-                  </Typography>
-                </Popover>
-                {errorFirstName !== '' && (
-                  <p className="text-red-500 pl-2">{errorFirstName}</p>
-                )}
-              </div>
-              <div className="flex flex-col w-full my-3 md:mx-5">
-                <TextField
-                  aria-owns={middle ? 'mouse-over-popover' : undefined}
-                  aria-haspopup="true"
-                  onMouseEnter={(event) => setMiddle(event.currentTarget)}
-                  onMouseLeave={() => setMiddle(null)}
-                  onMouseDown={() => setMiddle(null)}
-                  value={middleName}
-                  onChange={handleMiddleName}
-                  fullWidth
-                  autoComplete = 'off'
-                  label="Middle Initial(optional)"
-                  variant="standard"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
-                <Popover
-                  id="mouse-over-popover"
-                  sx={{
-                    pointerEvents: 'none',
-                  }}
-                  open={Boolean(middle)}
-                  anchorEl={middle}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  onClose={() => setMiddle(null)}
-                  disableRestoreFocus
-                >
-                  <Typography sx={{ p: 2 }} style={{ width: '300px' }}>
-                    In the case you have a middle name on your credit report
-                    please enter here.
-                  </Typography>
-                </Popover>
-                {errorMiddleName !== '' && (
-                  <p className="text-red-500 pl-2">{errorMiddleName}</p>
-                )}
-              </div>
-              <div className="flex flex-col w-full my-3 md:mx-5">
-                <TextField
-                  aria-owns={last ? 'mouse-over-popover' : undefined}
-                  aria-haspopup="true"
-                  onMouseEnter={(event) => setLast(event.currentTarget)}
-                  onMouseLeave={() => setLast(null)}
-                  onMouseDown={() => setLast(null)}
-                  value={lastName}
-                  onChange={handleLastName}
-                  fullWidth
-                  autoComplete = 'off'
-                  label="Last name"
-                  variant="standard"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
-                <Popover
-                  id="mouse-over-popover"
-                  sx={{
-                    pointerEvents: 'none',
-                  }}
-                  open={Boolean(last)}
-                  anchorEl={last}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  onClose={() => setLast(null)}
-                  disableRestoreFocus
-                >
-                  <Typography sx={{ p: 2 }}>
-                    Please enter your last name.
-                  </Typography>
-                </Popover>
-                {errorLastName !== '' && (
-                  <p className="text-red-500 pl-2">{errorLastName}</p>
-                )}
-              </div>
-            </div>
-            <div className="w-full flex p-5 justify-between flex-col md:flex-row">
-              <div className="flex flex-col w-full my-3 md:mx-5">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer
-                    components={['DatePicker']}
-                    minDate="1900-01-01"
-                    maxDate="2100-01-01"
-                  >
-                    <DatePicker
-                      label="Birthday"
-                      onChange={(newValue) => handleBirthday(newValue)}
-                      className="w-full"
-                    />
-                  </DemoContainer>
-                </LocalizationProvider>
-
-                {errorBirthday !== '' && (
-                  <p className="text-red-500 pl-2">{errorBirthday}</p>
-                )}
-                {/* {focusBirthday && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    <b className="text-justify ">Please input your birthday.</b>
-                    <br />
-                    Your Privacy Matters: Rest assured, the information you
-                    provide is strictly confidential. We take your privacy
-                    seriously and only use your details to enhance your
-                    experience with us.
-                  </p>
-                )} */}
-              </div>
-              <div className="flex flex-col w-full my-3 md:mx-5">
-                <TextField
-                  aria-owns={social ? 'mouse-over-popover' : undefined}
-                  aria-haspopup="true"
-                  onMouseEnter={(event) => setSocial(event.currentTarget)}
-                  onMouseLeave={() => setSocial(null)}
-                  onMouseDown={() => setSocial(null)}
-                  value={socialNumber}
-                  onChange={handleSocialNumber}
-                  fullWidth
-                  autoComplete = 'off'
-                  label="Social security number"
-                  variant="standard"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
-                <Popover
-                  id="mouse-over-popover"
-                  sx={{
-                    pointerEvents: 'none',
-                  }}
-                  open={Boolean(social)}
-                  anchorEl={social}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  onClose={() => setSocial(null)}
-                  disableRestoreFocus
-                >
-                  <Typography sx={{ p: 2 }} style={{ width: '300px' }}>
-                    {"We collect your Social Security Number (SSN) to verify your identity and ensure the security and integrity of our services."}
-                  </Typography>
-                </Popover>
-                {errorSocialNumber !== '' && (
-                  <p className="text-red-500 pl-2">{errorSocialNumber}</p>
-                )}
-              </div>
-              <div className="flex flex-col w-full my-3 md:mx-5">
-                <TextField
-                  aria-owns={emailHover ? 'mouse-over-popover' : undefined}
-                  aria-haspopup="true"
-                  onMouseEnter={(event) => setHoverEmail(event.currentTarget)}
-                  onMouseLeave={() => setHoverEmail(null)}
-                  onMouseDown={() => setHoverEmail(null)}
-                  value={emailAddress}
-                  onChange={handleEmailAddress}
-                  fullWidth
-                  autoComplete = 'off'
-                  label="Email address"
-                  variant="standard"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
-                <Popover
-                  id="mouse-over-popover"
-                  sx={{
-                    pointerEvents: 'none',
-                  }}
-                  open={Boolean(emailHover)}
-                  anchorEl={emailHover}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  onClose={() => setHoverEmail(null)}
-                  disableRestoreFocus
-                >
-                  <Typography sx={{ p: 2 }} style={{ width: '20vw' }}>
-                    By providing your email you agree to receive notification
-                    messages from <b>{dealerName}</b> to the provided email
-                    address.
-                  </Typography>
-                </Popover>
-                {errorEmailAddress !== '' && (
-                  <p className="text-red-500 pl-2">{errorEmailAddress}</p>
-                )}
-              </div>
-            </div>
-            <div className="w-full p-5 flex justify-between">
-              <div className="flex-col flex">
-                <div className="flex">
-                  <div className="px-5">
-                    <FormControl>
-                      <FormLabel id="demo-row-radio-buttons-group-label">
-                        Are you a U.S. citizen?
-                      </FormLabel>
-                      <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"
-                        onChange={handleCitizen}
-                      >
-                        <FormControlLabel
-                          value="Yes"
-                          control={<Radio />}
-                          label="Yes"
-                        />
-                        <FormControlLabel
-                          value="No"
-                          control={<Radio />}
-                          label="No"
-                        />
-                      </RadioGroup>
-                    </FormControl>
-                  </div>
-                  <div className="px-5">
-                    <FormControl>
-                      <FormLabel id="demo-row-radio-buttons-group-label">
-                        Do you have any bankrupcy?
-                      </FormLabel>
-                      <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"
-                        onChange={handleBank}
-                      >
-                        <FormControlLabel
-                          value="Yes"
-                          control={<Radio />}
-                          label="Yes"
-                        />
-                        <FormControlLabel
-                          value="No"
-                          control={<Radio />}
-                          label="No"
-                        />
-                      </RadioGroup>
-                    </FormControl>
-                  </div>
-                </div>
-                {errorSelect !== '' && (
-                  <p className="text-red-500 pl-2">{errorSelect}</p>
-                )}
-              </div>
-              <button
-                type="button"
-                onClick={handlesubmit}
-                className="bg-[#854fff] w-[30%] h-16 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
-              >
-                CONTINUE
-              </button>
-            </div>
+      <p className="text-2xl  text-gray-500 mt-2 ml-2">
+        <b> Personal Information</b>
+      </p>
+      <div className="text-center pb-2 gap-2 border border-gray-300 rounded-xl w-full flex flex-col">
+        <div className="w-full px-5 flex justify-between flex-col md:flex-row">
+          <div className="flex flex-col w-full my-3 md:mx-5">
+            <TextField
+              aria-owns={first ? 'mouse-over-popover' : undefined}
+              aria-haspopup="true"
+              onMouseEnter={(event) => setFirst(event.currentTarget)}
+              onMouseLeave={() => setFirst(null)}
+              onMouseDown={() => setFirst(null)}
+              value={firstName}
+              onChange={handleFirstName}
+              fullWidth
+              autoComplete="off"
+              autoFocus
+              label="First name"
+              variant="standard"
+              InputProps={{
+                style: {
+                  // height: '50px', // Set the height of the TextField
+                  fontSize: '20px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+            />
+            <Popover
+              id="mouse-over-popover"
+              sx={{
+                pointerEvents: 'none',
+              }}
+              open={Boolean(first)}
+              anchorEl={first}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              onClose={() => setFirst(null)}
+              disableRestoreFocus
+            >
+              <Typography sx={{ p: 2 }}>
+                Please enter your first name.
+              </Typography>
+            </Popover>
+            {errorFirstName !== '' && (
+              <p className="text-red-500 pl-2">{errorFirstName}</p>
+            )}
+          </div>
+          <div className="flex flex-col w-full my-3 md:mx-5">
+            <TextField
+              aria-owns={middle ? 'mouse-over-popover' : undefined}
+              aria-haspopup="true"
+              onMouseEnter={(event) => setMiddle(event.currentTarget)}
+              onMouseLeave={() => setMiddle(null)}
+              onMouseDown={() => setMiddle(null)}
+              value={middleName}
+              onChange={handleMiddleName}
+              fullWidth
+              autoComplete="off"
+              label="Middle Initial(optional)"
+              variant="standard"
+              InputProps={{
+                style: {
+                  // height: '50px', // Set the height of the TextField
+                  fontSize: '20px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+            />
+            <Popover
+              id="mouse-over-popover"
+              sx={{
+                pointerEvents: 'none',
+              }}
+              open={Boolean(middle)}
+              anchorEl={middle}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              onClose={() => setMiddle(null)}
+              disableRestoreFocus
+            >
+              <Typography sx={{ p: 2 }} style={{ width: '300px' }}>
+                In the case you have a middle name on your credit report please
+                enter here.
+              </Typography>
+            </Popover>
+            {errorMiddleName !== '' && (
+              <p className="text-red-500 pl-2">{errorMiddleName}</p>
+            )}
+          </div>
+          <div className="flex flex-col w-full my-3 md:mx-5">
+            <TextField
+              aria-owns={last ? 'mouse-over-popover' : undefined}
+              aria-haspopup="true"
+              onMouseEnter={(event) => setLast(event.currentTarget)}
+              onMouseLeave={() => setLast(null)}
+              onMouseDown={() => setLast(null)}
+              value={lastName}
+              onChange={handleLastName}
+              fullWidth
+              autoComplete="off"
+              label="Last name"
+              variant="standard"
+              InputProps={{
+                style: {
+                  // height: '50px', // Set the height of the TextField
+                  fontSize: '20px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+            />
+            <Popover
+              id="mouse-over-popover"
+              sx={{
+                pointerEvents: 'none',
+              }}
+              open={Boolean(last)}
+              anchorEl={last}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              onClose={() => setLast(null)}
+              disableRestoreFocus
+            >
+              <Typography sx={{ p: 2 }}>
+                Please enter your last name.
+              </Typography>
+            </Popover>
+            {errorLastName !== '' && (
+              <p className="text-red-500 pl-2">{errorLastName}</p>
+            )}
           </div>
         </div>
-        {openModal && (
-          <div className="fixed left-0 top-0 w-[100vw] h-[100vh] overflow-auto bg-slate-500 bg-opacity-30 flex justify-center items-center">
-            <form className="bg-white mx-auto rounded-2xl w-[45%]">
-              <div className="p-[25px] text-center text-[25px]">
-                <p>{socialNumber} is your social security number?</p>
+        <div className="w-full flex p-5 justify-between flex-col md:flex-row">
+          <div className="flex flex-col w-full my-3 md:mx-5">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer
+                components={['DatePicker']}
+                minDate="1900-01-01"
+                maxDate="2100-01-01"
+              >
+                <DatePicker
+                  label="Birthday"
+                  onChange={(newValue) => handleBirthday(newValue)}
+                  className="w-full"
+                />
+              </DemoContainer>
+            </LocalizationProvider>
 
-                <div className="flex justify-around mt-5">
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
-                  >
-                    Correct
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handlePreview}
-                    className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
-                  >
-                    Incorrect
-                  </button>
-                </div>
-              </div>
-            </form>
+            {errorBirthday !== '' && (
+              <p className="text-red-500 pl-2">{errorBirthday}</p>
+            )}
           </div>
-        )}
+          <div className="flex flex-col w-full my-3 md:mx-5">
+            <TextField
+              aria-owns={social ? 'mouse-over-popover' : undefined}
+              aria-haspopup="true"
+              onMouseEnter={(event) => setSocial(event.currentTarget)}
+              onMouseLeave={() => setSocial(null)}
+              onMouseDown={() => setSocial(null)}
+              value={socialNumber}
+              onChange={handleSocialNumber}
+              fullWidth
+              autoComplete="off"
+              label="Social security number"
+              variant="standard"
+              InputProps={{
+                style: {
+                  // height: '50px', // Set the height of the TextField
+                  fontSize: '20px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+            />
+            <Popover
+              id="mouse-over-popover"
+              sx={{
+                pointerEvents: 'none',
+              }}
+              open={Boolean(social)}
+              anchorEl={social}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              onClose={() => setSocial(null)}
+              disableRestoreFocus
+            >
+              <Typography sx={{ p: 2 }} style={{ width: '300px' }}>
+                {
+                  'We collect your Social Security Number (SSN) to verify your identity and ensure the security and integrity of our services.'
+                }
+              </Typography>
+            </Popover>
+            {errorSocialNumber !== '' && (
+              <p className="text-red-500 pl-2">{errorSocialNumber}</p>
+            )}
+          </div>
+          <div className="flex flex-col w-full my-3 md:mx-5">
+            <TextField
+              aria-owns={emailHover ? 'mouse-over-popover' : undefined}
+              aria-haspopup="true"
+              onMouseEnter={(event) => setHoverEmail(event.currentTarget)}
+              onMouseLeave={() => setHoverEmail(null)}
+              onMouseDown={() => setHoverEmail(null)}
+              value={emailAddress}
+              onChange={handleEmailAddress}
+              fullWidth
+              autoComplete="off"
+              label="Email address"
+              variant="standard"
+              InputProps={{
+                style: {
+                  // height: '50px', // Set the height of the TextField
+                  fontSize: '20px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '20px',
+                },
+              }}
+            />
+            <Popover
+              id="mouse-over-popover"
+              sx={{
+                pointerEvents: 'none',
+              }}
+              open={Boolean(emailHover)}
+              anchorEl={emailHover}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              onClose={() => setHoverEmail(null)}
+              disableRestoreFocus
+            >
+              <Typography sx={{ p: 2 }} style={{ width: '20vw' }}>
+                By providing your email you agree to receive notification
+                messages from <b>{dealerName}</b> to the provided email address.
+              </Typography>
+            </Popover>
+            {errorEmailAddress !== '' && (
+              <p className="text-red-500 pl-2">{errorEmailAddress}</p>
+            )}
+          </div>
+        </div>
+        <div className="w-full p-5 flex justify-between">
+          <div className="flex-col flex">
+            <div className="flex">
+              <div className="px-5">
+                <FormControl>
+                  <FormLabel id="demo-row-radio-buttons-group-label">
+                    Are you a U.S. citizen?
+                  </FormLabel>
+                  <RadioGroup
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    name="row-radio-buttons-group"
+                    onChange={handleCitizen}
+                  >
+                    <FormControlLabel
+                      value="Yes"
+                      control={<Radio />}
+                      label="Yes"
+                    />
+                    <FormControlLabel
+                      value="No"
+                      control={<Radio />}
+                      label="No"
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </div>
+              <div className="px-5">
+                <FormControl>
+                  <FormLabel id="demo-row-radio-buttons-group-label">
+                    Do you have any bankrupcy?
+                  </FormLabel>
+                  <RadioGroup
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    name="row-radio-buttons-group"
+                    onChange={handleBank}
+                  >
+                    <FormControlLabel
+                      value="Yes"
+                      control={<Radio />}
+                      label="Yes"
+                    />
+                    <FormControlLabel
+                      value="No"
+                      control={<Radio />}
+                      label="No"
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </div>
+            </div>
+            {errorSelect !== '' && (
+              <p className="text-red-500 pl-2">{errorSelect}</p>
+            )}
+          </div>
+        </div>
       </div>
+      {/* {openModal && (
+        <div className="fixed left-0 top-0 w-[100vw] h-[100vh] overflow-auto bg-slate-500 bg-opacity-30 flex justify-center items-center">
+          <form className="bg-white mx-auto rounded-2xl w-[45%]">
+            <div className="p-[25px] text-center text-[25px]">
+              <p>{socialNumber} is your social security number?</p>
+
+              <div className="flex justify-around mt-5">
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                >
+                  Correct
+                </button>
+                <button
+                  type="button"
+                  onClick={handlePreview}
+                  className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                >
+                  Incorrect
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      )} */}
     </>
   );
 };

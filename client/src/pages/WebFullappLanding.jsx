@@ -118,10 +118,8 @@ const WebFullApp = () => {
         </div>
       </div>
       <div className="md:min-w-[800px] md:w-1/2 my-2 text-justify bg-white rounded-3xl p-8 md:p-12 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col ">
-        {step == 0 && <PhoneVerification />}
-        {step == 1 && <CheckVerifyCode />}
-        {step == 2 && <FirstPage />}
-        {step == 3 && <SecondPage />}
+        <FirstPage />
+        <SecondPage />
         {step == 4 && <ThirdPage />}
         {step == 5 && <ThirdPageItem />}
         {step == 6 && <FourthPage />}

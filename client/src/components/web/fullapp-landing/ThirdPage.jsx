@@ -104,17 +104,17 @@ const ThirdPage = () => {
       <p className="text-2xl  text-gray-500 mt-2 ml-2">
       <b>  What vehicle are you interested in?</b>
       </p>
-      <div className="flex flex-col gap-2 py-3 border border-gray-300 rounded-xl w-full ">
+      <div className="flex flex-col gap-2 py-2 border border-gray-300 rounded-xl w-full ">
         <div className="w-full flex gap-2 flex-col md:flex-row">
-          <div className='w-full flex py-1 px-4 gap-2 rounded-xl'>
+          <div className='w-full flex  px-4 gap-2 rounded-xl'>
             <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label" style={{ fontSize: '20px',}}>What type of vehicle are you interested in?</FormLabel>
+              {/* <FormLabel id="demo-row-radio-buttons-group-label" style={{ fontSize: '20px',}}>What type of vehicle are you interested in?</FormLabel> */}
               <div className='overflow-y-auto'>
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
-                  style={{ margin: '5px 20px', display: 'flex',flexWrap:"wrap" }}
+                  style={{ margin: '0px 20px', display: 'flex',flexWrap:"wrap" }}
                   onChange={(e) => { setSelect(e.target.value) }}
                 >
                   {vehicles.map((item, key) => {

@@ -123,11 +123,8 @@ const WebFullApp = () => {
         { <ThirdPage />}
         {/* {<ThirdPageItem />} */}
         { <FourthPage />}
-         
-            {/* {parseInt(residentalYears) >= 2 ? plusStep() : <FourthPageItem />} */}
-        
-        
-        {step == 8 && <FifthPage />}
+        {/* {parseInt(residentalYears) >= 2 ? plusStep() : <FourthPageItem />} */}
+        { <FifthPage />}
         {step == 9 && <>{delta >= 2 ? plusStep() : <FifthPageItem />}</>}
         {step == 10 && <Confirm />}
         {step == 11 && <>{confirm === 'Yes' ? <SixthPage /> : plusStep()}</>}

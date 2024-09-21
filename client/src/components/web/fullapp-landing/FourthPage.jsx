@@ -476,21 +476,81 @@ const FourthPageItem = () => {
             <p className=" pt-3  text-gray-600 font-[20px]">
               How long have you lived at your current address?
             </p>
-            <div className="w-full flex">
+            <div className="flex gap-2">
+              <div className="">
+                <div className="w-full flex">
+                  <TextField
+                    variant="standard"
+                    defaultValue="Normal"
+                    margin="dense"
+                    label="Year"
+                    autoComplete="off"
+                    value={residentalYear}
+                    style={{ margin: '0 10px' }}
+                    onChange={(e) => {
+                      handleYear(e);
+                    }}
+                    InputProps={{
+                      style: {
+                        fontSize: '20px',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        fontSize: '20px',
+                      },
+                    }}
+                  />
+                  <TextField
+                    variant="standard"
+                    defaultValue="Normal"
+                    margin="dense"
+                    label="Month"
+                    autocomplete="off"
+                    value={residentalMonth}
+                    style={{ margin: '0 10px ' }}
+                    onChange={(e) => {
+                      handleMonth(e);
+                    }}
+                    InputProps={{
+                      style: {
+                        fontSize: '20px',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        fontSize: '20px',
+                      },
+                    }}
+                  />
+                </div>
+                {errorMonth !== '' || errorYear !== '' ? (
+                  <p className="text-red-500 pl-2 pt-2">{errorMonth}</p>
+                ) : null}
+              </div>
+            
+            <div className=" ">
               <TextField
+                aria-owns={focusPay ? 'mouse-over-popover' : undefined}
+                aria-haspopup="true"
+                onMouseEnter={(event) => setFocusPay(event.currentTarget)}
+                onMouseLeave={() => setFocusPay(null)}
+                onMouseDown={() => setFocusPay(null)}
                 variant="standard"
                 defaultValue="Normal"
                 margin="dense"
-                label="Year"
                 autoComplete="off"
-                value={residentalYear}
+                label="Monthly mortage/rent"
+                fullWidth
+                value={pay}
                 style={{ margin: '0 10px' }}
                 onChange={(e) => {
-                  handleYear(e);
+                  handlePay(e);
                 }}
                 InputProps={{
                   style: {
                     fontSize: '20px',
+                    // height: '40px',
                   },
                 }}
                 InputLabelProps={{
@@ -499,97 +559,40 @@ const FourthPageItem = () => {
                   },
                 }}
               />
-              <TextField
-                variant="standard"
-                defaultValue="Normal"
-                margin="dense"
-                label="Month"
-                autocomplete="off"
-                value={residentalMonth}
-                style={{ margin: '0 10px ' }}
-                onChange={(e) => {
-                  handleMonth(e);
+              <Popover
+                id="mouse-over-popover"
+                sx={{
+                  pointerEvents: 'none',
                 }}
-                InputProps={{
-                  style: {
-                    fontSize: '20px',
-                  },
+                open={Boolean(focusPay)}
+                anchorEl={focusPay}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
                 }}
-                InputLabelProps={{
-                  style: {
-                    fontSize: '20px',
-                  },
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
                 }}
-              />
-            </div>
-            {errorMonth !== '' || errorYear !== '' ? (
-              <p className="text-red-500 pl-2 pt-2">{errorMonth}</p>
-            ) : null}
+                onClose={() => setFocusPay(null)}
+                disableRestoreFocus
+              >
+                <Typography sx={{ p: 2 }}>
+                  How much is your mortage/rent payment?
+                </Typography>
+              </Popover>
+              {errorPay !== '' ? (
+                <p className="text-red-500 pl-2 pt-2">{errorPay}</p>
+              ) : null}
+            </div></div>
           </div>
-        </div>
-        <div className="w-full flex justify-between">
-          <div className="w-[250px] flex flex-col pb-2 -mt-5 pl-2 ml-5">
-            <TextField
-              aria-owns={focusPay ? 'mouse-over-popover' : undefined}
-              aria-haspopup="true"
-              onMouseEnter={(event) => setFocusPay(event.currentTarget)}
-              onMouseLeave={() => setFocusPay(null)}
-              onMouseDown={() => setFocusPay(null)}
-              variant="standard"
-              defaultValue="Normal"
-              margin="dense"
-              autoComplete="off"
-              label="Monthly mortage/rent"
-              fullWidth
-              value={pay}
-              onChange={(e) => {
-                handlePay(e);
-              }}
-              InputProps={{
-                style: {
-                  fontSize: '20px',
-                  // height: '40px',
-                },
-              }}
-              InputLabelProps={{
-                style: {
-                  fontSize: '20px',
-                },
-              }}
-            />
-            <Popover
-              id="mouse-over-popover"
-              sx={{
-                pointerEvents: 'none',
-              }}
-              open={Boolean(focusPay)}
-              anchorEl={focusPay}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              onClose={() => setFocusPay(null)}
-              disableRestoreFocus
-            >
-              <Typography sx={{ p: 2 }}>
-                How much is your mortage/rent payment?
-              </Typography>
-            </Popover>
-            {errorPay !== '' ? (
-              <p className="text-red-500 flex justify-start">{errorPay}</p>
-            ) : null}
-          </div>
-          {/* <button
+          <button
             type="button"
             onClick={handleSubmit}
             className="bg-[#854fff] w-[30%]  p-2 mx-2 rounded-lg text-white text-xl  hover:bg-purple-800"
           >
             CONTINUE
-          </button> */}
+          </button>
         </div>
       </div>
     </>

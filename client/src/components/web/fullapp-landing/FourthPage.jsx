@@ -249,16 +249,16 @@ const FourthPageItem = () => {
       <p className="text-2xl  text-gray-500 mt-2 ml-2">
         <b>What is your current address information?</b>
       </p>
-      <div className="text-center gap-2 py-3 border border-gray-300 rounded-xl w-full flex flex-col">
+      <div className="w-full flex flex-col gap-2 border border-gray-300 rounded-xl ">
         <div className="w-full flex justify-between  gap-2 flex-col md:flex-row">
-          <div className="md:w-[68%] w-full h-20 rounded-md text-2xl my-3 md:mx-5 flex flex-col">
+          <div className="md:w-[68%] w-full rounded-md text-2xl mt-3 md:mx-5 flex flex-col">
             <Paper
               sx={{
-                p: '2px 4px',
+                p: '2px 2px',
                 display: 'flex',
                 alignItems: 'center',
                 width: '100%',
-                height: '70px',
+                height: '40px',
               }}
             >
               <GiPositionMarker className="text-4xl mx-2" />
@@ -268,7 +268,7 @@ const FourthPageItem = () => {
                 onMouseEnter={(event) => setFocus(event.currentTarget)}
                 onMouseLeave={() => setFocus(null)}
                 onMouseDown={() => setFocus(null)}
-                sx={{ ml: 1, flex: 1, fontSize: '25px' }}
+                sx={{ ml: 1, flex: 1, fontSize: '20px' }}
                 placeholder="Search Google Maps"
                 inputProps={{ 'aria-label': 'search google maps' }}
                 autoFocus
@@ -306,7 +306,7 @@ const FourthPageItem = () => {
           {errors.address ? (
             <p className="text-red-500 pl-2">{errors.address}</p>
           ) : null}
-          <div className="md:w-[32%] w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
+          <div className="md:w-[32%] w-full rounded-md text-center text-2xl  md:mx-5">
             <TextField
               value={apt}
               onChange={(e) => setApt(e.target.value)}
@@ -317,20 +317,20 @@ const FourthPageItem = () => {
               autoComplete="off"
               InputProps={{
                 style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
+                  // height: '40px', // Set the height of the TextField
+                  fontSize: '20px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  fontSize: '20px',
                 },
               }}
             />
           </div>
         </div>
         <div className="w-full px-5 flex justify-between flex-col md:flex-row">
-          <div className="md:w-1/3 w-full my-3 md:mx-5">
+          <div className="md:w-1/3 w-full  md:mx-5">
             <TextField
               value={locality}
               onChange={(e) => {
@@ -344,13 +344,13 @@ const FourthPageItem = () => {
               autoComplete="off"
               InputProps={{
                 style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
+                  // height: '40px', // Set the height of the TextField
+                  fontSize: '20px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  fontSize: '20px',
                 },
               }}
             />
@@ -358,7 +358,7 @@ const FourthPageItem = () => {
               <p className="text-red-500 pl-2">{errors.locality}</p>
             ) : null}
           </div>
-          <div className="md:w-1/3 w-full my-3 md:mx-5">
+          <div className="md:w-1/3 w-full  md:mx-5">
             <TextField
               value={state}
               onChange={(e) => {
@@ -372,13 +372,13 @@ const FourthPageItem = () => {
               autoComplete="off"
               InputProps={{
                 style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
+                  // height: '40px', // Set the height of the TextField
+                  fontSize: '20px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  fontSize: '20px',
                 },
               }}
             />
@@ -387,7 +387,7 @@ const FourthPageItem = () => {
             ) : null}
           </div>
 
-          <div className="md:w-1/3 w-full my-3 md:mx-5">
+          <div className="md:w-1/3 w-full  md:mx-5">
             <TextField
               value={zipcode}
               onChange={(e) => {
@@ -401,13 +401,13 @@ const FourthPageItem = () => {
               autoComplete="off"
               InputProps={{
                 style: {
-                  height: '50px', // Set the height of the TextField
-                  fontSize: '25px',
+                  height: '40px', // Set the height of the TextField
+                  fontSize: '20px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  fontSize: '20px',
                 },
               }}
             />
@@ -416,13 +416,13 @@ const FourthPageItem = () => {
             ) : null}
           </div>
         </div>
-        <div className="flex w-[98%]">
-          <div className="md:w-[68%] w-full bg-gray-50 rounded-2xl my-3 md:mx-5 flex flex-col">
-            <div className="w-full flex flex-col lg:flex-row items-center px-5 pt-5 mt-2">
+        <div className="flex flex-col w-full">
+          <div className="flex flex-row   ">
+            <div className="w-full flex flex-row  px-3 pt-3 ">
               <FormControl style={{ width: '100%' }}>
                 <FormLabel
                   id="demo-row-radio-buttons-group-label"
-                  style={{ padding: '0 5px', fontSize: '18px' }}
+                  style={{ padding: '0 3px', fontSize: '20px' }}
                 >
                   What is your residental status in this address?
                 </FormLabel>
@@ -434,35 +434,35 @@ const FourthPageItem = () => {
                     setResidental(e.target.value);
                   }}
                   style={{
-                    margin: '10px 0',
+                    // margin: '10px 0',
                     display: 'flex',
                     justifyContent: 'space-around',
-                    padding: '10px',
+                    padding: '5px 10px',
                   }}
                 >
                   <FormControlLabel
                     value="Rent"
                     control={<Radio />}
                     label="Rent"
-                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
+                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl  mt-1 "
                   />
                   <FormControlLabel
                     value="Own"
                     control={<Radio />}
                     label="Own"
-                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
+                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl mt-1 "
                   />
                   <FormControlLabel
                     value="Family"
                     control={<Radio />}
                     label="Family"
-                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
+                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl mt-1 "
                   />
                   <FormControlLabel
                     value="Other"
                     control={<Radio />}
                     label="Other"
-                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
+                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl mt-1 "
                   />
                 </RadioGroup>
               </FormControl>
@@ -472,8 +472,8 @@ const FourthPageItem = () => {
             ) : null}
           </div>
 
-          <div className="md:w-[32%] w-full bg-gray-50 rounded-2xl my-3 md:mx-5">
-            <p className="px-2 pt-5">
+          <div className=" my-1 mx-4">
+            <p className=" pt-3  text-gray-600 font-[20px]">
               How long have you lived at your current address?
             </p>
             <div className="w-full flex">
@@ -484,7 +484,7 @@ const FourthPageItem = () => {
                 label="Year"
                 autoComplete="off"
                 value={residentalYear}
-                style={{ margin: '0 10px 0 10px' }}
+                style={{ margin: '0 10px' }}
                 onChange={(e) => {
                   handleYear(e);
                 }}
@@ -506,7 +506,7 @@ const FourthPageItem = () => {
                 label="Month"
                 autocomplete="off"
                 value={residentalMonth}
-                style={{ margin: '0 10px 0 10px' }}
+                style={{ margin: '0 10px ' }}
                 onChange={(e) => {
                   handleMonth(e);
                 }}
@@ -527,8 +527,8 @@ const FourthPageItem = () => {
             ) : null}
           </div>
         </div>
-        <div className="w-full p-5 flex justify-between">
-          <div className="w-[40%] flex flex-col -mt-4 ml-5">
+        <div className="w-full flex justify-between">
+          <div className="w-[250px] flex flex-col pb-2 -mt-5 pl-2 ml-5">
             <TextField
               aria-owns={focusPay ? 'mouse-over-popover' : undefined}
               aria-haspopup="true"
@@ -547,13 +547,13 @@ const FourthPageItem = () => {
               }}
               InputProps={{
                 style: {
-                  fontSize: '25px',
-                  height: '50px',
+                  fontSize: '20px',
+                  // height: '40px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  fontSize: '20px',
                 },
               }}
             />
@@ -583,13 +583,13 @@ const FourthPageItem = () => {
               <p className="text-red-500 flex justify-start">{errorPay}</p>
             ) : null}
           </div>
-          <button
+          {/* <button
             type="button"
             onClick={handleSubmit}
-            className="bg-[#854fff] w-[30%] h-16 p-2 mx-2 rounded-lg text-white text-xl  hover:bg-purple-800"
+            className="bg-[#854fff] w-[30%]  p-2 mx-2 rounded-lg text-white text-xl  hover:bg-purple-800"
           >
             CONTINUE
-          </button>
+          </button> */}
         </div>
       </div>
     </>

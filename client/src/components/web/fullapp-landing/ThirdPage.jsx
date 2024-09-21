@@ -100,21 +100,21 @@ const ThirdPage = () => {
 
   console.log("this is vehicles===>", vehicles)
   return (
-    <div className="flex flex-col bg-gray-50 w-full justify-center items-center min-w-[600px]">
-      <p className="w-2/3 text-4xl mt-20 font-medium">
-        What vehicle are you interested in?
+    <div >
+      <p className="text-2xl  text-gray-500 mt-2 ml-2">
+      <b>  What vehicle are you interested in?</b>
       </p>
-      <div className="w-2/3 flex flex-col text-justify bg-white rounded-3xl p-5 pb-10 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
-        <div className="w-full flex flex-col justify-between items-center rounded-2xl pl-5 pt-4">
-          <div className='w-full flex justify-between bg-gray-50 items-center py-5 px-2 rounded-xl'>
+      <div className="flex flex-col gap-2 py-3 border border-gray-300 rounded-xl w-full ">
+        <div className="w-full flex gap-2 flex-col md:flex-row">
+          <div className='w-full flex py-1 px-4 gap-2 rounded-xl'>
             <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label" style={{ padding: '0 5px', fontSize: '18px', margin: '0 15px' }}>What type of vehicle are you interested in?</FormLabel>
+              <FormLabel id="demo-row-radio-buttons-group-label" style={{ fontSize: '20px',}}>What type of vehicle are you interested in?</FormLabel>
               <div className='overflow-y-auto'>
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
-                  style={{ margin: '10px 30px', display: 'flex',flexWrap:"wrap" }}
+                  style={{ margin: '5px 20px', display: 'flex',flexWrap:"wrap" }}
                   onChange={(e) => { setSelect(e.target.value) }}
                 >
                   {vehicles.map((item, key) => {
@@ -128,17 +128,17 @@ const ThirdPage = () => {
             <p className="text-red-500 pt-2">{errorVehicle}</p>
           ) : null}
         </div>
-        <div className="w-full flex flex-col lg:flex-row justify-between pl-5">
-          <div className="lg:w-[30%] w-full flex flex-col justify-between bg-gray-50 rounded-3xl mt-4">
-            <div className="flex flex-col items-center px-5">
+        <div className="w-full flex pl-5">
+          <div className="w-full flex  rounded-3xl ">
+            <div className="flex flex-col">
               <FormControl>
-                <FormLabel id="demo-row-radio-buttons-group-label" style={{ padding: '10px 0 0 0', fontSize: '18px' }}>Is this vehicle new or used?</FormLabel>
+                <FormLabel id="demo-row-radio-buttons-group-label" style={{ fontSize: '20px' }}>Is this vehicle new or used?</FormLabel>
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
                   onChange={(e) => { setCondition(e.target.value) }}
-                  style={{ margin: '10px 0', display: 'flex', justifyContent: 'around' }}
+                  style={{ margin: '5px 10px', display: 'flex', justifyContent: 'around' }}
                 >
                   <FormControlLabel value="New" control={<Radio />} label="New" style={{ width: '40%' }} />
                   <FormControlLabel value="Used" control={<Radio />} label="Used" style={{ width: '40%' }} />
@@ -149,13 +149,13 @@ const ThirdPage = () => {
               <p className="text-red-500 pl-6 pt-2 ml-5">{errorCondition}</p>
             ) : null}
           </div>
-          <button
+          {/* <button
             type="button"
             onClick={handleSubmit}
-            className="bg-[#854fff] w-full lg:w-[40%] h-16 px-2 py-1 mt-10 rounded-2xl text-white text-sm lg:text-lg hover:bg-purple-800"
-          >
+            className="bg-[#854fff]  px-5 p-1 rounded-lg text-white text-2xl  hover:bg-purple-800"
+            >
             CONTINUE
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

@@ -121,7 +121,7 @@ const WebFullApp = () => {
         <FirstPage />
         <SecondPage />
         { <ThirdPage />}
-        {<ThirdPageItem />}
+        {/* {<ThirdPageItem />} */}
         { <FourthPage />}
          
             {/* {parseInt(residentalYears) >= 2 ? plusStep() : <FourthPageItem />} */}

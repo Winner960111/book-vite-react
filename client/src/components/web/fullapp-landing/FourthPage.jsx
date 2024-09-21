@@ -99,8 +99,8 @@ const FourthPageItem = () => {
   }, []);
 
   useEffect(() => {
-    setErrorResidental('')
-  }, [residental])
+    setErrorResidental('');
+  }, [residental]);
 
   useEffect(() => {
     if (addressRef.current) {
@@ -151,7 +151,7 @@ const FourthPageItem = () => {
     if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
       setResidentalYear(e.target.value);
     }
-  }
+  };
   const handlePay = (e) => {
     setErrorPay('');
     if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
@@ -183,7 +183,7 @@ const FourthPageItem = () => {
     if (!zipcode.trim()) {
       newErrors.zipcode = '*ZipCode field is required';
     } else if (!/^[0-9]+$/.test(zipcode)) {
-      newErrors.zipcode = '*Invalid format'
+      newErrors.zipcode = '*Invalid format';
     }
     if (!pay) {
       setErrorPay('*Required');
@@ -246,358 +246,350 @@ const FourthPageItem = () => {
   };
   return (
     <>
-      <div className="flex bg-gray-50 w-full justify-center items-center">
-        <div className="w-2/3 flex flex-col mt-5 mx-20">
-          <p className="w-3/4 text-4xl my-3 font-medium">
-            What is your current address information?
-          </p>
-          <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
-            <div className="w-full flex px-5 pt-5 flex-col md:flex-row">
-              <div className="md:w-[68%] w-full h-20 rounded-md text-2xl my-3 md:mx-5 flex flex-col">
-                <Paper
-                  sx={{
-                    p: '2px 4px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    width: '100%',
-                    height: '70px',
-                  }}
-                >
-                  <GiPositionMarker className="text-4xl mx-2" />
-                  <InputBase
-                    aria-owns={focus ? 'mouse-over-popover' : undefined}
-                    aria-haspopup="true"
-                    onMouseEnter={(event) => setFocus(event.currentTarget)}
-                    onMouseLeave={() => setFocus(null)}
-                    onMouseDown={() => setFocus(null)}
-                    sx={{ ml: 1, flex: 1, fontSize: '25px' }}
-                    placeholder="Search Google Maps"
-                    inputProps={{ 'aria-label': 'search google maps' }}
-                    autoFocus
-                    autoComplete="off"
-                    id="autocomplete"
-                    ref={addressRef}
-                  />
-                  <IconButton
-                    type="button"
-                    sx={{ p: '10px' }}
-                    aria-label="search"
-                  >
-                    <SearchIcon />
-                  </IconButton>
-                </Paper>
-                <Popover
-                  id="mouse-over-popover"
-                  sx={{
-                    pointerEvents: 'none',
-                  }}
-                  open={Boolean(focus)}
-                  anchorEl={focus}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  onClose={() => setFocus(null)}
-                  disableRestoreFocus
-                >
-                  <Typography sx={{ p: 2 }}>
-                    Please input your current address.
-                  </Typography>
-                </Popover>
-              </div>
-              {errors.address ? (
-                <p className="text-red-500 pl-2">{errors.address}</p>
-              ) : null}
-              <div className="md:w-[32%] w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
-                <TextField
-                  value={apt}
-                  onChange={(e) => setApt(e.target.value)}
-                  fullWidth
-                  defaultValue="Normal"
-                  label="Apt/Suite (Optional)"
-                  variant="standard"
-                  autoComplete="off"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
-              </div>
-            </div>
-            <div className="w-full px-5 flex justify-between flex-col md:flex-row">
-              <div className="md:w-1/3 w-full my-3 md:mx-5">
-                <TextField
-                  value={locality}
-                  onChange={(e) => {
-                    setLocality(e.target.value);
-                    setErrors((prev) => ({ ...prev, locality: '' }));
-                  }}
-                  fullWidth
-                  defaultValue="Normal"
-                  label="City"
-                  variant="standard"
-                  autoComplete="off"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
-                {errors.locality ? (
-                  <p className="text-red-500 pl-2">{errors.locality}</p>
-                ) : null}
-              </div>
-              <div className="md:w-1/3 w-full my-3 md:mx-5">
-                <TextField
-                  value={state}
-                  onChange={(e) => {
-                    setState(e.target.value);
-                    setErrors((prev) => ({ ...prev, state: '' }));
-                  }}
-                  fullWidth
-                  defaultValue="Normal"
-                  label="State"
-                  variant="standard"
-                  autoComplete="off"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
-                {errors.state ? (
-                  <p className="text-red-500 pl-2">{errors.state}</p>
-                ) : null}
-              </div>
-
-              <div className="md:w-1/3 w-full my-3 md:mx-5">
-                <TextField
-                  value={zipcode}
-                  onChange={(e) => {
-                    setZipcode(e.target.value);
-                    setErrors((prev) => ({ ...prev, zipcode: '' }));
-                  }}
-                  fullWidth
-                  defaultValue="Normal"
-                  label="Zip Code"
-                  variant="standard"
-                  autoComplete="off"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
-                {errors.zipcode ? (
-                  <p className="text-red-500 pl-2">{errors.zipcode}</p>
-                ) : null}
-              </div>
-            </div>
-            <div className="flex w-[98%]">
-              <div className="md:w-[68%] w-full bg-gray-50 rounded-2xl my-3 md:mx-5 flex flex-col">
-                <div className="w-full flex flex-col lg:flex-row items-center px-5 pt-5 mt-2">
-                  <FormControl style={{ width: '100%' }}>
-                    <FormLabel
-                      id="demo-row-radio-buttons-group-label"
-                      style={{ padding: '0 5px', fontSize: '18px' }}
-                    >
-                      What is your residental status in this address?
-                    </FormLabel>
-                    <RadioGroup
-                      row
-                      aria-labelledby="demo-row-radio-buttons-group-label"
-                      name="row-radio-buttons-group"
-                      onChange={(e) => {
-                        setResidental(e.target.value);
-                      }}
-                      style={{
-                        margin: '10px 0',
-                        display: 'flex',
-                        justifyContent: 'space-around',
-                        padding: '10px',
-                      }}
-                    >
-                      <FormControlLabel
-                        value="Rent"
-                        control={<Radio />}
-                        label="Rent"
-                        className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
-                      />
-                      <FormControlLabel
-                        value="Own"
-                        control={<Radio />}
-                        label="Own"
-                        className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
-                      />
-                      <FormControlLabel
-                        value="Family"
-                        control={<Radio />}
-                        label="Family"
-                        className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
-                      />
-                      <FormControlLabel
-                        value="Other"
-                        control={<Radio />}
-                        label="Other"
-                        className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                </div>
-                {errorResidental !== '' ? (
-                  <p className="text-red-500 pl-5 -mt-2">{errorResidental}</p>
-                ) : null}
-              </div>
-
-              <div className="md:w-[32%] w-full bg-gray-50 rounded-2xl my-3 md:mx-5">
-                <p className="px-2 pt-5">
-                  How long have you lived at your current address?
-                </p>
-                <div className="w-full flex">
-                  <TextField
-                    variant="standard"
-                    defaultValue="Normal"
-                    margin="dense"
-                    label="Year"
-                    autoComplete="off"
-                    value={residentalYear}
-                    style={{ margin: '0 10px 0 10px' }}
-                    onChange={(e) => {
-                      handleYear(e);
-                    }}
-                    InputProps={{
-                      style: {
-                        fontSize: '20px',
-                      },
-                    }}
-                    InputLabelProps={{
-                      style: {
-                        fontSize: '20px',
-                      },
-                    }}
-                  />
-                  <TextField
-                    variant="standard"
-                    defaultValue="Normal"
-                    margin="dense"
-                    label="Month"
-                    autocomplete="off"
-                    value={residentalMonth}
-                    style={{ margin: '0 10px 0 10px' }}
-                    onChange={(e) => {
-                      handleMonth(e);
-                    }}
-                    InputProps={{
-                      style: {
-                        fontSize: '20px',
-                      },
-                    }}
-                    InputLabelProps={{
-                      style: {
-                        fontSize: '20px',
-                      },
-                    }}
-                  />
-                </div>
-                {errorMonth !== '' || errorYear !== '' ? (
-                  <p className="text-red-500 pl-2 pt-2">{errorMonth}</p>
-                ) : null}
-              </div>
-            </div>
-            <div className="w-full p-5 flex justify-between">
-              <div className="w-[40%] flex flex-col -mt-4 ml-5">
-                <TextField
-                  aria-owns={focusPay ? 'mouse-over-popover' : undefined}
-                  aria-haspopup="true"
-                  onMouseEnter={(event) => setFocusPay(event.currentTarget)}
-                  onMouseLeave={() => setFocusPay(null)}
-                  onMouseDown={() => setFocusPay(null)}
-                  variant="standard"
-                  defaultValue="Normal"
-                  margin="dense"
-                  autoComplete="off"
-                  label="Monthly mortage/rent"
-                  fullWidth
-                  value={pay}
-                  onChange={(e) => {
-                    handlePay(e);
-                  }}
-                  InputProps={{
-                    style: {
-                      fontSize: '25px',
-                      height: '50px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
-                <Popover
-                  id="mouse-over-popover"
-                  sx={{
-                    pointerEvents: 'none',
-                  }}
-                  open={Boolean(focusPay)}
-                  anchorEl={focusPay}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  onClose={() => setFocusPay(null)}
-                  disableRestoreFocus
-                >
-                  <Typography sx={{ p: 2 }}>
-                    How much is your mortage/rent payment?
-                  </Typography>
-                </Popover>
-                {errorPay !== '' ? (
-                  <p className="text-red-500 flex justify-start">{errorPay}</p>
-                ) : null}
-              </div>
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="bg-[#854fff] w-[30%] h-16 p-2 mx-2 rounded-lg text-white text-xl  hover:bg-purple-800"
-              >
-                CONTINUE
-              </button>
-            </div>
+      <p className="text-2xl  text-gray-500 mt-2 ml-2">
+        <b>What is your current address information?</b>
+      </p>
+      <div className="text-center gap-2 py-3 border border-gray-300 rounded-xl w-full flex flex-col">
+        <div className="w-full flex justify-between  gap-2 flex-col md:flex-row">
+          <div className="md:w-[68%] w-full h-20 rounded-md text-2xl my-3 md:mx-5 flex flex-col">
+            <Paper
+              sx={{
+                p: '2px 4px',
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%',
+                height: '70px',
+              }}
+            >
+              <GiPositionMarker className="text-4xl mx-2" />
+              <InputBase
+                aria-owns={focus ? 'mouse-over-popover' : undefined}
+                aria-haspopup="true"
+                onMouseEnter={(event) => setFocus(event.currentTarget)}
+                onMouseLeave={() => setFocus(null)}
+                onMouseDown={() => setFocus(null)}
+                sx={{ ml: 1, flex: 1, fontSize: '25px' }}
+                placeholder="Search Google Maps"
+                inputProps={{ 'aria-label': 'search google maps' }}
+                autoFocus
+                autoComplete="off"
+                id="autocomplete"
+                ref={addressRef}
+              />
+              <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                <SearchIcon />
+              </IconButton>
+            </Paper>
+            <Popover
+              id="mouse-over-popover"
+              sx={{
+                pointerEvents: 'none',
+              }}
+              open={Boolean(focus)}
+              anchorEl={focus}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              onClose={() => setFocus(null)}
+              disableRestoreFocus
+            >
+              <Typography sx={{ p: 2 }}>
+                Please input your current address.
+              </Typography>
+            </Popover>
           </div>
+          {errors.address ? (
+            <p className="text-red-500 pl-2">{errors.address}</p>
+          ) : null}
+          <div className="md:w-[32%] w-full h-20 rounded-md text-center text-2xl my-3 md:mx-5">
+            <TextField
+              value={apt}
+              onChange={(e) => setApt(e.target.value)}
+              fullWidth
+              defaultValue="Normal"
+              label="Apt/Suite (Optional)"
+              variant="standard"
+              autoComplete="off"
+              InputProps={{
+                style: {
+                  height: '50px', // Set the height of the TextField
+                  fontSize: '25px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '25px',
+                },
+              }}
+            />
+          </div>
+        </div>
+        <div className="w-full px-5 flex justify-between flex-col md:flex-row">
+          <div className="md:w-1/3 w-full my-3 md:mx-5">
+            <TextField
+              value={locality}
+              onChange={(e) => {
+                setLocality(e.target.value);
+                setErrors((prev) => ({ ...prev, locality: '' }));
+              }}
+              fullWidth
+              defaultValue="Normal"
+              label="City"
+              variant="standard"
+              autoComplete="off"
+              InputProps={{
+                style: {
+                  height: '50px', // Set the height of the TextField
+                  fontSize: '25px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '25px',
+                },
+              }}
+            />
+            {errors.locality ? (
+              <p className="text-red-500 pl-2">{errors.locality}</p>
+            ) : null}
+          </div>
+          <div className="md:w-1/3 w-full my-3 md:mx-5">
+            <TextField
+              value={state}
+              onChange={(e) => {
+                setState(e.target.value);
+                setErrors((prev) => ({ ...prev, state: '' }));
+              }}
+              fullWidth
+              defaultValue="Normal"
+              label="State"
+              variant="standard"
+              autoComplete="off"
+              InputProps={{
+                style: {
+                  height: '50px', // Set the height of the TextField
+                  fontSize: '25px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '25px',
+                },
+              }}
+            />
+            {errors.state ? (
+              <p className="text-red-500 pl-2">{errors.state}</p>
+            ) : null}
+          </div>
+
+          <div className="md:w-1/3 w-full my-3 md:mx-5">
+            <TextField
+              value={zipcode}
+              onChange={(e) => {
+                setZipcode(e.target.value);
+                setErrors((prev) => ({ ...prev, zipcode: '' }));
+              }}
+              fullWidth
+              defaultValue="Normal"
+              label="Zip Code"
+              variant="standard"
+              autoComplete="off"
+              InputProps={{
+                style: {
+                  height: '50px', // Set the height of the TextField
+                  fontSize: '25px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '25px',
+                },
+              }}
+            />
+            {errors.zipcode ? (
+              <p className="text-red-500 pl-2">{errors.zipcode}</p>
+            ) : null}
+          </div>
+        </div>
+        <div className="flex w-[98%]">
+          <div className="md:w-[68%] w-full bg-gray-50 rounded-2xl my-3 md:mx-5 flex flex-col">
+            <div className="w-full flex flex-col lg:flex-row items-center px-5 pt-5 mt-2">
+              <FormControl style={{ width: '100%' }}>
+                <FormLabel
+                  id="demo-row-radio-buttons-group-label"
+                  style={{ padding: '0 5px', fontSize: '18px' }}
+                >
+                  What is your residental status in this address?
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                  onChange={(e) => {
+                    setResidental(e.target.value);
+                  }}
+                  style={{
+                    margin: '10px 0',
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                    padding: '10px',
+                  }}
+                >
+                  <FormControlLabel
+                    value="Rent"
+                    control={<Radio />}
+                    label="Rent"
+                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
+                  />
+                  <FormControlLabel
+                    value="Own"
+                    control={<Radio />}
+                    label="Own"
+                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
+                  />
+                  <FormControlLabel
+                    value="Family"
+                    control={<Radio />}
+                    label="Family"
+                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
+                  />
+                  <FormControlLabel
+                    value="Other"
+                    control={<Radio />}
+                    label="Other"
+                    className="hover:bg-violet-200 w-[120px] border-[1px] border-gray-300 border-solid rounded-xl pt-1 mt-1 "
+                  />
+                </RadioGroup>
+              </FormControl>
+            </div>
+            {errorResidental !== '' ? (
+              <p className="text-red-500 pl-5 -mt-2">{errorResidental}</p>
+            ) : null}
+          </div>
+
+          <div className="md:w-[32%] w-full bg-gray-50 rounded-2xl my-3 md:mx-5">
+            <p className="px-2 pt-5">
+              How long have you lived at your current address?
+            </p>
+            <div className="w-full flex">
+              <TextField
+                variant="standard"
+                defaultValue="Normal"
+                margin="dense"
+                label="Year"
+                autoComplete="off"
+                value={residentalYear}
+                style={{ margin: '0 10px 0 10px' }}
+                onChange={(e) => {
+                  handleYear(e);
+                }}
+                InputProps={{
+                  style: {
+                    fontSize: '20px',
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    fontSize: '20px',
+                  },
+                }}
+              />
+              <TextField
+                variant="standard"
+                defaultValue="Normal"
+                margin="dense"
+                label="Month"
+                autocomplete="off"
+                value={residentalMonth}
+                style={{ margin: '0 10px 0 10px' }}
+                onChange={(e) => {
+                  handleMonth(e);
+                }}
+                InputProps={{
+                  style: {
+                    fontSize: '20px',
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    fontSize: '20px',
+                  },
+                }}
+              />
+            </div>
+            {errorMonth !== '' || errorYear !== '' ? (
+              <p className="text-red-500 pl-2 pt-2">{errorMonth}</p>
+            ) : null}
+          </div>
+        </div>
+        <div className="w-full p-5 flex justify-between">
+          <div className="w-[40%] flex flex-col -mt-4 ml-5">
+            <TextField
+              aria-owns={focusPay ? 'mouse-over-popover' : undefined}
+              aria-haspopup="true"
+              onMouseEnter={(event) => setFocusPay(event.currentTarget)}
+              onMouseLeave={() => setFocusPay(null)}
+              onMouseDown={() => setFocusPay(null)}
+              variant="standard"
+              defaultValue="Normal"
+              margin="dense"
+              autoComplete="off"
+              label="Monthly mortage/rent"
+              fullWidth
+              value={pay}
+              onChange={(e) => {
+                handlePay(e);
+              }}
+              InputProps={{
+                style: {
+                  fontSize: '25px',
+                  height: '50px',
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontSize: '25px',
+                },
+              }}
+            />
+            <Popover
+              id="mouse-over-popover"
+              sx={{
+                pointerEvents: 'none',
+              }}
+              open={Boolean(focusPay)}
+              anchorEl={focusPay}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              onClose={() => setFocusPay(null)}
+              disableRestoreFocus
+            >
+              <Typography sx={{ p: 2 }}>
+                How much is your mortage/rent payment?
+              </Typography>
+            </Popover>
+            {errorPay !== '' ? (
+              <p className="text-red-500 flex justify-start">{errorPay}</p>
+            ) : null}
+          </div>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="bg-[#854fff] w-[30%] h-16 p-2 mx-2 rounded-lg text-white text-xl  hover:bg-purple-800"
+          >
+            CONTINUE
+          </button>
         </div>
       </div>
     </>

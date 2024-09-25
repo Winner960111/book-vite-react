@@ -7,7 +7,6 @@ import './Canvas.css';
 import {
   addHistory,
   clearHistory,
-  setSubmit,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 
@@ -47,6 +46,12 @@ const ThirdPage = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
   const [errorImage, setErrorImage] = useState(false);
+  const [checked1, setChecked1] = useState(false);
+  const handleClick_Check1 = () => setChecked1(!checked1);
+  const [checked2, setChecked2] = useState(false);
+  const handleClick_Check2 = () => setChecked2(!checked2);
+  const [checked3, setChecked3] = useState(false);
+  const handleClick_Check3 = () => setChecked3(!checked3);
   const navigate = useNavigate();
 
   const handleResize = () => {
@@ -114,68 +119,69 @@ const ThirdPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (checked1 && checked2 && checked3) {
+      const intent_data = {
+        dealer_id: dealerId,
+        device_ip_address: deviceIP,
+        device_operating_system: deviceOS,
+        device_browser: deviceBrowser,
+        device_type: type,
+        device_state: deviceState,
+        device_city: deviceCity,
+        device_country: deviceCountry,
+        device_date_time: deviceDate,
+        device_lat: deviceLat,
+        device_lon: deviceLon,
+        status: 'Completed',
+        lang: 'EN',
+        phone: checkerMobileNumber,
+        page: 'Short',
+        last_question: '3',
+      };
+      const intent_res = await usersUpdate(intent_data, intentID);
+      console.log('this is update results ====>', intent_res);
+      dispatch(addHistory(true));
+      const canvas = canvasRef.current;
+      const imageDataURL = canvas.toDataURL('image/png');
+      const image = new Image();
+      image.src = imageDataURL;
+      console.log('This is 0errorImage', image.src);
+      let fullName;
+      if (checkerMiddleName !== '') {
+        fullName =
+          checkerFirstName + ' ' + checkerMiddleName + ' ' + checkerLastName;
+      } else {
+        fullName = checkerFirstName + ' ' + checkerLastName;
+      }
 
-    const intent_data = {
-      dealer_id: dealerId,
-      device_ip_address: deviceIP,
-      device_operating_system: deviceOS,
-      device_browser: deviceBrowser,
-      device_type: type,
-      device_state: deviceState,
-      device_city: deviceCity,
-      device_country: deviceCountry,
-      device_date_time: deviceDate,
-      device_lat: deviceLat,
-      device_lon: deviceLon,
-      status: 'Completed',
-      lang: 'EN',
-      phone: checkerMobileNumber,
-      page: 'Short',
-      last_question: '3',
-    };
-    const intent_res = await usersUpdate(intent_data, intentID);
-    console.log('this is update results ====>', intent_res);
-    dispatch(addHistory(true));
-    const canvas = canvasRef.current;
-    const imageDataURL = canvas.toDataURL('image/png');
-    const image = new Image();
-    image.src = imageDataURL;
-    console.log('This is 0errorImage', image.src);
-    let fullName;
-    if (checkerMiddleName !== '') {
-      fullName =
-        checkerFirstName + ' ' + checkerMiddleName + ' ' + checkerLastName;
-    } else {
-      fullName = checkerFirstName + ' ' + checkerLastName;
-    }
+      const data = {
+        dealer_id: dealerId,
+        first_name: checkerFirstName,
+        middle_name: checkerMiddleName,
+        last_name: checkerLastName,
+        email: checkerEmail,
+        mobile_phone: 123456789,
+        ssn: checkerSocialNumber,
+        dob: checkerBirthday,
+        primary_address: checkerAddress,
+        primary_address2: checkerApt,
+        primary_city: checkerLocality,
+        primary_state: checkerState,
+        primary_zip_code: checkerZipcode,
+        signature_name: fullName,
+        signature_img: image.src,
+        custom_id: '',
+        usr_id: '',
+      };
+      console.log('🏅🏅🏅🏅🏅🏅🏅', data);
 
-    const data = {
-      dealer_id: dealerId,
-      first_name: checkerFirstName,
-      middle_name: checkerMiddleName,
-      last_name: checkerLastName,
-      email: checkerEmail,
-      mobile_phone: 123456789,
-      ssn: checkerSocialNumber,
-      dob: checkerBirthday,
-      primary_address: checkerAddress,
-      primary_address2: checkerApt,
-      primary_city: checkerLocality,
-      primary_state: checkerState,
-      primary_zip_code: checkerZipcode,
-      signature_name: fullName,
-      signature_img: image.src,
-      custom_id: '',
-      usr_id: '',
-    };
-    console.log('🏅🏅🏅🏅🏅🏅🏅', data);
-
-    const res = await signatureImg(data);
-    if (res.status == 201) {
-      console.log('status ImageSend', res);
-      navigate(-1);
-    } else {
-      console.log('Faild ImageSend');
+      const res = await signatureImg(data);
+      if (res.status == 201) {
+        console.log('status ImageSend', res);
+        navigate(-1);
+      } else {
+        console.log('Faild ImageSend');
+      }
     }
   };
   const Tobegin = () => {
@@ -195,13 +201,39 @@ const ThirdPage = () => {
             'text-justify bg-white rounded-3xl p-8 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-md font-sans'
           )}
         >
-          <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-            We are committed to protecting your privacy. The information that
-            you provided is only shared with the dealership to assess your
-            credit history and not otherwise sold, marketed, or distributed in
-            any way by {dealerName}.
+          <p className="mt-1 bg-gray-200 rounded-lg p-2">
+            <input
+              // onClick={handleClick_Check1}
+              onChange={handleClick_Check1}
+              checked={checked1}
+              type="checkbox"
+              className="cursor-pointer"
+            />{' '}
+            I understand that I am providing written instructions to{' '}
+            <b>{dealerName}</b> under the Fair Credit Reporting Act. This
+            authorization allows <b>{dealerName}</b> to access my personal
+            credit profile and any additional documentation I provide. I
+            authorize <b>{dealerName}</b> to use this information solely for the
+            purpose of prequalifying my request for financing with any of{' '}
+            <b>{dealerName}</b>&apos;s available lenders.
           </p>
-          <div className="bg-gray-50 rounded-3xl p-4 mt-2">
+          <div className="mt-2 bg-gray-200 rounded-lg p-2">
+            <p>
+              <input
+                // onClick={handleClick_Check2}
+                onChange={handleClick_Check2}
+                checked={checked2}
+                type="checkbox"
+                className="cursor-pointer"
+              />
+              Please note, this is not an automated system. One of our
+              representatives will personally review your information to ensure
+              the best results. Due to this carefull review, there may be a
+              delay in providing you with pre-qualification offers. However, we
+              will contact you by the next business day.
+            </p>
+          </div>
+          <div className="rounded-3xl p-4 mt-2">
             <p
               onClick={() => setReadStatePara1(!readStatePara1)}
               className={
@@ -210,27 +242,36 @@ const ThirdPage = () => {
                   : null
               }
             >
-              Please click{' '}
+              Please read our{' '}
               <a
                 href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                here
+                Private Notice
               </a>{' '}
-              to read our Privacy Notice and click{' '}
+              ,{' '}
               <a
                 href="https://www.credit-apps.com/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                here
+                Private Policy
               </a>{' '}
-              to read our full Privacy Policy. If you would like to opt-out of
+              , and{' '}
+              <a
+                href="https://www.credit-apps.com/terms/"
+                style={{ color: 'blue' }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                End User Terms of Use
+              </a>{' '}
+              by clicking the links provided. If you would like to opt-out of
               having your information shared at all, please do so now by
-              clicking{' '}
+              clicking
               <span onClick={Tobegin} className="cursor-pointer text-blue-600">
                 here
               </span>{' '}
@@ -243,7 +284,7 @@ const ThirdPage = () => {
               {readStatePara1 == false ? 'More' : 'Less'}
             </span>
           </div>
-          <div className="bg-gray-50 rounded-3xl p-4 mt-2">
+          <div className="bg-gray-200 rounded-lg p-2 mt-2">
             <p
               className={
                 readStatePara2 == false
@@ -251,19 +292,24 @@ const ThirdPage = () => {
                   : null
               }
             >
-              By typing my name and clicking submit, I authorize {dealerName} to
-              investigate my credit history solely to determine the best
-              available offers to fund my loan, I also acknowledge that I have
-              read, understand, and agree to be bound by our End User{' '}
+              <input
+                // onClick={handleClick_Check3}
+                checked={checked3}
+                onChange={handleClick_Check3}
+                type="checkbox"
+                className="cursor-pointer"
+              />{' '}
+              I acknowledge that I have read, understand, and agree to be bound
+              by the{' '}
               <a
                 href="https://www.credit-apps.com/terms/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Terms of use
+                End User Terms of Use
               </a>{' '}
-              and our{' '}
+              and{' '}
               <a
                 href="https://www.credit-apps.com/privacy/"
                 style={{ color: 'blue' }}
@@ -273,10 +319,13 @@ const ThirdPage = () => {
                 {' '}
                 Privacy Policy
               </a>{' '}
-              and agree to have the information that I provided shared with
-              lenders in accordance therewith. I also understand that if a
-              prequalified offer is found by any of our lenders, they will
-              perform a hard inquiry which can impact my credit history.
+              . I consent to having the information I provided to {
+                dealerName
+              }{' '}
+              shared with lenders accordingly. Additionally, I understand that
+              if I receive a prequalified offer from any of {dealerName}&apos;s
+              lenders, they will perform a hard inquiry, which may impact my
+              credit history.
             </p>
             <span
               onClick={() => setReadStatePara2(!readStatePara2)}

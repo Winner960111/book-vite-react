@@ -831,6 +831,7 @@ export const getDealerInfo = (dealer_id) => (dispatch) => {
   return async () => {
     try {
       const response = await apis.post('decode_dealer/', data);
+      console.log("------------------>>>>>>>>>")
       dispatch(setDealerName(response.data.name));
       dispatch(setDealerLogo(response.data.get_logo_url));
       dispatch(setDealerId(response.data.id.toString()));

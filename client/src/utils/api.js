@@ -4,8 +4,8 @@ import axios from 'axios';
 const api = axios.create({
   baseURL:
     import.meta.env.MODE == 'development'
-      ? `http://${window.location.hostname}/api`
-      : `${window.location.origin}/api`,
+      ? `http://${window.location.hostname}:3000/api`
+      : `${window.location.origin}:3000/api`,
   headers: {
     'Content-Type': 'application/json',
   },

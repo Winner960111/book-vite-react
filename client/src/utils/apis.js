@@ -5,7 +5,6 @@ const apis = axios.create({
   baseURL: 'https://www.riderflow.app/api/',
   headers: {
     "Content-Type": "application/json",
-    "X-Api-Key": 'tiJ0Wfsh.i8iP64GNla95d9nNsQIQodL15PdR0wpR',
   },
 });
 

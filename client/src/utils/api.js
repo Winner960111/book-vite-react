@@ -5,7 +5,7 @@ const api = axios.create({
   baseURL:
     import.meta.env.MODE == 'development'
       ? `http://${window.location.hostname}:3000/api`
-      : `${window.location.origin}:3000/api`,
+      : `${window.location.origin}/api`,
   headers: {
     'Content-Type': 'application/json',
   },

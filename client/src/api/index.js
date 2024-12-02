@@ -239,7 +239,7 @@ export const detectAgent = () => async (dispatch) => {
   await api
     .get('/detect-agent')
     .then((res) => {
-      console.log(res.data);
+      console.log("this is detect-agent====>",res.data);
       dispatch(setRenderType(res.data));
     })
     .catch((err) => console.log('Detect Agent Error => ', err));

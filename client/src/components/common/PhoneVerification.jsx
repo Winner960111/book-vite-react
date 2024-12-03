@@ -82,7 +82,7 @@ const PhoneVerification = () => {
         </p>
         <div
           className={
-            'w-3/6 text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
+            'w-3/6 text-justify bg-white rounded-3xl p-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
           }
         >
           <div className="py-2 flex flex-col items-center">
@@ -134,7 +134,7 @@ const PhoneVerification = () => {
             <button
               type="button"
               onClick={handleTextCode}
-              className="bg-[#854fff] w-[30%] h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+              className="border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-3xl mt-2"
             >
               Text
             </button>
@@ -142,7 +142,7 @@ const PhoneVerification = () => {
             <button
               type="button"
               onClick={handleCallCode}
-              className="bg-[#854fff] w-[30%] h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+              className="border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-3xl mt-2"
             >
               Call
             </button>

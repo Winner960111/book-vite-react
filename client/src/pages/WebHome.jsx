@@ -76,50 +76,55 @@ const WebHome = () => {
           🌟 Welcome to {dealerName}! Let&apos;s Tailor Your Experience
           Together🤖
         </p>
-        <div className="flex flex-col mt-10 w-[50%] justify-around md:flex-wrap">
+        <div className="flex flex-col mt-10 w-[50%] min-w-[250px] justify-around md:flex-wrap">
           <button
             onClick={changePagePrequalified}
-            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
-          >
+            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2">
             GET PREQUALIFIED
           </button>
           <button
             onClick={changePageFullApp}
-            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
           >
             FULL CREDIT APPLICATION
           </button>
           <button
             onClick={changePageQuote}
-            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
           >
             GET A QUOTE
           </button>
 
           <button
             onClick={changePageTradeInValue}
-            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
           >
             TRADE IN VALUE
           </button>
           <button
             onClick={changePageAppointment}
-            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
+          >
+            MESSAGE DEALER
+          </button>
+          {/* <button
+            onClick={changePageAppointment}
+            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
           >
             APPOINTMENT
-          </button>
-          <button
+          </button> */}
+          {/* <button
             onClick={changePageCheckApp}
-            className="text-sm md:text-xl text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
           >
             CHECK APPLICATION STATUS
-          </button>
-          <button
+          </button> */}
+          {/* <button
             // onClick={changePageTradeInValue}
-            className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 hover:bg-purple-800"
+            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
           >
             CALL BACK
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

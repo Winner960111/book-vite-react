@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkVerification, usersStatus } from '../../../api/index';
-import { addHistory, setIntentID } from '../../../store/reducers/checker';
+import { checkVerification, usersStatus } from '../../api/index';
+import { addHistory, setIntentID } from '../../store/reducers/checker';
 import OtpInput from 'react-otp-input';
-import verify from '../../../assets/verify.png';
+import verify from '../../assets/verify.png';
 
 const CheckVerifyCode = () => {
   const [verifyCode, setVerifyCode] = useState('');
   const {
     checkerMobileNumber,
     step,
-    history,
     dealerId,
     deviceIP,
     deviceOS,
@@ -61,7 +60,7 @@ const CheckVerifyCode = () => {
           status: 'Started',
           lang: 'EN',
           phone: checkerMobileNumber,
-          page: 'Full',
+          page: 'Short',
           last_question: '0',
         };
         // const intentRes = await usersStatus(data);
@@ -76,13 +75,13 @@ const CheckVerifyCode = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <p className="w-3/6 text-4xl my-3 mt-10 font-medium">
-        <b>Check your verify code</b>
+      <p className="w-3/6 text-4xl my-3 mt-5 font-medium">
+        Check your verify code
       </p>
       <form
         onSubmit={handleSubmit}
         className={
-          ' w-3/6 text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
+          ' w-3/6 text-justify bg-white rounded-3xl p-8 min-w-[350px] shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
         }
       >
         <div className="py-2 flex flex-col items-center">
@@ -110,14 +109,14 @@ const CheckVerifyCode = () => {
           {error !== '' ? (
             <p className="text-red-500 pl-2 text-sm">{error}</p>
           ) : null}
-        </div>
-        <p className=" bg-gray-50 rounded-3xl p-4">
+          <p className=" bg-gray-50 rounded-3xl p-4 mt-4">
           We Call or Text a one-time access code to the mobile number you
           provided.
         </p>
+        </div>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-3xl mt-2"
         >
           VERIFY
         </button>

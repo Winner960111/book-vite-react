@@ -6,7 +6,8 @@ import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
 // checker step components
 import PhoneVerification from '../components/common/PhoneVerification';
-import CheckVerifyCode from '../components/web/trade/CheckVerifyCode';
+// import CheckVerifyCode from '../components/web/trade/CheckVerifyCode';
+import CheckVerifyCode from '../components/common/CheckVerifyCode';
 import Instant from '../components/web/trade/Instant';
 import FirstPage from '../components/web/trade/FirstPage';
 import SecondPage from '../components/web/trade/SecondPage';

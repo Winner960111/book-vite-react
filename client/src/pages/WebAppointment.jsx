@@ -6,7 +6,8 @@ import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
 // checker step components
 import PhoneVerification from '../components/common/PhoneVerification';
-import CheckVerifyCode from '../components/web/Appointment/CheckVerifyCode';
+// import CheckVerifyCode from '../components/web/Appointment/CheckVerifyCode';
+import CheckVerifyCode from '../components/common/CheckVerifyCode';
 import FirstPage from '../components/web/Appointment/FirstPage';
 import SecondPage from '../components/web/Appointment/SecondPage';
 import Finish from '../components/web/Appointment/Finish';

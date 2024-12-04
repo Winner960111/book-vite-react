@@ -316,7 +316,7 @@ export const checkVerification = async (
 };
 
 export const signatureImg = async (data) => {
-  const url = 'prequal/';
+  const url = 'opportunity/';
   try {
     const response = await apis.post(url, data, {
       headers: {

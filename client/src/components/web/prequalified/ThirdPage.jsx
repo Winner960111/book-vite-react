@@ -45,6 +45,7 @@ const ThirdPage = () => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
+  const [checkbox, setCheckbox] = useState(false);
   const [errorImage, setErrorImage] = useState(false);
   const [checked1, setChecked1] = useState(false);
   const handleClick_Check1 = () => setChecked1(!checked1);
@@ -117,7 +118,16 @@ const ThirdPage = () => {
     setIsDrawing(false);
   };
 
+  useEffect(()=>{
+      if (checked1 && checked2 && checked3){
+        setCheckbox(false)
+      } else {
+        setCheckbox(true)
+      }
+  }, [checked1, checked2, checked3])
+
   const handleSubmit = async (e) => {
+    console.log("clicked Submit button")
     e.preventDefault();
     if (checked1 && checked2 && checked3) {
       const intent_data = {
@@ -138,9 +148,8 @@ const ThirdPage = () => {
         page: 'Short',
         last_question: '3',
       };
-      const intent_res = await usersUpdate(intent_data, intentID);
-      console.log('this is update results ====>', intent_res);
-      dispatch(addHistory(true));
+      // const intent_res = await usersUpdate(intent_data, intentID);
+      // console.log('this is update results ====>', intent_res);
       const canvas = canvasRef.current;
       const imageDataURL = canvas.toDataURL('image/png');
       const image = new Image();
@@ -160,14 +169,18 @@ const ThirdPage = () => {
         middle_name: checkerMiddleName,
         last_name: checkerLastName,
         email: checkerEmail,
-        mobile_phone: 123456789,
+        mobile_phone: checkerMobileNumber,
+        status: "Opportunity",
+        source: "Short",
+        interested_in: "",
         ssn: checkerSocialNumber,
         dob: checkerBirthday,
-        primary_address: checkerAddress,
-        primary_address2: checkerApt,
-        primary_city: checkerLocality,
-        primary_state: checkerState,
-        primary_zip_code: checkerZipcode,
+        performed_by: "Customer",
+        address: checkerAddress,
+        address2: checkerApt,
+        city: checkerLocality,
+        state: checkerState,
+        zip: checkerZipcode,
         signature_name: fullName,
         signature_img: image.src,
         custom_id: '',
@@ -177,8 +190,8 @@ const ThirdPage = () => {
 
       const res = await signatureImg(data);
       if (res.status == 201) {
-        console.log('status ImageSend', res);
-        navigate(-1);
+        console.log('status ImageSend---->', res);
+        dispatch(addHistory(true));
       } else {
         console.log('Faild ImageSend');
       }
@@ -271,7 +284,7 @@ const ThirdPage = () => {
               </a>{' '}
               by clicking the links provided. If you would like to opt-out of
               having your information shared at all, please do so now by
-              clicking
+              clicking {' '}
               <span onClick={Tobegin} className="cursor-pointer text-blue-600">
                 here
               </span>{' '}
@@ -334,6 +347,7 @@ const ThirdPage = () => {
               {readStatePara2 == false ? 'More' : 'Less'}
             </span>
           </div>
+          <p className={checkbox?'text-red-600':'hidden'}>*Please check the contents and tick the box</p>
           <div className="flex flex-col md:flex-row">
             <div className="md:w-3/5 w-full h-[18vh] mt-2">
               <canvas
@@ -351,7 +365,7 @@ const ThirdPage = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="bg-[#854fff] w-full h-20 p-2 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="w-full border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
               >
                 Submit
               </button>

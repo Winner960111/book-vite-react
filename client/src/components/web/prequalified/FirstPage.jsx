@@ -210,9 +210,9 @@ const FirstPage = () => {
           </p>
           <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
             <div className="w-full py-5 flex justify-between flex-col md:flex-row">
-              <div className={`flex flex-col w-full my-3 md:mx-5 ${first ? 'inert' : ''}`}>
+              <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={first ? 'mouse-over-popover' : undefined}
+                  aria-owns={first ? 'mouse-over-popover1' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(event) => setFirst(event.currentTarget)}
                   onMouseLeave={() => setFirst(null)}
@@ -265,7 +265,7 @@ const FirstPage = () => {
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={middle ? 'mouse-over-popover' : undefined}
+                  aria-owns={middle ? 'mouse-over-popover2' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(event) => setMiddle(event.currentTarget)}
                   onMouseLeave={() => setMiddle(null)}
@@ -319,7 +319,7 @@ const FirstPage = () => {
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={last ? 'mouse-over-popover' : undefined}
+                  aria-owns={last ? 'mouse-over-popover3' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(event) => setLast(event.currentTarget)}
                   onMouseLeave={() => setLast(null)}
@@ -374,7 +374,7 @@ const FirstPage = () => {
             <div className="w-full flex py-5 justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={social ? 'mouse-over-popover' : undefined}
+                  aria-owns={social ? 'mouse-over-popover4' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(event) => setSocial(event.currentTarget)}
                   onMouseLeave={() => setSocial(null)}
@@ -429,7 +429,7 @@ const FirstPage = () => {
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={emailHover ? 'mouse-over-popover' : undefined}
+                  aria-owns={emailHover ? 'mouse-over-popover5' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(event) => setHoverEmail(event.currentTarget)}
                   onMouseLeave={() => setHoverEmail(null)}

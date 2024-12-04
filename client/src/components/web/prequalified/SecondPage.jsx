@@ -28,8 +28,6 @@ const SecondPage = () => {
 
   const {
     submit,
-    step,
-    intentID,
     dealerId,
     deviceIP,
     deviceOS,
@@ -42,10 +40,6 @@ const SecondPage = () => {
     deviceBrowser,
     type,
     checkerMobileNumber,
-    checkerApt,
-    checkerLocality,
-    checkerState,
-    checkerZipcode,
   } = useSelector((state) => state.checker);
 
   const addressRef = useRef(null);
@@ -173,8 +167,8 @@ const SecondPage = () => {
         page: 'Short',
         last_question: '2',
       };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerAddress(address));
       dispatch(setCheckerApt(apt));
@@ -355,7 +349,7 @@ const SecondPage = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="bg-[#854fff] w-[30%] h-16 p-2 mx-5 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="lg:w-[30%] sm:w-full border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
               >
                 CONTINUE
               </button>

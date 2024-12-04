@@ -246,12 +246,11 @@ export const detectAgent = () => async (dispatch) => {
 };
 
 export const checkPhoneNumber = async (phone_number, dealer_id) => {
-  const url = 'intent/';
+  const url = 'applicant_two_factor_code/';
 
   const data = {
     dealer_id: dealer_id,
-    mobile_phone: phone_number,
-    source: "Dropout",
+    mobile: phone_number,
   };
   try {
     const response = await apis.post(url, data, {
@@ -317,7 +316,7 @@ export const checkVerification = async (
 };
 
 export const signatureImg = async (data) => {
-  const url = 'prequal/';
+  const url = 'opportunity/';
   try {
     const response = await apis.post(url, data, {
       headers: {

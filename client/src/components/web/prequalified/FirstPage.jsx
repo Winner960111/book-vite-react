@@ -209,10 +209,10 @@ const FirstPage = () => {
             We need your some information
           </p>
           <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
-            <div className="w-full p-5 flex justify-between flex-col md:flex-row">
+            <div className="w-full py-5 flex justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={first ? 'mouse-over-popover' : undefined}
+                  aria-owns={first ? 'mouse-over-popover1' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(event) => setFirst(event.currentTarget)}
                   onMouseLeave={() => setFirst(null)}
@@ -220,9 +220,9 @@ const FirstPage = () => {
                   value={firstName}
                   onChange={handleFirstName}
                   fullWidth
-                  type="text"
+                  // type="text"
                   autoComplete="off"
-                  defaultValue="Normal"
+                  // defaultValue="Normal"
                   label="First name"
                   variant="standard"
                   InputProps={{
@@ -238,7 +238,7 @@ const FirstPage = () => {
                   }}
                 />
                 <Popover
-                  id="mouse-over-popover"
+                  id="mouse-over-popover1"
                   sx={{
                     pointerEvents: 'none',
                   }}
@@ -265,7 +265,7 @@ const FirstPage = () => {
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={middle ? 'mouse-over-popover' : undefined}
+                  aria-owns={middle ? 'mouse-over-popover2' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(event) => setMiddle(event.currentTarget)}
                   onMouseLeave={() => setMiddle(null)}
@@ -273,9 +273,9 @@ const FirstPage = () => {
                   value={middleName}
                   onChange={handleMiddleName}
                   fullWidth
-                  type="text"
+                  // type="text"
                   autoComplete="off"
-                  defaultValue="Normal"
+                  // defaultValue="Normal"
                   label="Middle Initial(optional)"
                   variant="standard"
                   InputProps={{
@@ -291,7 +291,7 @@ const FirstPage = () => {
                   }}
                 />
                 <Popover
-                  id="mouse-over-popover"
+                  id="mouse-over-popover2"
                   sx={{
                     pointerEvents: 'none',
                   }}
@@ -319,7 +319,7 @@ const FirstPage = () => {
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={last ? 'mouse-over-popover' : undefined}
+                  aria-owns={last ? 'mouse-over-popover3' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(event) => setLast(event.currentTarget)}
                   onMouseLeave={() => setLast(null)}
@@ -327,9 +327,9 @@ const FirstPage = () => {
                   value={lastName}
                   onChange={handleLastName}
                   fullWidth
-                  type="text"
+                  // type="text"
                   autoComplete="off"
-                  defaultValue="Normal"
+                  // defaultValue="Normal"
                   label="Last name"
                   variant="standard"
                   InputProps={{
@@ -345,7 +345,7 @@ const FirstPage = () => {
                   }}
                 />
                 <Popover
-                  id="mouse-over-popover"
+                  id="mouse-over-popover3"
                   sx={{
                     pointerEvents: 'none',
                   }}
@@ -371,10 +371,10 @@ const FirstPage = () => {
                 )}
               </div>
             </div>
-            <div className="w-full flex p-5 justify-between flex-col md:flex-row">
+            <div className="w-full flex py-5 justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={social ? 'mouse-over-popover' : undefined}
+                  aria-owns={social ? 'mouse-over-popover4' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(event) => setSocial(event.currentTarget)}
                   onMouseLeave={() => setSocial(null)}
@@ -382,9 +382,9 @@ const FirstPage = () => {
                   value={socialNumber}
                   onChange={handleSocialNumber}
                   fullWidth
-                  type="text"
+                  // type="text"
                   autoComplete="off"
-                  defaultValue="Normal"
+                  // defaultValue="Normal"
                   label="Social security number"
                   variant="standard"
                   InputProps={{
@@ -400,7 +400,7 @@ const FirstPage = () => {
                   }}
                 />
                 <Popover
-                  id="mouse-over-popover"
+                  id="mouse-over-popover4"
                   sx={{
                     pointerEvents: 'none',
                   }}
@@ -429,17 +429,17 @@ const FirstPage = () => {
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
-                  aria-owns={emailHover ? 'mouse-over-popover' : undefined}
+                  aria-owns={emailHover ? 'mouse-over-popover5' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(event) => setHoverEmail(event.currentTarget)}
                   onMouseLeave={() => setHoverEmail(null)}
                   onMouseDown={() => setHoverEmail(null)}
                   value={emailAddress}
                   onChange={handleEmailAddress}
-                  type="text"
+                  // type="text"
                   fullWidth
                   autoComplete="off"
-                  defaultValue="Normal"
+                  // defaultValue="Normal"
                   label="Email address"
                   variant="standard"
                   InputProps={{
@@ -455,7 +455,7 @@ const FirstPage = () => {
                   }}
                 />
                 <Popover
-                  id="mouse-over-popover"
+                  id="mouse-over-popover5"
                   sx={{
                     pointerEvents: 'none',
                   }}
@@ -506,7 +506,7 @@ const FirstPage = () => {
               <button
                 type="button"
                 onClick={handlesubmit}
-                className="bg-[#854fff] w-[30%] h-16 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="lg:w-[30%] sm:w-full border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
               >
                 CONTINUE
               </button>

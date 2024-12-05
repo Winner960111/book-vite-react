@@ -151,8 +151,8 @@ const Address = () => {
         page: 'Short',
         last_question: '7',
       };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerAddress(address));
       dispatch(setCheckerApt(apt));
@@ -253,7 +253,7 @@ const Address = () => {
         <button
           type="button"
           onClick={handleSubmit}
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-lg mt-2"
           style={step > 9 ? { display: 'none' } : { display: 'block' }}
         >
           SAVE
@@ -264,7 +264,7 @@ const Address = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-sm md:text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         <p>{checkerAddress}</p>
         <p>
           {checkerLocality} {checkerState} {checkerZipcode}

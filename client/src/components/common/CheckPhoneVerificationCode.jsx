@@ -1,10 +1,10 @@
 import BotIcon from './BotIcon';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkVerification, usersStatus } from '../../../api/index';
-import { addHistory, setIntentID } from '../../../store/reducers/checker';
-import { classNames } from '../../../utils';
-import verify from '../../../assets/verify.png';
+import { checkVerification, usersStatus } from '../../api/index';
+import { addHistory, setIntentID } from '../../store/reducers/checker';
+import { classNames } from '../../utils';
+import verify from '../../assets/verify.png';
 import OtpInput from 'react-otp-input';
 
 const CheckPhoneVerificationCode = () => {
@@ -122,7 +122,7 @@ const CheckPhoneVerificationCode = () => {
         </p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-lg mt-2"
           style={step >= 3 ? { display: 'none' } : { display: 'block' }}
         >
           VERIFY
@@ -133,7 +133,7 @@ const CheckPhoneVerificationCode = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-sm md:text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         {temp}
       </div>
     </div>

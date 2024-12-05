@@ -141,7 +141,7 @@ const SendPhoneVerificationCode = () => {
         <button
           type="button"
           onClick={handleTextCode}
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-lg mt-2"
           style={step >= 2 ? { display: 'none' } : { display: 'block' }}
         >
           Text
@@ -149,7 +149,7 @@ const SendPhoneVerificationCode = () => {
         <button
           type="button"
           onClick={handleCallCode}
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-lg mt-2"
           style={step >= 2 ? { display: 'none' } : { display: 'block' }}
         >
           Call
@@ -159,7 +159,7 @@ const SendPhoneVerificationCode = () => {
   );
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-sm md:text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         {checkerMobileNumber}
       </div>
     </div>

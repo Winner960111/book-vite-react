@@ -105,8 +105,8 @@ const ThirdPage = () => {
         What vehicle are you interested in?
       </p>
       <div className="w-2/3 flex flex-col text-justify bg-white rounded-3xl p-5 pb-10 mt-5 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-lg justify-between font-sans">
-        <div className="w-full flex flex-col justify-between items-center rounded-2xl pl-5 pt-4">
-          <div className='w-full flex justify-between bg-gray-50 items-center py-5 px-2 rounded-xl'>
+        <div className="w-full flex justify-between items-center rounded-2xl pt-4">
+          <div className='w-full flex flex-col bg-gray-50 items-start py-5 px-2 rounded-xl'>
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label" style={{ padding: '0 5px', fontSize: '18px', margin: '0 15px' }}>What type of vehicle are you interested in?</FormLabel>
               <div className='overflow-y-auto'>
@@ -117,18 +117,22 @@ const ThirdPage = () => {
                   style={{ margin: '10px 30px', display: 'flex',flexWrap:"wrap" }}
                   onChange={(e) => { setSelect(e.target.value) }}
                 >
-                  {vehicles.map((item, key) => {
+                  {/* {vehicles.map((item, key) => {
                     return <FormControlLabel key={key} value={item['name']} control={<Radio />} label={item['name']} className='hover:bg-violet-200 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
-                  })}
+                  })} */}
+                  <FormControlLabel key={1} value={'boat'} control={<Radio />} label={'BOAT'} className='hover:bg-violet-200 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
+                  <FormControlLabel key={2} value={'car'} control={<Radio />} label={'CAR'} className='hover:bg-violet-200 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
+                  <FormControlLabel key={3} value={'truck'} control={<Radio />} label={'TRUCK'} className='hover:bg-violet-200 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
+                  <FormControlLabel key={4} value={'atv'} control={<Radio />} label={'ATV'} className='hover:bg-violet-200 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
                 </RadioGroup>
               </div>
             </FormControl>
-          </div>
           {errorVehicle !== '' ? (
-            <p className="text-red-500 pt-2">{errorVehicle}</p>
+            <p className="text-red-500 pt-2 ml-4">{errorVehicle}</p>
           ) : null}
+          </div>
         </div>
-        <div className="w-full flex flex-col lg:flex-row justify-between pl-5">
+        <div className="w-full flex flex-col lg:flex-row justify-between items-center">
           <div className="lg:w-[30%] w-full flex flex-col justify-between bg-gray-50 rounded-3xl mt-4">
             <div className="flex flex-col items-center px-5">
               <FormControl>
@@ -146,13 +150,13 @@ const ThirdPage = () => {
               </FormControl>
             </div>
             {errorCondition !== '' ? (
-              <p className="text-red-500 pl-6 pt-2 ml-5">{errorCondition}</p>
+              <p className="text-red-500 pl-6 pt-2">{errorCondition}</p>
             ) : null}
           </div>
           <button
             type="button"
             onClick={handleSubmit}
-            className="bg-[#854fff] w-full lg:w-[40%] h-16 px-2 py-1 mt-10 rounded-2xl text-white text-sm lg:text-lg hover:bg-purple-800"
+            className="w-full lg:min-w-[200px] lg:w-[30%] border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           >
             CONTINUE
           </button>

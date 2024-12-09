@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -7,9 +7,9 @@ import {
   setCheckerLastName,
   setCheckerBirthday,
   setCheckerEmail,
-  setCheckerMobileNumber,
+  // setCheckerMobileNumber,
   setCheckerSocialNumber,
-  setSubmit,
+  // setSubmit,
 } from '../../../store/reducers/checker';
 import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
@@ -26,29 +26,29 @@ const FirstPage = () => {
     dealerName,
     intentID,
     dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
     checkerFirstName,
     checkerLastName,
-    checkerEmail,
-    type,
+    // checkerEmail,
+    // type,
     checkerMobileNumber,
-    submit,
+    // submit,
   } = useSelector((state) => state.checker);
-  const [isSubmit, setIsSubmit] = useState(false);
+  // const [isSubmit, setIsSubmit] = useState(false);
   const dispatch = useDispatch();
   const [errorFirstName, setErrorFirstName] = useState('');
   const [errorMiddleName, setErrorMiddleName] = useState('');
   const [errorLastName, setErrorLastName] = useState('');
   const [errorEmailAddress, setErrorEmailAddress] = useState('');
-  const [errorPhoneNumber, setErrorPhoneNumber] = useState('');
+  // const [errorPhoneNumber, setErrorPhoneNumber] = useState('');
   const [errorBirthday, setErrorBirthday] = useState('');
   const [errorSocialNumber, setErrorSocialNumber] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -57,13 +57,13 @@ const FirstPage = () => {
   const [socialNumber, setSocialNumber] = useState('');
   const [birthday, setBirthday] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  // const [phoneNumber, setPhoneNumber] = useState('');
   const [emailHover, setHoverEmail] = useState(null);
   const [first, setFirst] = useState(null);
   const [middle, setMiddle] = useState(null);
   const [last, setLast] = useState(null);
   const [social, setSocial] = useState(null);
-  const [phone, setPhone] = useState(null);
+  // const [phone, setPhone] = useState(null);
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
@@ -83,18 +83,18 @@ const FirstPage = () => {
     setEmailAddress(e.target.value);
     setErrorEmailAddress('');
   };
-  const handlePhoneNumber = (e) => {
-    const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
-    const formattedInputValue =
-      inputValue.substring(0, 3) +
-      (inputValue.length > 3 ? '-' : '') +
-      inputValue.substring(3, 6) +
-      (inputValue.length > 6 ? '-' : '') +
-      inputValue.substring(6, 10);
-    setPhoneNumber(formattedInputValue);
-    dispatch(setCheckerMobileNumber(phoneNumber));
-    setErrorPhoneNumber(null);
-  };
+  // const handlePhoneNumber = (e) => {
+  //   const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+  //   const formattedInputValue =
+  //     inputValue.substring(0, 3) +
+  //     (inputValue.length > 3 ? '-' : '') +
+  //     inputValue.substring(3, 6) +
+  //     (inputValue.length > 6 ? '-' : '') +
+  //     inputValue.substring(6, 10);
+  //   setPhoneNumber(formattedInputValue);
+  //   dispatch(setCheckerMobileNumber(phoneNumber));
+  //   setErrorPhoneNumber(null);
+  // };
   const handleSocialNumber = (e) => {
     setErrorSocialNumber('');
     const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters

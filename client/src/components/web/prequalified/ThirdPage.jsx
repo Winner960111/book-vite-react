@@ -8,7 +8,7 @@ import {
   addHistory,
   clearHistory,
 } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 
 const ThirdPage = () => {
   const {
@@ -27,17 +27,17 @@ const ThirdPage = () => {
     checkerLocality,
     checkerState,
     checkerZipcode,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    intentID,
-    type,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // intentID,
+    // type,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const canvasRef = useRef(null);
@@ -46,7 +46,7 @@ const ThirdPage = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
   const [checkbox, setCheckbox] = useState(false);
-  const [errorImage, setErrorImage] = useState(false);
+  // const [errorImage, setErrorImage] = useState(false);
   const [checked1, setChecked1] = useState(false);
   const handleClick_Check1 = () => setChecked1(!checked1);
   const [checked2, setChecked2] = useState(false);
@@ -130,24 +130,24 @@ const ThirdPage = () => {
     console.log("clicked Submit button")
     e.preventDefault();
     if (checked1 && checked2 && checked3) {
-      const intent_data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Completed',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Short',
-        last_question: '3',
-      };
+      // const intent_data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Completed',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Short',
+      //   last_question: '3',
+      // };
       // const intent_res = await usersUpdate(intent_data, intentID);
       // console.log('this is update results ====>', intent_res);
       const canvas = canvasRef.current;

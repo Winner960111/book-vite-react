@@ -32,16 +32,16 @@ const FirstPage = () => {
     dealerName,
     intentID,
     dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // type,
     checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
@@ -125,24 +125,29 @@ const FirstPage = () => {
   }, [step]);
 
   const handleNext = async () => {
+    // const data = {
+    //   dealer_id: dealerId,
+    //   device_ip_address: deviceIP,
+    //   device_operating_system: deviceOS,
+    //   device_browser: deviceBrowser,
+    //   device_type: type,
+    //   device_state: deviceState,
+    //   device_city: deviceCity,
+    //   device_country: deviceCountry,
+    //   device_date_time: deviceDate,
+    //   device_lat: deviceLat,
+    //   device_lon: deviceLon,
+    //   status: 'Started',
+    //   lang: 'EN',
+    //   phone: checkerMobileNumber,
+    //   page: 'Full',
+    //   last_question: '1',
+    // };
     const data = {
       dealer_id: dealerId,
-      device_ip_address: deviceIP,
-      device_operating_system: deviceOS,
-      device_browser: deviceBrowser,
-      device_type: type,
-      device_state: deviceState,
-      device_city: deviceCity,
-      device_country: deviceCountry,
-      device_date_time: deviceDate,
-      device_lat: deviceLat,
-      device_lon: deviceLon,
-      status: 'Started',
-      lang: 'EN',
-      phone: checkerMobileNumber,
-      page: 'Full',
-      last_question: '1',
-    };
+      mobile_phone: checkerMobileNumber,
+      source: "Dropout"
+  }
     const res = await usersUpdate(data, intentID);
     console.log('this is update results ====>', res);
     dispatch(addHistory(true));
@@ -228,7 +233,7 @@ const FirstPage = () => {
             We need to your personal information
           </p>
           <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center">
-            <div className="w-full p-5 flex justify-between flex-col md:flex-row">
+            <div className="w-full py-5 flex justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
                   aria-owns={first ? 'mouse-over-popover' : undefined}
@@ -385,7 +390,7 @@ const FirstPage = () => {
                 )}
               </div>
             </div>
-            <div className="w-full flex p-5 justify-between flex-col md:flex-row">
+            <div className="w-full py-5 flex justify-between flex-col md:flex-row">
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer
@@ -520,10 +525,10 @@ const FirstPage = () => {
                 )}
               </div>
             </div>
-            <div className="w-full p-5 flex justify-between">
+            <div className="w-full py-5 sm:px-5 flex lg:flex-row flex-col justify-between">
               <div className="flex-col flex">
-                <div className="flex">
-                  <div className="px-5">
+                <div className="flex lg:flex-row flex-col">
+                  <div className="">
                     <FormControl>
                       <FormLabel id="demo-row-radio-buttons-group-label">
                         Are you a U.S. citizen?
@@ -547,7 +552,7 @@ const FirstPage = () => {
                       </RadioGroup>
                     </FormControl>
                   </div>
-                  <div className="px-5">
+                  <div className="">
                     <FormControl>
                       <FormLabel id="demo-row-radio-buttons-group-label">
                         Do you have any bankrupcy?
@@ -579,7 +584,7 @@ const FirstPage = () => {
               <button
                 type="button"
                 onClick={handlesubmit}
-                className="bg-[#854fff] w-[30%] h-16 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="lg:w-[30%] w-full border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
               >
                 CONTINUE
               </button>
@@ -592,18 +597,18 @@ const FirstPage = () => {
               <div className="p-[25px] text-center text-[25px]">
                 <p>{socialNumber} is your social security number?</p>
 
-                <div className="flex justify-around mt-5">
+                <div className="flex justify-around mt-5 lg:flex-row flex-col">
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                    className="w-full mr-1 border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
                   >
                     Correct
                   </button>
                   <button
                     type="button"
                     onClick={handlePreview}
-                    className="bg-[#854fff] w-[30%] h-12 mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                    className="w-full ml-1 border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
                   >
                     Incorrect
                   </button>

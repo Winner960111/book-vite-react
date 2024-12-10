@@ -112,7 +112,7 @@ const WebIdentityVerify = () => {
               showMiniCircle={true}
               showValue={true}
               sx={{
-                strokeColor: '#854fff',
+                strokeColor: '#000000',
                 barWidth: 8,
                 bgStrokeColor: '#ffffff',
                 bgColor: { value: '#000000', transparency: '30' },
@@ -120,14 +120,14 @@ const WebIdentityVerify = () => {
                 strokeLinecap: 'butt',
                 valueSize: 20,
                 valueWeight: 'bold',
-                valueColor: '#854fff',
+                valueColor: '#000000',
                 valueFamily: 'Trebuchet MS',
                 textSize: 15,
                 textWeight: 'bold',
-                textColor: '#854fff',
+                textColor: '#000000',
                 textFamily: 'Trebuchet MS',
                 loadingTime: 1000,
-                miniCircleColor: '#854fff',
+                miniCircleColor: '#000000',
                 miniCircleSize: 5,
                 valueAnimation: true,
                 intersectionEnabled: true,

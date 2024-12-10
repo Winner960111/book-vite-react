@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -15,7 +15,7 @@ const Home = () => {
   const { dealerName, dealerLogo } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [obj, setObj] = useState(true);
+  // const [obj, setObj] = useState(true);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -59,18 +59,18 @@ const Home = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/trade`);
   };
-  const changePageCheckApp = () => {
-    dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/check`);
-  };
+  // const changePageCheckApp = () => {
+  //   dispatch(clearHistory());
+  //   navigate(`/info-checker/${dealer_id}/check`);
+  // };
   const changePageFull = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/full`);
   };
-  const changePageMessage = () => {
-    dispatch(clearHistory());
-    navigate(`/message_dealer/${dealer_id}`);
-  };
+  // const changePageMessage = () => {
+  //   dispatch(clearHistory());
+  //   navigate(`/message_dealer/${dealer_id}`);
+  // };
 
   return (
     <div className="w-screen h-screen flex flex-col items-center bg-gray-50">

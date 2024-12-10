@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { addHistory, clearHistory } from '../../../store/reducers/checker';
-import { SubmitQuote, usersUpdate } from '../../../api/index';
+import { SubmitQuote } from '../../../api/index';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const ThirdPage = () => {
   const {
@@ -14,20 +14,20 @@ const ThirdPage = () => {
     quoteStatus,
     checkerLastName,
     checkerEmail,
-    quoteSource,
+    // quoteSource,
     dealType,
     quoteInterest,
-    intentID,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
+    // intentID,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // type,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,6 +40,15 @@ const ThirdPage = () => {
   const handleClick_Check3 = () => setChecked3(!checked3);
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
+  const [checkbox, setCheckbox] = useState(false);
+
+  useEffect(()=>{
+    if (checked1 && checked2 && checked3){
+      setCheckbox(false)
+    } else {
+      setCheckbox(true)
+    }
+}, [checked1, checked2, checked3])
 
   const Tobegin = () => {
     console.log("I'm here");
@@ -50,28 +59,26 @@ const ThirdPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (checked1 && checked2 && checked3) {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Completed',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Get Quote',
-        last_question: '3',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
-      dispatch(addHistory(true));
-
+      // const data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Completed',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Get Quote',
+      //   last_question: '3',
+      // };
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       const sub_data = {
         dealer_id: dealerId,
         first_name: checkerFirstName,
@@ -79,13 +86,21 @@ const ThirdPage = () => {
         email: checkerEmail,
         mobile_phone: checkerMobileNumber,
         status: quoteStatus,
-        source: quoteSource,
         interested_in: quoteInterest,
         deal_type: dealType,
+        lead_status: "New",
+        source: "Get Quote",
+        request_type: "Sales",
+        deal_status: "New",
+        is_active_shopper: false,
+        performed_by: "Customer",
+        agent_id: ""
       };
 
+      console.log("quote------>", sub_data)
       const sub_res = await SubmitQuote(sub_data);
       if (sub_res.status == 201) {
+      dispatch(addHistory(true));
         console.log('status ImageSend', sub_res);
       } else {
         console.log('Faild ImageSend');
@@ -244,11 +259,12 @@ const ThirdPage = () => {
                 {readStatePara2 == false ? 'More' : 'Less'}
               </span>
             </div>
+          <p className={checkbox?'text-red-600':'hidden'}>*Please check the contents and tick the box</p>
             <div className="w-full mt-5 flex justify-end">
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="bg-[#854fff] w-1/4 h-20 p-2 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="w-full lg:min-w-[200px] lg:w-[30%] border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
               >
                 Submit
               </button>

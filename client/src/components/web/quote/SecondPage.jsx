@@ -5,24 +5,24 @@ import {
   setDealType,
   setQuoteInterest,
 } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
 const DealType = () => {
   const {
     step,
-    type,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    checkerMobileNumber,
+    // type,
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // checkerMobileNumber,
     vehicleYear,
     vehicleMake,
     vehicleModel,
@@ -57,26 +57,26 @@ const DealType = () => {
         setYear('');
         setMake('');
         setModel('');
-        const data = {
-          dealer_id: dealerId,
-          device_ip_address: deviceIP,
-          device_operating_system: deviceOS,
-          device_browser: deviceBrowser,
-          device_type: type,
-          device_state: deviceState,
-          device_city: deviceCity,
-          device_country: deviceCountry,
-          device_date_time: deviceDate,
-          device_lat: deviceLat,
-          device_lon: deviceLon,
-          status: 'Started',
-          lang: 'EN',
-          phone: checkerMobileNumber,
-          page: 'Get Quote',
-          last_question: '2',
-        };
-        const res = await usersUpdate(data, intentID);
-        console.log('this is update results ====>', res);
+        // const data = {
+        //   dealer_id: dealerId,
+        //   device_ip_address: deviceIP,
+        //   device_operating_system: deviceOS,
+        //   device_browser: deviceBrowser,
+        //   device_type: type,
+        //   device_state: deviceState,
+        //   device_city: deviceCity,
+        //   device_country: deviceCountry,
+        //   device_date_time: deviceDate,
+        //   device_lat: deviceLat,
+        //   device_lon: deviceLon,
+        //   status: 'Started',
+        //   lang: 'EN',
+        //   phone: checkerMobileNumber,
+        //   page: 'Get Quote',
+        //   last_question: '2',
+        // };
+        // const res = await usersUpdate(data, intentID);
+        // console.log('this is update results ====>', res);
         dispatch(addHistory(true));
         dispatch(setDealType(dealClick));
         dispatch(setQuoteInterest(interest));
@@ -222,7 +222,7 @@ const DealType = () => {
           <button
             type="button"
             onClick={handleSubmit}
-            className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+            className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           >
             CONTINUE
           </button>

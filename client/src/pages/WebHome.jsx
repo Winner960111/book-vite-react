@@ -54,10 +54,19 @@ const WebHome = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/full`);
   };
+  // const changePageMessage = () => {
+  //   dispatch(clearHistory());
+  //   navigate(`/info-checker/${dealer_id}/message`);
+  // };
   const changePageAppointment = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/appointment`);
   };
+  const changePageReference = () => {
+    dispatch(clearHistory());
+    navigate(`/info-checker/${dealer_id}/reference`);
+  };
+  
   const changePageCheckApp = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/check`);
@@ -79,49 +88,49 @@ const WebHome = () => {
         <div className="flex flex-col mt-10 w-[50%] min-w-[250px] justify-around md:flex-wrap">
           <button
             onClick={changePagePrequalified}
-            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2">
+            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1">
             GET PREQUALIFIED
           </button>
           <button
             onClick={changePageFullApp}
-            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
+            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
           >
             FULL CREDIT APPLICATION
           </button>
           <button
             onClick={changePageQuote}
-            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
+            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
           >
             GET A QUOTE
           </button>
 
           <button
             onClick={changePageTradeInValue}
-            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
+            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
           >
             TRADE IN VALUE
           </button>
           <button
             onClick={changePageAppointment}
-            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
-          >
-            MESSAGE DEALER
-          </button>
-          {/* <button
-            onClick={changePageAppointment}
-            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
+            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
           >
             APPOINTMENT
-          </button> */}
+          </button>
+          <button
+            onClick={changePageReference}
+            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
+          >
+            REFERENCE
+          </button>
           {/* <button
             onClick={changePageCheckApp}
-            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
+            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
           >
             CHECK APPLICATION STATUS
           </button> */}
           {/* <button
             // onClick={changePageTradeInValue}
-            className="border-black border-2 rounded-md p-5 text-black hover:bg-black hover:text-white font-medium text-3xl my-2"
+            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
           >
             CALL BACK
           </button> */}

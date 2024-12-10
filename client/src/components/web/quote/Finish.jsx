@@ -27,7 +27,7 @@ const Finish = () => {
         </p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-lg my-8 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
         >
           FINISH
         </button>

@@ -3,7 +3,7 @@ import BotIcon from './BotIcon';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { appointment, usersUpdate } from '../../../api/index';
+import { appointment } from '../../../api/index';
 import { useNavigate } from 'react-router-dom';
 
 const Submit = () => {
@@ -18,17 +18,17 @@ const Submit = () => {
     checkerFirstName,
     checkerLastName,
     checkerEmail,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    intentID,
-    type,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // intentID,
+    // type,
     appointDate,
     appointTime,
     timezone
@@ -38,26 +38,26 @@ const Submit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const intent_data = {
-      dealer_id: dealerId,
-      device_ip_address: deviceIP,
-      device_operating_system: deviceOS,
-      device_browser: deviceBrowser,
-      device_type: type,
-      device_state: deviceState,
-      device_city: deviceCity,
-      device_country: deviceCountry,
-      device_date_time: deviceDate,
-      device_lat: deviceLat,
-      device_lon: deviceLon,
-      status: 'Completed',
-      lang: 'EN',
-      phone: checkerMobileNumber,
-      page: 'Book Appointment',
-      last_question: '5',
-    };
-    const intent_res = await usersUpdate(intent_data, intentID);
-    console.log('this is update results ====>', intent_res);
+    // const intent_data = {
+    //   dealer_id: dealerId,
+    //   device_ip_address: deviceIP,
+    //   device_operating_system: deviceOS,
+    //   device_browser: deviceBrowser,
+    //   device_type: type,
+    //   device_state: deviceState,
+    //   device_city: deviceCity,
+    //   device_country: deviceCountry,
+    //   device_date_time: deviceDate,
+    //   device_lat: deviceLat,
+    //   device_lon: deviceLon,
+    //   status: 'Completed',
+    //   lang: 'EN',
+    //   phone: checkerMobileNumber,
+    //   page: 'Book Appointment',
+    //   last_question: '5',
+    // };
+    // const intent_res = await usersUpdate(intent_data, intentID);
+    // console.log('this is update results ====>', intent_res);
 
     const appointData = {
       dealer_id: dealerId,
@@ -167,7 +167,7 @@ const Submit = () => {
         </div>
         <button
           onClick={handleSubmit}
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           style={step >= 8 ? { display: 'none' } : { display: 'block' }}
         >
           Submit
@@ -178,7 +178,7 @@ const Submit = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#854fff] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         <p>
           Our team is already working diligently to review your information and
           will get back to you promptly with the next steps.

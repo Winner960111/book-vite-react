@@ -130,9 +130,9 @@ export const checkapp = async (data) => {
 
 export const appointment = async (data) => {
   console.log('this is appointment items ===>', data);
-  const url = 'https://dev.creditapps.com/api/appointment/';
+  // const url = 'https://dev.creditapps.com/api/appointment/';
   try {
-    const response = await apis.post(url, data, {
+    const response = await apis.post(data, {
       headers: {
         'content-type': 'application/json',
       },

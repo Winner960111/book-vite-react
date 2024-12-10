@@ -30,6 +30,8 @@ import WebIdentityVerify from './pages/WebIdentityVerify';
 import WebImages from './pages/WebImages';
 import Images from './pages/Images';
 import WebFullAppLanding from './pages/WebFullappLanding';
+// import WebMessage from './pages/WebMessage';
+// import Message from './pages/Message';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -117,6 +119,10 @@ const App = () => {
           path="/verification/:dealer_slug/:customer_slug"
           element={type == 'web' ? <WebIdentityVerify /> : null}
         />
+        {/* <Route
+          path="/verification/:dealer_id/reference"
+          element={type == 'web' ? <WebReference /> : <Reference/>}
+        /> */}
       </Routes>
     </>
   );

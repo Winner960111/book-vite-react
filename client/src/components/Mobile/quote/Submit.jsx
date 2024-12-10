@@ -3,7 +3,7 @@ import BotIcon from './BotIcon';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { SubmitQuote, usersUpdate } from '../../../api/index';
+import { SubmitQuote } from '../../../api/index';
 import { useNavigate } from 'react-router-dom'
 
 const Submit = () => {
@@ -22,17 +22,17 @@ const Submit = () => {
     quoteSource,
     dealType,
     quoteInterest,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    intentID,
-    type,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // intentID,
+    // type,
   } = useSelector((state) => state.checker);
   const navigate = useNavigate();
   const returnBack = () => {
@@ -40,37 +40,44 @@ const Submit = () => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const intent_data = {
-      dealer_id: dealerId,
-      device_ip_address: deviceIP,
-      device_operating_system: deviceOS,
-      device_browser: deviceBrowser,
-      device_type: type,
-      device_state: deviceState,
-      device_city: deviceCity,
-      device_country: deviceCountry,
-      device_date_time: deviceDate,
-      device_lat: deviceLat,
-      device_lon: deviceLon,
-      status: 'Completed',
-      lang: 'EN',
-      phone: checkerMobileNumber,
-      page: 'Short',
-      last_question: '6',
-    };
-    const intent_res = await usersUpdate(intent_data, intentID);
-    console.log('this is update results ====>', intent_res);
+    // const intent_data = {
+    //   dealer_id: dealerId,
+    //   device_ip_address: deviceIP,
+    //   device_operating_system: deviceOS,
+    //   device_browser: deviceBrowser,
+    //   device_type: type,
+    //   device_state: deviceState,
+    //   device_city: deviceCity,
+    //   device_country: deviceCountry,
+    //   device_date_time: deviceDate,
+    //   device_lat: deviceLat,
+    //   device_lon: deviceLon,
+    //   status: 'Completed',
+    //   lang: 'EN',
+    //   phone: checkerMobileNumber,
+    //   page: 'Short',
+    //   last_question: '6',
+    // };
+    // const intent_res = await usersUpdate(intent_data, intentID);
+    // console.log('this is update results ====>', intent_res);
 
     const data = {
       dealer_id: dealerId,
       first_name: checkerFirstName,
       last_name: checkerLastName,
+      middle_name: "",
       email: checkerEmail,
       mobile_phone: checkerMobileNumber,
       status: quoteStatus,
-      source: quoteSource,
       interested_in: quoteInterest,
       deal_type: dealType,
+      lead_status: "Lead",
+      source: "Get Quote",
+      request_type: "Sales",
+      deal_status: "New",
+      is_active_shopper: false,
+      performed_by: "Customer",
+      agent_id: ""
     };
 
     const res = await SubmitQuote(data);
@@ -163,7 +170,7 @@ const Submit = () => {
         </div>
         <button
           onClick={handleSubmit}
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           style={step >= 9 ? { display: 'none' } : { display: 'block' }}
         >
           Submit
@@ -174,7 +181,7 @@ const Submit = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#854fff] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         <p>
           Our team is already working diligently to review your information and
           will get back to you promptly with the next steps.

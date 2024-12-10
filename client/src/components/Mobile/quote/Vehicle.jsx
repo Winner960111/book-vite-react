@@ -7,7 +7,7 @@ import {
   setQuoteInterest,
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
 
 const Vehicle = () => {
@@ -16,19 +16,19 @@ const Vehicle = () => {
     history,
     checkerIsSkipMiddleName,
     quoteInterest,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber,
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // type,
+    // checkerMobileNumber,
     vehicleMake,
     vehicleModel,
     vehicleYear,
@@ -57,26 +57,26 @@ const Vehicle = () => {
     e.preventDefault();
     if (year && make && model) {
       let interest = year + ' ' + make + ' ' + ' ' + model;
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Get Quote',
-        last_question: '5',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Started',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Get Quote',
+      //   last_question: '5',
+      // };
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setQuoteInterest(interest));
       setYear('');
@@ -173,14 +173,14 @@ const Vehicle = () => {
         <button
           onClick={skipThisStep}
           type="button"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           style={step >= 8 ? { display: 'none' } : { display: 'block' }}
         >
           SKIP
         </button>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           style={step >= 8 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
@@ -191,7 +191,7 @@ const Vehicle = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         {quoteInterest}
       </div>
     </div>

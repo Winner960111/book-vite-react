@@ -114,7 +114,7 @@ const Home = () => {
             className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
             // style={obj ? { display: 'none' } : { display: 'block' }}
           >
-            DEALER MESSAGE
+            APPOINTMENT
           </button>
           {/* <button
             onClick={changePageAppointment}

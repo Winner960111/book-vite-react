@@ -321,7 +321,7 @@ const Submit = () => {
       vehicle_type: vehicleType,
       vehicle_mileage: mileageHour,
       vehicle_vin: "",
-      vehicle_price: 123,
+      vehicle_price: 0,
       down_payment: payDwon,
       extra_income_source: incomeFrequency,
       // employer_contact_name: '',

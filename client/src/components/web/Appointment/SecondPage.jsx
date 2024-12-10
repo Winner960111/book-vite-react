@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { addHistory, removeHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
-import { usersUpdate, appointment } from '../../../api/index';
+import { appointment } from '../../../api/index';
 import TextField from '@mui/material/TextField';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
@@ -11,18 +11,18 @@ const FifthPage = () => {
     const {
         step,
         dealerName,
-        intentID,
+        // intentID,
         dealerId,
-        deviceIP,
-        deviceOS,
-        deviceCity,
-        deviceCountry,
-        deviceState,
-        deviceDate,
-        deviceLat,
-        deviceLon,
-        deviceBrowser,
-        type,
+        // deviceIP,
+        // deviceOS,
+        // deviceCity,
+        // deviceCountry,
+        // deviceState,
+        // deviceDate,
+        // deviceLat,
+        // deviceLon,
+        // deviceBrowser,
+        // type,
         checkerMobileNumber,
         appointDate,
         appointTime,
@@ -89,26 +89,26 @@ const FifthPage = () => {
             pass += 1;
         }
         if (pass == 3) {
-            const data = {
-                dealer_id: dealerId,
-                device_ip_address: deviceIP,
-                device_operating_system: deviceOS,
-                device_browser: deviceBrowser,
-                device_type: type,
-                device_state: deviceState,
-                device_city: deviceCity,
-                device_country: deviceCountry,
-                device_date_time: deviceDate,
-                device_lat: deviceLat,
-                device_lon: deviceLon,
-                status: 'Completed',
-                lang: 'EN',
-                phone: checkerMobileNumber,
-                page: 'Book Appointment',
-                last_question: '2',
-            };
-            const res = await usersUpdate(data, intentID);
-            console.log('this is update results ====>', res);
+            // const data = {
+            //     dealer_id: dealerId,
+            //     device_ip_address: deviceIP,
+            //     device_operating_system: deviceOS,
+            //     device_browser: deviceBrowser,
+            //     device_type: type,
+            //     device_state: deviceState,
+            //     device_city: deviceCity,
+            //     device_country: deviceCountry,
+            //     device_date_time: deviceDate,
+            //     device_lat: deviceLat,
+            //     device_lon: deviceLon,
+            //     status: 'Completed',
+            //     lang: 'EN',
+            //     phone: checkerMobileNumber,
+            //     page: 'Book Appointment',
+            //     last_question: '2',
+            // };
+            // const res = await usersUpdate(data, intentID);
+            // console.log('this is update results ====>', res);
 
             const appointData = {
                 dealer_id: dealerId,
@@ -127,10 +127,12 @@ const FifthPage = () => {
                 time_zone: timezone
 
             }
+
+            console.log("asddsaf---->", appointData)
             const appointRes = await appointment(appointData)
 
             if (appointRes.status == 201) {
-                console.log('status ImageSend', res);
+                console.log('status ImageSend', appointRes);
                 dispatch(addHistory(true));
 
             } else {
@@ -146,7 +148,7 @@ const FifthPage = () => {
                         Please enter your contact information to schedule your appointment.
                     </p>
                     <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center min-w-[600px]">
-                        <div className="w-full p-5 flex justify-between flex-col md:flex-row">
+                        <div className="w-full py-5 flex justify-between flex-col md:flex-row">
                             <div className="flex flex-col w-full my-3 md:mx-5">
                                 <TextField
                                     aria-owns={focusFirstName ? 'mouse-over-popover' : undefined}
@@ -310,14 +312,14 @@ const FifthPage = () => {
                             <button
                                 type="button"
                                 onClick={handleBack}
-                                className="bg-[#854fff] w-[30%] h-16 mx-1 rounded-lg text-white text-xl  hover:bg-purple-800"
+                                className="w-full lg:min-w-[200px] lg:w-[30%] border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
                             >
                                 BACK
                             </button>
                             <button
                                 type="button"
                                 onClick={handleSubmit}
-                                className="bg-[#854fff] w-[30%] h-16 mx-1 rounded-lg text-white text-xl  hover:bg-purple-800"
+                                className="w-full lg:min-w-[200px] lg:w-[30%] border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
                             >
                                 CONTINUE
                             </button>

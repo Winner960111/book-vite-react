@@ -6,44 +6,44 @@ import {
   setVehicleType,
   setProgress,
 } from '../../../store/reducers/checker';
-import { usersUpdate, vehicleList } from '../../../api/index';
+// import { usersUpdate, vehicleList } from '../../../api/index';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 const ThirdPage = () => {
 
-  const { dealer_id } = useParams()
+  // const { dealer_id } = useParams()
   const {
     step,
-    type,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    checkerMobileNumber,
+    // type,
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
-  const [vehicles, setVehicles] = useState([])
+  // const [vehicles, setVehicles] = useState([])
   const [select, setSelect] = useState('')
   const [condition, setCondition] = useState('');
   const [errorVehicle, setErrorVehicle] = useState('');
   const [errorCondition, setErrorCondition] = useState('');
 
-  const vehicleListGet = async () => {
-    const vehicleLists = await vehicleList(dealer_id)
-    setVehicles(vehicleLists.data.sold_by_dealer)
-  }
+  // const vehicleListGet = async () => {
+  //   const vehicleLists = await vehicleList(dealer_id)
+  //   setVehicles(vehicleLists.data.sold_by_dealer)
+  // }
   useEffect(() => {
     setErrorCondition('');
     setErrorVehicle('');
@@ -51,9 +51,9 @@ const ThirdPage = () => {
     setSelect('');
   }, [step]);
 
-  useEffect(() => {
-    vehicleListGet()
-  }, [])
+  // useEffect(() => {
+  //   vehicleListGet()
+  // }, [])
 
   const handleSubmit = async () => {
     
@@ -72,33 +72,33 @@ const ThirdPage = () => {
     if (pass == 2) {
       dispatch(setVehicleCondition(condition))
       dispatch(setVehicleType(select))
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Full',
-        last_question: '3',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Started',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Full',
+      //   last_question: '3',
+      // };
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setProgress());
 
     }
   }
 
-  console.log("this is vehicles===>", vehicles)
+  // console.log("this is vehicles===>", vehicles)
   return (
     <div className="flex flex-col bg-gray-50 w-full justify-center items-center min-w-[600px]">
       <p className="w-2/3 text-4xl mt-20 font-medium">

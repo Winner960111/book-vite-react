@@ -7,7 +7,7 @@ import {
   setDriverDate,
   setDriverState,
 } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import TextField from '@mui/material/TextField';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -18,26 +18,26 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 const License = () => {
   const {
     step,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber,
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // type,
+    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [driverNumber, setdriverNumber] = useState('');
   const [driverDate, setdriverDate] = useState('');
   const [driverState, setdriverState] = useState('');
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
 
   const handleDriverNumber = (e) => {
     if (/^[0-9a-zA-Z-]+$/.test(e.target.value) || !e.target.value.trim()) {
@@ -68,7 +68,6 @@ const License = () => {
     setError(null);
   }, [step]);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -91,26 +90,26 @@ const License = () => {
       pass += 1;
     }
     if (pass == 3) {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Full',
-        last_question: '7',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Started',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Full',
+      //   last_question: '7',
+      // };
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       dispatch(setDriverNumber(driverNumber));
       dispatch(setDriverDate(driverDate));
       dispatch(setDriverState(driverState));
@@ -150,7 +149,7 @@ const License = () => {
             disabled={step >= 11 ? true : false}
           />
           <TextField
-            style={{ marginBottom: "10px" }}
+            style={{ marginBottom: '10px' }}
             value={driverState}
             onChange={handleDriverState}
             fullWidth
@@ -171,10 +170,7 @@ const License = () => {
             disabled={step >= 11 ? true : false}
           />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer
-              components={['DatePicker']}
-              minDate="2000-01-01"
-            >
+            <DemoContainer components={['DatePicker']} minDate="2000-01-01">
               <DatePicker
                 label="driver expieration date"
                 onChange={(newValue) => handleDriverDate(newValue)}
@@ -196,7 +192,7 @@ const License = () => {
         </p> */}
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
           style={step >= 11 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
@@ -205,12 +201,6 @@ const License = () => {
     </>
   );
 
-  return (
-    <>
-      {step > 9 ? (
-        renderDescription()
-      ) : null}
-    </>
-  );
+  return <>{step > 9 ? renderDescription() : null}</>;
 };
 export default License;

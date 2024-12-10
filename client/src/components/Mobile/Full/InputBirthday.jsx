@@ -6,28 +6,31 @@ import {
 } from '../../../store/reducers/checker';
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const InputBirthday = () => {
-  const { step, history, checkerBirthday, intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber, } = useSelector(
-      (state) => state.checker
-    );
+  const {
+    step,
+    history,
+    checkerBirthday,
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // type,
+    // checkerMobileNumber,
+  } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [birthday, setBirthday] = useState('');
@@ -50,33 +53,32 @@ const InputBirthday = () => {
     setBirthday(year + '-' + String(month) + '-' + date);
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!birthday.trim()) {
       setError('You should input your birthday');
     } else {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Short',
-        last_question: '6',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Started',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Short',
+      //   last_question: '6',
+      // };
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerBirthday(birthday));
       setBirthday('');
@@ -112,14 +114,12 @@ const InputBirthday = () => {
           </LocalizationProvider>
           {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
-        <p
-          className="bg-gray-50 rounded-3xl p-4 mt-2"
-        >
+        <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           Please input your date of birth.
         </p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
           style={step >= 9 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
@@ -130,7 +130,7 @@ const InputBirthday = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-sm md:text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         <p>{checkerBirthday}</p>
       </div>
     </div>

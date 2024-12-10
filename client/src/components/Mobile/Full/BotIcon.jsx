@@ -4,7 +4,7 @@ const BotIcon = () => {
       <svg width="100%" height="100%" x="0px" y="0px" viewBox="0 0 32 32">
         <g>
           <path
-            fill="#854fff"
+            fill="#000000"
             d="M16,32H0l0-16C0,7.2,7.2,0,16,0h0c8.8,0,16,7.2,16,16v0C32,24.8,24.8,32,16,32z"
           ></path>
           <path

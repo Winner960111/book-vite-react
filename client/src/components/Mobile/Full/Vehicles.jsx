@@ -6,48 +6,48 @@ import {
   setVehicleCondition,
   setVehicleType,
 } from '../../../store/reducers/checker';
-import { usersUpdate, vehicleList } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const Vehicle = () => {
-  const { dealer_id } = useParams();
+  // const { dealer_id } = useParams();
   const {
     step,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber,
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // type,
+    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
-  const [vehicles, setVehicles] = useState([]);
+  const vehicles = ["BOAT", "CAR", "TRUCK", "ATV"]
   const [select, setSelect] = useState('');
   const [condition, setCondition] = useState('');
   const [error, setError] = useState('');
 
-  const vehicleListGet = async () => {
-    const vehicleLists = await vehicleList(dealer_id);
-    setVehicles(vehicleLists.data.sold_by_dealer);
-  };
+  // const vehicleListGet = async () => {
+  //   const vehicleLists = await vehicleList(dealer_id);
+  //   setVehicles(vehicleLists.data.sold_by_dealer);
+  // };
   useEffect(() => {
     setError('');
     setCondition('');
     setSelect('');
-    vehicleListGet();
+    // vehicleListGet();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -66,26 +66,26 @@ const Vehicle = () => {
     if (pass == 2) {
       dispatch(setVehicleCondition(condition));
       dispatch(setVehicleType(select));
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Full',
-        last_question: '9',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Started',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Full',
+      //   last_question: '9',
+      // };
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
     }
   };
@@ -121,8 +121,8 @@ const Vehicle = () => {
               disabled={step >= 13 ? true : false}
             >
               {vehicles.map((item, key) => (
-                <MenuItem value={item.name} key={key}>
-                  {item.name}
+                <MenuItem value={item} key={key}>
+                  {item}
                 </MenuItem>
               ))}
             </Select>
@@ -160,7 +160,7 @@ const Vehicle = () => {
         </p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
           style={step >= 13 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE

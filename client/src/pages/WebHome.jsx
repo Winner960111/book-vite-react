@@ -116,12 +116,12 @@ const WebHome = () => {
           >
             APPOINTMENT
           </button>
-          <button
+          {/* <button
             onClick={changePageReference}
             className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
           >
             REFERENCE
-          </button>
+          </button> */}
           {/* <button
             onClick={changePageCheckApp}
             className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"

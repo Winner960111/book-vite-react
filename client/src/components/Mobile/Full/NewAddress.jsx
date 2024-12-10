@@ -9,7 +9,7 @@ import {
   setCheckerState,
   setCheckerZipcode,
 } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import { GiPositionMarker } from 'react-icons/gi';
 import Paper from '@mui/material/Paper';
@@ -19,7 +19,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { TextField } from '@mui/material';
 
 const NewInterest = () => {
-
   const [address, setAddress] = useState('');
   const [locality, setLocality] = useState('');
   const [state, setState] = useState('');
@@ -30,19 +29,19 @@ const NewInterest = () => {
 
   const {
     step,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber,
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // type,
+    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -93,10 +92,9 @@ const NewInterest = () => {
     }
   }, [initializeAutocomplete, step]);
 
-
   useEffect(() => {
     setError('');
-  }, [zipcode, address, locality, state])
+  }, [zipcode, address, locality, state]);
 
   const parseAddressComponents = (place) => {
     for (const component of place.address_components) {
@@ -117,48 +115,48 @@ const NewInterest = () => {
   };
 
   const handleSubmit = async (e) => {
-    let pass = 0
+    let pass = 0;
     e.preventDefault();
     setError('');
 
     if (!locality.trim()) {
       setError('City field is required');
     } else {
-      pass += 1
+      pass += 1;
     }
     if (!state.trim()) {
       setError('State field is required');
     } else {
-      pass += 1
+      pass += 1;
     }
     if (!zipcode.trim()) {
       setError('ZipCode field is required');
     } else if (!/^[0-9]+$/.test(zipcode)) {
-      setError('*Invalid ZipCode format')
+      setError('*Invalid ZipCode format');
     } else {
-      pass += 1
+      pass += 1;
     }
     if (pass == 3) {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Full',
-        last_question: '11',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Started',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Full',
+      //   last_question: '11',
+      // };
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerAddress(address));
       dispatch(setCheckerApt(apt));
@@ -310,7 +308,7 @@ const NewInterest = () => {
         <button
           type="button"
           onClick={handleSubmit}
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
           style={step >= 15 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE

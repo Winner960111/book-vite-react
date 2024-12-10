@@ -6,7 +6,7 @@ import {
   setUSCitizen,
   setBankrupcy,
 } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -16,19 +16,19 @@ import Select from '@mui/material/Select';
 const InputRelation = () => {
   const {
     step,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber,
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // type,
+    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -55,26 +55,26 @@ const InputRelation = () => {
     e.preventDefault();
 
     if (citizen && bank) {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Full',
-        last_question: '6',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Started',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Full',
+      //   last_question: '6',
+      // };
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       if (citizen === 'Yes') {
         dispatch(setUSCitizen(true));
       } else {
@@ -98,7 +98,7 @@ const InputRelation = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >=  10 ? 'text-slate-400' : 'text-slate-800'
+          step >= 10 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div className="my-2 flex flex-col md:flex-row md:items-center">
@@ -114,7 +114,7 @@ const InputRelation = () => {
               id="demo-simple-select-standard"
               value={citizen}
               onChange={handleCitizen}
-              disabled={step >=  10 ? true : false}
+              disabled={step >= 10 ? true : false}
             >
               <MenuItem value={'Yes'}>Yes</MenuItem>
               <MenuItem value={'No'}>No</MenuItem>
@@ -132,7 +132,7 @@ const InputRelation = () => {
               id="demo-simple-select-standard"
               value={bank}
               onChange={handleBank}
-              disabled={step >=  10 ? true : false}
+              disabled={step >= 10 ? true : false}
             >
               <MenuItem value={'Yes'}>Yes</MenuItem>
               <MenuItem value={'No'}>No</MenuItem>
@@ -145,8 +145,8 @@ const InputRelation = () => {
         </p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
-          style={step >=  10 ? { display: 'none' } : { display: 'block' }}
+          className="w-full border-black border-2 rounded-md py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
+          style={step >= 10 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>

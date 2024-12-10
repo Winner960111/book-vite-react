@@ -6,23 +6,25 @@ import {
   setCheckerLastName,
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
 
 const InputLastName = () => {
-  const { step, history, checkerLastName, intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber, } = useSelector(
+  const { step, history, checkerLastName, 
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // type,
+    // checkerMobileNumber, 
+  } = useSelector(
       (state) => state.checker
     );
   const dispatch = useDispatch();
@@ -47,26 +49,26 @@ const InputLastName = () => {
     } else if (!/^[A-Za-z]+$/.test(lastName)) {
       setError('The last name contains only characters');
     } else {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Full',
-        last_question: '3',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Started',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Full',
+      //   last_question: '3',
+      // };
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerLastName(lastName));
       setLastName('');
@@ -114,7 +116,7 @@ const InputLastName = () => {
         </p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
           style={step >= 6 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
@@ -125,7 +127,7 @@ const InputLastName = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         {checkerLastName}
       </div>
     </div>

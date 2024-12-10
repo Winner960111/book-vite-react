@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { fullcustomer, application } from '../../../api/index';
+import { fullcustomer } from '../../../api/index';
 import './Canvas.css';
 import { addHistory, clearHistory } from '../../../store/reducers/checker';
 // import { usersUpdate } from '../../../api/index';

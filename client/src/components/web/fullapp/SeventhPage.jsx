@@ -4,7 +4,7 @@ import { classNames } from '../../../utils';
 import { fullcustomer, application } from '../../../api/index';
 import './Canvas.css';
 import { addHistory, clearHistory } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import { useNavigate } from 'react-router-dom';
 
 const SeventhPage = () => {
@@ -20,6 +20,7 @@ const SeventhPage = () => {
   const handleClick_Check2 = () => setChecked2(!checked2);
   const [checked3, setChecked3] = useState(false);
   const handleClick_Check3 = () => setChecked3(!checked3);
+  const [checkbox, setCheckbox] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -43,7 +44,7 @@ const SeventhPage = () => {
     deviceLat,
     deviceLon,
     deviceBrowser,
-    intentID,
+    // intentID,
     type,
     jobOccupation,
     employerName,
@@ -96,7 +97,9 @@ const SeventhPage = () => {
     instantModel,
     vehicleCondition,
     vehicleType,
+    incomeFrequency,
     payDwon,
+    mileageHour,
   } = useSelector((state) => state.checker);
 
   const handleResize = () => {
@@ -110,6 +113,14 @@ const SeventhPage = () => {
     navigate(-1);
     dispatch(clearHistory());
   };
+
+  useEffect(()=>{
+    if (checked1 && checked2 && checked3){
+      setCheckbox(false)
+    } else {
+      setCheckbox(true)
+    }
+}, [checked1, checked2, checked3])
 
   // Add event listener to window
   window.addEventListener('resize', handleResize);
@@ -171,26 +182,26 @@ const SeventhPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const intent_data = {
-      dealer_id: dealerId,
-      device_ip_address: deviceIP,
-      device_operating_system: deviceOS,
-      device_browser: deviceBrowser,
-      device_type: type,
-      device_state: deviceState,
-      device_city: deviceCity,
-      device_country: deviceCountry,
-      device_date_time: deviceDate,
-      device_lat: deviceLat,
-      device_lon: deviceLon,
-      status: 'Completed',
-      lang: 'EN',
-      phone: checkerMobileNumber,
-      page: 'Short',
-      last_question: '7',
-    };
-    const intent_res = await usersUpdate(intent_data, intentID);
-    console.log('this is update results ====>', intent_res);
+    // const intent_data = {
+    //   dealer_id: dealerId,
+    //   device_ip_address: deviceIP,
+    //   device_operating_system: deviceOS,
+    //   device_browser: deviceBrowser,
+    //   device_type: type,
+    //   device_state: deviceState,
+    //   device_city: deviceCity,
+    //   device_country: deviceCountry,
+    //   device_date_time: deviceDate,
+    //   device_lat: deviceLat,
+    //   device_lon: deviceLon,
+    //   status: 'Completed',
+    //   lang: 'EN',
+    //   phone: checkerMobileNumber,
+    //   page: 'Short',
+    //   last_question: '7',
+    // };
+    // const intent_res = await usersUpdate(intent_data, intentID);
+    // console.log('this is update results ====>', intent_res);
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');
     const image = new Image();
@@ -205,6 +216,9 @@ const SeventhPage = () => {
     }
     const data = {
       dealer_id: dealerId,
+      performed_by: "Customer",
+      source: "Full",
+      usr_id: "",
       first_name: checkerFirstName,
       middle_name: checkerMiddleName,
       last_name: checkerLastName,
@@ -212,8 +226,64 @@ const SeventhPage = () => {
       mobile_phone: checkerMobileNumber,
       ssn: checkerSocialNumber,
       dob: checkerBirthday,
-      signature_img: image.src,
+      primary_address2: "",
+      primary_address: checkerAddress,
+      primary_city: checkerLocality,
+      primary_state: checkerState,
+      primary_zip_code: checkerZipcode,
+      primary_housing_status: residentalStatus,
+      primary_housing_time_years: residentalYears,
+      primary_housing_time_months: residentalMonths,
+      primary_housing_payment_amount: monthlyPay,
+      previous_address: previousCheckerAddress,
+      previous_address2: '',
+      previous_city: previousCheckerLocality,
+      previous_state: previousCheckerState,
+      previous_zip_code: previousCheckerZipcode,
+      previous_housing_time_years: previousResidentalYears,
+      previous_housing_time_months: previousResidentalMonths,
+      previous_housing_payment_amount: previousMonthlyPay,
+      previous_housing_status: previousResidentalStatus,
+      employer_occupation: jobOccupation,
+      employer_name: employerName,
+      employer_address: jobAddress,
+      employer_address2: '',
+      employer_city: jobCity,
+      employer_state: jobState,
+      employer_zip_code: jobZipcode,
+      employer_phone: employerPhoneNumber,
+      employer_salary: jobSalary,
+      employer_start_date: jobYear,
+      employer_type: jobstatus,
       citizenship: usCitizen,
+      previous_employer_occupation: prevjobOccupation,
+      previous_employer_name: prevemployerName,
+      previous_employer_address: prevJobAddress,
+      previous_employer_address2: '',
+      previous_employer_city: prevjobCity,
+      previous_employer_state: prevjobState,
+      previous_employer_zip_code: prevjobZipcode,
+      previous_employer_phone: prevemployerPhoneNumber,
+      previous_employer_salary: prevjobSalary,
+      previous_employer_start_date: prevjobYear,
+      previous_employer_end_date: jobEndDate,
+      previous_employer_type: prevjobstatus,
+      bankruptcy: bankrupcy,
+      extra_income: incomeAmount,
+      extra_income_frequency: sourceIncome,
+      reference1_first_name: '',
+      reference1_last_name: '',
+      reference1_phone: '',
+      reference1_city: '',
+      reference1_relationship: "",
+      reference1_state: '',
+      reference2_first_name: '',
+      reference2_last_name: '',
+      reference2_phone: '',
+      reference2_city: '',
+      reference2_relationship: "",
+      reference2_state: '',
+      signature_img: image.src,
       signature_name: fullName,
       device_ip_address: deviceIP,
       device_operating_system: deviceOS,
@@ -225,106 +295,61 @@ const SeventhPage = () => {
       device_date_time: deviceDate,
       device_lat: deviceLat,
       device_lon: deviceLon,
-      employer_occupation: jobOccupation,
-      employer_name: employerName,
-      employer_contact_name: '',
-      employer_contact_phone: '',
-      employer_address: jobAddress,
-      employer_address2: '',
-      employer_city: jobCity,
-      employer_state: jobState,
-      employer_zip_code: jobZipcode,
-      employer_phone: employerPhoneNumber,
-      employer_salary: jobSalary,
-      employer_start_date: jobYear,
-      employer_type: jobstatus,
-      previous_employer_occupation: prevjobOccupation,
-      previous_employer_name: prevemployerName,
-      previous_employer_contact_name: '',
-      previous_employer_contact_phone: '',
-      previous_employer_address: prevJobAddress,
-      previous_employer_address2: '',
-      previous_employer_city: prevjobCity,
-      previous_employer_state: prevjobState,
-      previous_employer_zip_code: prevjobZipcode,
-      previous_employer_phone: prevemployerPhoneNumber,
-      previous_employer_salary: prevjobSalary,
-      previous_employer_start_date: prevjobYear,
-      previous_employer_end_date: jobEndDate,
-      previous_employer_type: prevjobstatus,
       driver_licenced_number: driverNumber,
       driver_licenced_exp_date: driverDate,
       driver_licenced_state: driverState,
       secondary_ID_type: iType,
       secondary_ID_exp_date: iDate,
       secondary_ID_issuer: iIsuer,
-      primary_address2: '',
-      primary_city: checkerLocality,
-      primary_address: checkerAddress,
-      primary_state: checkerState,
-      primary_zip_code: checkerZipcode,
-      primary_housing_status: residentalStatus,
-      primary_housing_time_years: residentalYears,
-      primary_housing_time_months: residentalMonths,
-      primary_housing_payment_amount: monthlyPay,
-      primary_landLord_mortgage_holder: '',
-      primary_landLord_mortgage_phone: '',
-      previous_address: previousCheckerAddress,
-      previous_address2: '',
-      previous_city: previousCheckerLocality,
-      previous_state: previousCheckerState,
-      previous_zip_code: previousCheckerZipcode,
-      previous_housing_time_years: previousResidentalYears,
-      previous_housing_time_months: previousResidentalMonths,
-      previous_housing_payment_amount: previousMonthlyPay,
-      previous_landLord_mortgage_holder: '',
-      previous_landLord_mortgage_phone: '',
-      previous_housing_status: previousResidentalStatus,
-      extra_income: incomeAmount,
-      extra_income_frequency: sourceIncome,
-      marital_status: '',
-      reference1_first_name: '',
-      reference1_last_name: '',
-      reference1_phone: '',
-      reference1_city: '',
-      reference1_relationship: '',
-      reference1_state: '',
-      reference2_first_name: '',
-      reference2_last_name: '',
-      reference2_phone: '',
-      reference2_city: '',
-      reference2_relationship: '',
-      reference2_state: '',
-      inv_id: '',
-      source: 'Full',
-      bankruptcy: bankrupcy,
+      vehicle_year: instantYear,
+      vehicle_make: instantMake,
+      vehicle_model: instantModel,
+      vehicle_condition: vehicleCondition,
+      vehicle_type: vehicleType,
+      vehicle_mileage: mileageHour,
+      vehicle_vin: "",
+      vehicle_price: 123,
+      down_payment: payDwon,
+      extra_income_source: incomeFrequency,
+      // employer_contact_name: '',
+      // employer_contact_phone: '',
+      // previous_employer_contact_name: '',
+      // previous_employer_contact_phone: '',
+      // primary_landLord_mortgage_holder: '',
+      // primary_landLord_mortgage_phone: '',
+      // previous_landLord_mortgage_holder: '',
+      // previous_landLord_mortgage_phone: '',
+      // marital_status: '',
+      // inv_id: '',
+
     };
     console.log('this is all data ==>', data);
     const res = await fullcustomer(data);
     if (res.status == 201) {
       console.log('status CustomerItems_Send', res);
-      const appData = {
-        dealer_id: dealerId,
-        customer_id: res.data.id,
-        cosigner_id: '',
-        usr_id: '',
-        vehicle_year: instantYear,
-        vehicle_make: instantMake,
-        vehicle_model: instantModel,
-        vehicle_condition: vehicleCondition,
-        vehicle_type: vehicleType,
-        need_co_signer: false,
-        cosigner_phone: '',
-        down_payment: payDwon,
-      };
-      console.log('this is appdata===>', appData);
-      const appRes = await application(appData);
-      if (appRes.status == 201) {
-        console.log('status ApplicationItems_Send', res);
-        dispatch(addHistory(true));
-      } else {
-        console.log('Faild ApplicationItmes_send');
-      }
+      dispatch(addHistory(true));
+    //   const appData = {
+    //     dealer_id: dealerId,
+    //     customer_id: res.data.id,
+    //     cosigner_id: '',
+    //     usr_id: '',
+    //     vehicle_year: instantYear,
+    //     vehicle_make: instantMake,
+    //     vehicle_model: instantModel,
+    //     vehicle_condition: vehicleCondition,
+    //     vehicle_type: vehicleType,
+    //     need_co_signer: false,
+    //     cosigner_phone: '',
+    //     down_payment: payDwon,
+    //   };
+    //   console.log('this is appdata===>', appData);
+    //   const appRes = await application(appData);
+    //   if (appRes.status == 201) {
+    //     console.log('status ApplicationItems_Send', res);
+    //     dispatch(addHistory(true));
+    //   } else {
+    //     console.log('Faild ApplicationItmes_send');
+    //   }
     } else {
       console.log('Faild CustomerItems_Send');
     }
@@ -474,6 +499,7 @@ const SeventhPage = () => {
               {readStatePara2 == false ? 'More' : 'Less'}
             </span>
           </div>
+          <p className={checkbox?'text-red-600':'hidden'}>*Please check the contents and tick the box</p>
           <div className="flex flex-col md:flex-row">
             <div className="md:w-3/5 w-full h-[18vh] mt-2">
               <canvas
@@ -491,7 +517,7 @@ const SeventhPage = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="bg-[#854fff] w-full h-20 p-2 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="w-full border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
               >
                 Submit
               </button>

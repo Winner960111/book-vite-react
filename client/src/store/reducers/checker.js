@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import apis from '../../utils/apis';
 
 const initialState = {
+  incomeFrequency:'',
   imageBase64: [],
   vehicleYear: '',
   vehicleMake: '',
@@ -128,6 +129,9 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
+    setIncomeFrequency:(state, action)=>{
+      state.incomeFrequency = action.payload
+    },
     setSubmit: (state, action) => {
       state.submit = action.payload;
     },
@@ -578,6 +582,7 @@ export const checkerSlice = createSlice({
 
     // Clear history
     clearHistory: (state) => {
+      state.incomeFrequency = initialState.incomeFrequency;
       state.imageBase64 = initialState.imageBase64;
       state.identifyId = initialState.identifyId;
       state.identifyStatus = initialState.identifyStatus;
@@ -697,6 +702,7 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setIncomeFrequency,
   setSubmit,
   setImageBase64,
   setVehicleMake,

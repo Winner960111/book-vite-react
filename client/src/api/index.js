@@ -160,7 +160,7 @@ export const application = async (data) => {
 
 export const fullcustomer = async (data) => {
   console.log('this is full app items ===>', data);
-  const url = 'customer/';
+  const url = 'deals/';
   try {
     const response = await apis.post(url, data, {
       headers: {

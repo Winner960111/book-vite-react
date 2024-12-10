@@ -31,13 +31,13 @@ const Home = () => {
     console.log('this is in webHome=========>', year, make, model);
   }, []);
 
-  const handleObj = () => {
-    if (obj == true) {
-      setObj(false);
-    } else {
-      setObj(true);
-    }
-  };
+  // const handleObj = () => {
+  //   if (obj == true) {
+  //     setObj(false);
+  //   } else {
+  //     setObj(true);
+  //   }
+  // };
   // getting dealer_name and avatar
   useEffect(() => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
@@ -85,31 +85,38 @@ const Home = () => {
         <div className="flex flex-col mt-10 px-16 justify-around">
           <button
             onClick={changePagePrequalified}
-            className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 active:bg-purple-800"
+            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
           >
             GET PREQUALIFIED
           </button>
           <button
             onClick={changePageFull}
-            className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 active:bg-purple-800"
+            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
           >
             FULL CREDIT APPLICATION
           </button>
           <button
             onClick={changePageQuote}
-            className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 active:bg-purple-800"
+            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
           >
             GET A QUOTE
           </button>
           {/* read more and less */}
           <button
             onClick={changePageTradeIn}
-            className="text-sm text-white bg-[#854fff] rounded-md px-2 mt-2 py-2 active:bg-purple-800"
+            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
             style={obj ? { display: 'none' } : { display: 'block' }}
           >
             TRADE IN VALUE
           </button>
           <button
+            onClick={changePageAppointment}
+            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
+            style={obj ? { display: 'none' } : { display: 'block' }}
+          >
+            DEALER MESSAGE
+          </button>
+          {/* <button
             onClick={changePageAppointment}
             className="text-sm md:text-lg text-white bg-[#854fff] rounded-md px-2 md:px-4 py-2 mt-2 active:bg-purple-800"
             style={obj ? { display: 'none' } : { display: 'block' }}
@@ -135,7 +142,7 @@ const Home = () => {
             onClick={handleObj}
           >
             {obj ? 'More...' : 'Less...'}
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

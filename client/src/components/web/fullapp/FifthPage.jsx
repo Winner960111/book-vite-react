@@ -15,7 +15,7 @@ import {
   setJobYear,
   setProgress,
 } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import { GiPositionMarker } from "react-icons/gi";
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -55,19 +55,19 @@ const FifthPage = () => {
   const [jobKind, setJobKind] = useState('')
   const {
     step,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber,
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // type,
+    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
 
   const addressRef = useRef(null);
@@ -238,26 +238,26 @@ const FifthPage = () => {
 
 
     if (Object.keys(newErrors).length === 0 && pass == 6) {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Full',
-        last_question: '5',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Started',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Full',
+      //   last_question: '5',
+      // };
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setJobAddress(address))
       dispatch(setProgress());
@@ -281,7 +281,7 @@ const FifthPage = () => {
             What is your current job information?
           </p>
           <div className="w-full text-justify bg-white rounded-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg flex flex-col items-center font-sans">
-            <div className="w-full px-5 flex justify-between flex-col lg:flex-row">
+            <div className="w-full flex justify-between flex-col lg:flex-row">
               <div className="lg:w-1/3 w-full my-3 lg:mx-5">
                 <TextField
                   value={occupation}
@@ -364,7 +364,7 @@ const FifthPage = () => {
                 ) : null}
               </div>
             </div>
-            <div className="w-full flex px-5 pt-5 flex-col lg:flex-row">
+            <div className="w-full flex pt-5 flex-col lg:flex-row">
               <div className="lg:w-[31%] w-full my-3 lg:mx-5 flex flex-col">
                 <Paper
                   sx={{
@@ -637,7 +637,7 @@ const FifthPage = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="bg-[#854fff] w-[30%] h-16 p-2 mx-6 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="w-full lg:min-w-[200px] lg:w-[30%] border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
               >
                 CONTINUE
               </button>

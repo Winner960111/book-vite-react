@@ -676,7 +676,7 @@ const FifthPageItem = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="bg-[#854fff] w-[30%] h-16 p-2 mx-6 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="w-full lg:min-w-[200px] lg:w-[30%] border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
               >
                 CONTINUE
               </button>

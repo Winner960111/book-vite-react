@@ -21,7 +21,7 @@ const Confirm = () => {
             </p>
             <form
                 className={
-                    ' w-2/6 text-justify bg-white rounded-3xl px-8 pt-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
+                    ' w-2/6 text-justify bg-white rounded-3xl p-8 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg mt-4 font-sans'
                 }
             >
                 <p className=" bg-gray-50 rounded-3xl p-4">
@@ -32,14 +32,14 @@ const Confirm = () => {
                     <button
                         type="button"
                         onClick={handleYes}
-                        className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl mr-2 text-white text-lg my-8 hover:bg-purple-800"
+                        className="w-full mx-1 border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
                     >
                         YES
                     </button>
                     <button
                         type="button"
                         onClick={handleNo}
-                        className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl ml-2 text-white text-lg my-8 hover:bg-purple-800"
+                        className="w-full mx-1 border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
                     >
                         NO
                     </button>

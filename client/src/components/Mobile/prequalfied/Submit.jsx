@@ -167,8 +167,8 @@ const Submit = () => {
       page: 'Short',
       last_question: '8',
     };
-    const intent_res = await usersUpdate(intent_data, intentID);
-    console.log('this is update results ====>', intent_res);
+    // const intent_res = await usersUpdate(intent_data, intentID);
+    // console.log('this is update results ====>', intent_res);
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');
     const image = new Image();
@@ -189,17 +189,25 @@ const Submit = () => {
       last_name: checkerLastName,
       email: checkerEmail,
       mobile_phone: checkerMobileNumber,
+      status: "Opportunity",
+      source: "Short",
+      interested_in: "",
       ssn: checkerSocialNumber,
       dob: checkerBirthday,
-      primary_address: checkerAddress,
-      primary_address2: checkerApt,
-      primary_city: checkerLocality,
-      primary_state: checkerState,
-      primary_zip_code: checkerZipcode,
+      performed_by: "Customer",
+      address: checkerAddress,
+      // address: 'adfdaf',
+      address2: checkerApt,
+      city: checkerLocality,
+      state: checkerState,
+      zip: checkerZipcode,
       signature_name: fullName,
       signature_img: image.src,
       custom_id: '',
+      usr_id: '',
     };
+
+    console.log('🏅🏅🏅🏅🏅🏅🏅', data);
 
     const res = await signatureImg(data);
     if (res.status == 201) {
@@ -364,7 +372,7 @@ const Submit = () => {
         </p>
         <button
           onClick={handleSubmit}
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md px-16 py-4 text-black hover:bg-black hover:text-white font-medium text-lg mt-2"
           style={step >= 11 ? { display: 'none' } : { display: 'block' }}
         >
           Submit
@@ -375,7 +383,7 @@ const Submit = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#854fff] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         <p>
           Our team is already working diligently to review your information and
           will get back to you promptly with the next steps.

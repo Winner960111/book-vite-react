@@ -6,19 +6,14 @@ import {
   setInstantModel,
   setInstantYear,
   setVin,
-  setVehicleType,
 } from '../../../store/reducers/checker';
-import { instantInfo, usersUpdate } from '../../../api/index';
+import { instantInfo, usersStatus } from '../../../api/index';
 import { TextField } from '@mui/material';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 
 const Instant = () => {
   const {
     dealerId,
-    intentID,
+    // intentID,
     // deviceIP,
     // deviceOS,
     // deviceCity,
@@ -46,8 +41,6 @@ const Instant = () => {
   const dispatch = useDispatch();
 
   const [error, setError] = useState(null);
-  const vehicles = ["BOAT", "CAR", "TRUCK", "ATV"]
-  const [select, setSelect] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,19 +59,17 @@ const Instant = () => {
           dispatch(setInstantMake(res.data.make));
           dispatch(setInstantModel(res.data.model));
           dispatch(setInstantYear(res.data.year));
-          dispatch(setVehicleType(res.data.type));
           dispatch(setVin(vinValue));
           dispatch(addHistory(true));
         } else res;
       }
     } else if (makeState) {
-      if (make && year && model && select) {
+      if (make && year && model ) {
         if (!error) {
-          console.log('this is yDate===>', year, make, model, select);
+          console.log('this is yDate===>', year, make, model);
           dispatch(setInstantMake(make));
           dispatch(setInstantModel(model));
           dispatch(setInstantYear(year));
-          dispatch(setVehicleType(select));
           // const data = {
           //   dealer_id: dealerId,
           //   device_ip_address: deviceIP,
@@ -102,7 +93,7 @@ const Instant = () => {
             mobile_phone: checkerMobileNumber,
             source: 'Dropout',
           };
-          const res = await usersUpdate(data);
+          const res = await usersStatus(data);
           console.log('this is update results ====>', res);
           dispatch(addHistory(true));
         }
@@ -237,31 +228,6 @@ const Instant = () => {
           )} */}
           {makeState && (
             <>
-              <FormControl
-                variant="filled"
-                sx={{ minwidth: 120, width: '100%' }}
-              >
-                <InputLabel
-                  id="demo-simple-select-standard-label"
-                  style={{ fontSize: '15px' }}
-                >
-                  Vehicle Type
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  value={select}
-                  onChange={(e) => {
-                    setSelect(e.target.value);
-                  }}
-                >
-                  {vehicles.map((item, key) => (
-                    <MenuItem value={item} key={key}>
-                      {item}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
               <TextField
                 id="margin-dense"
                 margin="dense"

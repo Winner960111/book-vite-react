@@ -6,76 +6,78 @@ import {
   addHistory,
   setVehicleType,
 } from '../../../store/reducers/checker';
-import { usersUpdate, vehicleList } from '../../../api/index';
-import { useParams } from 'react-router-dom';
+// import { vehicleList } from '../../../api/index';
+// import { useParams } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const VehicleType = () => {
-  const { dealer_id } = useParams()
+  // const { dealer_id } = useParams()
   const {
     step,
-    type,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    checkerMobileNumber,
+    // type,
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // checkerMobileNumber,
     vehicleType,
     history,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
-  const [vehicles, setVehicles] = useState([])
+  // const [vehicles, setVehicles] = useState([])
   const [select, setSelect] = useState('')
   const [error, setError] = useState('');
+  const vehicles = ["BOAT", "CAR", "TRUCK", "ATV"]
 
-  const vehicleListGet = async () => {
-    const vehicleLists = await vehicleList(dealer_id)
-    setVehicles(vehicleLists.data.sold_by_dealer)
-  }
+  // const vehicleListGet = async () => {
+  //   const vehicleLists = await vehicleList(dealer_id)
+  //   setVehicles(vehicleLists.data.sold_by_dealer)
+  // }
   useEffect(() => {
     setError('');
     setSelect('');
   }, [step]);
 
-  useEffect(() => {
-    vehicleListGet()
-  }, [])
+  // useEffect(() => {
+  //   vehicleListGet()
+  // }, [])
+
   const handleSubmit = async () => {
     if (!select) {
       setError('*Required')
     }
     else {
       dispatch(setVehicleType(select))
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Trade In',
-        last_question: '2',
-      };
-      const res = await usersUpdate(data, intentID);
-      console.log('this is update results ====>', res);
+      // const data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Started',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Trade In',
+      //   last_question: '2',
+      // };
+      // const res = await usersUpdate(data, intentID);
+      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
     }
   }
@@ -101,7 +103,7 @@ const VehicleType = () => {
               onChange={(e) => setSelect(e.target.value)}
             >
               {vehicles.map((item, index) => (
-                <MenuItem key={index} value={item.name}>{item.name}</MenuItem>
+                <MenuItem key={index} value={item}>{item}</MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -113,7 +115,7 @@ const VehicleType = () => {
         <button
           type="button"
           onClick={handleSubmit}
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           style={step >= 5 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
@@ -124,7 +126,7 @@ const VehicleType = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         {vehicleType}
       </div>
     </div>

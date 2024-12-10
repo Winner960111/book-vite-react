@@ -1,76 +1,74 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
-import {
-  addHistory,
-  setMileageHour,
-
-} from '../../../store/reducers/checker';
+import { addHistory, setMileageHour } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-import { usersUpdate } from '../../../api/index';
+// import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
 
 const Mileage = () => {
-  const { step, history, intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber, } = useSelector(
-      (state) => state.checker
-    );
+  const {
+    step,
+    history,
+    // intentID,
+    // dealerId,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // type,
+    // checkerMobileNumber,
+  } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [year, setYear] = useState('');
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
   const handleYearChange = (e) => {
     setYear(e.target.value);
-    setError("")
+    setError('');
   };
 
   useEffect(() => {
-    setError('')
-    setYear('')
-  }, [])
+    setError('');
+    setYear('');
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = {
-      dealer_id: dealerId,
-      device_ip_address: deviceIP,
-      device_operating_system: deviceOS,
-      device_browser: deviceBrowser,
-      device_type: type,
-      device_state: deviceState,
-      device_city: deviceCity,
-      device_country: deviceCountry,
-      device_date_time: deviceDate,
-      device_lat: deviceLat,
-      device_lon: deviceLon,
-      status: 'Started',
-      lang: 'EN',
-      phone: checkerMobileNumber,
-      page: 'Trade In',
-      last_question: '7',
-    };
-    const res = await usersUpdate(data, intentID);
-    console.log('this is update results ====>', res);
+    // const data = {
+    //   dealer_id: dealerId,
+    //   device_ip_address: deviceIP,
+    //   device_operating_system: deviceOS,
+    //   device_browser: deviceBrowser,
+    //   device_type: type,
+    //   device_state: deviceState,
+    //   device_city: deviceCity,
+    //   device_country: deviceCountry,
+    //   device_date_time: deviceDate,
+    //   device_lat: deviceLat,
+    //   device_lon: deviceLon,
+    //   status: 'Started',
+    //   lang: 'EN',
+    //   phone: checkerMobileNumber,
+    //   page: 'Trade In',
+    //   last_question: '7',
+    // };
+    // const res = await usersUpdate(data, intentID);
+    // console.log('this is update results ====>', res);
     if (!year) {
-      setError("Required")
+      setError('Required');
     } else if (!/^[0-9]+$/.test(year)) {
-      setError("*only number")
+      setError('*only number');
     } else {
       dispatch(addHistory(true));
-      dispatch(setMileageHour(year))
+      dispatch(setMileageHour(year));
     }
-  }
+  };
 
   const renderDescription = () => (
     <>
@@ -93,7 +91,7 @@ const Mileage = () => {
             fullWidth
             value={year}
             onChange={handleYearChange}
-            autoComplete='off'
+            autoComplete="off"
             type="text"
             InputProps={{
               style: {
@@ -111,13 +109,11 @@ const Mileage = () => {
         {error !== '' ? (
           <p className="text-red-500 pl-2 text-sm">{error}</p>
         ) : null}
-        <p className="bg-gray-50 rounded-3xl p-4">
-          How much mileage hour?
-        </p>
+        <p className="bg-gray-50 rounded-3xl p-4">How much mileage hour?</p>
 
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           style={step >= 10 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
@@ -128,7 +124,7 @@ const Mileage = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         {year}
       </div>
     </div>

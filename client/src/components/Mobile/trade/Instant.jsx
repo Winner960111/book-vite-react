@@ -5,10 +5,10 @@ import {
   setInstantMake,
   setInstantModel,
   setInstantYear,
-  setVin,
-  setVehicleType,
+  // setVin,
+  // setVehicleType,
 } from '../../../store/reducers/checker';
-import { instantInfo, usersUpdate } from '../../../api/index';
+import { usersStatus } from '../../../api/index';
 import { TextField } from '@mui/material'
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
@@ -17,18 +17,18 @@ const Instant = () => {
 
   const {
     dealerId,
-    intentID,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
+    // intentID,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
     checkerMobileNumber,
-    type,
+    // type,
     step,
     instantYear,
     instantMake,
@@ -40,9 +40,9 @@ const Instant = () => {
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
-  const [vinState, setVinState] = useState(true);
-  const [makeState, setMakeState] = useState(false);
-  const [vinValue, setVinValue] = useState('');
+  const [vinState, setVinState] = useState(false);
+  const [makeState, setMakeState] = useState(true);
+  // const [vinValue, setVinValue] = useState('');
   const [year, setYear] = useState(vehicleYear);
   const [make, setMake] = useState(vehicleMake);
   const [model, setModel] = useState(vehicleModel);
@@ -59,48 +59,53 @@ const Instant = () => {
     e.preventDefault();
 
     if (vinState) {
-      if (!vinValue) {
-        setError('Please fill in the input field');
-      } else {
-        const data = {
-          dealer_id: dealerId,
-          vin: vinValue,
-        };
-        const res = await instantInfo(data);
-        console.log('response is =>', res);
-        if (res.status === 201) {
-          dispatch(setInstantMake(res.data.make));
-          dispatch(setInstantModel(res.data.model));
-          dispatch(setInstantYear(res.data.year));
-          dispatch(setVehicleType(res.data.type));
-          dispatch(setVin(vinValue));
-          dispatch(addHistory(true));
-        } else res;
-      }
+      // if (!vinValue) {
+      //   setError('Please fill in the input field');
+      // } else {
+      //   const data = {
+      //     dealer_id: dealerId,
+      //     vin: vinValue,
+      //   };
+      //   const res = await instantInfo(data);
+      //   console.log('response is =>', res);
+      //   if (res.status === 201) {
+      //     dispatch(setInstantMake(res.data.make));
+      //     dispatch(setInstantModel(res.data.model));
+      //     dispatch(setInstantYear(res.data.year));
+      //     dispatch(setVehicleType(res.data.type));
+      //     dispatch(setVin(vinValue));
+      //     dispatch(addHistory(true));
+      //   } else res;
+      // }
     } else if (makeState) {
       if (make && year && model) {
         dispatch(setInstantMake(make));
         dispatch(setInstantModel(model));
         dispatch(setInstantYear(year));
+        // const data = {
+        //   dealer_id: dealerId,
+        //   device_ip_address: deviceIP,
+        //   device_operating_system: deviceOS,
+        //   device_browser: deviceBrowser,
+        //   device_type: type,
+        //   device_state: deviceState,
+        //   device_city: deviceCity,
+        //   device_country: deviceCountry,
+        //   device_date_time: deviceDate,
+        //   device_lat: deviceLat,
+        //   device_lon: deviceLon,
+        //   status: 'Started',
+        //   lang: 'EN',
+        //   phone: checkerMobileNumber,
+        //   page: 'Trade In',
+        //   last_question: '1',
+        // };
         const data = {
           dealer_id: dealerId,
-          device_ip_address: deviceIP,
-          device_operating_system: deviceOS,
-          device_browser: deviceBrowser,
-          device_type: type,
-          device_state: deviceState,
-          device_city: deviceCity,
-          device_country: deviceCountry,
-          device_date_time: deviceDate,
-          device_lat: deviceLat,
-          device_lon: deviceLon,
-          status: 'Started',
-          lang: 'EN',
-          phone: checkerMobileNumber,
-          page: 'Trade In',
-          last_question: '1',
+          mobile_phone: checkerMobileNumber,
+          source: 'Dropout',
         };
-        const res = await usersUpdate(data, intentID);
+        const res = await usersStatus(data);
         console.log('this is update results ====>', res);
         dispatch(addHistory(true));
       } else {
@@ -117,20 +122,20 @@ const Instant = () => {
     setError('')
   }
 
-  const handleInputVin = (e) => {
-    setVinValue(e.target.value);
-    setError('');
-  };
+  // const handleInputVin = (e) => {
+  //   setVinValue(e.target.value);
+  //   setError('');
+  // };
 
-  const changeVin = () => {
-    setVinState(true);
-    setMakeState(false);
-  };
+  // const changeVin = () => {
+  //   setVinState(true);
+  //   setMakeState(false);
+  // };
 
-  const changeMake = () => {
-    setVinState(false);
-    setMakeState(true);
-  };
+  // const changeMake = () => {
+  //   setVinState(false);
+  //   setMakeState(true);
+  // };
 
   const handleInputMake = (e) => {
     setMake(e.target.value);
@@ -163,7 +168,7 @@ const Instant = () => {
         )}
       >
         <div className="flex flex-col md:flex-row md:items-center">
-          <div className="flex w-full mt-10 justify-center">
+          {/* <div className="flex w-full mt-10 justify-center">
             <button
               type="button"
               onClick={() => {
@@ -190,11 +195,11 @@ const Instant = () => {
             >
               By MAKE
             </button>
-          </div>
+          </div> */}
 
           {vinState && (
             <>
-              <div
+              {/* <div
                 className="py-2 flex flex-col items-center"
                 style={step >= 4 ? { display: 'none' } : { display: 'block' }}
               >
@@ -236,7 +241,7 @@ const Instant = () => {
                 style={step >= 4 ? { display: 'none' } : { display: 'block' }}
               >
                 Save Vehicle
-              </button>
+              </button> */}
             </>
           )}
           {makeState && (
@@ -320,7 +325,7 @@ const Instant = () => {
               </p>
               <button
                 type="submit"
-                className="bg-[#854fff] w-full h-20 px-2 py-1 rounded-2xl text-white text-lg my-4 hover:bg-purple-800"
+                className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
                 style={step >= 4 ? { display: 'none' } : { display: 'block' }}
               >
                 Save Vehicle
@@ -334,7 +339,7 @@ const Instant = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         Year: {instantYear}<br />
         Make: {instantMake}<br />
         Model: {instantModel}

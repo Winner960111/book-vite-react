@@ -23,7 +23,7 @@ const Greeting = () => {
 
   const renderConfirmButton = () => (
     <button
-      className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+      className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
       onClick={handleConfirmClick}
     >
       GET STARTED NOW
@@ -36,7 +36,7 @@ const Greeting = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         GET STARTED NOW
       </div>
     </div>

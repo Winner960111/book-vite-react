@@ -48,12 +48,15 @@ const ThirdPage = () => {
 
     const data = {
       dealer_id: dealerId,
+      first_name: checkerFirstName,
+      middle_name: "",
       last_name: checkerLastName,
+      email: checkerEmail,
       mobile_phone: checkerMobileNumber,
       status: 'New',
       source: 'Trade In',
       deal_type: dealType,
-      vin: vin,
+      vin: "",
       year: instantYear,
       make: instantMake,
       model: instantModel,
@@ -62,11 +65,10 @@ const ThirdPage = () => {
       mileage_hours: mileageHour,
       original_owner: originalOwner,
       comment: commentValue,
-      first_name: checkerFirstName,
-      email: checkerEmail,
     };
+
+    console.log("Trade------->", data)
     const res = await SubmitTrade(data);
-    console.log('status ImageSend', res);
     if (res.status == 201) {
       // const new_data = {
       //   dealer_id: dealerId,
@@ -87,7 +89,7 @@ const ThirdPage = () => {
       //   last_question: '5',
       // };
       // const passRes = await usersUpdate(new_data, intentID);
-      // console.log('this is update results ====>', passRes);
+      console.log('this is update results ====>', res);
       dispatch(addHistory(true));
     } else {
       console.log('Faild ImageSend');

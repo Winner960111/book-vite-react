@@ -6,7 +6,8 @@ import { browserName, osName } from 'react-device-detect';
 // checker step components
 import Greeting from '../components/Mobile/trade/Greeting';
 import SendPhoneVerificationCode from '../components/common/SendPhoneVerificationCode';
-import CheckPhoneVerificationCode from '../components/Mobile/trade/CheckPhoneVerificationCode';
+// import CheckPhoneVerificationCode from '../components/Mobile/trade/CheckPhoneVerificationCode';
+import CheckPhoneVerificationCode from '../components/common/CheckPhoneVerificationCode'
 import Instant from "../components/Mobile/trade/Instant"
 import InputFirstName from '../components/Mobile/trade/InputFirstName';
 import InputLastName from '../components/Mobile/trade/InputLastName';

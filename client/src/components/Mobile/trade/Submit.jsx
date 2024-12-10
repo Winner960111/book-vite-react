@@ -3,7 +3,7 @@ import BotIcon from './BotIcon';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { usersUpdate, SubmitTrade } from '../../../api/index';
+import { SubmitTrade } from '../../../api/index';
 import { useNavigate } from 'react-router-dom';
 
 const Submit = () => {
@@ -19,18 +19,18 @@ const Submit = () => {
     checkerLastName,
     checkerEmail,
     dealType,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    intentID,
-    type,
-    vin,
+    // deviceIP,
+    // deviceOS,
+    // deviceCity,
+    // deviceCountry,
+    // deviceState,
+    // deviceDate,
+    // deviceLat,
+    // deviceLon,
+    // deviceBrowser,
+    // intentID,
+    // type,
+    // vin,
     instantYear,
     instantMake,
     instantModel,
@@ -45,12 +45,15 @@ const Submit = () => {
     e.preventDefault();
     const data = {
       dealer_id: dealerId,
+      first_name: checkerFirstName,
+      middle_name: "",
       last_name: checkerLastName,
+      email: checkerEmail,
       mobile_phone: checkerMobileNumber,
       status: 'New',
       source: 'Trade In',
       deal_type: dealType,
-      vin: vin,
+      vin: "",
       year: instantYear,
       make: instantMake,
       model: instantModel,
@@ -59,32 +62,30 @@ const Submit = () => {
       mileage_hours: mileageHour,
       original_owner: originalOwner,
       comment: commentValue,
-      first_name: checkerFirstName,
-      email: checkerEmail,
     };
     const res = await SubmitTrade(data);
     if (res.status == 201) {
       console.log('status ImageSend', res);
-      const new_data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Completed',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Trade In',
-        last_question: '11',
-      };
-      const newRes = await usersUpdate(new_data, intentID);
-      console.log('this is update results ====>', newRes);
+      // const new_data = {
+      //   dealer_id: dealerId,
+      //   device_ip_address: deviceIP,
+      //   device_operating_system: deviceOS,
+      //   device_browser: deviceBrowser,
+      //   device_type: type,
+      //   device_state: deviceState,
+      //   device_city: deviceCity,
+      //   device_country: deviceCountry,
+      //   device_date_time: deviceDate,
+      //   device_lat: deviceLat,
+      //   device_lon: deviceLon,
+      //   status: 'Completed',
+      //   lang: 'EN',
+      //   phone: checkerMobileNumber,
+      //   page: 'Trade In',
+      //   last_question: '11',
+      // };
+      // const newRes = await usersUpdate(new_data, intentID);
+      // console.log('this is update results ====>', newRes);
       dispatch(addHistory(true));
       navigate(-1)
     } else {
@@ -172,7 +173,7 @@ const Submit = () => {
         </div>
         <button
           onClick={handleSubmit}
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           style={step >= 14 ? { display: 'none' } : { display: 'block' }}
         >
           Submit
@@ -183,7 +184,7 @@ const Submit = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#854fff] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         <p>
           Our team is already working diligently to review your information and
           will get back to you promptly with the next steps.

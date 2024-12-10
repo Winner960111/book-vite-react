@@ -115,9 +115,9 @@ export const customerInfo = async (dealer_id, customer_id) =>
 
 export const checkapp = async (data) => {
   console.log('this is appointment items ===>', data);
-  const url = 'https://dev.creditapps.com/api/app_status/';
+  const url = 'app_status/';
   try {
-    const response = await apis.post(url, data, {
+    const response = await apis.post(url,data, {
       headers: {
         'content-type': 'application/json',
       },
@@ -130,9 +130,9 @@ export const checkapp = async (data) => {
 
 export const appointment = async (data) => {
   console.log('this is appointment items ===>', data);
-  // const url = 'https://dev.creditapps.com/api/appointment/';
+  const url = 'appointment/';
   try {
-    const response = await apis.post(data, {
+    const response = await apis.post(url,data, {
       headers: {
         'content-type': 'application/json',
       },

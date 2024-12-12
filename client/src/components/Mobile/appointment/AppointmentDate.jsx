@@ -7,7 +7,7 @@ import {
   setAppointTime,
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-import { usersUpdate } from '../../../api/index';
+import { usersStatus } from '../../../api/index';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -99,7 +99,7 @@ const AppointmentDate = () => {
       if (Number(hour) < 9 || Number(hour) > 18) {
         setErrorTime('*invalid Time');
       } else {
-        setAppointmentTime(appointmentDate + 'T' + hour + ':' + min);
+        setAppointmentTime(hour + ':' + min);
       }
     }
   };
@@ -148,7 +148,7 @@ const AppointmentDate = () => {
         mobile_phone: checkerMobileNumber,
         source: 'Dropout',
       };
-      const res = await usersUpdate(data);
+      const res = await usersStatus(data);
       console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setAppointDate(appointmentDate));

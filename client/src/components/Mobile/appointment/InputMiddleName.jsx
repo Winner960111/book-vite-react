@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react';
 import BotIcon from './BotIcon';
-import { addHistory, setCheckerEmail } from '../../../store/reducers/checker';
+import {
+  addHistory,
+  setCheckerMiddleName,
+} from '../../../store/reducers/checker';
+import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 // import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
-import { useDispatch, useSelector } from 'react-redux';
 
-const InputEmail = () => {
+const InputMiddleName = () => {
+  const dispatch = useDispatch();
   const {
     step,
     history,
-    dealerName,
-    checkerEmail,
+    checkerMiddleName,
     // intentID,
     // dealerId,
     // deviceIP,
@@ -26,27 +29,26 @@ const InputEmail = () => {
     // type,
     // checkerMobileNumber,
   } = useSelector((state) => state.checker);
-  const dispatch = useDispatch();
 
-  const [email, setEmail] = useState('');
+  const [middleName, setMiddleName] = useState('');
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setError(null);
   }, [step]);
 
-  const handleChangeInputEmail = (e) => {
+  const handleChangeInput = (e) => {
+    setMiddleName(e.target.value);
     setError(null);
-    setEmail(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email.trim()) {
-      setError('You should input your email');
-    } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      setError('Invalid email type');
+    if (!middleName.trim()) {
+      setError('The first name field is required');
+    } else if (!/^[A-Za-z]+$/.test(middleName)) {
+      setError('The first name contains only characters');
     } else {
       // const data = {
       //   dealer_id: dealerId,
@@ -64,36 +66,37 @@ const InputEmail = () => {
       //   lang: 'EN',
       //   phone: checkerMobileNumber,
       //   page: 'Book Appointment',
-      //   last_question: '4',
+      //   last_question: '2',
       // };
       // const res = await usersUpdate(data, intentID);
       // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
-      dispatch(setCheckerEmail(email));
-      setEmail('');
+      dispatch(setCheckerMiddleName(middleName));
+      setMiddleName('');
     }
   };
 
   const renderDescription = () => (
     <>
       <BotIcon />
+
       <form
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 8 ? 'text-slate-400' : 'text-slate-800'
+          step >= 6 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div
-          className="py-2 flex flex-col md:flex-row md:items-center"
-          style={step >= 8 ? { display: 'none' } : { display: 'block' }}
+          className="flex flex-col md:flex-row md:items-center"
+          style={step >= 6 ? { display: 'none' } : { display: 'block' }}
         >
           <TextField
             id="outlined-multiline-flexible"
-            label="Email address"
+            label="Middle name"
             fullWidth
-            value={email.toLowerCase()}
-            onChange={handleChangeInputEmail}
+            value={middleName}
+            onChange={handleChangeInput}
             type="text"
             autoComplete="off"
             InputProps={{
@@ -108,16 +111,15 @@ const InputEmail = () => {
               },
             }}
           />
-          {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
+          {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
         <p className="bg-gray-50 rounded-3xl p-4">
-          By providing your email you agree to receive notification messages
-          from <b>{dealerName}</b> to the provided email address.
+          Please enter your middle name.
         </p>
         <button
           type="submit"
           className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
-          style={step >= 8 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 6 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -128,16 +130,16 @@ const InputEmail = () => {
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
       <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
-        <p>{checkerEmail}</p>
+        {checkerMiddleName}
       </div>
     </div>
   );
 
   return (
     <>
-      {step > 6 ? (
+      {step > 4 ? (
         <>
-          {history[7] == true ? (
+          {history[5] == true ? (
             <>
               {renderDescription()}
               {renderReply()}
@@ -150,4 +152,4 @@ const InputEmail = () => {
     </>
   );
 };
-export default InputEmail;
+export default InputMiddleName;

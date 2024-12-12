@@ -17,7 +17,9 @@ const Submit = () => {
     checkerMobileNumber,
     checkerFirstName,
     checkerLastName,
+    checkerMiddleName,
     checkerEmail,
+    vehicleType,
     // deviceIP,
     // deviceOS,
     // deviceCity,
@@ -62,6 +64,7 @@ const Submit = () => {
     const appointData = {
       dealer_id: dealerId,
       first_name: checkerFirstName,
+      middle_name: checkerMiddleName,
       last_name: checkerLastName,
       email: checkerEmail,
       mobile_phone: checkerMobileNumber,
@@ -73,9 +76,11 @@ const Submit = () => {
       appointment_reminder: true,
       appointment_reminder_time: appointTime,
       appointment_reminder_type: "S",
-      time_zone: timezone
-
+      time_zone: timezone,
+      interested_in: vehicleType,
+      reason: ""
     }
+
     const appointRes = await appointment(appointData)
 
     if (appointRes.status == 201) {
@@ -93,7 +98,7 @@ const Submit = () => {
       <form
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 8 ? 'text-slate-400' : 'text-slate-800'
+          step >= 10 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <p className="bg-gray-50 rounded-3xl p-4">
@@ -168,7 +173,7 @@ const Submit = () => {
         <button
           onClick={handleSubmit}
           className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
-          style={step >= 8 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 10 ? { display: 'none' } : { display: 'block' }}
         >
           Submit
         </button>
@@ -189,10 +194,10 @@ const Submit = () => {
 
   return (
     <>
-      {step > 6 ? (
+      {step > 8 ? (
         <>
           {renderDescription()}
-          {history[7] == true ? renderReply() : null}
+          {history[9] == true ? renderReply() : null}
         </>
       ) : null}
     </>

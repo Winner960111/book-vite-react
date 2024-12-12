@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     addHistory, removeHistory, setAppointDate, setAppointTime
 } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
+import { usersStatus } from '../../../api/index';
 import DateButton from "./DateButton"
 import { useEffect, useState } from 'react';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -101,7 +101,7 @@ const FirstPage = () => {
             mobile_phone: checkerMobileNumber,
             source: 'Dropout',
           };
-        const res = await usersUpdate(data);
+        const res = await usersStatus(data);
         console.log('this is update results ====>', res);
 
         if (!selectTime) {
@@ -117,7 +117,7 @@ const FirstPage = () => {
             const dateStr = `${month} ${day}, ${currentYear}`;
             const dateObj = new Date(dateStr);
             const formattedDate = dateObj.toISOString().slice(0, 10); // Format as "YYYY-MM-DD"
-            const time = formattedDate + 'T' + selectTime;
+            const time = selectTime;
             dispatch(setAppointDate(formattedDate));
             dispatch(setAppointTime(time))
             dispatch(addHistory(true));

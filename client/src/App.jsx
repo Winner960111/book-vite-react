@@ -112,17 +112,13 @@ const App = () => {
           element={type == 'web' ? <WebImages /> : <Images />}
         />
         <Route
-          path="/documents/:dealer_slug/:customer_slug"
+          path="/info-checker/documents/:dealer_slug/:customer_slug"
           element={type == 'web' ? <WebReferenceDoc /> : <ReferenceDoc />}
         />
         <Route
           path="/verification/:dealer_slug/:customer_slug"
           element={type == 'web' ? <WebIdentityVerify /> : null}
         />
-        {/* <Route
-          path="/verification/:dealer_id/reference"
-          element={type == 'web' ? <WebReference /> : <Reference/>}
-        /> */}
       </Routes>
     </>
   );

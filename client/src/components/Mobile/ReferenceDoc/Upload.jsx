@@ -70,7 +70,7 @@ const InputCity = () => {
             />
             <label
               htmlFor="upload"
-              className="bg-[#854fff] w-full md:w-[30%] md:mx-4 rounded-lg text-white text-xl text-center hover:bg-purple-800 p-3 mt-4"
+              className="bg-black w-full md:w-[30%] md:mx-4 rounded-lg border-2 border-black text-white text-xl text-center hover:bg-white hover:text-black p-3 mt-4"
             >
               Upload
             </label>
@@ -83,7 +83,7 @@ const InputCity = () => {
         <p className="bg-gray-50 rounded-3xl p-4 mt-2">Please Upload file.</p>
         <button
           type="submit"
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-lg text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           style={step >= 5 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
@@ -94,7 +94,7 @@ const InputCity = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <p className="w-[150px] p-4 text-sm md:text-lg bg-[#b39fe4] rounded-tl-xl rounded-b-xl text-white line-clamp-2">
+      <p className="w-[150px] p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white line-clamp-2">
         {refCity}
       </p>
     </div>

@@ -5,13 +5,8 @@ import { addHistory } from '../../../store/reducers/checker';
 import { submitReference } from '../../../api/index';
 
 const SecondPage = () => {
-  const {
-    dealerName,
-    dealerId,
-    customerId,
-    refRelation,
-    refCity,
-  } = useSelector((state) => state.checker);
+  const { dealerName, dealerId, customerId, refRelation, refCity } =
+    useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [readStatePara1, setReadStatePara1] = useState(false);
 
@@ -19,16 +14,18 @@ const SecondPage = () => {
     e.preventDefault();
     const data = {
       dealer_id: dealerId,
-      customer_id: customerId,
+      lead_id: customerId,
       type: refRelation,
       path: refCity,
+      performed_by: "Customer",
     };
+
+    
 
     const res = await submitReference(data);
     if (res.status == 201) {
       console.log('status ImageSend', res);
       dispatch(addHistory(true));
-
     } else {
       console.log('Faild ImageSend');
     }
@@ -102,7 +99,7 @@ const SecondPage = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="bg-[#854fff] w-2/6 h-16 p-2 rounded-lg text-white text-xl  hover:bg-purple-800"
+              className="w-full lg:min-w-[200px] lg:w-[30%] border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
             >
               Submit
             </button>

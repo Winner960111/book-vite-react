@@ -45,10 +45,11 @@ const Submit = () => {
       reference2_city: refCity1,
       reference2_relationship: refRelation1,
       reference2_state: refState1,
+
     };
+    console.log("this is res==>", customerId)
 
     const res = await referenceInfo(data, customerId)
-    console.log("this is res==>", res)
     if (res.status == 200) {
       dispatch(addHistory(true));
     } else {
@@ -135,7 +136,7 @@ const Submit = () => {
         </div>
         <button
           onClick={handleSubmit}
-          className="bg-[#854fff] w-full h-16 px-2 py-1 rounded-2xl text-white text-sm md:text-lg mt-4 hover:bg-purple-800"
+          className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           style={step >= 16 ? { display: 'none' } : { display: 'block' }}
         >
           Submit
@@ -146,7 +147,7 @@ const Submit = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-[#854fff] rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         <p>
           Our team is already working diligently to review your information and
           will get back to you promptly with the next steps.

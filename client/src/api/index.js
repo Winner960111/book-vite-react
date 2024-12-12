@@ -59,8 +59,7 @@ export const submitImages = async (data) => {
 };
 
 export const referenceInfo = async (data, customer_id) => {
-  console.log('this is reference items ===>', data);
-  console.log('this is customer_id items ===>', customer_id);
+
   const url = `add_references/${customer_id}/`;
   try {
     const response = await apis.put(url, data, {

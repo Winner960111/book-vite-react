@@ -15,7 +15,7 @@ const FirstPage = () => {
     step,
     customerName,
   } = useSelector((state) => state.checker);
-  
+
   const dispatch = useDispatch();
   const [errorFirstName, setErrorFirstName] = useState('');
   const [errorLastName, setErrorLastName] = useState('');

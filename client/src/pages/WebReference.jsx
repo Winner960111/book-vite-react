@@ -91,6 +91,7 @@ const WebReference = () => {
     navigate(-1);
     dispatch(clearHistory());
   };
+  
   return (
     <div className="bg-gray-50 w-screen h-screen relative">
       <div className="w-full bg-white border-gray-100 border-b-2 flex justify-center items-center relative">

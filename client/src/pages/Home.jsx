@@ -67,6 +67,12 @@ const Home = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/full`);
   };
+  
+  const changePageReference = () => {
+    dispatch(clearHistory());
+    // navigate(`/info-checker/reference/${dealer_slug}/${customer_slug}`);
+    navigate(`/info-checker/reference/UkLWZg9DAJQ7XlrzYPhm/EfhxLZ9ck8reBm0UyPW6`);
+  };
   // const changePageMessage = () => {
   //   dispatch(clearHistory());
   //   navigate(`/message_dealer/${dealer_id}`);
@@ -115,6 +121,13 @@ const Home = () => {
             // style={obj ? { display: 'none' } : { display: 'block' }}
           >
             APPOINTMENT
+          </button>
+          <button
+            onClick={changePageReference}
+            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
+            // style={obj ? { display: 'none' } : { display: 'block' }}
+          >
+            REFERENCE
           </button>
           {/* <button
             onClick={changePageAppointment}

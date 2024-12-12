@@ -10,7 +10,9 @@ import SendPhoneVerificationCode from '../components/common/SendPhoneVerificatio
 import CheckPhoneVerificationCode from '../components/common/CheckPhoneVerificationCode';
 import InputFirstName from '../components/Mobile/appointment/InputFirstName';
 import InputLastName from '../components/Mobile/appointment/InputLastName';
+import InputMiddleName from '../components/Mobile/appointment/InputMiddleName';
 import InputEmail from '../components/Mobile/appointment/InputEmail';
+import VehicleType from '../components/Mobile/appointment/VehicleType';
 import Submit from '../components/Mobile/appointment/Submit';
 import AppointmentDate from '../components/Mobile/appointment/AppointmentDate';
 import {
@@ -110,8 +112,10 @@ const Quote = () => {
           <CheckPhoneVerificationCode />
           <AppointmentDate />
           <InputFirstName />
+          <InputMiddleName/>
           <InputLastName />
           <InputEmail />
+          <VehicleType/>
           <Submit />
         </div>
       </div>

@@ -83,12 +83,12 @@ const InputLastName = () => {
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 6 ? 'text-slate-400' : 'text-slate-800'
+          step >= 7 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div
           className="my-2 flex flex-col md:flex-row md:items-center"
-          style={step >= 6 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 7 ? { display: 'none' } : { display: 'block' }}
         >
           <TextField
             id="outlined-multiline-flexible"
@@ -118,7 +118,7 @@ const InputLastName = () => {
         <button
           type="submit"
           className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
-          style={step >= 6 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 7 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -136,9 +136,9 @@ const InputLastName = () => {
 
   return (
     <>
-      {step > 4 ? (
+      {step > 5 ? (
         <>
-          {history[5] == true ? (
+          {history[6] == true ? (
             <>
               {renderDescription()}
               {renderReply()}

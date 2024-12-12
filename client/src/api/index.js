@@ -98,6 +98,7 @@ export const customerInfo = async (dealer_id, customer_id) =>
       slug: customer_id,
       dealer_id: dealer_id,
     };
+    console.log("customer--------->", data)
     const url = 'decode_customer/';
     apis
       .post(url, data, {

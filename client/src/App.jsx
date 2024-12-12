@@ -104,7 +104,7 @@ const App = () => {
           element={type == 'web' ? <WebCheckApp /> : <CheckApp />}
         />
         <Route
-          path="/reference/:dealer_slug/:customer_slug"
+          path="/info-checker/reference/:dealer_slug/:customer_slug"
           element={type == 'web' ? <WebReference /> : <Reference />}
         />
         <Route

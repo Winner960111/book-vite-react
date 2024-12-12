@@ -111,7 +111,7 @@ const FirstPage = () => {
                   />
                   <label
                     htmlFor="upload"
-                    className="bg-[#854fff] w-full md:w-[30%] md:mx-4 rounded-lg text-white text-xl text-center hover:bg-purple-800 p-3 mt-4"
+                    className="bg-white w-full md:w-[30%] md:mx-4 border-black border-2 rounded-lg text-xl text-center text-black hover:bg-black hover:text-white p-3 mt-4"
                   >
                     Upload
                   </label>
@@ -128,7 +128,7 @@ const FirstPage = () => {
               <button
                 type="button"
                 onClick={handlesubmit}
-                className="bg-[#854fff] w-full md:w-[30%] h-16 md:mx-4 rounded-lg text-white text-xl  hover:bg-purple-800"
+                className="w-full lg:min-w-[200px] lg:w-[30%] border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
               >
                 CONTINUE
               </button>

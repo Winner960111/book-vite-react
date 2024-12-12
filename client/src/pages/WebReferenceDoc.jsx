@@ -7,7 +7,8 @@ import { browserName, osName } from 'react-device-detect';
 import {customerInfo} from '../api/index'
 // checker step components
 import PhoneVerification from '../components/common/PhoneVerification';
-import CheckVerifyCode from '../components/web/ReferenceDoc/CheckVerifyCode';
+// import CheckVerifyCode from '../components/web/ReferenceDoc/CheckVerifyCode';
+import CheckVerifyCode from '../components/common/CheckVerifyCode';
 import FirstPage from '../components/web/ReferenceDoc/FirstPage';
 import SecondPage from '../components/web/ReferenceDoc/SecondPage';
 import Finish from '../components/web/ReferenceDoc/Finish';

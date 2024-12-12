@@ -130,7 +130,6 @@ const SecondPage = () => {
     }
     if (pass == 6) {
       const data = {
-
         dealer_id: dealerId,
         reference1_first_name: refFirstName,
         reference1_last_name: refLastName,
@@ -143,7 +142,7 @@ const SecondPage = () => {
         reference2_phone: phoneNumber,
         reference2_city: city,
         reference2_relationship: relation,
-        reference2_state: state
+        reference2_state: state,
       };
 
       const res = await referenceInfo(data, customerId)

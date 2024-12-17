@@ -76,6 +76,10 @@ const WebHome = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/appointment`);
   };
+  const changePageMessage = () => {
+    dispatch(clearHistory());
+    navigate(`/info-checker/${dealer_id}/message`);
+  };
   // const changePageReference = () => {
   //   dispatch(clearHistory());
   //   // navigate(`/info-checker/reference/${dealer_slug}/${customer_slug}`);
@@ -84,10 +88,10 @@ const WebHome = () => {
   //   );
   // };
 
-  const changePageCheckApp = () => {
-    dispatch(clearHistory());
-    navigate(`/info-checker/${dealer_id}/check`);
-  };
+  // const changePageCheckApp = () => {
+  //   dispatch(clearHistory());
+  //   navigate(`/info-checker/${dealer_id}/check`);
+  // };
 
   return (
     <div className="w-screen h-screen flex flex-col items-center bg-gray-50">
@@ -133,6 +137,12 @@ const WebHome = () => {
             className={`${enable['APPOINTMENT'] ? 'block': 'hidden'} border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1`}
           >
             APPOINTMENT
+          </button>
+          <button
+            onClick={changePageMessage}
+            className={`${enable['MESSAGE DEALER'] ? 'block': 'hidden'} border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1`}
+          >
+            MESSAGE DEALER
           </button>
           {/* <button
             onClick={changePageCheckApp}

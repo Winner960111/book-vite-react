@@ -1,75 +1,66 @@
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
 import {
   addHistory,
-  setCheckerFirstName,
+  setCheckerMiddleName,
+  setCheckerIsSkipMiddleName,
 } from '../../../store/reducers/checker';
-import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import TextField from '@mui/material/TextField';
+// import { usersUpdate } from '../../../api/index';
+import { TextField } from '@mui/material';
 
-const InputFirstName = () => {
+const InputMiddleName = () => {
+  const { step, history, checkerMiddleName, checkerIsSkipMiddleName } =
+    useSelector((state) => state.checker);
   const dispatch = useDispatch();
-  const { step, history, checkerFirstName } = useSelector(
-    (state) => state.checker
-  );
 
-  const [firstName, setFirstName] = useState('');
+  const [middleName, setMiddleName] = useState('');
   const [error, setError] = useState(null);
+
+  const handleChangeInput = (e) => {
+    setMiddleName(e.target.value);
+    setError(null);
+  };
 
   useEffect(() => {
     setError(null);
   }, [step]);
 
-  const handleChangeInput = (e) => {
-    setFirstName(e.target.value);
-    setError(null);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!firstName.trim()) {
-      setError('The first name field is required');
-    } else if (!/^[A-Za-z]+$/.test(firstName)) {
-      setError('The first name contains only characters');
+    if (!middleName.trim()) {
+      setError('The middle name filed is required');
+    } else if (!/^[A-Za-z]+$/.test(middleName)) {
+      setError('The middle name contains only characters');
     } else {
       dispatch(addHistory(true));
-      dispatch(setCheckerFirstName(firstName));
-      setFirstName('');
+      dispatch(setCheckerMiddleName(middleName));
+      setMiddleName('');
     }
   };
 
   const renderDescription = () => (
     <>
       <BotIcon />
-      <div
-        className={classNames(
-          'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 4 ? 'text-slate-400' : 'text-slate-800'
-        )}
-      >
-        <p className="bg-gray-50 rounded-3xl p-4 text-left mb-5">
-          <b>🎊 Congratulation! you successfully verified.</b>
-        </p>
-      </div>
       <form
         onSubmit={handleSubmit}
         className={classNames(
           'text-justify bg-white rounded-tr-3xl rounded-b-3xl p-4 mt-4 shadow-[5px_5px_10px_rgba(0,0,0,0.3)] text-sm md:text-lg',
-          step >= 4 ? 'text-slate-400' : 'text-slate-800'
+          step >= 5 ? 'text-slate-400' : 'text-slate-800'
         )}
       >
         <div
           className="flex flex-col md:flex-row md:items-center"
-          style={step >= 4 ? { display: 'none' } : { display: 'block' }}
+          style={step >= 5 ? { display: 'none' } : { display: 'block' }}
         >
           <TextField
             id="outlined-multiline-flexible"
-            label="First name"
+            label="middle name"
             fullWidth
+            value={middleName}
             autoComplete="off"
-            value={firstName}
             onChange={handleChangeInput}
             type="text"
             InputProps={{
@@ -84,15 +75,16 @@ const InputFirstName = () => {
               },
             }}
           />
-          {error !== '' ? <p className="text-red-500 pl-2">{error}</p> : null}
+          {error !== null ? <p className="text-red-500 pl-2">{error}</p> : null}
         </div>
         <p className="bg-gray-50 rounded-3xl p-4">
-          Please enter your first name.
+          In the case you have a middle name on your credit report please enter
+          here.
         </p>
         <button
           type="submit"
-          className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
-          style={step >= 4 ? { display: 'none' } : { display: 'block' }}
+          className="w-full border-black border-2 rounded-md py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
+          style={step >= 5 ? { display: 'none' } : { display: 'block' }}
         >
           CONTINUE
         </button>
@@ -103,16 +95,16 @@ const InputFirstName = () => {
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
       <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
-        {checkerFirstName}
+        {checkerMiddleName}
       </div>
     </div>
   );
 
   return (
     <>
-      {step > 2 ? (
+      {step > 3 && checkerIsSkipMiddleName == false ? (
         <>
-          {history[3] == true ? (
+          {history[4] == true ? (
             <>
               {renderDescription()}
               {renderReply()}
@@ -125,4 +117,4 @@ const InputFirstName = () => {
     </>
   );
 };
-export default InputFirstName;
+export default InputMiddleName;

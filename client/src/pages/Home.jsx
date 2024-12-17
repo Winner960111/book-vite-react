@@ -78,6 +78,10 @@ const Home = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/full`);
   };
+  const changePageMessage = () => {
+    dispatch(clearHistory());
+    navigate(`/info-checker/${dealer_id}/message`);
+  };
   
   // const changePageReference = () => {
   //   dispatch(clearHistory());
@@ -132,6 +136,13 @@ const Home = () => {
             // style={obj ? { display: 'none' } : { display: 'block' }}
           >
             APPOINTMENT
+          </button>
+          <button
+            onClick={changePageMessage}
+            className={`${enable['MESSAGE DEALER'] ? 'block': 'hidden'} border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2`}
+            // style={obj ? { display: 'none' } : { display: 'block' }}
+          >
+            MESSAGE DEALER
           </button>
           {/* <button
             onClick={changePageAppointment}

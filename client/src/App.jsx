@@ -31,7 +31,7 @@ import WebImages from './pages/WebImages';
 import Images from './pages/Images';
 import WebFullAppLanding from './pages/WebFullappLanding';
 import WebMessage from './pages/WebMessage';
-// import Message from './pages/Message';
+import Message from './pages/Message';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -101,7 +101,7 @@ const App = () => {
         />
         <Route
           path="/info-checker/:dealer_id/message"
-          element={type == 'web' ? <WebMessage /> : null}
+          element={type == 'web' ? <WebMessage /> : <Message/>}
         />
         <Route
           path="/info-checker/:dealer_id/check"

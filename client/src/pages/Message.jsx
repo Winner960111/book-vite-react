@@ -4,15 +4,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment-timezone';
 import { browserName, osName } from 'react-device-detect';
 // checker step components
-import Greeting from '../components/Mobile/Message/Greeting';
+import Greeting from '../components/Mobile/message/Greeting';
 import SendPhoneVerificationCode from '../components/common/SendPhoneVerificationCode';
 import CheckPhoneVerificationCode from '../components/common/CheckPhoneVerificationCode';
-import InputFirstName from '../components/Mobile/Message/InputFirstName';
-import InputMiddleName from '../components/Mobile/Message/InputMiddleName';
-import InputLastName from '../components/Mobile/Message/InputLastName';
-import InputEmail from '../components/Mobile/Message/InputEmail';
-import Submit from '../components/Mobile/Message/Submit';
-import Comment from '../components/Mobile/Message/Comment';
+import InputFirstName from '../components/Mobile/message/InputFirstName';
+import InputMiddleName from '../components/Mobile/message/InputMiddleName';
+import InputLastName from '../components/Mobile/message/InputLastName';
+import InputEmail from '../components/Mobile/message/InputEmail';
+import Submit from '../components/Mobile/message/Submit';
+import Comment from '../components/Mobile/message/Comment';
 import {
   getDealerInfo,
   setDealerId,
@@ -32,7 +32,7 @@ import backImg from '../assets/back.png';
 import { deviceInfo } from '../api/index';
 
 const Message = () => {
-  
+
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const containerRef = useRef(null);
   const dispatch = useDispatch();

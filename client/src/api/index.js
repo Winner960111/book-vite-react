@@ -331,8 +331,22 @@ export const signatureImg = async (data) => {
 };
 
 export const SubmitQuote = async (data) => {
-  console.log('quote data is =>', data);
   const url = 'leads/';
+  try {
+    const response = await apis.post(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return response;
+  } catch (e) {
+    return { status: 400 };
+  }
+};
+
+export const MessageDealer = async (data) => {
+  const url = 'message_dealer/';
   try {
     const response = await apis.post(url, data, {
       headers: {
@@ -363,7 +377,6 @@ export const instantInfo = async (data) => {
 };
 
 export const SubmitTrade = async (data) => {
-  console.log('quote data is =>', data);
   const url = 'trade_in/';
   try {
     const response = await apis.post(url, data, {

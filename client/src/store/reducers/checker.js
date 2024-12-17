@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import apis from '../../utils/apis';
 
 const initialState = {
-  incomeFrequency:'',
+  enable_workflows:[],
+  incomeFrequency: '',
   imageBase64: [],
   vehicleYear: '',
   vehicleMake: '',
@@ -129,8 +130,11 @@ export const checkerSlice = createSlice({
   name: 'checker',
   initialState,
   reducers: {
-    setIncomeFrequency:(state, action)=>{
-      state.incomeFrequency = action.payload
+    setEnableWorkflow: (state, action) => {
+      state.enable_workflows = action.payload;
+    },
+    setIncomeFrequency: (state, action) => {
+      state.incomeFrequency = action.payload;
     },
     setSubmit: (state, action) => {
       state.submit = action.payload;
@@ -536,7 +540,7 @@ export const checkerSlice = createSlice({
     },
     // Set street
     setCheckerStreet: (state, action) => {
-      state.checkerStreet= action.payload;
+      state.checkerStreet = action.payload;
     },
 
     // Set apt
@@ -659,7 +663,7 @@ export const checkerSlice = createSlice({
       state.checkerEmail = initialState.checkerEmail;
       state.checkerBirthday = initialState.checkerBirthday;
       state.checkerAddress = initialState.checkerAddress;
-      state.checkerStreet= initialState.checkerStreet;
+      state.checkerStreet = initialState.checkerStreet;
       state.checkerApt = initialState.checkerApt;
       state.checkerLocality = initialState.checkerLocality;
       state.checkerState = initialState.checkerState;
@@ -702,6 +706,7 @@ export const checkerSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setEnableWorkflow,
   setIncomeFrequency,
   setSubmit,
   setImageBase64,
@@ -837,6 +842,7 @@ export const getDealerInfo = (dealer_id) => (dispatch) => {
   return async () => {
     try {
       const response = await apis.post('decode_dealer/', data);
+      dispatch(setEnableWorkflow(response.data.subscription.enable_workflows));
       dispatch(setDealerName(response.data.name));
       dispatch(setDealerLogo(response.data.get_logo_url));
       dispatch(setDealerId(response.data.id.toString()));

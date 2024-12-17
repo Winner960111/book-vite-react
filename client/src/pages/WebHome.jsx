@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -9,19 +9,23 @@ import {
   setVehicleModel,
 } from '../store/reducers/checker';
 import shield from '../assets/shield.jpg';
+import { Hidden } from '@mui/material';
 
 const WebHome = () => {
   const { dealer_id } = useParams();
-  const { dealerName, dealerLogo } = useSelector((state) => state.checker);
+  const { dealerName, dealerLogo, enable_workflows } = useSelector(
+    (state) => state.checker
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [enable, setEnable] = useState({});
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const year = urlParams.year;
     const make = urlParams.make;
     const model = urlParams.model;
-    
+
     if (year && make && model) {
       dispatch(setVehicleYear(year));
       dispatch(setVehicleMake(make));
@@ -35,6 +39,16 @@ const WebHome = () => {
     const dealerInfoCall = dispatch(getDealerInfo(dealer_id));
     new Promise(dealerInfoCall);
   }, [dealer_id, dispatch]);
+
+  useEffect(() => {
+    if (Object.keys(enable_workflows).length) {
+      const newEnable = {};
+      enable_workflows.forEach((item) => {
+        newEnable[item.name] = true; // Set property based on item.name
+      });
+      setEnable(newEnable);
+    }
+  }, [enable_workflows]);
 
   const changePageQuote = () => {
     dispatch(clearHistory());
@@ -62,12 +76,14 @@ const WebHome = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/appointment`);
   };
-  const changePageReference = () => {
-    dispatch(clearHistory());
-    // navigate(`/info-checker/reference/${dealer_slug}/${customer_slug}`);
-    navigate(`/info-checker/reference/UkLWZg9DAJQ7XlrzYPhm/EfhxLZ9ck8reBm0UyPW6`);
-  };
-  
+  // const changePageReference = () => {
+  //   dispatch(clearHistory());
+  //   // navigate(`/info-checker/reference/${dealer_slug}/${customer_slug}`);
+  //   navigate(
+  //     `/info-checker/reference/UkLWZg9DAJQ7XlrzYPhm/EfhxLZ9ck8reBm0UyPW6`
+  //   );
+  // };
+
   const changePageCheckApp = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/check`);
@@ -89,49 +105,44 @@ const WebHome = () => {
         <div className="flex flex-col mt-10 w-[50%] min-w-[250px] justify-around md:flex-wrap">
           <button
             onClick={changePagePrequalified}
-            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1">
+            className={`${enable['GET PREQUALIFIED'] ? 'block': 'hidden'} border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1`}
+          >
             GET PREQUALIFIED
           </button>
           <button
             onClick={changePageFullApp}
-            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
+            className={`${enable['FULL CREDIT APPLICATION'] ? 'block': 'hidden'} border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1`}
           >
             FULL CREDIT APPLICATION
           </button>
           <button
             onClick={changePageQuote}
-            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
+            className={`${enable['GET A QUOTE'] ? 'block': 'hidden'} border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1`}
           >
             GET A QUOTE
           </button>
 
           <button
             onClick={changePageTradeInValue}
-            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
+            className={`${enable['TRADE IN VALUE'] ? 'block': 'hidden'} border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1`}
           >
             TRADE IN VALUE
           </button>
           <button
             onClick={changePageAppointment}
-            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
+            className={`${enable['APPOINTMENT'] ? 'block': 'hidden'} border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1`}
           >
             APPOINTMENT
           </button>
-          <button
-            onClick={changePageReference}
-            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
-          >
-            REFERENCE
-          </button>
           {/* <button
             onClick={changePageCheckApp}
-            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
+            className={`${enable['FULL CREDIT APPLICATION'] ? 'block': 'hidden'} border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1`}
           >
             CHECK APPLICATION STATUS
           </button> */}
           {/* <button
             // onClick={changePageTradeInValue}
-            className="border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1"
+            className={`${enable['FULL CREDIT APPLICATION'] ? 'block': 'hidden'} border-black border-2 rounded-md p-4 text-black hover:bg-black hover:text-white font-medium text-2xl my-1`}
           >
             CALL BACK
           </button> */}

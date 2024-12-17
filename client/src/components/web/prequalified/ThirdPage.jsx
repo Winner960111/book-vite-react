@@ -266,7 +266,7 @@ const ThirdPage = () => {
               </a>{' '}
               ,{' '}
               <a
-                href="https://www.credit-apps.com/privacy/"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -275,7 +275,7 @@ const ThirdPage = () => {
               </a>{' '}
               , and{' '}
               <a
-                href="https://www.credit-apps.com/terms/"
+                href="https://www.riderflow.app/terms/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -315,7 +315,7 @@ const ThirdPage = () => {
               I acknowledge that I have read, understand, and agree to be bound
               by the{' '}
               <a
-                href="https://www.credit-apps.com/terms/"
+                href="https://www.riderflow.app/terms/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -324,7 +324,7 @@ const ThirdPage = () => {
               </a>{' '}
               and{' '}
               <a
-                href="https://www.credit-apps.com/privacy/"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

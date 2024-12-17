@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { addHistory, clearHistory } from '../../../store/reducers/checker';
-import { SubmitQuote } from '../../../api/index';
+import { MessageDealer } from '../../../api/index';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -11,23 +11,10 @@ const ThirdPage = () => {
     dealerId,
     checkerMobileNumber,
     checkerFirstName,
-    quoteStatus,
     checkerLastName,
+    checkerMiddleName,
     checkerEmail,
-    // quoteSource,
-    dealType,
-    quoteInterest,
-    // intentID,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
+    commentValue,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -51,7 +38,6 @@ const ThirdPage = () => {
 }, [checked1, checked2, checked3])
 
   const Tobegin = () => {
-    console.log("I'm here");
     navigate(-1);
     dispatch(clearHistory());
   };
@@ -59,50 +45,21 @@ const ThirdPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (checked1 && checked2 && checked3) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Completed',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Get Quote',
-      //   last_question: '3',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
-      const sub_data = {
+      const data = {
         dealer_id: dealerId,
         first_name: checkerFirstName,
         last_name: checkerLastName,
-        middle_name: "",
+        middle_name: checkerMiddleName,
         email: checkerEmail,
         mobile_phone: checkerMobileNumber,
-        status: quoteStatus,
-        interested_in: quoteInterest,
-        deal_type: dealType,
-        lead_status: "Lead",
-        source: "Get Quote",
-        request_type: "Sales",
-        deal_status: "New",
-        is_active_shopper: false,
-        performed_by: "Customer",
-        agent_id: ""
+        source:"Message Dealer",
+        message:commentValue
       };
 
-      console.log("quote------>", sub_data)
-      const sub_res = await SubmitQuote(sub_data);
-      if (sub_res.status == 201) {
+      const res = await MessageDealer(data);
+      if (res.status == 201) {
       dispatch(addHistory(true));
-        console.log('status ImageSend', sub_res);
+        console.log('status ImageSend', res);
       } else {
         console.log('Faild ImageSend');
       }

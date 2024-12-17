@@ -10,6 +10,7 @@ import PhoneVerification from '../components/common/PhoneVerification';
 import CheckVerifyCode from '../components/common/CheckVerifyCode';
 import FirstPage from '../components/web/message/FirstPage';
 import SecondPage from '../components/web/message/SecondPage';
+import ThirdPage from '../components/web/message/ThirdPage';
 import Finish from '../components/web/message/Finish';
 import homeImg from '../assets/webhome.png';
 import refImg from '../assets/webref.png';
@@ -74,7 +75,7 @@ const WebMessage = () => {
   };
 
   const handleBack = () => {
-    navigate(-1);
+    window.location.href = `/info-checker/${dealer_id}`
     dispatch(clearHistory());
   };
   return (
@@ -124,7 +125,8 @@ const WebMessage = () => {
       {step == 1 && <CheckVerifyCode />}
       {step == 2 && <FirstPage />}
       {step == 3 && <SecondPage />}
-      {step == 4 && <Finish />}
+      {step == 4 && <ThirdPage />}
+      {step == 5 && <Finish />}
       <div className="fixed h-12 bottom-0 w-full bg-white border-gray-100 border-b-2 flex justify-between items-center">
         <img
           className="w-10 cursor-pointer mx-5"

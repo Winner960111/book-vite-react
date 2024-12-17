@@ -365,7 +365,7 @@ const SeventhPage = () => {
                             </a>{' '}
                             to read our Privacy Notice and click{' '}
                             <a
-                                href="https://www.credit-apps.com/privacy/"
+                                href="https://www.riderflow.app/privacy/"
                                 style={{ color: 'blue' }}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -400,7 +400,7 @@ const SeventhPage = () => {
                             available offers to fund my loan, I also acknowledge that I have
                             read, understand, and agree to be bound by our End User{' '}
                             <a
-                                href="https://www.credit-apps.com/terms/"
+                                href="https://www.riderflow.app/terms/"
                                 style={{ color: 'blue' }}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -409,7 +409,7 @@ const SeventhPage = () => {
                             </a>{' '}
                             and our{' '}
                             <a
-                                href="https://www.credit-apps.com/privacy/"
+                                href="https://www.riderflow.app/privacy/"
                                 style={{ color: 'blue' }}
                                 target="_blank"
                                 rel="noopener noreferrer"

@@ -4,7 +4,6 @@ import BotIcon from './BotIcon';
 import {
   addHistory,
   setCheckerMiddleName,
-  setCheckerIsSkipMiddleName,
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
 // import { usersUpdate } from '../../../api/index';

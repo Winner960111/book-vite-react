@@ -32,6 +32,7 @@ import backImg from '../assets/back.png';
 import { deviceInfo } from '../api/index';
 
 const Message = () => {
+  
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const containerRef = useRef(null);
   const dispatch = useDispatch();
@@ -106,7 +107,7 @@ const Message = () => {
           <SendPhoneVerificationCode />
           <CheckPhoneVerificationCode />
           <InputFirstName />
-          <InputMiddleName/>
+          <InputMiddleName />
           <InputLastName />
           <InputEmail />
           <Comment />

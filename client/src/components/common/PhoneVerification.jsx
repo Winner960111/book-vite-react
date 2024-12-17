@@ -125,8 +125,8 @@ const PhoneVerification = () => {
             your request, You&apos;re in control of your messaging. Reply
             &lsquo;Stop&rsquo; to unsubscribe at any time. Please review our
             privacy policy at{' '}
-            <a href="https://www.credit-apps.com/privacy/" target="__blank">
-              https://www.credit-apps.com/privacy/
+            <a href="https://www.riderflow.app/privacy/" target="__blank">
+              https://www.riderflow.app/privacy/
             </a>{' '}
             for more details.
           </p>

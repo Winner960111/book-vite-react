@@ -6,12 +6,13 @@ import { browserName, osName } from 'react-device-detect';
 // checker step components
 import Greeting from '../components/Mobile/Message/Greeting';
 import SendPhoneVerificationCode from '../components/common/SendPhoneVerificationCode';
-import CheckPhoneVerificationCode from '../components/Mobile/Message/CheckPhoneVerificationCode';
+import CheckPhoneVerificationCode from '../components/common/CheckPhoneVerificationCode';
 import InputFirstName from '../components/Mobile/Message/InputFirstName';
+import InputMiddleName from '../components/Mobile/Message/InputMiddleName';
 import InputLastName from '../components/Mobile/Message/InputLastName';
 import InputEmail from '../components/Mobile/Message/InputEmail';
 import Submit from '../components/Mobile/Message/Submit';
-import SendMessage from '../components/Mobile/Message/sendMessage';
+import Comment from '../components/Mobile/Message/Comment';
 import {
   getDealerInfo,
   setDealerId,
@@ -105,9 +106,10 @@ const Message = () => {
           <SendPhoneVerificationCode />
           <CheckPhoneVerificationCode />
           <InputFirstName />
+          <InputMiddleName/>
           <InputLastName />
           <InputEmail />
-          <SendMessage />
+          <Comment />
           <Submit />
         </div>
       </div>

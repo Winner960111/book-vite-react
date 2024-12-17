@@ -5,7 +5,7 @@ import { usersStatus } from '../../../api/index';
 import {
   setCheckerFirstName,
   setCheckerLastName,
-  setCheckerEmail,
+  setCheckerMiddleName,
 } from '../../../store/reducers/checker';
 import { TextField } from '@mui/material';
 import Popover from '@mui/material/Popover';
@@ -14,31 +14,23 @@ import Typography from '@mui/material/Typography';
 const FirstPage = () => {
   const {
     step,
-    dealerName,
-    // intentID,
     dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
     checkerMobileNumber,
     // type,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [errorFirstName, setErrorFirstName] = useState('');
   const [errorLastName, setErrorLastName] = useState('');
-  const [errorEmailAddress, setErrorEmailAddress] = useState('');
+  const [errorMiddleName, setErrorMiddleName] = useState('');
+  // const [errorEmailAddress, setErrorEmailAddress] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [emailAddress, setEmailAddress] = useState('');
+  const [middleName, setMiddleName] = useState('');
+  // const [emailAddress, setEmailAddress] = useState('');
   const [focusFirstName, setFocusFirstName] = useState(Boolean);
   const [focusLastName, setFocusLastName] = useState(Boolean);
-  const [focusEmailAddress, setFocusEmailAddress] = useState(Boolean);
+  const [focusMiddleName, setFocusMiddleName] = useState(Boolean);
+  // const [focusEmailAddress, setFocusEmailAddress] = useState(Boolean);
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
@@ -47,15 +39,19 @@ const FirstPage = () => {
   const handleLastName = (e) => {
     setLastName(e.target.value);
     setErrorLastName('');
+  }; 
+  const handleMiddleName = (e) => {
+    setMiddleName(e.target.value);
+    setErrorMiddleName('');
   };
-  const handleEmailAddress = (e) => {
-    setEmailAddress(e.target.value);
-    setErrorEmailAddress('');
-  };
+  // const handleEmailAddress = (e) => {
+  //   setEmailAddress(e.target.value);
+  //   setErrorEmailAddress('');
+  // };
   useEffect(() => {
     setErrorFirstName('');
     setErrorLastName('');
-    setErrorEmailAddress('');
+    setErrorMiddleName('');
   }, [step]);
   const handlesubmit = async () => {
     let pass = 0;
@@ -73,12 +69,10 @@ const FirstPage = () => {
     } else {
       pass += 1;
     }
-    if (!emailAddress) {
-      setErrorEmailAddress('input your email');
-    } else if (
-      !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailAddress)
-    ) {
-      setErrorEmailAddress('Invalid email type');
+    if (!middleName) {
+      setErrorMiddleName('*field is required');
+    } else if (!/^[A-Za-z]+$/.test(middleName)) {
+      setErrorMiddleName('*contains only characters');
     } else {
       pass += 1;
     }
@@ -112,7 +106,7 @@ const FirstPage = () => {
       dispatch(addHistory(true));
       dispatch(setCheckerFirstName(firstName));
       dispatch(setCheckerLastName(lastName));
-      dispatch(setCheckerEmail(emailAddress));
+      dispatch(setCheckerMiddleName(middleName));
     }
   };
 
@@ -180,6 +174,59 @@ const FirstPage = () => {
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField
+                  aria-owns={focusMiddleName ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={(event) => setFocusMiddleName(event.currentTarget)}
+                  onMouseLeave={() => setFocusMiddleName(null)}
+                  onMouseDown={() => setFocusMiddleName(null)}
+                  value={middleName}
+                  onChange={handleMiddleName}
+                  fullWidth
+                  // autoFocus
+                  autoComplete="off"
+                  defaultValue="Normal"
+                  variant="standard"
+                  label="Middle name"
+                  InputProps={{
+                    style: {
+                      height: '50px', // Set the height of the TextField
+                      fontSize: '25px',
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: '25px',
+                    },
+                  }}
+                />
+                <Popover
+                  id="mouse-over-popover"
+                  sx={{
+                    pointerEvents: 'none',
+                  }}
+                  open={Boolean(focusMiddleName)}
+                  anchorEl={focusMiddleName}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  onClose={() => setFocusMiddleName(null)}
+                  disableRestoreFocus
+                >
+                  <Typography sx={{ p: 2 }}>
+                    Please enter your middle name.
+                  </Typography>
+                </Popover>
+                {errorMiddleName !== '' && (
+                  <p className="text-red-500 pl-2">{errorMiddleName}</p>
+                )}
+              </div>
+              <div className="flex flex-col w-full my-3 md:mx-5">
+                <TextField
                   aria-owns={focusLastName ? 'mouse-over-popover' : undefined}
                   aria-haspopup="true"
                   onMouseEnter={(event) => setFocusLastName(event.currentTarget)}
@@ -228,60 +275,6 @@ const FirstPage = () => {
                 </Popover>
                 {errorLastName !== '' && (
                   <p className="text-red-500 pl-2">{errorLastName}</p>
-                )}
-              </div>
-              <div className="flex flex-col w-full my-3 md:mx-5">
-                <TextField
-                  aria-owns={focus ? 'mouse-over-popover' : undefined}
-                  aria-haspopup="true"
-                  onMouseEnter={(event) => setFocusEmailAddress(event.currentTarget)}
-                  onMouseLeave={() => setFocusEmailAddress(null)}
-                  onMouseDown={() => setFocusEmailAddress(null)}
-                  value={emailAddress}
-                  onChange={handleEmailAddress}
-                  fullWidth
-                  autoComplete="off"
-                  defaultValue="Normal"
-                  label="Email address"
-                  variant="standard"
-                  InputProps={{
-                    style: {
-                      height: '50px', // Set the height of the TextField
-                      fontSize: '25px',
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '25px',
-                    },
-                  }}
-                />
-                <Popover
-                  id="mouse-over-popover"
-                  sx={{
-                    pointerEvents: 'none',
-                  }}
-                  open={Boolean(focusEmailAddress)}
-                  anchorEl={focusEmailAddress}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  onClose={() => setFocusEmailAddress(null)}
-                  disableRestoreFocus
-                >
-                  <Typography sx={{ p: 2, width: '300px' }}>
-                    By providing your email you agree to receive notification
-                    messages from <b>{dealerName}</b> to the provided email
-                    address.
-                  </Typography>
-                </Popover>
-                {errorEmailAddress !== '' && (
-                  <p className="text-red-500 pl-2">{errorEmailAddress}</p>
                 )}
               </div>
             </div>

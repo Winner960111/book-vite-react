@@ -1,4 +1,4 @@
-import { useEffect} from 'react';
+import { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -12,9 +12,10 @@ import shield from '../assets/shield.jpg';
 
 const Home = () => {
   const { dealer_id } = useParams();
-  const { dealerName, dealerLogo } = useSelector((state) => state.checker);
+  const { dealerName, dealerLogo, enable_workflows } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [enable, setEnable] = useState({});
   // const [obj, setObj] = useState(true);
 
   useEffect(() => {
@@ -30,6 +31,16 @@ const Home = () => {
     }
     console.log('this is in webHome=========>', year, make, model);
   }, []);
+
+  useEffect(() => {
+    if (Object.keys(enable_workflows).length) {
+      const newEnable = {};
+      enable_workflows.forEach((item) => {
+        newEnable[item.name] = true; // Set property based on item.name
+      });
+      setEnable(newEnable);
+    }
+  }, [enable_workflows]);
 
   // const handleObj = () => {
   //   if (obj == true) {
@@ -67,12 +78,16 @@ const Home = () => {
     dispatch(clearHistory());
     navigate(`/info-checker/${dealer_id}/full`);
   };
-  
-  const changePageReference = () => {
+  const changePageMessage = () => {
     dispatch(clearHistory());
-    // navigate(`/info-checker/reference/${dealer_slug}/${customer_slug}`);
-    navigate(`/info-checker/reference/UkLWZg9DAJQ7XlrzYPhm/EfhxLZ9ck8reBm0UyPW6`);
+    navigate(`/info-checker/${dealer_id}/message`);
   };
+  
+  // const changePageReference = () => {
+  //   dispatch(clearHistory());
+  //   // navigate(`/info-checker/reference/${dealer_slug}/${customer_slug}`);
+  //   navigate(`/info-checker/reference/UkLWZg9DAJQ7XlrzYPhm/EfhxLZ9ck8reBm0UyPW6`);
+  // };
   // const changePageMessage = () => {
   //   dispatch(clearHistory());
   //   navigate(`/message_dealer/${dealer_id}`);
@@ -91,43 +106,43 @@ const Home = () => {
         <div className="flex flex-col mt-10 px-16 justify-around">
           <button
             onClick={changePagePrequalified}
-            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
+            className={`${enable['GET PREQUALIFIED'] ? 'block': 'hidden'} border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2`}
           >
             GET PREQUALIFIED
           </button>
           <button
             onClick={changePageFull}
-            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
+            className={`${enable['FULL CREDIT APPLICATION'] ? 'block': 'hidden'} border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2`}
           >
             FULL CREDIT APPLICATION
           </button>
           <button
             onClick={changePageQuote}
-            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
+            className={`${enable['GET A QUOTE'] ? 'block': 'hidden'} border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2`}
           >
             GET A QUOTE
           </button>
           {/* read more and less */}
           <button
             onClick={changePageTradeIn}
-            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
+            className={`${enable['TRADE IN VALUE'] ? 'block': 'hidden'} border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2`}
             // style={obj ? { display: 'none' } : { display: 'block' }}
           >
             TRADE IN VALUE
           </button>
           <button
             onClick={changePageAppointment}
-            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
+            className={`${enable['APPOINTMENT'] ? 'block': 'hidden'} border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2`}
             // style={obj ? { display: 'none' } : { display: 'block' }}
           >
             APPOINTMENT
           </button>
           <button
-            onClick={changePageReference}
-            className="border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2"
+            onClick={changePageMessage}
+            className={`${enable['MESSAGE DEALER'] ? 'block': 'hidden'} border-black border-2 rounded-md p-2 text-black hover:bg-black hover:text-white font-medium text-lg my-2`}
             // style={obj ? { display: 'none' } : { display: 'block' }}
           >
-            REFERENCE
+            MESSAGE DEALER
           </button>
           {/* <button
             onClick={changePageAppointment}

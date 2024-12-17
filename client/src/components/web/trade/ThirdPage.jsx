@@ -126,7 +126,7 @@ const ThirdPage = () => {
               </a>{' '}
               to read our Privacy Notice and click{' '}
               <a
-                href="https://www.credit-apps.com/privacy/"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

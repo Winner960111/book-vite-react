@@ -55,19 +55,6 @@ const FifthPage = () => {
   const [jobKind, setJobKind] = useState('')
   const {
     step,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
 
   const addressRef = useRef(null);
@@ -85,7 +72,6 @@ const FifthPage = () => {
 
   const handleDate = (value) => {
     setErrorDate('');
-    console.log('value==>', value);
     let year, month, date;
     year = value.$y;
     month = parseInt(value.$M) + 1;
@@ -179,11 +165,10 @@ const FifthPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     let pass = 0;
     setErrors('');
     let newErrors = {};
-    console.log(locality);
 
     if (!locality.trim()) {
       newErrors.locality = '*Required';
@@ -208,7 +193,7 @@ const FifthPage = () => {
     } else { pass += 1 }
     if (!Ename.trim()) {
       newErrors.Ename = '*Required'
-    } else if (!/^[A-Za-z]+$/.test(Ename)) {
+    } else if (!/^[A-Za-z]+$/.test(Ename.replace(/\s/g, ""))) {
       newErrors.Ename = '*contains only characters'
     } else {
       pass += 1;
@@ -235,29 +220,7 @@ const FifthPage = () => {
       pass += 1;
     }
 
-
-
     if (Object.keys(newErrors).length === 0 && pass == 6) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Full',
-      //   last_question: '5',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setJobAddress(address))
       dispatch(setProgress());

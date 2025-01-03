@@ -224,7 +224,7 @@ const FifthPageItem = () => {
     } else { pass += 1 }
     if (!Ename.trim()) {
       newErrors.Ename = '*Required'
-    } else if (!/^[A-Za-z]+$/.test(Ename)) {
+    } else if (!/^[A-Za-z]+$/.test(Ename.replace(/\s/g, ""))) {
       newErrors.Ename = '*contains only characters'
     } else {
       pass += 1;

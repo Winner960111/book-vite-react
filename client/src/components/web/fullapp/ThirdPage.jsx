@@ -120,10 +120,10 @@ const ThirdPage = () => {
                   {/* {vehicles.map((item, key) => {
                     return <FormControlLabel key={key} value={item['name']} control={<Radio />} label={item['name']} className='hover:bg-violet-200 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
                   })} */}
-                  <FormControlLabel key={1} value={'boat'} control={<Radio />} label={'BOAT'} className='hover:bg-violet-200 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
-                  <FormControlLabel key={2} value={'car'} control={<Radio />} label={'CAR'} className='hover:bg-violet-200 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
-                  <FormControlLabel key={3} value={'truck'} control={<Radio />} label={'TRUCK'} className='hover:bg-violet-200 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
-                  <FormControlLabel key={4} value={'atv'} control={<Radio />} label={'ATV'} className='hover:bg-violet-200 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
+                  <FormControlLabel key={1} value={'boat'} control={<Radio />} label={'BOAT'} className='hover:bg-slate-100 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
+                  <FormControlLabel key={2} value={'car'} control={<Radio />} label={'CAR'} className='hover:bg-slate-100 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
+                  <FormControlLabel key={3} value={'truck'} control={<Radio />} label={'TRUCK'} className='hover:bg-slate-100 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
+                  <FormControlLabel key={4} value={'atv'} control={<Radio />} label={'ATV'} className='hover:bg-slate-100 w-[180px] border-[1px] border-gray-300 border-solid rounded-xl p-1 m-1 ' />
                 </RadioGroup>
               </div>
             </FormControl>

@@ -66,7 +66,7 @@ const Interest = () => {
     let pass = 0;
     if (!pay) {
       setError('*Pay item is Required');
-    } else if (!/^\d+$/.test(pay)) {
+    } else if (!/^[+-]?\d+(\.\d*)?$/.test(pay)) {
       setError('*Not supported format in Pay item');
     } else {
       pass += 1;

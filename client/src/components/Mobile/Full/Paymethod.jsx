@@ -137,7 +137,7 @@ const Paymethod = () => {
               id="demo-simple-select-standard-label"
               style={{ fontSize: '15px' }}
             >
-              Type
+              Select a second proof of identity
             </InputLabel>
             <Select
               labelId="demo-simple-select-standard-label"

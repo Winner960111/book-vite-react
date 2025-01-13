@@ -94,6 +94,8 @@ const Submit = () => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate()
   const handleResize = () => {
     // Rerun your code to set canvas size based on the new dimensions
@@ -194,26 +196,7 @@ const Submit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const intent_data = {
-    //   dealer_id: dealerId,
-    //   device_ip_address: deviceIP,
-    //   device_operating_system: deviceOS,
-    //   device_browser: deviceBrowser,
-    //   device_type: type,
-    //   device_state: deviceState,
-    //   device_city: deviceCity,
-    //   device_country: deviceCountry,
-    //   device_date_time: deviceDate,
-    //   device_lat: deviceLat,
-    //   device_lon: deviceLon,
-    //   status: 'Completed',
-    //   lang: 'EN',
-    //   phone: checkerMobileNumber,
-    //   page: 'Full',
-    //   last_question: '19',
-    // };
-    // const intent_res = await usersUpdate(intent_data, intentID);
-    // console.log('this is update results ====>', intent_res);
+    setLoading(true);
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');
     const image = new Image();
@@ -324,46 +307,14 @@ const Submit = () => {
       vehicle_price: 0,
       down_payment: payDwon,
       extra_income_source: incomeFrequency,
-      // employer_contact_name: '',
-      // employer_contact_phone: '',
-      // previous_employer_contact_name: '',
-      // previous_employer_contact_phone: '',
-      // primary_landLord_mortgage_holder: '',
-      // primary_landLord_mortgage_phone: '',
-      // previous_landLord_mortgage_holder: '',
-      // previous_landLord_mortgage_phone: '',
-      // marital_status: '',
-      // inv_id: '',
-
     };
 
     const res = await fullcustomer(data);
     if (res.status == 201) {
       console.log('status CustomerItems_Send', res);
       dispatch(addHistory(true));
+      setLoading(false)
       navigate(-1)
-      // const appData = {
-      //   dealer_id: dealerId,
-      //   customer_id: res.data.id,
-      //   cosigner_id: '',
-      //   usr_id: '',
-      //   vehicle_year: instantYear,
-      //   vehicle_make: instantMake,
-      //   vehicle_model: instantModel,
-      //   vehicle_condition: vehicleCondition,
-      //   vehicle_type: vehicleType,
-      //   need_co_signer: false,
-      //   cosigner_phone: '',
-      //   down_payment: payDwon,
-      // };
-      // const appRes = await application(appData);
-      // if (appRes.status == 201) {
-      //   console.log('status ApplicationItems_Send', res);
-      //   dispatch(addHistory(true));
-      //   navigate(-1)
-      // } else {
-      //   console.log('Faild ApplicationItmes_send');
-      // }
     } else {
       console.log('Faild CustomerItems_Send');
     }
@@ -528,6 +479,7 @@ const Submit = () => {
           Submit
         </button>
       </form>
+      <div className= {loading? "mt-10 flex justify-center": "mt-10 flex justify-center hidden"}><img src="/ZZ5H.gif" alt="loading.." className='w-10'/></div>
     </>
   );
 

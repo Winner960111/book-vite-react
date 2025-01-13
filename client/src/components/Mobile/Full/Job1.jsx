@@ -53,9 +53,10 @@ const Job1 = () => {
     } else {
       pass += 1;
     }
+
     if (!Ename.trim()) {
       setError('*Employeer name is required');
-    } else if (!/^[A-Za-z]+$/.test(Ename)) {
+    } else if (!/^[A-Za-z]+$/.test(Ename.replace(/\s/g, ""))) {
       setError('*contains only characters in Emploeer name');
     } else {
       pass += 1;

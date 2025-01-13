@@ -18,19 +18,6 @@ const Vehicle = () => {
   // const { dealer_id } = useParams();
   const {
     step,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -135,7 +122,7 @@ const Vehicle = () => {
               id="demo-simple-select-standard-label"
               style={{ fontSize: '15px' }}
             >
-              isuer
+              Condition
             </InputLabel>
             <Select
               labelId="demo-simple-select-standard-label"

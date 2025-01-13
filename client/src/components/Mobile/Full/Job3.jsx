@@ -70,7 +70,7 @@ const Job3 = () => {
     setError('');
     if (!pay) {
       setError('*Salary field is Required');
-    } else if (!/^\d+$/.test(pay)) {
+    } else if (!/^[+-]?\d+(\.\d*)?$/.test(pay)) {
       setError('*Not supported format in Salary');
     }
     if (!jobKind) {

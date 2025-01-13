@@ -187,7 +187,7 @@ const FourthPageItem = () => {
     }
     if (!pay) {
       setErrorPay('*Required');
-    } else if (!/^\d+$/.test(pay)) {
+    } else if (!/^[+-]?\d+(\.\d*)?$/.test(pay)) {
       setErrorPay('*Not supported format');
     } else {
       pass += 1;

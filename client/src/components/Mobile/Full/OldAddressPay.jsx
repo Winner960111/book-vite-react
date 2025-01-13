@@ -38,7 +38,7 @@ const NewInterestMore = () => {
   }, []);
 
   const handlePay = (e) => {
-    if (/^[0-9]+$/.test(e.target.value) || !e.target.value.trim()) {
+    if (/^[+-]?\d+(\.\d*)?$/.test(e.target.value) || !e.target.value.trim()) {
       setPay(e.target.value)
     }
     setError('')

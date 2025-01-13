@@ -83,18 +83,6 @@ const FirstPage = () => {
     setEmailAddress(e.target.value);
     setErrorEmailAddress('');
   };
-  // const handlePhoneNumber = (e) => {
-  //   const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
-  //   const formattedInputValue =
-  //     inputValue.substring(0, 3) +
-  //     (inputValue.length > 3 ? '-' : '') +
-  //     inputValue.substring(3, 6) +
-  //     (inputValue.length > 6 ? '-' : '') +
-  //     inputValue.substring(6, 10);
-  //   setPhoneNumber(formattedInputValue);
-  //   dispatch(setCheckerMobileNumber(phoneNumber));
-  //   setErrorPhoneNumber(null);
-  // };
   const handleSocialNumber = (e) => {
     setErrorSocialNumber('');
     const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
@@ -171,24 +159,6 @@ const FirstPage = () => {
       pass += 1;
     }
     if (pass == 6) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Short',
-      //   last_question: '1',
-      // };
       const data = {
         dealer_id: dealerId,
         mobile_phone: checkerMobileNumber,

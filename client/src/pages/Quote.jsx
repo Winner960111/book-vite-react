@@ -32,7 +32,7 @@ import refreshImg from '../assets/refresh.png';
 import backImg from '../assets/back.png';
 import { deviceInfo } from '../api/index';
 
-const Quote = () => {
+const Quote = (props) => {
   const { dealerLogo, step, history } = useSelector((state) => state.checker);
   const containerRef = useRef(null);
   const dispatch = useDispatch();
@@ -87,7 +87,8 @@ const Quote = () => {
       ref={containerRef}
     >
       <div className="h-full w-[95%] md:w-full flex flex-col items-center">
-        <div className="w-[95%] md:w-[500px] fixed rounded-lg flex justify-between items-center py-6 px-4 bg-white shadow-[10px_10px_20px_-5px_rgba(0,0,0,0.3)] z-20">
+        <div className="w-[95%] md:w-[500px] fixed rounded-lg flex flex-col justify-between items-center py-6 px-4 bg-white shadow-[10px_10px_20px_-5px_rgba(0,0,0,0.3)] z-20">
+          <div className='flex justify-between items-center w-full'>
           <img
             className="w-4 md:w-6 cursor-pointer"
             src={backImg}
@@ -101,6 +102,8 @@ const Quote = () => {
             alt="refresh icon"
             onClick={handleRestart}
           />
+          </div>
+          <p className='mt-2 font-medium'>{props.info}</p>
         </div>
         <div className="w-full md:w-[500px] text-lg font-serif pb-[15vh] pt-32 px-4 z-10">
           <Greeting />

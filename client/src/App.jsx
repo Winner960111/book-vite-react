@@ -73,7 +73,7 @@ const App = () => {
         />
         <Route
           path={`/info-checker/:dealer_id/prequalified`}
-          element={type == 'web' ? <WebPrequalified /> : <Prequalified />}
+          element={type == 'web' ? <WebPrequalified /> : <Prequalified info={"GET PREQUALIFIED"} />}
         />
         <Route
           path={`/info-checker/:dealer_id/prequalified-landing`}
@@ -81,15 +81,15 @@ const App = () => {
         />
         <Route
           path="/info-checker/:dealer_id/quote"
-          element={type == 'web' ? <WebQuote /> : <Quote />}
+          element={type == 'web' ? <WebQuote /> : <Quote info={"GET QUOTE"} />}
         />
         <Route
           path="/info-checker/:dealer_id/trade"
-          element={type == 'web' ? <WebTrade /> : <TradeIn />}
+          element={type == 'web' ? <WebTrade /> : <TradeIn info = {"TRADE IN VALUE"}/>}
         />
         <Route
           path="/info-checker/:dealer_id/full"
-          element={type == 'web' ? <WebFullApp /> : <Full />}
+          element={type == 'web' ? <WebFullApp /> : <Full info={"FULL CREDIT APPLICATION"} />}
         />
         <Route
           path="/info-checker/:dealer_id/full-landing"
@@ -97,11 +97,11 @@ const App = () => {
         />
         <Route
           path="/info-checker/:dealer_id/appointment"
-          element={type == 'web' ? <WebAppointment /> : <Appointment />}
+          element={type == 'web' ? <WebAppointment /> : <Appointment info = {"APPOINTMENT"}/>}
         />
         <Route
           path="/info-checker/:dealer_id/message"
-          element={type == 'web' ? <WebMessage /> : <Message/>}
+          element={type == 'web' ? <WebMessage /> : <Message info = {"MESSAGE DEALER"}/>}
         />
         <Route
           path="/info-checker/:dealer_id/check"

@@ -102,10 +102,6 @@ const PhoneVerification = () => {
           <p className=" bg-gray-50 rounded-3xl p-4">
             We will send a <strong>verification code</strong> to the phone number you provide.<br />
             <i>Don&apos;t include &apos;+&apos; or &lsquo;()&rsquo;</i>
-            {/* by providing your mobile number you agree to receive recurring
-            messages from <b>{dealerName}</b> to the provided mobile number and
-            agree to <b>{dealerName}</b>. terms and privacy policy. Message &
-            data rates may apply. */}
           </p>
           <div className="flex">
             <button

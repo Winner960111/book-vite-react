@@ -69,7 +69,7 @@ const SecondPage = () => {
             >
               Please click{' '}
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -78,7 +78,7 @@ const SecondPage = () => {
               </a>{' '}
               to read our Privacy Notice and click{' '}
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -89,7 +89,7 @@ const SecondPage = () => {
               having your information shared at all, please do so now by
               clicking{' '}
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

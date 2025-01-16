@@ -115,7 +115,8 @@ const OldJob3 = () => {
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  paddingTop: '10px',
+                  fontSize: '16px',
                 },
               }}
             />

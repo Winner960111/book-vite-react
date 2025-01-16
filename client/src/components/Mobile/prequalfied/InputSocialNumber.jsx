@@ -6,27 +6,15 @@ import {
 } from '../../../store/reducers/checker';
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
-import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
 const InputSocialNumber = () => {
-  const { step, history, checkerSocialNumber, intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber, } = useSelector(
+  const { step, history, checkerSocialNumber } = useSelector(
       (state) => state.checker
     );
   const dispatch = useDispatch();
 
   const [socialNumber, setSocialNumber] = useState('');
+  const [security, setSecurity] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -57,26 +45,6 @@ const InputSocialNumber = () => {
     } else if (!/^\d{3}-\d{2}-\d{4}$/.test(socialNumber)) {
       setError('Invalid social security number');
     } else {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Short',
-        last_question: '5',
-      };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerSocialNumber(socialNumber));
       setSocialNumber('');
@@ -136,8 +104,8 @@ const InputSocialNumber = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
-        <p>{hideCheckerSocialNumber(checkerSocialNumber)}</p>
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white" onClick={()=>setSecurity(!security)}>
+        <p>{security?hideCheckerSocialNumber(checkerSocialNumber):checkerSocialNumber}</p>
       </div>
     </div>
   );

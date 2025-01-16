@@ -21,18 +21,7 @@ const AppointmentDate = () => {
     appointDate,
     appointTime,
     dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
     checkerMobileNumber,
-    // intentID,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -55,13 +44,11 @@ const AppointmentDate = () => {
     let currentMonth = currentDate.getMonth();
     let wrong = false;
     setErrorDate('');
-    let year, month, date;
+    let year, month, date, temp;
     year = value.$y;
     month = parseInt(value.$M) + 1;
     date = value.$D;
 
-    // console.log("this is current====>", currentYear, currentDay, currentMonth)
-    // console.log("this is selected====>", year, date, month)
     if (Number(year) < Number(currentYear)) {
       wrong = true;
       setErrorDate('*Invalid Date');
@@ -78,11 +65,14 @@ const AppointmentDate = () => {
       Number(date) < Number(currentDay)
     ) {
       wrong = true;
-      console.log('Day is wrong');
     }
     if (wrong == false) {
-      setAppointmentDate(year + '-' + String(month) + '-' + date);
-      console.log('Correct==========');
+      if (month < 10) {
+        temp = '0' + String(month);
+      } else {
+        temp = String(month);
+      }
+      setAppointmentDate(temp + '/' + date + '/' + year);
     } else {
       setErrorDate('*Invalid Date');
     }

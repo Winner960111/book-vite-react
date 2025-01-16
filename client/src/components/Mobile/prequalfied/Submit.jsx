@@ -3,7 +3,7 @@ import BotIcon from './BotIcon';
 import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-import { signatureImg, usersUpdate } from '../../../api/index';
+import { signatureImg } from '../../../api/index';
 import { useNavigate } from "react-router-dom"
 import './Canvas.css';
 
@@ -26,17 +26,6 @@ const Submit = () => {
     checkerLocality,
     checkerState,
     checkerZipcode,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    intentID,
-    type,
   } = useSelector((state) => state.checker);
 
   const navigate = useNavigate()
@@ -45,11 +34,18 @@ const Submit = () => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [readStatePara1, setReadStatePara1] = useState(false);
   const [readStatePara2, setReadStatePara2] = useState(false);
+  const [loading, setLoading] = useState(false);
+
 
   const handleResize = () => {
     // Rerun your code to set canvas size based on the new dimensions
     console.log('web and mobile situation is exchanged.');
     prepareCanvas();
+  };
+
+  const clearCanvas = () => {
+    // Clear the canvas when clicked
+    contextRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
   };
 
   // Add event listener to window
@@ -144,31 +140,10 @@ const Submit = () => {
     setIsDrawing(false);
   };
 
-  const returnBack = () => {
-    navigate(-1)
-  }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const intent_data = {
-      dealer_id: dealerId,
-      device_ip_address: deviceIP,
-      device_operating_system: deviceOS,
-      device_browser: deviceBrowser,
-      device_type: type,
-      device_state: deviceState,
-      device_city: deviceCity,
-      device_country: deviceCountry,
-      device_date_time: deviceDate,
-      device_lat: deviceLat,
-      device_lon: deviceLon,
-      status: 'Completed',
-      lang: 'EN',
-      phone: checkerMobileNumber,
-      page: 'Short',
-      last_question: '8',
-    };
-    // const intent_res = await usersUpdate(intent_data, intentID);
-    // console.log('this is update results ====>', intent_res);
+    setLoading(true);
+
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');
     const image = new Image();
@@ -212,7 +187,8 @@ const Submit = () => {
     if (res.status == 201) {
       console.log('status ImageSend', res);
       dispatch(addHistory(true));
-      returnBack()
+      setLoading(false)
+      navigate(-1);
     } else {
       console.log('Faild ImageSend');
     }
@@ -246,7 +222,7 @@ const Submit = () => {
             Please click{' '}
             {step == 10 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -259,7 +235,7 @@ const Submit = () => {
             to read our Privacy Notice and click{' '}
             {step == 10 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -273,7 +249,7 @@ const Submit = () => {
             having your information shared at all, please do so now by clicking{' '}
             {step == 10 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -310,7 +286,7 @@ const Submit = () => {
             understand, and agree to be bound by our End User{' '}
             {step == 10 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/terms/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -323,7 +299,7 @@ const Submit = () => {
             and our{' '}
             {step == 10 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -351,7 +327,7 @@ const Submit = () => {
         </div>
 
         <div
-          className="flex flex-col md:flex-row md:items-center mt-2"
+          className="flex relative md:flex-row md:items-center mt-2"
           style={step >= 11 ? { display: 'none' } : { display: 'block' }}
         >
           <canvas
@@ -364,6 +340,7 @@ const Submit = () => {
             onTouchMove={draw}
             onTouchEnd={finishDrawing}
           />
+          <img src="/refresh-button.png" alt="png" className='absolute top-2 right-2 w-6 active:background-black' onClick={clearCanvas} />
         </div>
         <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           Please sign in above input field. it will act as your digital
@@ -377,6 +354,8 @@ const Submit = () => {
           Submit
         </button>
       </form>
+      <div className= {loading? "mt-10 flex justify-center": "mt-10 flex justify-center hidden"}><img src="/ZZ5H.gif" alt="loading.." className='w-10'/></div>
+
     </>
   );
 

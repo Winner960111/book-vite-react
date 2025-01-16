@@ -19,20 +19,8 @@ const Submit = () => {
     quoteStatus,
     checkerLastName,
     checkerEmail,
-    quoteSource,
     dealType,
     quoteInterest,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // intentID,
-    // type,
   } = useSelector((state) => state.checker);
   const navigate = useNavigate();
   const returnBack = () => {
@@ -40,26 +28,6 @@ const Submit = () => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const intent_data = {
-    //   dealer_id: dealerId,
-    //   device_ip_address: deviceIP,
-    //   device_operating_system: deviceOS,
-    //   device_browser: deviceBrowser,
-    //   device_type: type,
-    //   device_state: deviceState,
-    //   device_city: deviceCity,
-    //   device_country: deviceCountry,
-    //   device_date_time: deviceDate,
-    //   device_lat: deviceLat,
-    //   device_lon: deviceLon,
-    //   status: 'Completed',
-    //   lang: 'EN',
-    //   phone: checkerMobileNumber,
-    //   page: 'Short',
-    //   last_question: '6',
-    // };
-    // const intent_res = await usersUpdate(intent_data, intentID);
-    // console.log('this is update results ====>', intent_res);
 
     const data = {
       dealer_id: dealerId,
@@ -118,7 +86,7 @@ const Submit = () => {
             Please click{' '}
             {step == 8 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -131,7 +99,7 @@ const Submit = () => {
             to read our Privacy Notice and click{' '}
             {step == 8 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -145,7 +113,7 @@ const Submit = () => {
             having your information shared at all, please do so now by clicking{' '}
             {step == 8 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

@@ -143,7 +143,8 @@ const License = () => {
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                paddingTop: '10px',
+                fontSize: '16px',
               },
             }}
             disabled={step >= 11 ? true : false}
@@ -164,7 +165,8 @@ const License = () => {
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                paddingTop: '10px',
+                fontSize: '16px',
               },
             }}
             disabled={step >= 11 ? true : false}

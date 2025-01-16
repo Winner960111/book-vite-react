@@ -158,7 +158,7 @@ const Paymethod = () => {
               id="demo-simple-select-standard-label"
               style={{ fontSize: '15px' }}
             >
-              isuer
+              issuer
             </InputLabel>
             <Select
               labelId="demo-simple-select-standard-label"
@@ -167,9 +167,9 @@ const Paymethod = () => {
               onChange={handleIsuer}
               disabled={step >= 12 ? true : false}
             >
-              <MenuItem value=" " style={{ height: '40px' }}>
+              {/* <MenuItem value=" " style={{ height: '40px' }}>
                 <em> </em>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem value={'visa'}>VISA</MenuItem>
               <MenuItem value={'mastercard'}>MasterCard</MenuItem>
               <MenuItem value={'amex'}>AMEX</MenuItem>

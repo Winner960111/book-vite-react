@@ -17,18 +17,7 @@ const Instant = () => {
 
   const {
     dealerId,
-    // intentID,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
     checkerMobileNumber,
-    // type,
     step,
     instantYear,
     instantMake,

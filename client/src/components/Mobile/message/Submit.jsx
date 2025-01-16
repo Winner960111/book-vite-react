@@ -79,7 +79,7 @@ const Submit = () => {
             Please click{' '}
             {step == 8 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -92,7 +92,7 @@ const Submit = () => {
             to read our Privacy Notice and click{' '}
             {step == 8 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -106,7 +106,7 @@ const Submit = () => {
             having your information shared at all, please do so now by clicking{' '}
             {step == 8 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

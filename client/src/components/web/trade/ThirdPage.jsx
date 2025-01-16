@@ -23,17 +23,6 @@ const ThirdPage = () => {
     mileageHour,
     originalOwner,
     commentValue,
-    // intentID,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
   } = useSelector((state) => state.checker);
   const navigate = useNavigate()
 
@@ -70,25 +59,6 @@ const ThirdPage = () => {
     console.log("Trade------->", data)
     const res = await SubmitTrade(data);
     if (res.status == 201) {
-      // const new_data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Completed',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Trade In',
-      //   last_question: '5',
-      // };
-      // const passRes = await usersUpdate(new_data, intentID);
       console.log('this is update results ====>', res);
       dispatch(addHistory(true));
     } else {
@@ -117,7 +87,7 @@ const ThirdPage = () => {
             <p className="w-full">
               Please click{' '}
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"

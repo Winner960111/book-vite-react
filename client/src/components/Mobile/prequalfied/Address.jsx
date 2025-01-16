@@ -10,7 +10,6 @@ import {
   setCheckerState,
   setCheckerZipcode,
 } from '../../../store/reducers/checker';
-import { usersUpdate } from '../../../api/index';
 import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -34,19 +33,6 @@ const Address = () => {
     checkerLocality,
     checkerState,
     checkerZipcode,
-    intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber,
   } = useSelector((state) => state.checker);
 
   const addressRef = useRef(null);
@@ -133,26 +119,6 @@ const Address = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Short',
-        last_question: '7',
-      };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerAddress(address));
       dispatch(setCheckerApt(apt));
@@ -266,9 +232,9 @@ const Address = () => {
     <div className="mt-4 flex justify-end text-sm md:text-lg">
       <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         <p>{checkerAddress}</p>
-        <p>
+        {/* <p>
           {checkerLocality} {checkerState} {checkerZipcode}
-        </p>
+        </p> */}
       </div>
     </div>
   );

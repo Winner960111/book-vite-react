@@ -102,6 +102,10 @@ const Submit = () => {
     prepareCanvas();
   };
 
+  const clearCanvas = () => {
+    contextRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+  };
+
   // Add event listener to window
   window.addEventListener('resize', handleResize);
 
@@ -348,7 +352,7 @@ const Submit = () => {
             Please click{' '}
             {step == 29 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -361,7 +365,7 @@ const Submit = () => {
             to read our Privacy Notice and click{' '}
             {step == 29 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -375,7 +379,7 @@ const Submit = () => {
             having your information shared at all, please do so now by clicking{' '}
             {step == 29 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -412,7 +416,7 @@ const Submit = () => {
             understand, and agree to be bound by our End User{' '}
             {step == 29 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/terms/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -425,7 +429,7 @@ const Submit = () => {
             and our{' '}
             {step == 29 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -453,7 +457,7 @@ const Submit = () => {
         </div>
 
         <div
-          className="flex flex-col md:flex-row md:items-center mt-2"
+          className="flex relative md:flex-row md:items-center mt-2"
           style={step >= 29 ? { display: 'none' } : { display: 'block' }}
         >
           <canvas
@@ -466,6 +470,7 @@ const Submit = () => {
             onTouchMove={draw}
             onTouchEnd={finishDrawing}
           />
+          <img src="/refresh-button.png" alt="" className='absolute top-2 right-2 w-6 cursor-pointer' onClick={clearCanvas} />
         </div>
         <p className="bg-gray-50 rounded-3xl p-4 mt-2">
           Please sign in above input field. it will act as your digital

@@ -3,10 +3,10 @@ import BotIcon from './BotIcon';
 import {
   addHistory,
   setCheckerMiddleName,
+  setCheckerIsSkipMiddleName,
 } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-// import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
 
 const InputMiddleName = () => {
@@ -15,19 +15,7 @@ const InputMiddleName = () => {
     step,
     history,
     checkerMiddleName,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
+    checkerIsSkipMiddleName,
   } = useSelector((state) => state.checker);
 
   const [middleName, setMiddleName] = useState('');
@@ -37,6 +25,10 @@ const InputMiddleName = () => {
     setError(null);
   }, [step]);
 
+  const skipMiddleName = () => {
+      dispatch(setCheckerIsSkipMiddleName(true));
+      dispatch(addHistory(true));
+    };
   const handleChangeInput = (e) => {
     setMiddleName(e.target.value);
     setError(null);
@@ -46,30 +38,11 @@ const InputMiddleName = () => {
     e.preventDefault();
 
     if (!middleName.trim()) {
-      setError('The first name field is required');
+      setError('The middle name field is required');
     } else if (!/^[A-Za-z]+$/.test(middleName)) {
-      setError('The first name contains only characters');
+      setError('The middle name contains only characters');
     } else {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Book Appointment',
-      //   last_question: '2',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
+      
       dispatch(addHistory(true));
       dispatch(setCheckerMiddleName(middleName));
       setMiddleName('');
@@ -117,6 +90,15 @@ const InputMiddleName = () => {
           Please enter your middle name.
         </p>
         <button
+          onClick={skipMiddleName}
+          type="button"
+          className="w-full border-black border-2 rounded-md py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
+          style={step >= 6 ? { display: 'none' } : { display: 'block' }}
+        >
+          SKIP
+        </button>
+
+        <button
           type="submit"
           className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
           style={step >= 6 ? { display: 'none' } : { display: 'block' }}
@@ -137,7 +119,8 @@ const InputMiddleName = () => {
 
   return (
     <>
-      {step > 4 ? (
+     
+      {step > 4 && checkerIsSkipMiddleName == false ? (
         <>
           {history[5] == true ? (
             <>

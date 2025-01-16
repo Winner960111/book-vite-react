@@ -4,6 +4,7 @@ import BotIcon from './BotIcon';
 import {
   addHistory,
   setCheckerMiddleName,
+  setCheckerIsSkipMiddleName,
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
 // import { usersUpdate } from '../../../api/index';
@@ -16,6 +17,11 @@ const InputMiddleName = () => {
 
   const [middleName, setMiddleName] = useState('');
   const [error, setError] = useState(null);
+
+   const skipMiddleName = () => {
+      dispatch(setCheckerIsSkipMiddleName(true));
+      dispatch(addHistory(true));
+    };
 
   const handleChangeInput = (e) => {
     setMiddleName(e.target.value);
@@ -80,6 +86,14 @@ const InputMiddleName = () => {
           In the case you have a middle name on your credit report please enter
           here.
         </p>
+        <button
+          onClick={skipMiddleName}
+          type="button"
+          className="w-full border-black border-2 rounded-md py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"
+          style={step >= 5 ? { display: 'none' } : { display: 'block' }}
+        >
+          SKIP
+        </button>
         <button
           type="submit"
           className="w-full border-black border-2 rounded-md py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"

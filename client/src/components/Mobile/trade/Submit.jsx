@@ -4,10 +4,11 @@ import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { SubmitTrade } from '../../../api/index';
-import { useNavigate } from 'react-router-dom';
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   const {
     step,
@@ -19,18 +20,6 @@ const Submit = () => {
     checkerLastName,
     checkerEmail,
     dealType,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // intentID,
-    // type,
-    // vin,
     instantYear,
     instantMake,
     instantModel,
@@ -40,9 +29,10 @@ const Submit = () => {
     originalOwner,
     commentValue
   } = useSelector((state) => state.checker);
-  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
     const data = {
       dealer_id: dealerId,
       first_name: checkerFirstName,
@@ -66,28 +56,8 @@ const Submit = () => {
     const res = await SubmitTrade(data);
     if (res.status == 201) {
       console.log('status ImageSend', res);
-      // const new_data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Completed',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Trade In',
-      //   last_question: '11',
-      // };
-      // const newRes = await usersUpdate(new_data, intentID);
-      // console.log('this is update results ====>', newRes);
       dispatch(addHistory(true));
-      navigate(-1)
+      setLoading(false)
     } else {
       console.log('Faild ImageSend');
     }
@@ -121,7 +91,7 @@ const Submit = () => {
             Please click{' '}
             {step == 13 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -134,7 +104,7 @@ const Submit = () => {
             to read our Privacy Notice and click{' '}
             {step == 13 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -148,7 +118,7 @@ const Submit = () => {
             having your information shared at all, please do so now by clicking{' '}
             {step == 13 ? (
               <a
-                href="https://d2i2zqim3ahl97.cloudfront.net/home/Credit-AppsPrivacyNotice.pdf"
+                href="https://www.riderflow.app/privacy/"
                 style={{ color: 'blue' }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -179,6 +149,8 @@ const Submit = () => {
           Submit
         </button>
       </form>
+      <div className= {loading? "mt-10 flex justify-center": "mt-10 flex justify-center hidden"}><img src="/ZZ5H.gif" alt="loading.." className='w-10'/></div>
+
     </>
   );
 

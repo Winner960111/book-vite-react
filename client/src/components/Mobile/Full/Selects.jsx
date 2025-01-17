@@ -55,26 +55,6 @@ const InputRelation = () => {
     e.preventDefault();
 
     if (citizen && bank) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Full',
-      //   last_question: '6',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       if (citizen === 'Yes') {
         dispatch(setUSCitizen(true));
       } else {
@@ -87,7 +67,7 @@ const InputRelation = () => {
       }
       dispatch(addHistory(true));
     } else {
-      setError('The last name field is required');
+      setError('Select the essential fields');
     }
   };
 

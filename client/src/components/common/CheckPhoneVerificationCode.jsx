@@ -1,8 +1,8 @@
 import BotIcon from './BotIcon';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkVerification, usersStatus } from '../../api/index';
-import { addHistory, setIntentID } from '../../store/reducers/checker';
+import { checkVerification } from '../../api/index';
+import { addHistory } from '../../store/reducers/checker';
 import { classNames } from '../../utils';
 import verify from '../../assets/verify.png';
 import OtpInput from 'react-otp-input';
@@ -10,17 +10,7 @@ import OtpInput from 'react-otp-input';
 const CheckPhoneVerificationCode = () => {
   const [verifyCode, setVerifyCode] = useState('');
   const [temp, setTemp] = useState('');
-  const { checkerMobileNumber, step, history, dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type, } = useSelector(
+  const { checkerMobileNumber, step, history, dealerId,} = useSelector(
       (state) => state.checker
     );
   const [error, setError] = useState(null);
@@ -38,35 +28,14 @@ const CheckPhoneVerificationCode = () => {
     } else if (!/^[0-9]+$/.test(verifyCode)) {
       setError('The verification code contains only numbers');
     } else {
-      // const res = await checkVerification(
-      //   checkerMobileNumber,
-      //   dealerId,
-      //   verifyCode
-      // );
-      const res = { status: 201 };
+      const res = await checkVerification(
+        checkerMobileNumber,
+        dealerId,
+        verifyCode
+      );
+      // const res = { status: 201 };
 
       if (res.status === 201) {
-        const data = {
-          dealer_id: dealerId,
-          device_ip_address: deviceIP,
-          device_operating_system: deviceOS,
-          device_browser: deviceBrowser,
-          device_type: type,
-          device_state: deviceState,
-          device_city: deviceCity,
-          device_country: deviceCountry,
-          device_date_time: deviceDate,
-          device_lat: deviceLat,
-          device_lon: deviceLon,
-          status: 'Started',
-          lang: 'EN',
-          phone: checkerMobileNumber,
-          page: 'Short',
-          last_question: '0',
-        };
-        // const intentRes = await usersStatus(data);
-        // dispatch(setIntentID(intentRes.data.id));
-        // console.log('this is intent ID===>', intentRes.data.id);
         dispatch(addHistory(true));
         setTemp(verifyCode);
         setVerifyCode('');

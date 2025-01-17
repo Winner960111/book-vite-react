@@ -8,19 +8,6 @@ import { addHistory, setOriginalOwner } from '../../../store/reducers/checker';
 const DealType = () => {
   const {
     step,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -34,26 +21,6 @@ const DealType = () => {
 
   const handleSubmit = async () => {
     if (owner) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Trade In',
-      //   last_question: '9',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setOriginalOwner(owner));
     } else {
@@ -93,6 +60,7 @@ const DealType = () => {
                   id="radio1"
                   name="deal_type"
                   className="w-[17px] h-[17px] mx-2"
+                  checked={owner === 'Yes'}
                 />
               )}
               Yes
@@ -118,6 +86,7 @@ const DealType = () => {
                   id="radio2"
                   name="deal_type"
                   className="w-[17px] h-[17px] mx-2"
+                  checked={owner === 'No'}
                 />
               )}
               No

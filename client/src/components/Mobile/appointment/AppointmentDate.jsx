@@ -21,18 +21,7 @@ const AppointmentDate = () => {
     appointDate,
     appointTime,
     dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
     checkerMobileNumber,
-    // intentID,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -55,13 +44,11 @@ const AppointmentDate = () => {
     let currentMonth = currentDate.getMonth();
     let wrong = false;
     setErrorDate('');
-    let year, month, date;
+    let year, month, date, temp;
     year = value.$y;
     month = parseInt(value.$M) + 1;
     date = value.$D;
 
-    // console.log("this is current====>", currentYear, currentDay, currentMonth)
-    // console.log("this is selected====>", year, date, month)
     if (Number(year) < Number(currentYear)) {
       wrong = true;
       setErrorDate('*Invalid Date');
@@ -78,17 +65,21 @@ const AppointmentDate = () => {
       Number(date) < Number(currentDay)
     ) {
       wrong = true;
-      console.log('Day is wrong');
     }
     if (wrong == false) {
-      setAppointmentDate(year + '-' + String(month) + '-' + date);
-      console.log('Correct==========');
+      if (month < 10) {
+        temp = '0' + String(month);
+      } else {
+        temp = String(month);
+      }
+      setAppointmentDate(temp + '/' + date + '/' + year);
     } else {
       setErrorDate('*Invalid Date');
     }
   };
 
   const handleTime = (value) => {
+    console.log("This is time====>", value);
     if (!appointmentDate) {
       setErrorTime('*Input Date first');
     } else {
@@ -125,24 +116,6 @@ const AppointmentDate = () => {
 
     console.log('this is date and time====>', appointmentDate, appointmentTime);
     if (pass == 2) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Book Appointment',
-      //   last_question: '1',
-      // };
       const data = {
         dealer_id: dealerId,
         mobile_phone: checkerMobileNumber,
@@ -207,6 +180,7 @@ const AppointmentDate = () => {
                 label="Appointment Time"
                 onChange={(newValue) => handleTime(newValue)}
                 className="w-full"
+                ampm = {false}
               />
             </DemoContainer>
           </LocalizationProvider>

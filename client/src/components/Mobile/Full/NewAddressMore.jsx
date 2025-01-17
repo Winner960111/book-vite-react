@@ -72,7 +72,7 @@ const NewInterestMore = () => {
     setError('');
     let pass = 0;
     if (!residental) {
-      setError('*Status is required');
+      setError('*Residental Status is required');
     } else {
       pass += 1;
     }
@@ -91,26 +91,6 @@ const NewInterestMore = () => {
       pass += 1;
     }
     if (pass == 3) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Full',
-      //   last_question: '12',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setResidentalMonths(residentalMonth));
       dispatch(setResidentalYears(residentalYear));
@@ -131,7 +111,7 @@ const NewInterestMore = () => {
           <FormControl variant="filled" sx={{ my: 1, width: '100%' }}>
             <InputLabel
               id="demo-simple-select-standard-label"
-              style={{ fontSize: '15px' }}
+              style={{ fontSize: '16px' }}
             >
               Residental status
             </InputLabel>
@@ -150,9 +130,6 @@ const NewInterestMore = () => {
               <MenuItem value={'Other'}>Other</MenuItem>
             </Select>
           </FormControl>
-          {/* <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-            What is your residental status in this address?
-          </p> */}
           <TextField
             variant="standard"
             defaultValue="Normal"
@@ -171,7 +148,7 @@ const NewInterestMore = () => {
             }}
             InputLabelProps={{
               style: {
-                fontSize: '20px',
+                fontSize: '16px',
               },
             }}
             disabled={step >= 16 ? true : false}
@@ -195,7 +172,7 @@ const NewInterestMore = () => {
             }}
             InputLabelProps={{
               style: {
-                fontSize: '20px',
+                fontSize: '16px',
               },
             }}
             disabled={step >= 16 ? true : false}

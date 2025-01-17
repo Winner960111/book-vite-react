@@ -17,19 +17,6 @@ const InputBirthday = () => {
     step,
     history,
     checkerBirthday,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -43,14 +30,20 @@ const InputBirthday = () => {
   const handleBirthday = (value) => {
     setError('');
     console.log('value==>', value);
-    let year, month, date;
+    let year, month, date, temp;
     year = value.$y;
     month = parseInt(value.$M) + 1;
     date = value.$D;
     if (Number(year) < 1900 || Number(year) > 2100) {
       setError('*Invalid Date');
     }
-    setBirthday(year + '-' + String(month) + '-' + date);
+
+    if (month < 10) {
+      temp = '0' + String(month);
+    } else {
+      temp = String(month);
+    }
+    setBirthday(temp + '/' + date + '/' + year);
   };
 
   const handleSubmit = async (e) => {

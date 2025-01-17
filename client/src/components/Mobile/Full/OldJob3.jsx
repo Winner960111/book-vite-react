@@ -89,7 +89,7 @@ const OldJob3 = () => {
         )}
       >
         <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-          What is your current job information?
+          What is your previous job information?
         </p>
         <div
           className="my-2 flex flex-col items-center"
@@ -115,7 +115,8 @@ const OldJob3 = () => {
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  paddingTop: '10px',
+                  fontSize: '16px',
                 },
               }}
             />
@@ -125,7 +126,7 @@ const OldJob3 = () => {
             >
               <InputLabel
                 id="demo-simple-select-standard-label"
-                style={{ fontSize: '15px' }}
+                style={{ fontSize: '15px', paddingRight: '10px' }}
               >
                 Were you full time or part time?
               </InputLabel>

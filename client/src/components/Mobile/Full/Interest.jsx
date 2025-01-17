@@ -134,7 +134,7 @@ const Interest = () => {
             }}
             InputLabelProps={{
               style: {
-                fontSize: '20px',
+                fontSize: '16px',
               },
             }}
             disabled={step >= 14 ? true : false}
@@ -155,7 +155,7 @@ const Interest = () => {
             }}
             InputLabelProps={{
               style: {
-                fontSize: '20px',
+                fontSize: '16px',
               },
             }}
             disabled={step >= 14 ? true : false}
@@ -177,7 +177,7 @@ const Interest = () => {
             }}
             InputLabelProps={{
               style: {
-                fontSize: '20px',
+                fontSize: '16px',
               },
             }}
             disabled={step >= 14 ? true : false}
@@ -198,7 +198,7 @@ const Interest = () => {
             }}
             InputLabelProps={{
               style: {
-                fontSize: '20px',
+                fontSize: '16px',
               },
             }}
             disabled={step >= 14 ? true : false}

@@ -17,19 +17,6 @@ const InputBirthday = () => {
     step,
     history,
     checkerBirthday,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
    } = useSelector(
       (state) => state.checker
     );
@@ -45,14 +32,19 @@ const InputBirthday = () => {
   const handleBirthday = (value) => {
     setError('');
     console.log('value==>', value);
-    let year, month, date;
+    let year, month, date, temp;
     year = value.$y;
     month = parseInt(value.$M) + 1;
     date = value.$D;
     if (Number(year) < 1900 || Number(year) > 2100) {
       setError('*Invalid Date');
     }
-    setBirthday(year + '-' + String(month) + '-' + date);
+    if (month < 10) {
+      temp = '0' + String(month);
+    } else {
+      temp = String(month);
+    }
+    setBirthday(temp + '/' + date + '/' + year);
   };
 
   const handleSubmit = async (e) => {
@@ -61,26 +53,6 @@ const InputBirthday = () => {
     if (!birthday.trim()) {
       setError('You should input your birthday');
     } else {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Short',
-      //   last_question: '6',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerBirthday(birthday));
       setBirthday('');

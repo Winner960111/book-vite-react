@@ -129,7 +129,7 @@ const Confirm = () => {
           <FormControl variant="filled" sx={{ minWidth: 120, width:"100%" }}>
             <InputLabel
               id="demo-simple-select-standard-label"
-              style={{ fontSize: '20px' }}
+              style={{ fontSize: '16px' }}
             >
               Extra income frequency
             </InputLabel>
@@ -160,7 +160,7 @@ const Confirm = () => {
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                fontSize: '16px',
               },
             }}
           />
@@ -179,7 +179,7 @@ const Confirm = () => {
             }}
             InputLabelProps={{
               style: {
-                fontSize: '25px',
+                fontSize: '16px',
               },
             }}
           />

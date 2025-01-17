@@ -2,26 +2,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
 import { addHistory, setMonthlyPay } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';
 
 const NewInterestMore = () => {
   const {
     step,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
+  
     history,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
@@ -44,27 +31,9 @@ const NewInterestMore = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    if (pay !== '') {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Full',
-      //   last_question: '13',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
+    if (pay == '') {
+      setError('*Please enter a valid amount');
+    } else{
       dispatch(addHistory(true));
       dispatch(setMonthlyPay(pay));
     }
@@ -100,7 +69,8 @@ const NewInterestMore = () => {
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '25px',
+                  paddingTop: '10px',
+                  fontSize: '16px',
                 },
               }}
             />

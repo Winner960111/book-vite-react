@@ -101,8 +101,8 @@ const SendPhoneVerificationCode = () => {
           request, You&apos;re in control of your messaging. Reply
           &lsquo;Stop&rsquo; to unsubscribe at any time. Please review our
           privacy policy at{' '}
-          <a href="https://www.riderflow.app/privacy/">
-            https://www.riderflow.app/privacy/
+          <a href="https://www.riderflow.app/privacy/" target='_blank' rel="noreferrer" style={{color:'blue'}}>
+            here
           </a>{' '}
           for more details.
         </p>

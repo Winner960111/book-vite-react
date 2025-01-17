@@ -23,7 +23,7 @@ const Greeting = () => {
 
   const renderConfirmButton = () => (
     <button
-      className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-2xl mt-2 py-4"
+      className="w-full border-black border-2 rounded-md text-black hover:bg-black hover:text-white font-medium text-lg mt-2 py-4"
       onClick={handleConfirmClick}
     >
       GET STARTED NOW

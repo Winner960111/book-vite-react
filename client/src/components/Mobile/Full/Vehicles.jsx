@@ -94,7 +94,7 @@ const Vehicle = () => {
           >
             <InputLabel
               id="demo-simple-select-standard-label"
-              style={{ fontSize: '15px' }}
+              style={{ fontSize: '15px', paddingRight: '10px' }}
             >
               What vehicle are you interested in?
             </InputLabel>

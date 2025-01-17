@@ -29,19 +29,6 @@ const NewInterest = () => {
 
   const {
     step,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -137,26 +124,6 @@ const NewInterest = () => {
       pass += 1;
     }
     if (pass == 3) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Full',
-      //   last_question: '11',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerAddress(address));
       dispatch(setCheckerApt(apt));
@@ -185,9 +152,9 @@ const NewInterest = () => {
               height: '50px',
             }}
           >
-            <GiPositionMarker className="text-4xl mx-2" />
+            <GiPositionMarker className="text-2xl mx-2" />
             <InputBase
-              sx={{ ml: 1, flex: 1, fontSize: '25px' }}
+              sx={{ ml: 1, flex: 1, fontSize: '16px' }}
               placeholder="Search Google Maps"
               inputProps={{ 'aria-label': 'search google maps' }}
               autoComplete="off"
@@ -216,7 +183,7 @@ const NewInterest = () => {
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '20px',
+                  fontSize: '16px',
                   textAlign: 'center',
                 },
               }}
@@ -242,7 +209,7 @@ const NewInterest = () => {
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '20px',
+                  fontSize: '16px',
                 },
               }}
               disabled={step >= 15 ? true : false}
@@ -262,12 +229,12 @@ const NewInterest = () => {
               InputProps={{
                 style: {
                   height: '40px', // Set the height of the TextField
-                  fontSize: '20px',
+                  fontSize: '16px',
                 },
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '20px',
+                  fontSize: '16px',
                 },
               }}
               disabled={step >= 15 ? true : false}
@@ -292,7 +259,7 @@ const NewInterest = () => {
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '20px',
+                  fontSize: '16px',
                 },
               }}
               disabled={step >= 15 ? true : false}

@@ -188,7 +188,6 @@ const Submit = () => {
       console.log('status ImageSend', res);
       dispatch(addHistory(true));
       setLoading(false)
-      navigate(-1);
     } else {
       console.log('Faild ImageSend');
     }

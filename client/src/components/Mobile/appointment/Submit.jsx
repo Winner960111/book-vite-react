@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const {
     step,
@@ -20,17 +21,6 @@ const Submit = () => {
     checkerMiddleName,
     checkerEmail,
     vehicleType,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // intentID,
-    // type,
     appointDate,
     appointTime,
     timezone
@@ -40,27 +30,7 @@ const Submit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const intent_data = {
-    //   dealer_id: dealerId,
-    //   device_ip_address: deviceIP,
-    //   device_operating_system: deviceOS,
-    //   device_browser: deviceBrowser,
-    //   device_type: type,
-    //   device_state: deviceState,
-    //   device_city: deviceCity,
-    //   device_country: deviceCountry,
-    //   device_date_time: deviceDate,
-    //   device_lat: deviceLat,
-    //   device_lon: deviceLon,
-    //   status: 'Completed',
-    //   lang: 'EN',
-    //   phone: checkerMobileNumber,
-    //   page: 'Book Appointment',
-    //   last_question: '5',
-    // };
-    // const intent_res = await usersUpdate(intent_data, intentID);
-    // console.log('this is update results ====>', intent_res);
-
+    setLoading(true);
     const appointData = {
       dealer_id: dealerId,
       first_name: checkerFirstName,
@@ -86,7 +56,7 @@ const Submit = () => {
     if (appointRes.status == 201) {
       console.log('status ImageSend', appointRes);
       dispatch(addHistory(true));
-      navigate(-1)
+      setLoading(false)
     } else {
       console.log('Faild ImageSend');
     }
@@ -178,6 +148,8 @@ const Submit = () => {
           Submit
         </button>
       </form>
+      <div className= {loading? "mt-10 flex justify-center": "mt-10 flex justify-center hidden"}><img src="/ZZ5H.gif" alt="loading.." className='w-10'/>
+    </div>    
     </>
   );
 

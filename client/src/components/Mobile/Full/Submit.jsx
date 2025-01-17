@@ -318,7 +318,6 @@ const Submit = () => {
       console.log('status CustomerItems_Send', res);
       dispatch(addHistory(true));
       setLoading(false)
-      navigate(-1)
     } else {
       console.log('Faild CustomerItems_Send');
     }

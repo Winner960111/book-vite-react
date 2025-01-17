@@ -79,6 +79,7 @@ const AppointmentDate = () => {
   };
 
   const handleTime = (value) => {
+    console.log("This is time====>", value);
     if (!appointmentDate) {
       setErrorTime('*Input Date first');
     } else {
@@ -115,24 +116,6 @@ const AppointmentDate = () => {
 
     console.log('this is date and time====>', appointmentDate, appointmentTime);
     if (pass == 2) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Book Appointment',
-      //   last_question: '1',
-      // };
       const data = {
         dealer_id: dealerId,
         mobile_phone: checkerMobileNumber,
@@ -197,6 +180,7 @@ const AppointmentDate = () => {
                 label="Appointment Time"
                 onChange={(newValue) => handleTime(newValue)}
                 className="w-full"
+                ampm = {false}
               />
             </DemoContainer>
           </LocalizationProvider>

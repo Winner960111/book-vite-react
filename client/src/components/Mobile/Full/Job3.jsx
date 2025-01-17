@@ -131,7 +131,7 @@ const Job3 = () => {
             >
               <InputLabel
                 id="demo-simple-select-standard-label"
-                style={{ fontSize: '15px' }}
+                style={{ fontSize: '15px', paddingRight:'10px' }}
               >
                 Are you full time or part time?
               </InputLabel>

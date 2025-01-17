@@ -148,9 +148,9 @@ const OldJob2 = () => {
               height: '50px',
             }}
           >
-            <GiPositionMarker className="text-4xl mx-2" />
+            <GiPositionMarker className="text-2xl mx-2" />
             <InputBase
-              sx={{ ml: 1, flex: 1, fontSize: '25px' }}
+              sx={{ ml: 1, flex: 1, fontSize: '16px' }}
               placeholder="Search Google Maps"
               inputProps={{ 'aria-label': 'search google maps' }}
               autoComplete="off"
@@ -179,7 +179,7 @@ const OldJob2 = () => {
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '20px',
+                  fontSize: '16px',
                   textAlign: 'center',
                 },
               }}
@@ -205,7 +205,7 @@ const OldJob2 = () => {
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '20px',
+                  fontSize: '16px',
                 },
               }}
               disabled={step >= 25 ? true : false}
@@ -230,7 +230,7 @@ const OldJob2 = () => {
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '20px',
+                  fontSize: '16px',
                 },
               }}
               disabled={step >= 25 ? true : false}
@@ -255,7 +255,7 @@ const OldJob2 = () => {
               }}
               InputLabelProps={{
                 style: {
-                  fontSize: '20px',
+                  fontSize: '16px',
                 },
               }}
               disabled={step >= 25 ? true : false}

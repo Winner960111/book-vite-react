@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const {
     step,
@@ -22,13 +23,10 @@ const Submit = () => {
     commentValue,
   } = useSelector((state) => state.checker);
 
-  const navigate = useNavigate();
-  const returnBack = () => {
-    navigate(-1)
-  }
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
     const data = {
         dealer_id: dealerId,
         first_name: checkerFirstName,
@@ -45,7 +43,7 @@ const Submit = () => {
     if (res.status == 201) {
       console.log('status ImageSend', res);
       dispatch(addHistory(true));
-      returnBack()
+      setLoading(false)
     } else {
       console.log('Faild ImageSend');
     }
@@ -137,6 +135,7 @@ const Submit = () => {
           Submit
         </button>
       </form>
+      <div className={loading ? "mt-10 flex justify-center" : "mt-10 flex justify-center hidden"}><img src="/ZZ5H.gif" alt="loading.." className='w-10' /></div>
     </>
   );
 

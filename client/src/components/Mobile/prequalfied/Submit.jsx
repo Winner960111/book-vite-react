@@ -4,7 +4,6 @@ import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { signatureImg } from '../../../api/index';
-import { useNavigate } from "react-router-dom"
 import './Canvas.css';
 
 const Submit = () => {
@@ -28,7 +27,6 @@ const Submit = () => {
     checkerZipcode,
   } = useSelector((state) => state.checker);
 
-  const navigate = useNavigate()
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);

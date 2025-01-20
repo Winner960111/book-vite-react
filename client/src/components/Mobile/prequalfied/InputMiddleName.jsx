@@ -5,25 +5,14 @@ import {
   addHistory,
   setCheckerMiddleName,
   setCheckerIsSkipMiddleName,
+  removeHistory,
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
+import { MdModeEditOutline } from "react-icons/md";
 
 const InputMiddleName = () => {
-  const { step, history, checkerMiddleName, checkerIsSkipMiddleName, intentID,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber, } =
+  const { step, history, checkerMiddleName, checkerIsSkipMiddleName, } =
     useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -47,31 +36,16 @@ const InputMiddleName = () => {
     } else if (!/^[A-Za-z]+$/.test(middleName)) {
       setError('The middle name contains only characters');
     } else {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Short',
-        last_question: '2',
-      };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
+
       dispatch(addHistory(true));
       dispatch(setCheckerMiddleName(middleName));
       setMiddleName('');
     }
   };
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const skipMiddleName = () => {
     dispatch(setCheckerIsSkipMiddleName(true));
@@ -139,8 +113,10 @@ const InputMiddleName = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         {checkerMiddleName}
+        <MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+        
       </div>
     </div>
   );

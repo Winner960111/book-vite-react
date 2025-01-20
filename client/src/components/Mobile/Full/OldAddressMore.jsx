@@ -7,7 +7,6 @@ import {
   setPreviousResidentalMonths,
   setPreviousResidentalStatus,
 } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
@@ -18,19 +17,7 @@ import Select from '@mui/material/Select';
 const OldAddressMore = () => {
   const {
     step,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
+   
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -87,26 +74,7 @@ const OldAddressMore = () => {
       pass += 1;
     }
     if (pass == 3) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Full',
-      //   last_question: '15',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
+      
       dispatch(addHistory(true));
       dispatch(setPreviousResidentalMonths(residentalMonth));
       dispatch(setPreviousResidentalYears(residentalYear));
@@ -146,9 +114,6 @@ const OldAddressMore = () => {
               <MenuItem value={'Other'}>Other</MenuItem>
             </Select>
           </FormControl>
-          {/* <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-            What is your residental status in this address?
-          </p> */}
           <TextField
             variant="standard"
             defaultValue="Normal"

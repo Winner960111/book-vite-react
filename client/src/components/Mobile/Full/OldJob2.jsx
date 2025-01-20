@@ -9,7 +9,6 @@ import {
   setJobState,
   setJobZipcode,
 } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import { GiPositionMarker } from 'react-icons/gi';
 import Paper from '@mui/material/Paper';

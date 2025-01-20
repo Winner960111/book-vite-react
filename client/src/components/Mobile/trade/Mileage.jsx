@@ -1,28 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
-import { addHistory, setMileageHour } from '../../../store/reducers/checker';
+import { addHistory, setMileageHour, removeHistory, } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-// import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
+import { MdModeEditOutline } from "react-icons/md";
 
 const Mileage = () => {
   const {
     step,
     history,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -37,29 +24,13 @@ const Mileage = () => {
     setError('');
     setYear('');
   }, []);
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // const data = {
-    //   dealer_id: dealerId,
-    //   device_ip_address: deviceIP,
-    //   device_operating_system: deviceOS,
-    //   device_browser: deviceBrowser,
-    //   device_type: type,
-    //   device_state: deviceState,
-    //   device_city: deviceCity,
-    //   device_country: deviceCountry,
-    //   device_date_time: deviceDate,
-    //   device_lat: deviceLat,
-    //   device_lon: deviceLon,
-    //   status: 'Started',
-    //   lang: 'EN',
-    //   phone: checkerMobileNumber,
-    //   page: 'Trade In',
-    //   last_question: '7',
-    // };
-    // const res = await usersUpdate(data, intentID);
-    // console.log('this is update results ====>', res);
     if (!year) {
       setError('Required');
     } else if (!/^[0-9]+$/.test(year)) {
@@ -124,8 +95,10 @@ const Mileage = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         {year}
+<MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+
       </div>
     </div>
   );

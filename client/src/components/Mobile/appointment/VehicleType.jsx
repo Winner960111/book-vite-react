@@ -5,31 +5,17 @@ import { classNames } from '../../../utils';
 import {
   addHistory,
   setVehicleType,
+  removeHistory,
 } from '../../../store/reducers/checker';
-// import { vehicleList } from '../../../api/index';
-// import { useParams } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { MdModeEditOutline } from "react-icons/md";
 
 const VehicleType = () => {
-  // const { dealer_id } = useParams()
   const {
     step,
-    // type,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // checkerMobileNumber,
     vehicleType,
     history,
   } = useSelector((state) => state.checker);
@@ -51,6 +37,10 @@ const VehicleType = () => {
   // useEffect(() => {
   //   vehicleListGet()
   // }, [])
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const handleSubmit = async () => {
     if (!select) {
@@ -126,8 +116,10 @@ const VehicleType = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         {vehicleType}
+<MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+
       </div>
     </div>
   );

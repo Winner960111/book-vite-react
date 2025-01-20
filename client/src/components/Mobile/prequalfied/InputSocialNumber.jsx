@@ -3,11 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   addHistory,
   setCheckerSocialNumber,
+  removeHistory,
 } from '../../../store/reducers/checker';
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';
+import { MdModeEditOutline } from "react-icons/md";
+
 const InputSocialNumber = () => {
+
   const { step, history, checkerSocialNumber } = useSelector(
       (state) => state.checker
     );
@@ -24,6 +28,10 @@ const InputSocialNumber = () => {
   const hideCheckerSocialNumber = () => {
     return `xxx-xx-${checkerSocialNumber.slice(-4)}`;
   };
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const handleChangeInputSocialNumber = (e) => {
     setError(null);
@@ -104,8 +112,9 @@ const InputSocialNumber = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white" onClick={()=>setSecurity(!security)}>
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative" onClick={()=>setSecurity(!security)}>
         <p>{security?hideCheckerSocialNumber(checkerSocialNumber):checkerSocialNumber}</p>
+        <MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
       </div>
     </div>
   );

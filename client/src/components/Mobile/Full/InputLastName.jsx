@@ -4,33 +4,24 @@ import BotIcon from './BotIcon';
 import {
   addHistory,
   setCheckerLastName,
+  removeHistory,
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-// import { usersUpdate } from '../../../api/index';
 import { TextField } from '@mui/material';
+import { MdModeEditOutline } from "react-icons/md";
 
 const InputLastName = () => {
-  const { step, history, checkerLastName, 
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber, 
-  } = useSelector(
+  const { step, history, checkerLastName, } = useSelector(
       (state) => state.checker
     );
   const dispatch = useDispatch();
 
   const [lastName, setLastName] = useState('');
   const [error, setError] = useState(null);
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   useEffect(() => {
     setError(null);
@@ -127,8 +118,9 @@ const InputLastName = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         {checkerLastName}
+        <MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
       </div>
     </div>
   );

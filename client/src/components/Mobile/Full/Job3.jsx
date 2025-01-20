@@ -6,6 +6,7 @@ import {
   setJobSalary,
   setJobstatus,
   setJobYear,
+
 } from '../../../store/reducers/checker';
 // import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
@@ -44,7 +45,7 @@ const Job3 = () => {
   useEffect(() => {
     console.log("this is job kind===>", jobKind)
   }, [jobKind])
-
+  
   const handleEDate = (value) => {
     setError('');
     console.log('value==>', value);

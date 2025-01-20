@@ -5,9 +5,12 @@ import { checkPhoneNumber, checkPhoneNumberCall } from '../../api/index';
 import {
   addHistory,
   setCheckerMobileNumber,
+  removeHistory,
 } from '../../store/reducers/checker';
 import { classNames } from '../../utils';
 import { TextField } from '@mui/material';
+import { MdModeEditOutline } from "react-icons/md";
+
 const SendPhoneVerificationCode = () => {
   const { history, step, dealerId, checkerMobileNumber } = useSelector(
     (state) => state.checker
@@ -71,6 +74,10 @@ const SendPhoneVerificationCode = () => {
       }
     }
   };
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const renderDescription = () => (
     <>
@@ -159,8 +166,9 @@ const SendPhoneVerificationCode = () => {
   );
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-sm md:text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         {checkerMobileNumber}
+        <MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
       </div>
     </div>
   );

@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   addHistory,
   setCheckerBirthday,
+  removeHistory,
 } from '../../../store/reducers/checker';
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
-// import { usersUpdate } from '../../../api/index';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { MdModeEditOutline } from "react-icons/md";
 
 const InputBirthday = () => {
   const { 
@@ -28,6 +29,10 @@ const InputBirthday = () => {
   useEffect(() => {
     setError(null);
   }, [step]);
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const handleBirthday = (value) => {
     setError('');
@@ -112,8 +117,9 @@ const InputBirthday = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-sm md:text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         <p>{checkerBirthday}</p>
+        <MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
       </div>
     </div>
   );

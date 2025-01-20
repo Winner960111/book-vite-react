@@ -14,7 +14,6 @@ const ThirdPage = () => {
     checkerLastName,
     checkerEmail,
     dealType,
-    vin,
     instantYear,
     instantMake,
     instantModel,

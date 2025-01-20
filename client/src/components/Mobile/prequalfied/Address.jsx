@@ -9,6 +9,7 @@ import {
   setCheckerLocality,
   setCheckerState,
   setCheckerZipcode,
+  removeHistory,
 } from '../../../store/reducers/checker';
 import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
 import Paper from '@mui/material/Paper';
@@ -16,6 +17,7 @@ import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import { MdModeEditOutline } from "react-icons/md";
 
 const Address = () => {
   const [address, setAddress] = useState('');
@@ -30,12 +32,13 @@ const Address = () => {
     step,
     history,
     checkerAddress,
-    checkerLocality,
-    checkerState,
-    checkerZipcode,
   } = useSelector((state) => state.checker);
 
   const addressRef = useRef(null);
+  
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   useEffect(() => {
     setErrors({});
@@ -230,11 +233,9 @@ const Address = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-sm md:text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         <p>{checkerAddress}</p>
-        {/* <p>
-          {checkerLocality} {checkerState} {checkerZipcode}
-        </p> */}
+        <MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
       </div>
     </div>
   );

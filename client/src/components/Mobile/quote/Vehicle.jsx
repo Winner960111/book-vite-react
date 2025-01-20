@@ -5,10 +5,12 @@ import {
   addHistory,
   setCheckerIsSkipMiddleName,
   setQuoteInterest,
+removeHistory,
+
 } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-// import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
+import { MdModeEditOutline } from "react-icons/md";
 
 const Vehicle = () => {
   const {
@@ -16,19 +18,6 @@ const Vehicle = () => {
     history,
     checkerIsSkipMiddleName,
     quoteInterest,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
     vehicleMake,
     vehicleModel,
     vehicleYear,
@@ -52,6 +41,10 @@ const Vehicle = () => {
   const handleModel = (e) => {
     setModel(e.target.value);
   };
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -191,8 +184,10 @@ const Vehicle = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         {quoteInterest}
+<MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import { addHistory } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { MessageDealer } from '../../../api/index';
-import { useNavigate } from 'react-router-dom'
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);

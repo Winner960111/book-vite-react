@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
-import { addHistory, setMonthlyPay } from '../../../store/reducers/checker';
+import { addHistory, setMonthlyPay} from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import BotIcon from './BotIcon';
-import { addHistory } from '../../../store/reducers/checker';
+import { addHistory,} from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import { SubmitTrade } from '../../../api/index';
@@ -29,6 +29,7 @@ const Submit = () => {
     originalOwner,
     commentValue
   } = useSelector((state) => state.checker);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

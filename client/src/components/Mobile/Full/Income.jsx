@@ -4,9 +4,9 @@ import {
   addHistory,
   setIncomeAmount,
   setSourceIncome,
-  setIncomeFrequency
+  setIncomeFrequency,
+  removeHistory,
 } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
@@ -14,26 +14,15 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { useState, useEffect } from 'react';
+import { MdModeEditOutline } from "react-icons/md";
 
-const Confirm = () => {
+const Income = () => {
   const {
     incomeAmount,
     sourceIncome,
     step,
     history,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
+    confirm,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [error, setError] = useState('');
@@ -58,6 +47,10 @@ const Confirm = () => {
   const handleFrequency = (e) => {
     setFrequency(e.target.value);
   };
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   useEffect(() => {
     setError('');
@@ -84,26 +77,6 @@ const Confirm = () => {
     }
 
     if (pass == 3) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Full',
-      //   last_question: '18',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setIncomeAmount(amountIncome));
       dispatch(setSourceIncome(howIncome));
@@ -199,10 +172,11 @@ const Confirm = () => {
   );
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         Amount of income:{incomeAmount}
         <br />
         Source of income: {sourceIncome}
+        <MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
       </div>
     </div>
   );
@@ -212,8 +186,13 @@ const Confirm = () => {
         <>
           {history[27] == true ? (
             <>
-              {renderDescription()}
+            {confirm == "No"? null:
+              (<>
+                {renderDescription()}
               {renderReply()}
+              </>
+              )
+            }
             </>
           ) : (
             renderDescription()
@@ -223,4 +202,4 @@ const Confirm = () => {
     </>
   );
 };
-export default Confirm;
+export default Income;

@@ -6,16 +6,13 @@ import {
   setVehicleCondition,
   setVehicleType,
 } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
-// import { useParams } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const Vehicle = () => {
-  // const { dealer_id } = useParams();
   const {
     step,
   } = useSelector((state) => state.checker);
@@ -25,16 +22,10 @@ const Vehicle = () => {
   const [select, setSelect] = useState('');
   const [condition, setCondition] = useState('');
   const [error, setError] = useState('');
-
-  // const vehicleListGet = async () => {
-  //   const vehicleLists = await vehicleList(dealer_id);
-  //   setVehicles(vehicleLists.data.sold_by_dealer);
-  // };
   useEffect(() => {
     setError('');
     setCondition('');
     setSelect('');
-    // vehicleListGet();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -53,26 +44,6 @@ const Vehicle = () => {
     if (pass == 2) {
       dispatch(setVehicleCondition(condition));
       dispatch(setVehicleType(select));
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Full',
-      //   last_question: '9',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
     }
   };

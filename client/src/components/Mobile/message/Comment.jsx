@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import BotIcon from './BotIcon';
-import { addHistory, setCommentValue } from '../../../store/reducers/checker';
+import { addHistory, setCommentValue, removeHistory, } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
+import { MdModeEditOutline } from "react-icons/md";
 
 const Inputcomment = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,10 @@ const Inputcomment = () => {
     setError(null);
     setComment('');
   }, [step]);
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const handleChangeInput = (e) => {
     setComment(e.target.value);
@@ -76,8 +81,10 @@ const Inputcomment = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         {commentValue}
+<MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+
       </div>
     </div>
   );

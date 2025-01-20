@@ -6,8 +6,8 @@ import {
   setJobSalary,
   setJobstatus,
   setJobYear,
+  removeHistory,
 } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
@@ -18,6 +18,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { MdModeEditOutline } from "react-icons/md";
 
 const OldJob3 = () => {
   const {
@@ -44,6 +45,10 @@ const OldJob3 = () => {
     setPay('');
     setJobKind('');
   }, []);
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const handleEDate = (value) => {
     setError('');
@@ -176,12 +181,14 @@ const OldJob3 = () => {
   );
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         Salary:{jobSalary}
         <br />
         Job kind:{jobstatus}
         <br />
         Start working date: {jobYear}
+<MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+
       </div>
     </div>
   );

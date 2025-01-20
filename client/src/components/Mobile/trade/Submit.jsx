@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import BotIcon from './BotIcon';
 import { addHistory } from '../../../store/reducers/checker';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, removeHistory, } from 'react-redux';
 import { classNames } from '../../../utils';
 import { SubmitTrade } from '../../../api/index';
+import { MdModeEditOutline } from "react-icons/md";
 
 const Submit = () => {
   const [readStatePara1, setReadStatePara1] = useState(false);
@@ -29,6 +30,11 @@ const Submit = () => {
     originalOwner,
     commentValue
   } = useSelector((state) => state.checker);
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -156,11 +162,13 @@ const Submit = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         <p>
           Our team is already working diligently to review your information and
           will get back to you promptly with the next steps.
         </p>
+<MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+
       </div>
     </div>
   );

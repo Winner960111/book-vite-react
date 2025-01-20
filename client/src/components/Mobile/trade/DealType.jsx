@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import BotIcon from './BotIcon';
 import { classNames } from '../../../utils';
 import { addHistory, setDealType } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 
 const DealType = () => {
   const {

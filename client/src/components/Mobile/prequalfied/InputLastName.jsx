@@ -11,19 +11,7 @@ import { TextField } from '@mui/material';
 import { MdModeEditOutline } from "react-icons/md";
 
 const InputLastName = () => {
-  const { step, history, checkerLastName,
-    dealerId,
-    deviceIP,
-    deviceOS,
-    deviceCity,
-    deviceCountry,
-    deviceState,
-    deviceDate,
-    deviceLat,
-    deviceLon,
-    deviceBrowser,
-    type,
-    checkerMobileNumber, } = useSelector(
+  const { step, history, checkerLastName, } = useSelector(
       (state) => state.checker
     );
   const dispatch = useDispatch();
@@ -52,26 +40,6 @@ const InputLastName = () => {
     } else if (!/^[A-Za-z]+$/.test(lastName)) {
       setError('The last name contains only characters');
     } else {
-      const data = {
-        dealer_id: dealerId,
-        device_ip_address: deviceIP,
-        device_operating_system: deviceOS,
-        device_browser: deviceBrowser,
-        device_type: type,
-        device_state: deviceState,
-        device_city: deviceCity,
-        device_country: deviceCountry,
-        device_date_time: deviceDate,
-        device_lat: deviceLat,
-        device_lon: deviceLon,
-        status: 'Started',
-        lang: 'EN',
-        phone: checkerMobileNumber,
-        page: 'Short',
-        last_question: '3',
-      };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerLastName(lastName));
       setLastName('');

@@ -8,26 +8,12 @@ import {
   setInstantModel,
   setPayDown,
 } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';
 
 const Interest = () => {
   const {
     step,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
     vehicleYear,
     vehicleMake,
     vehicleModel,

@@ -4,9 +4,9 @@ import {
   addHistory,
   setIncomeAmount,
   setSourceIncome,
-  setIncomeFrequency
+  setIncomeFrequency,
+  removeHistory,
 } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
@@ -14,6 +14,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { useState, useEffect } from 'react';
+import { MdModeEditOutline } from "react-icons/md";
 
 const Confirm = () => {
   const {
@@ -21,19 +22,6 @@ const Confirm = () => {
     sourceIncome,
     step,
     history,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [error, setError] = useState('');
@@ -58,6 +46,10 @@ const Confirm = () => {
   const handleFrequency = (e) => {
     setFrequency(e.target.value);
   };
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   useEffect(() => {
     setError('');
@@ -199,10 +191,11 @@ const Confirm = () => {
   );
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         Amount of income:{incomeAmount}
         <br />
         Source of income: {sourceIncome}
+        <MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
       </div>
     </div>
   );

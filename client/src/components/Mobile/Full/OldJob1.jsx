@@ -6,27 +6,15 @@ import {
   setPrevjobOccupation,
   setPrevEmployerName,
   setPrevEmployerPhoneNumber,
+  removeHistory,
 } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';
+import { MdModeEditOutline } from "react-icons/md";
 
 const OldJob1 = () => {
   const {
     step,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
     history,
     prevjobOccupation,
     prevemployerName,
@@ -56,6 +44,10 @@ const OldJob1 = () => {
       inputValue.substring(6, 10);
     setEnumber(formattedInputValue);
   };
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -193,12 +185,14 @@ const OldJob1 = () => {
   );
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         occupation:{prevjobOccupation}
         <br />
         employeer name:{prevemployerName}
         <br />
         employeer Phone number: {prevemployerPhoneNumber}
+<MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+
       </div>
     </div>
   );

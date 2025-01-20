@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import BotIcon from './BotIcon';
-import { addHistory, setCheckerEmail } from '../../../store/reducers/checker';
+import { addHistory, setCheckerEmail, removeHistory, } from '../../../store/reducers/checker';
 import { classNames } from '../../../utils';
-// import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from 'react-redux';
+import { MdModeEditOutline } from "react-icons/md";
 
 const InputEmail = () => {
   const {
@@ -12,19 +12,6 @@ const InputEmail = () => {
     history,
     dealerName,
     checkerEmail,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
@@ -34,6 +21,10 @@ const InputEmail = () => {
   useEffect(() => {
     setError(null);
   }, [step]);
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const handleChangeInputEmail = (e) => {
     setError(null);
@@ -48,26 +39,6 @@ const InputEmail = () => {
     } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       setError('Invalid email type');
     } else {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Get Quote',
-      //   last_question: '3',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerEmail(email));
       setEmail('');
@@ -127,8 +98,10 @@ const InputEmail = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         <p>{checkerEmail}</p>
+<MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+
       </div>
     </div>
   );

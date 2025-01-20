@@ -7,7 +7,6 @@ import {
   setResidentalMonths,
   setResidentalStatus,
 } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
@@ -16,22 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
 const NewInterestMore = () => {
-  const {
-    step,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
-  } = useSelector((state) => state.checker);
+  const { step } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [residental, setResidental] = useState('');

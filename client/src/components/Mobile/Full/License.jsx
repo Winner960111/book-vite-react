@@ -16,22 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const License = () => {
-  const {
-    step,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
-  } = useSelector((state) => state.checker);
+  const { step } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
 
   const [driverNumber, setdriverNumber] = useState('');
@@ -90,26 +75,6 @@ const License = () => {
       pass += 1;
     }
     if (pass == 3) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Full',
-      //   last_question: '7',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(setDriverNumber(driverNumber));
       dispatch(setDriverDate(driverDate));
       dispatch(setDriverState(driverState));
@@ -189,9 +154,6 @@ const License = () => {
             <p className="text-red-500 pl-2 mt-1">{error}</p>
           ) : null}
         </div>
-        {/* <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-          Please input correct info.
-        </p> */}
         <button
           type="submit"
           className="w-full border-black border-2 rounded-md py-4 text-black hover:bg-black hover:text-white font-medium text-2xl mt-2"

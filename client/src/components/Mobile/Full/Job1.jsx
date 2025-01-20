@@ -6,10 +6,12 @@ import {
   setJobOccupation,
   setEmployerName,
   setEmployerPhoneNumber,
+  removeHistory,
 } from '../../../store/reducers/checker';
 // import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';
+import { MdModeEditOutline } from "react-icons/md";
 
 const Job1 = () => {
   const {
@@ -32,6 +34,11 @@ const Job1 = () => {
     setEname('');
     setEnumber('');
   }, []);
+
+         
+const editFunction = () => {
+  dispatch(removeHistory())
+}
 
   const handleEnumber = (e) => {
     const inputValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
@@ -181,12 +188,13 @@ const Job1 = () => {
   );
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         current occupation:{jobOccupation}
         <br />
         Employeer name:{employerName}
         <br />
         Employeer Phone number: {employerPhoneNumber}
+        <MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
       </div>
     </div>
   );

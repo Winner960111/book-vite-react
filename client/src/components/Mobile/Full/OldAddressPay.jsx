@@ -4,27 +4,15 @@ import BotIcon from './BotIcon';
 import {
   addHistory,
   setPreviousMonthlyPay,
+  removeHistory,
 } from '../../../store/reducers/checker';
-// import { usersUpdate } from '../../../api/index';
 import { classNames } from '../../../utils';
 import { TextField } from '@mui/material';
+import { MdModeEditOutline } from "react-icons/md";
 
 const NewInterestMore = () => {
   const {
     step,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
     history,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
@@ -37,6 +25,10 @@ const NewInterestMore = () => {
     setPay('');
   }, []);
 
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
+
   const handlePay = (e) => {
     if (/^[+-]?\d+(\.\d*)?$/.test(e.target.value) || !e.target.value.trim()) {
       setPay(e.target.value)
@@ -48,26 +40,6 @@ const NewInterestMore = () => {
     e.preventDefault();
     setError('');
     if (pay !== '') {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Full',
-      //   last_question: '16',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setPreviousMonthlyPay(pay));
     }
@@ -128,8 +100,10 @@ const NewInterestMore = () => {
   );
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         {pay}
+        <MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+
       </div>
     </div>
   );

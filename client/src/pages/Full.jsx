@@ -195,7 +195,7 @@ const Full = (props) => {
             <OldJob3 />
           ) : null}
           <Confirm />
-          {confirm === 'No' && step == 27 ? plusStep() : <Income />}
+          {confirm == "No" && step == 27 ? plusStep() : <Income />}
           <Submit />
         </div>
       </div>

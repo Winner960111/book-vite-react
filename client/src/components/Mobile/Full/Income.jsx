@@ -16,12 +16,13 @@ import MenuItem from '@mui/material/MenuItem';
 import { useState, useEffect } from 'react';
 import { MdModeEditOutline } from "react-icons/md";
 
-const Confirm = () => {
+const Income = () => {
   const {
     incomeAmount,
     sourceIncome,
     step,
     history,
+    confirm,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
   const [error, setError] = useState('');
@@ -76,26 +77,6 @@ const Confirm = () => {
     }
 
     if (pass == 3) {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Full',
-      //   last_question: '18',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setIncomeAmount(amountIncome));
       dispatch(setSourceIncome(howIncome));
@@ -205,8 +186,13 @@ const Confirm = () => {
         <>
           {history[27] == true ? (
             <>
-              {renderDescription()}
+            {confirm == "No"? null:
+              (<>
+                {renderDescription()}
               {renderReply()}
+              </>
+              )
+            }
             </>
           ) : (
             renderDescription()
@@ -216,4 +202,4 @@ const Confirm = () => {
     </>
   );
 };
-export default Confirm;
+export default Income;

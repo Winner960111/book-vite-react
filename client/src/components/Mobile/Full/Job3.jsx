@@ -6,7 +6,6 @@ import {
   setJobSalary,
   setJobstatus,
   setJobYear,
-  removeHistory,
 
 } from '../../../store/reducers/checker';
 // import { usersUpdate } from '../../../api/index';
@@ -20,7 +19,6 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { MdModeEditOutline } from "react-icons/md";
 
 const Job3 = () => {
   const {
@@ -47,10 +45,6 @@ const Job3 = () => {
   useEffect(() => {
     console.log("this is job kind===>", jobKind)
   }, [jobKind])
-
-  const editFunction = () => {
-    dispatch(removeHistory())
-  }
   
   const handleEDate = (value) => {
     setError('');
@@ -188,14 +182,12 @@ const Job3 = () => {
   );
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
         Salary:{jobSalary}
         <br />
         Job kind:{jobstatus}
         <br />
         Start working date: {jobYear}
-        <MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
-
       </div>
     </div>
   );

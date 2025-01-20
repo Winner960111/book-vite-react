@@ -4,10 +4,13 @@ import {
   addHistory,
   setCheckerMiddleName,
   setCheckerIsSkipMiddleName,
+  removeHistory,
+
 } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
 import TextField from '@mui/material/TextField';
+import { MdModeEditOutline } from "react-icons/md";
 
 const InputMiddleName = () => {
   const dispatch = useDispatch();
@@ -24,6 +27,10 @@ const InputMiddleName = () => {
   useEffect(() => {
     setError(null);
   }, [step]);
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const skipMiddleName = () => {
       dispatch(setCheckerIsSkipMiddleName(true));
@@ -111,8 +118,10 @@ const InputMiddleName = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         {checkerMiddleName}
+<MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+
       </div>
     </div>
   );

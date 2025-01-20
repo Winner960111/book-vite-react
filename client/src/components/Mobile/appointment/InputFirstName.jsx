@@ -3,11 +3,12 @@ import BotIcon from './BotIcon';
 import {
   addHistory,
   setCheckerFirstName,
+  removeHistory,
 } from '../../../store/reducers/checker';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '../../../utils';
-// import { usersUpdate } from '../../../api/index';
 import TextField from '@mui/material/TextField';
+import { MdModeEditOutline } from "react-icons/md";
 
 const InputFirstName = () => {
   const dispatch = useDispatch();
@@ -15,19 +16,6 @@ const InputFirstName = () => {
     step,
     history,
     checkerFirstName,
-    // intentID,
-    // dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
-    // checkerMobileNumber,
   } = useSelector((state) => state.checker);
 
   const [firstName, setFirstName] = useState('');
@@ -36,6 +24,10 @@ const InputFirstName = () => {
   useEffect(() => {
     setError(null);
   }, [step]);
+
+  const editFunction = () => {
+    dispatch(removeHistory())
+  }
 
   const handleChangeInput = (e) => {
     setFirstName(e.target.value);
@@ -50,26 +42,6 @@ const InputFirstName = () => {
     } else if (!/^[A-Za-z]+$/.test(firstName)) {
       setError('The first name contains only characters');
     } else {
-      // const data = {
-      //   dealer_id: dealerId,
-      //   device_ip_address: deviceIP,
-      //   device_operating_system: deviceOS,
-      //   device_browser: deviceBrowser,
-      //   device_type: type,
-      //   device_state: deviceState,
-      //   device_city: deviceCity,
-      //   device_country: deviceCountry,
-      //   device_date_time: deviceDate,
-      //   device_lat: deviceLat,
-      //   device_lon: deviceLon,
-      //   status: 'Started',
-      //   lang: 'EN',
-      //   phone: checkerMobileNumber,
-      //   page: 'Book Appointment',
-      //   last_question: '2',
-      // };
-      // const res = await usersUpdate(data, intentID);
-      // console.log('this is update results ====>', res);
       dispatch(addHistory(true));
       dispatch(setCheckerFirstName(firstName));
       setFirstName('');
@@ -129,8 +101,10 @@ const InputFirstName = () => {
 
   const renderReply = () => (
     <div className="mt-4 flex justify-end text-lg">
-      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white">
+      <div className="p-4 text-sm md:text-lg bg-slate-600 rounded-tl-xl rounded-b-xl text-white relative">
         {checkerFirstName}
+<MdModeEditOutline style={{ color: 'white', fontSize: ' 15px' }} onClick={editFunction} className='cursor-pointer absolute right-2' />
+
       </div>
     </div>
   );

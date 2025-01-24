@@ -33,7 +33,6 @@ const CheckPhoneVerificationCode = () => {
         dealerId,
         verifyCode
       );
-      // const res = { status: 201 };
 
       if (res.status === 201) {
         dispatch(addHistory(true));

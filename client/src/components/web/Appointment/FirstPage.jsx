@@ -13,18 +13,7 @@ import Select from '@mui/material/Select';
 const FirstPage = () => {
 
     const {
-        // intentID,
         dealerId,
-        // deviceIP,
-        // deviceOS,
-        // deviceCity,
-        // deviceCountry,
-        // deviceState,
-        // deviceDate,
-        // deviceLat,
-        // deviceLon,
-        // deviceBrowser,
-        // type,
         checkerMobileNumber,
     } = useSelector((state) => state.checker);
 
@@ -78,24 +67,6 @@ const FirstPage = () => {
     };
 
     const handleSubmit = async () => {
-        // const data = {
-        //     dealer_id: dealerId,
-        //     device_ip_address: deviceIP,
-        //     device_operating_system: deviceOS,
-        //     device_browser: deviceBrowser,
-        //     device_type: type,
-        //     device_state: deviceState,
-        //     device_city: deviceCity,
-        //     device_country: deviceCountry,
-        //     device_date_time: deviceDate,
-        //     device_lat: deviceLat,
-        //     device_lon: deviceLon,
-        //     status: 'Started',
-        //     lang: 'EN',
-        //     phone: checkerMobileNumber,
-        //     page: 'Book Appointment',
-        //     last_question: '1',
-        // };
         const data = {
             dealer_id: dealerId,
             mobile_phone: checkerMobileNumber,

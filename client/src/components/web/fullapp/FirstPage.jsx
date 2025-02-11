@@ -32,16 +32,6 @@ const FirstPage = () => {
     dealerName,
     intentID,
     dealerId,
-    // deviceIP,
-    // deviceOS,
-    // deviceCity,
-    // deviceCountry,
-    // deviceState,
-    // deviceDate,
-    // deviceLat,
-    // deviceLon,
-    // deviceBrowser,
-    // type,
     checkerMobileNumber,
   } = useSelector((state) => state.checker);
   const dispatch = useDispatch();
@@ -125,24 +115,6 @@ const FirstPage = () => {
   }, [step]);
 
   const handleNext = async () => {
-    // const data = {
-    //   dealer_id: dealerId,
-    //   device_ip_address: deviceIP,
-    //   device_operating_system: deviceOS,
-    //   device_browser: deviceBrowser,
-    //   device_type: type,
-    //   device_state: deviceState,
-    //   device_city: deviceCity,
-    //   device_country: deviceCountry,
-    //   device_date_time: deviceDate,
-    //   device_lat: deviceLat,
-    //   device_lon: deviceLon,
-    //   status: 'Started',
-    //   lang: 'EN',
-    //   phone: checkerMobileNumber,
-    //   page: 'Full',
-    //   last_question: '1',
-    // };
     const data = {
       dealer_id: dealerId,
       mobile_phone: checkerMobileNumber,
@@ -409,16 +381,6 @@ const FirstPage = () => {
                 {errorBirthday !== '' && (
                   <p className="text-red-500 pl-2">{errorBirthday}</p>
                 )}
-                {/* {focusBirthday && (
-                  <p className="bg-gray-50 rounded-3xl p-4 mt-2">
-                    <b className="text-justify ">Please input your birthday.</b>
-                    <br />
-                    Your Privacy Matters: Rest assured, the information you
-                    provide is strictly confidential. We take your privacy
-                    seriously and only use your details to enhance your
-                    experience with us.
-                  </p>
-                )} */}
               </div>
               <div className="flex flex-col w-full my-3 md:mx-5">
                 <TextField

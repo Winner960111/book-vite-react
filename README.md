@@ -1,4 +1,4 @@
-# 🧭 Booking Automation [Project ID: P-21]
+# 🧭 Booking Automation
 
 A full-stack dealer info-checker application that provides an intuitive interface for customers to get prequalified, request quotes, submit trade-in values, complete credit applications, and interact with dealers—with responsive web and mobile experiences.
 
